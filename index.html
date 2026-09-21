@@ -1984,6 +1984,44 @@
             color: #55555e;
         }
 
+        
+        .footer-logo {
+    width: min(300px, 60vw);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+
+    opacity: .9;
+
+    animation:
+        floatMedium 4s ease-in-out infinite,
+        glowPulse 3s ease-in-out infinite;
+
+    transition: opacity .3s ease;
+}
+
+.footer-logo:hover {
+    opacity: 1;
+    animation-play-state: paused;
+}
+
+@keyframes floatMedium {
+    0%, 100% {
+        transform: translateY(0) rotate(-.5deg);
+    }
+    50% {
+        transform: translateY(-6px) rotate(.5deg);
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(0,255,135,.15));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(0,255,135,.35));
+    }
+}
         .access-submit {
             width: 100%;
 
@@ -4028,13 +4066,14 @@
 
     <footer>
 
-        <strong>
-            AURA XP
-        </strong>
+        <div class="footer-logo">
+            
+            <img
+                src="assets/logo.png"
+                alt="AURA Indumentaria"
+                class="footer-logo"
+            >
 
-        <br><br>
-
-        INDUMENTARIA PARA FARMEAR ESTILO.
 
         <div class="footer-links">
 
