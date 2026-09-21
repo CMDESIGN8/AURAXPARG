@@ -4464,7 +4464,7 @@ const successSize = document.getElementById("successSize");
         }
 
         setRegisteredCount(BASE_REGISTERED);
-        refreshRegisteredCount();
+        
 
 
         /* =======================================================
@@ -4817,6 +4817,8 @@ function initFirebase() {
     auth = window.firebaseAuth;
 
     console.log("✅ Firebase Auth inicializado");
+
+    refreshRegisteredCount();
 
     /* Detectar si venimos de un redirect */
     window.getRedirectResult(auth)
