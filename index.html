@@ -3098,6 +3098,7 @@
     window.firestoreAddDoc = addDoc;
     window.firestoreDoc = doc;
     window.firestoreSetDoc = setDoc;
+    window.firestoreGetDocs = getDocs;
     window.firestoreServerTimestamp = serverTimestamp;
     window.firestoreGetCountFromServer = getCountFromServer;
 
@@ -4436,17 +4437,20 @@ const successSize = document.getElementById("successSize");
         async function refreshRegisteredCount() {
             setRegisteredCount(BASE_REGISTERED);
 
-            if (!window.firebaseDB || !window.firestoreCollection) {
+            if (
+                !window.firebaseDB ||
+                !window.firestoreCollection ||
+                !window.firestoreGetDocs
+            ) {
+                console.warn("⚠️ Firebase o Firestore tools no están listos todavía.");
                 return;
             }
 
             try {
                 const db = window.firebaseDB;
-                const { getDocs, collection } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+                const farmersCollection = window.firestoreCollection(db, "farmer_counters");
                 
-                const farmersCollection = collection(db, "farmer_counters");
-                const snapshot = await getDocs(farmersCollection);
-                
+                const snapshot = await window.firestoreGetDocs(farmersCollection);
                 const realFarmers = snapshot.size || 0;
 
                 setRegisteredCount(BASE_REGISTERED + realFarmers);
