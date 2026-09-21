@@ -4434,57 +4434,28 @@ const successSize = document.getElementById("successSize");
         }
 
         async function refreshRegisteredCount() {
-
-            /*
-             * Importante:
-             * el contador público representa Farmers reales/globales.
-             * No usamos localStorage para inflarlo porque ese valor
-             * pertenece solamente al navegador del visitante.
-             */
             setRegisteredCount(BASE_REGISTERED);
 
-            if (
-                !window.firebaseDB ||
-                !window.firestoreCollection ||
-                !window.firestoreGetCountFromServer
-            ) {
+            if (!window.firebaseDB || !window.firestoreCollection) {
                 return;
             }
 
             try {
-
                 const db = window.firebaseDB;
-                const farmersCollection =
-                    window.firestoreCollection(db, "farmer_counters");
-
-                const snapshot =
-                    await window.firestoreGetCountFromServer(
-                        farmersCollection
-                    );
-
-                const realFarmers = snapshot.data().count || 0;
+                const { getDocs, collection } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+                
+                const farmersCollection = collection(db, "farmer_counters");
+                const snapshot = await getDocs(farmersCollection);
+                
+                const realFarmers = snapshot.size || 0;
 
                 setRegisteredCount(BASE_REGISTERED + realFarmers);
-
-                console.log(
-                    `👥 Farmers reales: ${BASE_REGISTERED + realFarmers}`
-                );
+                console.log(`👥 Farmers reales actualizados: ${BASE_REGISTERED + realFarmers}`);
 
             } catch (error) {
-
-                console.error(
-                    "❌ No se pudo consultar el contador real de Farmers:",
-                    error
-                );
-
-                /*
-                 * Si Firestore falla, mostramos solamente la base histórica.
-                 * Nunca mostramos un número local como si fuera global.
-                 */
+                console.error("❌ No se pudo consultar el contador real de Farmers:", error);
                 setRegisteredCount(BASE_REGISTERED);
-
             }
-
         }
 
         setRegisteredCount(BASE_REGISTERED);
