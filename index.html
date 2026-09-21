@@ -654,6 +654,9 @@
         .product-card {
             position: relative;
 
+            display: flex;
+            flex-direction: column;
+
             background: var(--card);
 
             border: 1px solid #22222a;
@@ -805,6 +808,10 @@
         }
 
         .product-info {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+
             padding: 22px;
         }
 
@@ -851,7 +858,8 @@
         }
 
         .product-bottom {
-            margin-top: 22px;
+            margin-top: auto;
+            padding-top: 22px;
 
             display: flex;
             align-items: center;
@@ -3289,12 +3297,15 @@
                             <img
                                 src="assets/remera.png"
                                 alt="FARM TEE frente"
+                                decoding="async"
                             >
 
                             <img
                                 src="assets/farm.png"
                                 alt="FARM TEE espalda"
                                 class="hover-img"
+                                loading="lazy"
+                                decoding="async"
                             >
 
                             <div class="rarity rare">
@@ -3376,6 +3387,8 @@
                                 src="assets/farm2.png"
                                 alt="SPORT AURA espalda"
                                 class="hover-img"
+                                loading="lazy"
+                                decoding="async"
                             >
 
                             <div class="rarity epic">
@@ -3457,6 +3470,8 @@
                                 src="assets/farm.png"
                                 alt="GRIND TEE espalda"
                                 class="hover-img"
+                                loading="lazy"
+                                decoding="async"
                             >
 
                             <div class="rarity legendary">
@@ -4072,8 +4087,11 @@
                 src="assets/logo.png"
                 alt="AURA Indumentaria"
                 class="footer-logo"
+                loading="lazy"
+                decoding="async"
             >
 
+        </div>
 
         <div class="footer-links">
 
@@ -4095,7 +4113,7 @@
 
         </div>
 
-        © 2025 AURA XP · DROP 001
+        © 2026 AURA XP · DROP 001
 
     </footer>
 
@@ -4129,7 +4147,7 @@
                 rarity: "rare",
                 rarityLabel: "RARE",
                 xp: 100,
-                image: "assets/farm.png",
+                image: "assets/remera.png",
                 description:
                     "Algodón peinado 240g. Estampa frontal + espalda."
             },
@@ -4149,7 +4167,7 @@
                 rarity: "legendary",
                 rarityLabel: "LEGENDARY",
                 xp: 500,
-                image: "assets/farm.png",
+                image: "assets/buzo.jpg",
                 description:
                     "Numerada del 1 al 5. Algodón premium 280g."
             }
@@ -4416,28 +4434,6 @@ const successSize = document.getElementById("successSize");
            manualmente: consulta la cantidad real de documentos.
         ======================================================== */
 
-        function getFallbackRegisteredCount() {
-
-            let extra = 0;
-
-            try {
-
-                const leads = JSON.parse(
-                    localStorage.getItem("auraXP_interesados") || "[]"
-                );
-
-                extra = leads.length;
-
-            } catch (error) {
-
-                extra = 0;
-
-            }
-
-            return BASE_REGISTERED + extra;
-
-        }
-
         function setRegisteredCount(value) {
 
             const safeValue = Number.isFinite(Number(value))
@@ -4451,8 +4447,13 @@ const successSize = document.getElementById("successSize");
 
         async function refreshRegisteredCount() {
 
-            /* Mientras Firebase carga, mostramos un fallback útil. */
-            setRegisteredCount(getFallbackRegisteredCount());
+            /*
+             * Importante:
+             * el contador público representa Farmers reales/globales.
+             * No usamos localStorage para inflarlo porque ese valor
+             * pertenece solamente al navegador del visitante.
+             */
+            setRegisteredCount(BASE_REGISTERED);
 
             if (
                 !window.firebaseDB ||
@@ -4488,8 +4489,11 @@ const successSize = document.getElementById("successSize");
                     error
                 );
 
-                /* Si Firestore falla, no dejamos el contador en 0. */
-                setRegisteredCount(getFallbackRegisteredCount());
+                /*
+                 * Si Firestore falla, mostramos solamente la base histórica.
+                 * Nunca mostramos un número local como si fuera global.
+                 */
+                setRegisteredCount(BASE_REGISTERED);
 
             }
 
@@ -4887,9 +4891,9 @@ function initFirebase() {
    MANEJAR USUARIO DE FIREBASE
 ======================================================== */
 
-function handleFirebaseUser(user) {
+async function handleFirebaseUser(user) {
 
-    saveLead({
+    await saveLead({
 
         email: user.email,
         name: user.displayName || "",
@@ -5028,7 +5032,7 @@ emailToggleBtn.addEventListener("click", () => {
    EMAIL FORM SUBMIT
 ======================================================== */
 
-accessFormEl.addEventListener("submit", event => {
+accessFormEl.addEventListener("submit", async event => {
 
     event.preventDefault();
 
@@ -5040,18 +5044,36 @@ accessFormEl.addEventListener("submit", event => {
 
     if (!email) return;
 
-    saveLead({
+    const submitButton = accessFormEl.querySelector(".access-submit");
 
-        email: email,
-        whatsapp: whatsapp,
-        provider: "email"
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.style.opacity = ".7";
+    }
 
-    });
+    try {
 
-    showSuccess({ email: email });
+        await saveLead({
 
-    emailInput.value = "";
-    if (whatsappInput) whatsappInput.value = "";
+            email: email,
+            whatsapp: whatsapp,
+            provider: "email"
+
+        });
+
+        showSuccess({ email: email });
+
+        emailInput.value = "";
+        if (whatsappInput) whatsappInput.value = "";
+
+    } finally {
+
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.style.opacity = "";
+        }
+
+    }
 
 });
 
