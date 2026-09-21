@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AURA XP — Admin</title>
+
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#060609">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        :root {
+            --bg: #060609;
+            --card: #12121a;
+            --card-hover: #181822;
+            --white: #f2f2ec;
+            --muted: #8b8b8b;
+            --muted-light: #b7b7b0;
+            --green: #00ff87;
+            --cyan: #00e1ff;
+            --magenta: #ff007f;
+            --yellow: #ffcc00;
+            --border: rgba(255,255,255,.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: "Montserrat", sans-serif;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 15% 15%, rgba(0,255,135,.055), transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(255,0,127,.055), transparent 40%);
+        }
+
+        button, input, select {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .admin-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            background: rgba(6,6,9,.85);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid var(--border);
+
+            padding: 18px 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header h1 {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: -.02em;
+        }
+
+        .admin-header h1 span {
+            color: var(--green);
+        }
+
+        .admin-header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .admin-header .user-info img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+        }
+
+        .admin-header .logout-btn {
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted-light);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            transition: all .25s ease;
+        }
+
+        .admin-header .logout-btn:hover {
+            border-color: var(--magenta);
+            color: var(--magenta);
+        }
+
+        /* =========================================================
+           LOGIN SCREEN
+        ========================================================= */
+
+        .login-screen {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+
+            background: var(--card);
+            border: 1px solid var(--border);
+
+            padding: 40px 32px;
+
+            text-align: center;
+
+            box-shadow: 0 30px 80px rgba(0,0,0,.35);
+        }
+
+        .login-card h2 {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -.03em;
+            margin-bottom: 10px;
+        }
+
+        .login-card p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .google-login-btn {
+            width: 100%;
+            min-height: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            padding: 0 20px;
+
+            background: #fff;
+            color: #1a1a1a;
+
+            border: none;
+
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: .06em;
+
+            transition: transform .2s ease, box-shadow .25s ease;
+        }
+
+        .google-login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,255,255,.12);
+        }
+
+        .login-note {
+            margin-top: 20px;
+            font-size: 10px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* =========================================================
+           DASHBOARD
+        ========================================================= */
+
+        .dashboard {
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px 22px;
+        }
+
+        .stat-card .stat-label {
+            display: block;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .stat-card .stat-value {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: -.03em;
+            color: var(--green);
+            line-height: 1;
+        }
+
+        .stat-card .stat-value.cyan { color: var(--cyan); }
+        .stat-card .stat-value.magenta { color: var(--magenta); }
+        .stat-card .stat-value.yellow { color: var(--yellow); }
+
+        /* =========================================================
+           TOOLBAR
+        ========================================================= */
+
+        .toolbar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+
+            margin-bottom: 20px;
+
+            padding: 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+        }
+
+        .toolbar input,
+        .toolbar select {
+            padding: 11px 14px;
+            background: #09090d;
+            border: 1px solid rgba(255,255,255,.12);
+            color: var(--white);
+            font-size: 12px;
+            outline: none;
+            transition: border-color .25s ease;
+        }
+
+        .toolbar input:focus,
+        .toolbar select:focus {
+            border-color: var(--green);
+        }
+
+        .toolbar input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .toolbar button {
+            padding: 11px 18px;
+            background: var(--green);
+            color: #000;
+            border: none;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            transition: all .25s ease;
+        }
+
+        .toolbar button:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .toolbar button.secondary {
+            background: transparent;
+            color: var(--muted-light);
+            border: 1px solid var(--border);
+        }
+
+        .toolbar button.secondary:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            background: transparent;
+        }
+
+        /* =========================================================
+           TABLE
+        ========================================================= */
+
+        .table-wrapper {
+            background: var(--card);
+            border: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        thead {
+            background: rgba(255,255,255,.02);
+            position: sticky;
+            top: 0;
+        }
+
+        thead th {
+            text-align: left;
+            padding: 14px 16px;
+
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+
+            border-bottom: 1px solid var(--border);
+
+            white-space: nowrap;
+        }
+
+        tbody td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(255,255,255,.04);
+            vertical-align: middle;
+        }
+
+        tbody tr {
+            transition: background .2s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(255,255,255,.02);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-cell img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+
+        .user-cell .user-meta {
+            min-width: 0;
+        }
+
+        .user-cell .user-name {
+            display: block;
+            font-weight: 800;
+            font-size: 12px;
+            color: var(--white);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 180px;
+        }
+
+        .user-cell .user-email {
+            display: block;
+            font-size: 10px;
+            color: var(--muted);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 180px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+
+            border: 1px solid currentColor;
+        }
+
+        .badge.rare { color: var(--green); }
+        .badge.epic { color: var(--cyan); }
+        .badge.legendary { color: var(--magenta); }
+
+        .badge.provider {
+            color: var(--muted-light);
+            border-color: var(--border);
+        }
+
+        .badge.size {
+            color: var(--yellow);
+            border-color: rgba(255,204,0,.3);
+        }
+
+        .date-cell {
+            font-size: 11px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .empty-state {
+            padding: 80px 20px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .loading-state {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard {
+                padding: 20px 16px;
+            }
+
+            .admin-header {
+                padding: 14px 18px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .toolbar input,
+            .toolbar select,
+            .toolbar button {
+                width: 100%;
+            }
+
+            table {
+                font-size: 11px;
+            }
+
+            thead th,
+            tbody td {
+                padding: 10px 12px;
+            }
+
+        }
+
+    </style>
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+        import {
+            getAuth,
+            GoogleAuthProvider,
+            signInWithPopup,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        import {
+            getFirestore,
+            collection,
+            getDocs,
+            query,
+            orderBy
+        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA6sVrVsArVZEARA5JQjND4xxtGKRCLE0Q",
+            authDomain: "aura-xp-dd6d3.firebaseapp.com",
+            projectId: "aura-xp-dd6d3",
+            storageBucket: "aura-xp-dd6d3.firebasestorage.app",
+            messagingSenderId: "484718037800",
+            appId: "1:484718037800:web:b0713ffb61833505185e1d"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        window.__firebase = {
+            auth,
+            db,
+            GoogleAuthProvider,
+            signInWithPopup,
+            signOut,
+            onAuthStateChanged,
+            collection,
+            getDocs,
+            query,
+            orderBy
+        };
+
+    </script>
+
+</head>
+
+<body>
+
+    <!-- =========================================================
+         LOGIN SCREEN
+    ========================================================= -->
+
+    <div class="login-screen" id="loginScreen">
+
+        <div class="login-card">
+
+            <h2>
+                AURA XP <span style="color:var(--green)">ADMIN</span>
+            </h2>
+
+            <p>
+                Acceso restringido. Solo usuarios autorizados.
+            </p>
+
+            <button
+                class="google-login-btn"
+                id="googleLoginBtn"
+                type="button"
+            >
+                <svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">
+                    <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/>
+                    <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+                    <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.1-11.3-7.6l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
+                    <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.7l6.2 5.2C41 35.5 44 30.2 44 24c0-1.3-.1-2.3-.4-3.5z"/>
+                </svg>
+                <span>INICIAR SESIÓN CON GOOGLE</span>
+            </button>
+
+            <p class="login-note" id="loginNote">
+                Solo el email <strong>contacto.auraxp@gmail.com</strong> y los emails autorizados pueden acceder.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         DASHBOARD
+    ========================================================= -->
+
+    <div id="dashboardScreen" style="display:none">
+
+        <header class="admin-header">
+
+            <h1>
+                AURA XP <span>· ADMIN</span>
+            </h1>
+
+            <div class="user-info">
+
+                <img id="userAvatar" src="" alt="">
+
+                <div>
+
+                    <div id="userName" style="font-weight:800;color:var(--white)"></div>
+
+                    <div id="userEmail"></div>
+
+                </div>
+
+            </div>
+
+            <button class="logout-btn" id="logoutBtn" type="button">
+                SALIR
+            </button>
+
+        </header>
+
+
+        <div class="dashboard">
+
+            <!-- STATS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-label">Total leads</span>
+                    <span class="stat-value" id="statTotal">0</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">Últimas 24hs</span>
+                    <span class="stat-value cyan" id="stat24h">0</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">FARM TEE</span>
+                    <span class="stat-value yellow" id="statFarm">0</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">GRIND TEE</span>
+                    <span class="stat-value magenta" id="statGrind">0</span>
+                </div>
+
+            </div>
+
+
+            <!-- TOOLBAR -->
+
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Buscar por email, nombre o producto..."
+                >
+
+                <select id="productFilter">
+                    <option value="">Todos los productos</option>
+                    <option value="FARM TEE">FARM TEE</option>
+                    <option value="SPORT AURA">SPORT AURA</option>
+                    <option value="GRIND TEE">GRIND TEE</option>
+                </select>
+
+                <select id="sizeFilter">
+                    <option value="">Todos los talles</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+
+                <button id="refreshBtn" type="button">
+                    ACTUALIZAR
+                </button>
+
+                <button id="exportBtn" class="secondary" type="button">
+                    EXPORTAR CSV
+                </button>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+                <div id="loadingState" class="loading-state">
+                    Cargando leads...
+                </div>
+
+                <div id="emptyState" class="empty-state" style="display:none">
+                    <h3>No hay leads todavía</h3>
+                    <p>Cuando alguien se registre, aparecerá acá.</p>
+                </div>
+
+                <table id="leadsTable" style="display:none">
+
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>WhatsApp</th>
+                            <th>Producto</th>
+                            <th>Rareza</th>
+                            <th>Talle</th>
+                            <th>XP</th>
+                            <th>Proveedor</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="leadsTbody"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =======================================================
+           CONFIGURACIÓN
+        ======================================================== */
+
+        const ALLOWED_EMAILS = [
+            "contacto.auraxp@gmail.com",
+            "desarrollo.lupi@gmail.com"
+        ];
+
+
+        /* =======================================================
+           ESTADO
+        ======================================================== */
+
+        let allLeads = [];
+        let filteredLeads = [];
+
+
+        /* =======================================================
+           DOM
+        ======================================================== */
+
+        const loginScreen = document.getElementById("loginScreen");
+        const dashboardScreen = document.getElementById("dashboardScreen");
+        const googleLoginBtn = document.getElementById("googleLoginBtn");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const userAvatar = document.getElementById("userAvatar");
+        const userName = document.getElementById("userName");
+        const userEmail = document.getElementById("userEmail");
+
+        const statTotal = document.getElementById("statTotal");
+        const stat24h = document.getElementById("stat24h");
+        const statFarm = document.getElementById("statFarm");
+        const statGrind = document.getElementById("statGrind");
+
+        const searchInput = document.getElementById("searchInput");
+        const productFilter = document.getElementById("productFilter");
+        const sizeFilter = document.getElementById("sizeFilter");
+        const refreshBtn = document.getElementById("refreshBtn");
+        const exportBtn = document.getElementById("exportBtn");
+
+        const loadingState = document.getElementById("loadingState");
+        const emptyState = document.getElementById("emptyState");
+        const leadsTable = document.getElementById("leadsTable");
+        const leadsTbody = document.getElementById("leadsTbody");
+
+
+        /* =======================================================
+           INIT FIREBASE
+        ======================================================== */
+
+        function waitForFirebase() {
+
+            if (!window.__firebase) {
+
+                setTimeout(waitForFirebase, 300);
+                return;
+
+            }
+
+            initAuth();
+
+        }
+
+        waitForFirebase();
+
+
+        /* =======================================================
+           AUTH
+        ======================================================== */
+
+        function initAuth() {
+
+            const { auth, onAuthStateChanged } = window.__firebase;
+
+            onAuthStateChanged(auth, (user) => {
+
+                if (user) {
+
+                    if (!isAllowed(user.email)) {
+
+                        alert(
+                            "Acceso denegado.\n\n" +
+                            "El email " + user.email + " no está autorizado."
+                        );
+
+                        window.__firebase.signOut(auth);
+                        return;
+
+                    }
+
+                    showDashboard(user);
+
+                } else {
+
+                    showLogin();
+
+                }
+
+            });
+
+        }
+
+        function isAllowed(email) {
+
+            if (!email) return false;
+
+            return ALLOWED_EMAILS.includes(email.toLowerCase());
+
+        }
+
+        function showLogin() {
+
+            loginScreen.style.display = "flex";
+            dashboardScreen.style.display = "none";
+
+        }
+
+        function showDashboard(user) {
+
+            loginScreen.style.display = "none";
+            dashboardScreen.style.display = "block";
+
+            userAvatar.src = user.photoURL || "";
+            userName.textContent = user.displayName || "Admin";
+            userEmail.textContent = user.email || "";
+
+            loadLeads();
+
+        }
+
+
+        /* =======================================================
+           LOGIN
+        ======================================================== */
+
+        googleLoginBtn.addEventListener("click", async () => {
+
+            const { auth, GoogleAuthProvider, signInWithPopup } = window.__firebase;
+
+            const provider = new GoogleAuthProvider();
+
+            try {
+
+                const result = await signInWithPopup(auth, provider);
+
+                if (!isAllowed(result.user.email)) {
+
+                    alert(
+                        "Acceso denegado.\n\n" +
+                        "El email " + result.user.email + " no está autorizado."
+                    );
+
+                    await window.__firebase.signOut(auth);
+
+                }
+
+            } catch (error) {
+
+                console.error("Error login:", error);
+                alert("No pudimos iniciar sesión. Probá de nuevo.");
+
+            }
+
+        });
+
+
+        /* =======================================================
+           LOGOUT
+        ======================================================== */
+
+        logoutBtn.addEventListener("click", async () => {
+
+            await window.__firebase.signOut(window.__firebase.auth);
+
+        });
+
+
+        /* =======================================================
+           CARGAR LEADS
+        ======================================================== */
+
+        async function loadLeads() {
+
+            loadingState.style.display = "block";
+            emptyState.style.display = "none";
+            leadsTable.style.display = "none";
+
+            try {
+
+                const { db, collection, getDocs } = window.__firebase;
+
+                const leadsRef = collection(db, "leads");
+                const snapshot = await getDocs(leadsRef);
+
+                allLeads = [];
+
+                snapshot.forEach(doc => {
+
+                    allLeads.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+
+                });
+
+                /* Ordenar por fecha descendente */
+                allLeads.sort((a, b) => {
+
+                    const dateA = a.fecha ? new Date(a.fecha).getTime() : 0;
+                    const dateB = b.fecha ? new Date(b.fecha).getTime() : 0;
+
+                    return dateB - dateA;
+
+                });
+
+                applyFilters();
+
+            } catch (error) {
+
+                console.error("Error cargando leads:", error);
+
+                loadingState.textContent =
+                    "Error cargando leads. Revisá las reglas de Firestore.";
+
+            }
+
+        }
+
+
+        /* =======================================================
+           APLICAR FILTROS
+        ======================================================== */
+
+        function applyFilters() {
+
+            const search = searchInput.value.trim().toLowerCase();
+            const product = productFilter.value;
+            const size = sizeFilter.value;
+
+            filteredLeads = allLeads.filter(lead => {
+
+                /* Filtro por producto */
+                if (product && lead.producto !== product) return false;
+
+                /* Filtro por talle */
+                if (size && lead.talle !== size) return false;
+
+                /* Filtro por búsqueda */
+                if (search) {
+
+                    const haystack = [
+                        lead.email || "",
+                        lead.name || "",
+                        lead.producto || ""
+                    ].join(" ").toLowerCase();
+
+                    if (!haystack.includes(search)) return false;
+
+                }
+
+                return true;
+
+            });
+
+            renderTable();
+            renderStats();
+
+        }
+
+
+        /* =======================================================
+           RENDER STATS
+        ======================================================== */
+
+        function renderStats() {
+
+            const now = Date.now();
+            const oneDayAgo = now - (24 * 60 * 60 * 1000);
+
+            const total = allLeads.length;
+
+            const last24h = allLeads.filter(lead => {
+
+                if (!lead.fecha) return false;
+
+                return new Date(lead.fecha).getTime() > oneDayAgo;
+
+            }).length;
+
+            const farmCount = allLeads.filter(
+                lead => lead.producto === "FARM TEE"
+            ).length;
+
+            const grindCount = allLeads.filter(
+                lead => lead.producto === "GRIND TEE"
+            ).length;
+
+            statTotal.textContent = total;
+            stat24h.textContent = last24h;
+            statFarm.textContent = farmCount;
+            statGrind.textContent = grindCount;
+
+        }
+
+
+        /* =======================================================
+           RENDER TABLA
+        ======================================================== */
+
+        function renderTable() {
+
+            loadingState.style.display = "none";
+
+            if (filteredLeads.length === 0) {
+
+                emptyState.style.display = "block";
+                leadsTable.style.display = "none";
+                return;
+
+            }
+
+            emptyState.style.display = "none";
+            leadsTable.style.display = "table";
+
+            leadsTbody.innerHTML = filteredLeads.map(lead => {
+
+                const date = lead.fecha
+                    ? formatDate(lead.fecha)
+                    : "—";
+
+                const rarityClass = getRarityClass(lead.rarity);
+
+                const avatar = lead.picture
+                    ? `<img src="${escapeHtml(lead.picture)}" alt="">`
+                    : "";
+
+                return `
+                    <tr>
+
+                        <td>
+                            <div class="user-cell">
+                                ${avatar}
+                                <div class="user-meta">
+                                    <span class="user-name">${escapeHtml(lead.name || "Sin nombre")}</span>
+                                    <span class="user-email">${escapeHtml(lead.email || "")}</span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>${escapeHtml(lead.whatsapp || "—")}</td>
+
+                        <td>${escapeHtml(lead.producto || "—")}</td>
+
+                        <td>
+                            <span class="badge ${rarityClass}">
+                                ${escapeHtml(lead.rarity || "—")}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge size">
+                                ${escapeHtml(lead.talle || "—")}
+                            </span>
+                        </td>
+
+                        <td>${lead.xp || 0}</td>
+
+                        <td>
+                            <span class="badge provider">
+                                ${escapeHtml(lead.provider || "—")}
+                            </span>
+                        </td>
+
+                        <td class="date-cell">${date}</td>
+
+                    </tr>
+                `;
+
+            }).join("");
+
+        }
+
+
+        /* =======================================================
+           UTILS
+        ======================================================== */
+
+        function getRarityClass(rarity) {
+
+            if (rarity === "rare") return "rare";
+            if (rarity === "epic") return "epic";
+            if (rarity === "legendary") return "legendary";
+
+            return "";
+
+        }
+
+        function formatDate(isoString) {
+
+            try {
+
+                const date = new Date(isoString);
+
+                const day = String(date.getDate()).padStart(2, "0");
+                const month = String(date.getMonth() + 1).padStart(2, "0");
+                const year = date.getFullYear();
+                const hours = String(date.getHours()).padStart(2, "0");
+                const minutes = String(date.getMinutes()).padStart(2, "0");
+
+                return `${day}/${month}/${year} ${hours}:${minutes}`;
+
+            } catch (error) {
+
+                return "—";
+
+            }
+
+        }
+
+        function escapeHtml(str) {
+
+            if (!str) return "";
+
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+
+        }
+
+
+        /* =======================================================
+           EVENTOS
+        ======================================================== */
+
+        searchInput.addEventListener("input", applyFilters);
+        productFilter.addEventListener("change", applyFilters);
+        sizeFilter.addEventListener("change", applyFilters);
+
+        refreshBtn.addEventListener("click", loadLeads);
+
+
+        /* =======================================================
+           EXPORTAR CSV
+        ======================================================== */
+
+        exportBtn.addEventListener("click", () => {
+
+            if (filteredLeads.length === 0) {
+
+                alert("No hay leads para exportar.");
+                return;
+
+            }
+
+            const headers = [
+                "Fecha",
+                "Email",
+                "Nombre",
+                "WhatsApp",
+                "Producto",
+                "Rareza",
+                "Talle",
+                "XP",
+                "Proveedor"
+            ];
+
+            const rows = filteredLeads.map(lead => [
+
+                lead.fecha ? formatDate(lead.fecha) : "",
+                lead.email || "",
+                lead.name || "",
+                lead.whatsapp || "",
+                lead.producto || "",
+                lead.rarity || "",
+                lead.talle || "",
+                lead.xp || "",
+                lead.provider || ""
+
+            ]);
+
+            const csv = [headers, ...rows]
+                .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(","))
+                .join("\n");
+
+            const blob = new Blob(["\uFEFF" + csv], {
+                type: "text/csv;charset=utf-8;"
+            });
+
+            const url = URL.createObjectURL(blob);
+
+            const today = new Date().toISOString().slice(0, 10);
+
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = `aura-xp-leads-${today}.csv`;
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            URL.revokeObjectURL(url);
+
+        });
+
+    </script>
+
+</body>
+
+</html>

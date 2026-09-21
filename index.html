@@ -1,0 +1,5117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AURA XP — Drop 001 · 3 piezas · 100 unidades</title>
+
+    <meta
+        name="description"
+        content="Drop 001: 3 piezas, 100 unidades. Sport × Gaming × Urban. Reservá tu lugar antes del lanzamiento."
+    >
+
+    <meta name="theme-color" content="#060609">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AURA XP — Drop 001 · 3 piezas · 100 unidades">
+    <meta property="og:description" content="Reservá tu lugar. Cuando se agota, no vuelve.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/og-image.jpg">
+
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================================================
+           AURA XP — DESIGN SYSTEM
+        ========================================================= */
+
+        :root {
+            --bg: #060609;
+            --bg-soft: #0b0b10;
+            --card: #12121a;
+            --card-hover: #181822;
+
+            --white: #f2f2ec;
+            --muted: #8b8b8b;
+            --muted-light: #b7b7b0;
+
+            --logo-green: #00ff87;
+            --logo-cyan: #00e1ff;
+            --logo-magenta: #ff007f;
+            --logo-yellow: #ffcc00;
+
+            --border: rgba(255,255,255,.08);
+
+            --max-width: 1180px;
+            --transition: .3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: "Montserrat", sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(0,255,135,.055),
+                    transparent 40%
+                ),
+                radial-gradient(
+                    circle at 85% 85%,
+                    rgba(255,0,127,.055),
+                    transparent 40%
+                );
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: .025;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,.4) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.4) 1px,
+                    transparent 1px
+                );
+
+            background-size: 80px 80px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        section {
+            scroll-margin-top: 110px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+
+        /* =========================================================
+           TOP BAR
+        ========================================================= */
+
+        .topbar {
+            width: 100%;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--logo-magenta),
+                    var(--logo-yellow),
+                    var(--logo-green)
+                );
+
+            color: #000;
+
+            font-size: .68rem;
+            font-weight: 900;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+
+            position: relative;
+            z-index: 1100;
+        }
+
+
+        /* =========================================================
+           NAV
+        ========================================================= */
+
+        header {
+            position: fixed;
+            top: 34px;
+            left: 0;
+
+            width: 100%;
+            height: 74px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 42px;
+
+            background: rgba(6,6,9,.55);
+
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            z-index: 1000;
+
+            transition:
+                background .3s ease,
+                border-color .3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(6,6,9,.88);
+            border-bottom-color: rgba(255,255,255,.12);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand img {
+            width: 105px;
+            height: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav a {
+            position: relative;
+
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            color: var(--muted-light);
+
+            transition:
+                color .25s ease,
+                transform .25s ease;
+        }
+
+        nav a:hover {
+            color: var(--logo-cyan);
+            transform: translateY(-1px);
+        }
+
+        .nav-cta {
+            padding: 10px 17px;
+
+            border: 1px solid var(--logo-cyan);
+            border-radius: 4px;
+
+            color: var(--logo-cyan);
+        }
+
+        .nav-cta:hover {
+            background: var(--logo-cyan);
+            color: #000;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 150px 20px 90px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-media img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            opacity: .35;
+
+            filter: blur(2px) brightness(.55);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(6,6,9,.75) 0%,
+                    rgba(6,6,9,.95) 100%
+                );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            max-width: 950px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            margin-bottom: 25px;
+
+            color: var(--logo-green);
+
+            font-size: .72rem;
+            font-weight: 900;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            background: var(--logo-green);
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 8px var(--logo-green),
+                0 0 18px var(--logo-green);
+
+            animation: pulse 1.8s infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px,7.5vw,86px);
+
+            line-height: .92;
+            font-weight: 900;
+            letter-spacing: -.05em;
+
+            text-transform: uppercase;
+        }
+
+        .hero h1 .accent {
+            color: var(--logo-green);
+
+            text-shadow:
+                0 0 30px rgba(0,255,135,.35);
+        }
+
+        .hero-sub {
+            max-width: 590px;
+
+            margin: 25px auto 0;
+
+            color: var(--muted-light);
+
+            line-height: 1.7;
+            font-size: .92rem;
+        }
+
+        /* Countdown */
+        .countdown {
+            display: flex;
+            justify-content: center;
+
+            gap: 12px;
+
+            margin: 32px 0 0;
+        }
+
+        .countdown > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding: 14px 18px;
+
+            min-width: 78px;
+
+            background: rgba(0,0,0,.55);
+
+            border: 1px solid rgba(0,255,135,.3);
+
+            border-radius: 4px;
+
+            backdrop-filter: blur(8px);
+        }
+
+        .countdown strong {
+            font-size: 1.9rem;
+            font-weight: 900;
+
+            color: var(--logo-green);
+
+            line-height: 1;
+        }
+
+        .countdown span {
+            margin-top: 6px;
+
+            font-size: .58rem;
+            letter-spacing: 1.5px;
+
+            color: var(--muted);
+        }
+
+        /* Botones */
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+
+            gap: 12px;
+
+            margin-top: 32px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            min-height: 52px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0 30px;
+
+            border-radius: 4px;
+
+            font-size: .78rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                background .25s ease,
+                color .25s ease,
+                border-color .25s ease;
+        }
+
+        .btn-primary {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--logo-magenta),
+                    var(--logo-cyan)
+                );
+
+            color: #fff;
+
+            border: none;
+
+            box-shadow:
+                0 0 25px rgba(255,0,127,.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 0 25px rgba(255,0,127,.4),
+                0 0 45px rgba(0,225,255,.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+
+            color: var(--white);
+
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--logo-cyan);
+            color: var(--logo-cyan);
+
+            transform: translateY(-3px);
+        }
+
+        /* Prueba social */
+        .social-proof {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-top: 28px;
+
+            padding: 10px 18px;
+
+            background: rgba(0,255,135,.06);
+
+            border: 1px solid rgba(0,255,135,.22);
+
+            border-radius: 40px;
+
+            font-size: .72rem;
+            font-weight: 600;
+
+            color: var(--muted-light);
+        }
+
+        .social-proof strong {
+            color: var(--logo-green);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: var(--logo-green);
+
+            box-shadow: 0 0 10px var(--logo-green);
+
+            animation: pulse 1.8s infinite;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =========================================================
+           ANIMATIONS
+        ========================================================= */
+
+        @keyframes pulse {
+            0%,100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .45;
+                transform: scale(.75);
+            }
+        }
+
+        @keyframes glow {
+            0%,100% {
+                opacity: .7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes unlockIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+
+        /* =========================================================
+           SECTIONS
+        ========================================================= */
+
+        .section {
+            max-width: var(--max-width);
+
+            margin: 0 auto;
+
+            padding: 110px 30px;
+        }
+
+        .section-header {
+            margin-bottom: 45px;
+            margin-top: 30px;
+        }
+
+        .section-kicker {
+            margin-bottom: 10px;
+
+            color: white;
+
+            font-size: .68rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(2rem,5vw,3.4rem);
+
+            font-weight: 900;
+
+            letter-spacing: -2px;
+
+            line-height: .95;
+        }
+
+        .section-description {
+            max-width: 620px;
+
+            margin-top: 15px;
+
+            color: var(--muted);
+
+            font-size: .9rem;
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           DROP
+        ========================================================= */
+
+        .drop {
+            border-top: 1px solid #16161d;
+            padding-top: 30px;
+        }
+
+        .products {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 18px;
+        }
+
+        .product-card {
+            position: relative;
+
+            background: var(--card);
+
+            border: 1px solid #22222a;
+
+            overflow: hidden;
+
+            transition:
+                transform var(--transition),
+                border-color var(--transition),
+                box-shadow var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .product-card.selected {
+            border-color: var(--product-color);
+
+            box-shadow:
+                0 0 35px var(--product-glow);
+        }
+
+        .product-image {
+            position: relative;
+
+            aspect-ratio: 1 / 1;
+
+            background:
+                radial-gradient(
+                    circle at 50% 30%,
+                    #25252e,
+                    #0c0c11 65%
+                );
+
+            overflow: hidden;
+        }
+
+        .product-image img {
+            position: absolute;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform .5s ease,
+                opacity .4s ease;
+        }
+
+        .product-image img.hover-img {
+            opacity: 0;
+        }
+
+        .product-card:hover .product-image img:first-child {
+            opacity: 0;
+        }
+
+        .product-card:hover .product-image img.hover-img {
+            opacity: 1;
+        }
+
+        .rarity {
+            position: absolute;
+
+            top: 14px;
+            left: 14px;
+
+            z-index: 2;
+
+            padding: 7px 10px;
+
+            border: 1px solid currentColor;
+
+            background: rgba(0,0,0,.7);
+
+            font-size: 9px;
+            font-weight: 900;
+
+            letter-spacing: .15em;
+
+            text-transform: uppercase;
+
+            backdrop-filter: blur(4px);
+        }
+
+        .rarity.rare {
+            color: var(--logo-green);
+        }
+
+        .rarity.epic {
+            color: var(--logo-cyan);
+        }
+
+        .rarity.legendary {
+            color: var(--logo-magenta);
+        }
+
+        .xp-badge {
+            position: absolute;
+
+            top: 14px;
+            right: 14px;
+
+            z-index: 2;
+
+            padding: 7px 10px;
+
+            background: #000;
+
+            color: var(--logo-yellow);
+
+            font-size: 9px;
+            font-weight: 900;
+
+            letter-spacing: .1em;
+        }
+
+        .stock-badge {
+            position: absolute;
+
+            bottom: 14px;
+            left: 14px;
+
+            z-index: 2;
+
+            padding: 6px 10px;
+
+            background: rgba(0,0,0,.75);
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            font-size: 8px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            color: var(--muted-light);
+
+            backdrop-filter: blur(4px);
+        }
+
+        .stock-badge.urgent {
+            color: var(--logo-magenta);
+            border-color: rgba(255,0,127,.5);
+            background: rgba(255,0,127,.08);
+        }
+
+        .product-info {
+            padding: 22px;
+        }
+
+        .product-type {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+
+            color: var(--muted);
+        }
+
+        .product-info h3 {
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: -.02em;
+        }
+
+        .product-info p {
+            margin-top: 8px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .product-features {
+            list-style: none;
+
+            margin: 14px 0 0;
+            padding: 0;
+        }
+
+        .product-features li {
+            padding: 4px 0;
+
+            font-size: 10.5px;
+
+            color: var(--muted-light);
+        }
+
+        .product-bottom {
+            margin-top: 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 12px;
+        }
+
+        .price {
+            display: flex;
+            flex-direction: column;
+
+            gap: 2px;
+        }
+
+        .price-label {
+            font-size: 8px;
+            letter-spacing: 1.5px;
+
+            color: var(--muted);
+        }
+
+        .price strong {
+            font-size: 1.15rem;
+            font-weight: 900;
+
+            color: var(--white);
+        }
+
+        .price small {
+            font-size: 9px;
+
+            color: var(--logo-green);
+        }
+
+        .select-product {
+            padding: 11px 14px;
+
+            border: 1px solid #33333c;
+
+            background: transparent;
+
+            color: var(--white);
+
+            font-size: 9px;
+            font-weight: 900;
+
+            letter-spacing: .1em;
+
+            text-transform: uppercase;
+
+            transition: all var(--transition);
+        }
+
+        .select-product:hover {
+            background: var(--white);
+
+            color: #000;
+
+            border-color: var(--white);
+        }
+
+        .product-card.selected .select-product {
+            background: var(--product-color);
+
+            border-color: var(--product-color);
+
+            color: #000;
+        }
+
+        /* Nota global de urgencia */
+        .drop-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 12px;
+
+            margin-top: 45px;
+
+            padding: 18px 20px;
+
+            background: rgba(255,0,127,.05);
+
+            border: 1px solid rgba(255,0,127,.22);
+
+            text-align: center;
+
+            font-size: .82rem;
+
+            color: var(--muted-light);
+        }
+
+        .drop-note strong {
+            color: var(--white);
+        }
+
+
+        /* =========================================================
+           RARITY SYSTEM
+        ========================================================= */
+
+        .rarity-system {
+            --rarity-color: var(--logo-green);
+            --rarity-soft: rgba(0,255,135,.08);
+            --rarity-border: rgba(0,255,135,.35);
+            --rarity-glow: rgba(0,255,135,.20);
+        }
+
+        .rarity-system.rarity-rare {
+            --rarity-color: #00ff87;
+            --rarity-soft: rgba(0,255,135,.08);
+            --rarity-border: rgba(0,255,135,.40);
+            --rarity-glow: rgba(0,255,135,.20);
+        }
+
+        .rarity-system.rarity-epic {
+            --rarity-color: #00e1ff;
+            --rarity-soft: rgba(0,225,255,.08);
+            --rarity-border: rgba(0,225,255,.40);
+            --rarity-glow: rgba(0,225,255,.20);
+        }
+
+        .rarity-system.rarity-legendary {
+            --rarity-color: #ff007f;
+            --rarity-soft: rgba(255,0,127,.08);
+            --rarity-border: rgba(255,0,127,.40);
+            --rarity-glow: rgba(255,0,127,.20);
+        }
+
+
+        /* =========================================================
+           LOADOUT
+        ========================================================= */
+
+        .loadout-section {
+            background:
+                linear-gradient(
+                    180deg,
+                    #060609,
+                    var(--rarity-soft),
+                    #060609
+                );
+
+            transition:
+                background .5s ease;
+        }
+
+        .loadout-section .section-kicker {
+            color: var(--rarity-color);
+
+            transition:
+                color var(--transition);
+        }
+
+        .loadout-box {
+            position: relative;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            min-height: 390px;
+
+            border: 1px solid var(--rarity-border);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--rarity-soft),
+                    rgba(18,18,26,.96)
+                );
+
+            box-shadow:
+                0 0 60px var(--rarity-glow);
+
+            transition:
+                border-color .4s ease,
+                box-shadow .4s ease,
+                background .4s ease;
+        }
+
+        .loadout-preview {
+            padding: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-right: 1px solid var(--rarity-border);
+
+            transition:
+                border-color .4s ease;
+        }
+
+        .loadout-preview img {
+            width: min(380px,100%);
+            max-height: 350px;
+
+            object-fit: contain;
+
+            filter:
+                drop-shadow(
+                    0 0 30px var(--rarity-glow)
+                );
+
+            transition:
+                filter .4s ease,
+                transform .4s ease;
+        }
+
+        .loadout-preview img:hover {
+            transform: scale(1.04);
+        }
+
+        .loadout-details {
+            padding: 40px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .loadout-label {
+            color: var(--rarity-color);
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: .18em;
+
+            text-transform: uppercase;
+
+            transition:
+                color var(--transition);
+        }
+
+        .loadout-details h3 {
+            margin-top: 10px;
+
+            font-size: clamp(30px,5vw,55px);
+
+            line-height: .9;
+
+            font-weight: 900;
+
+            letter-spacing: -.05em;
+
+            text-transform: uppercase;
+        }
+
+        .loadout-rarity {
+            margin-top: 15px;
+
+            display: inline-flex;
+            align-self: flex-start;
+
+            padding: 8px 11px;
+
+            border: 1px solid var(--rarity-border);
+
+            color: var(--rarity-color);
+
+            background: var(--rarity-soft);
+
+            font-size: 9px;
+            font-weight: 900;
+
+            letter-spacing: .15em;
+
+            text-transform: uppercase;
+
+            transition:
+                color .35s ease,
+                border-color .35s ease,
+                background .35s ease;
+        }
+
+        .loadout-description {
+            margin-top: 18px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .loadout-xp {
+            margin-top: 25px;
+
+            display: flex;
+            align-items: baseline;
+
+            gap: 8px;
+        }
+
+        .loadout-xp strong {
+            color: var(--rarity-color);
+
+            font-size: 42px;
+
+            line-height: 1;
+
+            font-weight: 900;
+
+            text-shadow:
+                0 0 20px var(--rarity-glow);
+
+            transition:
+                color .35s ease,
+                text-shadow .35s ease;
+        }
+
+        .loadout-xp span {
+            color: var(--muted);
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: .12em;
+
+            text-transform: uppercase;
+        }
+
+        .loadout-cta {
+            margin-top: 28px;
+
+            align-self: flex-start;
+
+            min-height: 46px;
+
+            padding: 0 22px;
+
+            border: 1px solid var(--rarity-color);
+
+            background: var(--rarity-color);
+
+            color: #000;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: .12em;
+
+            text-transform: uppercase;
+
+            box-shadow:
+                0 0 25px var(--rarity-glow);
+
+            transition:
+                background .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease,
+                transform .3s ease;
+        }
+
+        .loadout-cta:hover {
+            transform: translateY(-2px);
+
+            background: var(--white);
+
+            border-color: var(--white);
+
+            box-shadow:
+                0 0 35px var(--rarity-glow);
+        }
+
+
+        /* =========================================================
+           CÓMO FUNCIONA
+        ========================================================= */
+
+        .how-section {
+            border-top: 1px solid #16161d;
+        }
+
+        .how-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 18px;
+
+            margin-top: 10px;
+        }
+
+        .how-step {
+            padding: 28px 24px;
+
+            background: var(--card);
+
+            border: 1px solid #22222a;
+
+            transition:
+                transform var(--transition),
+                border-color var(--transition);
+        }
+
+        .how-step:hover {
+            transform: translateY(-4px);
+            border-color: var(--logo-cyan);
+        }
+
+        .how-step .step-num {
+            display: block;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            color: var(--logo-green);
+
+            margin-bottom: 14px;
+        }
+
+        .how-step h3 {
+            font-size: 1.2rem;
+            font-weight: 900;
+
+            letter-spacing: -.02em;
+
+            margin-bottom: 10px;
+        }
+
+        .how-step p {
+            font-size: .82rem;
+
+            color: var(--muted);
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================================
+           AURA XP
+        ========================================================= */
+
+        .xp-section {
+            border-top: 1px solid #16161d;
+            border-bottom: 1px solid #16161d;
+        }
+
+        .aura-section {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--logo-green),
+                    var(--logo-cyan)
+                );
+
+            color: #000;
+
+            max-width: none;
+
+            padding: 110px 30px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            margin-top: 50px;
+
+        }
+
+        .aura-section::before {
+            content: "AURA XP";
+
+            position: absolute;
+
+            right: -30px;
+            bottom: -60px;
+
+            font-size: clamp(8rem,20vw,18rem);
+
+            font-weight: 900;
+
+            color: rgba(0,0,0,.05);
+
+            pointer-events: none;
+        }
+
+        .aura-inner {
+            max-width: var(--max-width);
+
+            margin: auto;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+        .aura-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .aura-title {
+            font-size: clamp(3rem,7vw,6rem);
+
+            line-height: .85;
+
+            font-weight: 900;
+
+            letter-spacing: -5px;
+        }
+
+        .aura-text {
+            margin-top: 25px;
+
+            max-width: 500px;
+
+            font-size: 1rem;
+
+            font-weight: 700;
+
+            line-height: 1.7;
+        }
+
+        .aura-card {
+            background: #000;
+
+            color: var(--white);
+
+            padding: 30px;
+
+            border-radius: 6px;
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.2);
+        }
+
+        .aura-card-top {
+            display: flex;
+            justify-content: space-between;
+
+            color: var(--muted);
+
+            font-size: .62rem;
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+        }
+
+        .xp-number {
+            margin: 25px 0;
+
+            color: var(--logo-cyan);
+
+            font-size: 4rem;
+
+            font-weight: 900;
+
+            letter-spacing: -3px;
+        }
+
+        .xp-bar {
+            width: 100%;
+            height: 9px;
+
+            background: #1a1a26;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .xp-progress {
+            width: 67%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--logo-cyan),
+                    var(--logo-green)
+                );
+
+            animation:
+                glow 2.5s ease-in-out infinite;
+        }
+
+        .xp-level {
+            margin-top: 12px;
+
+            display: flex;
+            justify-content: space-between;
+
+            color: var(--muted);
+
+            font-size: .65rem;
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           ACCESS SECTION
+        ========================================================= */
+
+        .access-section {
+            --rarity-color: var(--logo-green);
+            --rarity-soft: rgba(0,255,135,.08);
+            --rarity-border: rgba(0,255,135,.35);
+            --rarity-glow: rgba(0,255,135,.18);
+
+            padding: 120px 6vw;
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition:
+                background .5s ease;
+        }
+
+        .access-section::before {
+            content: "";
+
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    var(--rarity-soft),
+                    transparent 70%
+                );
+
+            top: -100px;
+            right: -150px;
+
+            pointer-events: none;
+
+            transition:
+                background .5s ease;
+        }
+
+        .access-grid {
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 460px;
+
+            gap: 80px;
+
+            align-items: center;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+        .access-copy {
+            max-width: 620px;
+        }
+
+        .access-copy .section-kicker {
+            display: inline-block;
+
+            margin-bottom: 22px;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: .18em;
+
+            color: var(--rarity-color);
+
+            transition:
+                color .35s ease;
+        }
+
+        .access-copy h2 {
+            margin: 0;
+
+            font-size: clamp(48px,7vw,88px);
+
+            line-height: .9;
+
+            font-weight: 900;
+
+            letter-spacing: -.05em;
+        }
+
+        .access-copy h2 span {
+            color: var(--rarity-color);
+
+            transition:
+                color .35s ease,
+                text-shadow .35s ease;
+
+            text-shadow:
+                0 0 30px var(--rarity-glow);
+        }
+
+        .access-copy > p {
+            max-width: 540px;
+
+            margin: 30px 0 40px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.7;
+        }
+
+        .access-perks {
+            display: grid;
+
+            gap: 14px;
+        }
+
+        .access-perk {
+            display: grid;
+
+            grid-template-columns:
+                40px 150px 1fr;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 15px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,.07);
+        }
+
+        .access-perk > span {
+            color: var(--rarity-color);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            transition:
+                color .35s ease;
+        }
+
+        .access-perk strong {
+            font-size: 12px;
+
+            letter-spacing: .08em;
+        }
+
+        .access-perk small {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           ACCESS CARD
+        ========================================================= */
+
+        .access-card {
+            position: relative;
+
+            background: var(--card);
+
+            border:
+                1px solid var(--rarity-border);
+
+            padding: 26px;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.35),
+                0 0 60px var(--rarity-soft);
+
+            transition:
+                border-color .4s ease,
+                box-shadow .4s ease,
+                background .4s ease;
+        }
+
+        .access-card::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--rarity-soft),
+                    transparent 35%
+                );
+
+            transition:
+                background .4s ease;
+        }
+
+        /* =========================================================
+   SELECTOR DE TALLE
+========================================================= */
+
+.size-picker {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,.07);
+}
+
+.size-picker-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    margin-bottom: 14px;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+
+    color: var(--rarity-color);
+
+    transition: color .35s ease;
+}
+
+.size-selected {
+    font-size: 13px;
+    color: var(--white);
+    letter-spacing: .08em;
+}
+
+.size-options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.size-option {
+    flex: 1;
+    min-width: 52px;
+    min-height: 46px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,.03);
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    color: var(--white);
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .05em;
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        color .25s ease,
+        transform .2s ease;
+}
+
+.size-option:hover:not(.selected) {
+    border-color: var(--rarity-color);
+    color: var(--rarity-color);
+    transform: translateY(-2px);
+}
+
+.size-option.selected {
+    background: var(--rarity-color);
+    border-color: var(--rarity-color);
+    color: #000;
+    box-shadow: 0 0 20px var(--rarity-glow);
+}
+
+.size-hint {
+    margin-top: 12px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .05em;
+}
+
+/* Talle en el formulario */
+.selected-size {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: white;
+    letter-spacing: .08em;
+}
+
+.selected-size strong {
+    color: var(--rarity-color);
+    font-weight: 900;
+    transition: color .35s ease;
+    margin-left: 5px;
+}
+
+/* Talle en la pantalla de éxito */
+.success-size {
+    margin: 6px 0 10px;
+    font-size: 11px;
+    letter-spacing: .15em;
+    color: var(--muted);
+    text-transform: uppercase;
+}
+
+.success-size strong {
+    color: var(--rarity-color);
+    font-size: 15px;
+    transition: color .35s ease;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .size-options {
+        gap: 6px;
+    }
+
+    .size-option {
+        min-width: 44px;
+        min-height: 42px;
+        font-size: 12px;
+        padding: 0 4px;
+    }
+
+    .size-picker {
+        margin-top: 22px;
+        padding-top: 18px;
+    }
+
+}
+
+        .access-card-top {
+            position: relative;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding-bottom: 18px;
+
+            margin-bottom: 24px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,.08);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .12em;
+
+            color: var(--muted);
+        }
+
+        .online-dot {
+            color: var(--rarity-color);
+
+            text-shadow:
+                0 0 10px var(--rarity-glow);
+
+            transition:
+                color .35s ease;
+        }
+
+
+        /* =========================================================
+           SELECTED LOADOUT IN FORM
+        ========================================================= */
+
+        .selected-loadout {
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 18px;
+
+            margin-bottom: 24px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--rarity-soft),
+                    rgba(255,255,255,.035)
+                );
+
+            border:
+                1px solid var(--rarity-border);
+
+            transition:
+                border-color .35s ease,
+                background .35s ease,
+                box-shadow .35s ease;
+
+            box-shadow:
+                0 0 25px var(--rarity-soft);
+        }
+
+        .selected-loadout small {
+            display: block;
+
+            margin-bottom: 6px;
+
+            font-size: 9px;
+
+            color: var(--muted);
+
+            letter-spacing: .12em;
+        }
+
+        .selected-loadout strong {
+            font-size: 18px;
+        }
+
+        .selected-xp {
+            text-align: right;
+        }
+
+        .selected-xp span {
+            display: block;
+
+            font-size: 9px;
+
+            color: var(--rarity-color);
+
+            letter-spacing: .1em;
+
+            transition:
+                color .35s ease;
+        }
+
+        .selected-xp strong {
+            color: var(--rarity-color);
+
+            font-size: 25px;
+
+            text-shadow:
+                0 0 15px var(--rarity-glow);
+
+            transition:
+                color .35s ease,
+                text-shadow .35s ease;
+        }
+
+
+        /* =========================================================
+           ACCESS FORM
+        ========================================================= */
+
+        #accessForm {
+            position: relative;
+            z-index: 2;
+        }
+
+        #accessForm label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .12em;
+
+            color: var(--muted);
+        }
+
+        #accessForm input {
+            width: 100%;
+
+            padding: 16px;
+
+            margin-bottom: 12px;
+
+            background: #09090d;
+
+            border:
+                1px solid rgba(255,255,255,.12);
+
+            color: var(--white);
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition:
+                border-color .3s ease,
+                box-shadow .3s ease,
+                background .3s ease;
+        }
+
+        #accessForm input:focus {
+            border-color: var(--rarity-color);
+
+            box-shadow:
+                0 0 0 3px var(--rarity-soft),
+                0 0 25px var(--rarity-soft);
+        }
+
+        #accessForm input::placeholder {
+            color: #55555e;
+        }
+
+        .access-submit {
+            width: 100%;
+
+            border: 0;
+
+            padding: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            cursor: pointer;
+
+            background: var(--rarity-color);
+
+            color: #050507;
+
+            font-family: inherit;
+
+            font-weight: 900;
+
+            box-shadow:
+                0 0 25px var(--rarity-soft);
+
+            transition:
+                background .35s ease,
+                box-shadow .35s ease,
+                transform .25s ease;
+        }
+
+        .access-submit:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 35px var(--rarity-glow);
+        }
+
+        .access-submit span {
+            font-size: 12px;
+
+            letter-spacing: .08em;
+        }
+
+        .access-submit strong {
+            font-size: 13px;
+        }
+
+        .form-disclaimer {
+            margin: 14px 0 0;
+
+            color: var(--muted);
+
+            font-size: 9px;
+
+            line-height: 1.5;
+
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           SUCCESS
+        ========================================================= */
+
+        .access-success {
+            position: relative;
+
+            text-align: center;
+
+            padding: 20px 5px 5px;
+
+            animation:
+                unlockIn .45s ease forwards;
+        }
+
+        .unlock-icon {
+            width: 54px;
+            height: 54px;
+
+            margin: 0 auto 18px;
+
+            display: grid;
+            place-items: center;
+
+            border:
+                1px solid var(--rarity-color);
+
+            color: var(--rarity-color);
+
+            font-size: 22px;
+
+            font-weight: 900;
+
+            box-shadow:
+                0 0 30px var(--rarity-soft);
+
+            transition:
+                color .35s ease,
+                border-color .35s ease,
+                box-shadow .35s ease;
+        }
+
+        .unlock-label {
+            color: var(--rarity-color);
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: .18em;
+
+            transition:
+                color .35s ease;
+        }
+
+        .access-success h3 {
+            margin: 14px 0 4px;
+
+            font-size: 32px;
+
+            font-weight: 900;
+        }
+
+        .success-xp {
+            color: var(--rarity-color);
+
+            font-size: 28px;
+
+            font-weight: 900;
+
+            text-shadow:
+                0 0 20px var(--rarity-glow);
+
+            transition:
+                color .35s ease,
+                text-shadow .35s ease;
+        }
+
+        .unlock-status {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin: 24px 0;
+
+            padding: 8px 12px;
+
+            background: var(--rarity-soft);
+
+            border:
+                1px solid var(--rarity-border);
+
+            color: var(--rarity-color);
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: .08em;
+
+            transition:
+                color .35s ease,
+                border-color .35s ease,
+                background .35s ease;
+        }
+
+        .unlock-status span {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: var(--rarity-color);
+
+            box-shadow:
+                0 0 8px var(--rarity-color);
+
+            transition:
+                background .35s ease,
+                box-shadow .35s ease;
+        }
+
+        .access-success p {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .back-to-drop {
+            margin-top: 18px;
+
+            padding: 12px 18px;
+
+            border:
+                1px solid rgba(255,255,255,.15);
+
+            background: transparent;
+
+            color: var(--white);
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .08em;
+
+            transition:
+                color .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
+        }
+
+        .back-to-drop:hover {
+            border-color: var(--rarity-color);
+
+            color: var(--rarity-color);
+
+            box-shadow:
+                0 0 20px var(--rarity-soft);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            padding: 50px 25px;
+
+            border-top:
+                1px solid var(--border);
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: .65rem;
+
+            letter-spacing: 1px;
+
+            line-height: 1.8;
+        }
+
+        footer strong {
+            color: var(--white);
+        }
+
+        footer a {
+            color: var(--muted-light);
+            text-decoration: underline;
+            text-decoration-color: rgba(255,255,255,.15);
+            transition: color .25s ease;
+        }
+
+        footer a:hover {
+            color: var(--logo-cyan);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+
+            gap: 18px;
+
+            flex-wrap: wrap;
+
+            margin: 18px 0;
+        }
+
+        /* =========================================================
+   SOCIAL LOGIN
+========================================================= */
+
+.social-login {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-btn {
+    width: 100%;
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 0 18px;
+
+    background: #fff;
+    color: #1a1a1a;
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .06em;
+
+    cursor: pointer;
+
+    position: relative;
+
+    transition:
+        transform .2s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.social-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255,255,255,.12);
+}
+
+.social-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.social-btn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.social-icon {
+    flex-shrink: 0;
+    display: block;
+}
+
+/* Google */
+.google-btn {
+    background: #fff;
+    color: #1a1a1a;
+}
+
+/* Apple */
+.apple-btn {
+    background: #000;
+    color: #fff;
+    border-color: rgba(255,255,255,.25);
+}
+
+.apple-btn .soon {
+    position: absolute;
+    top: -8px;
+    right: -6px;
+
+    padding: 3px 7px;
+
+    background: var(--logo-yellow);
+    color: #000;
+
+    font-size: 7px;
+    font-weight: 900;
+    letter-spacing: .08em;
+
+    border-radius: 2px;
+}
+
+/* Email */
+.email-btn {
+    background: transparent;
+    color: var(--white);
+    border-color: rgba(255,255,255,.18);
+}
+
+.email-btn:hover {
+    border-color: var(--rarity-color);
+    color: var(--rarity-color);
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 4px 0;
+
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,.08);
+}
+
+/* Form email cuando aparece */
+#accessForm {
+    margin-top: 4px;
+    animation: unlockIn .35s ease;
+}
+
+/* Loading state en Google */
+.google-btn.loading {
+    pointer-events: none;
+    opacity: .7;
+}
+
+.google-btn.loading span::after {
+    content: "...";
+    animation: dots 1.2s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: ""; }
+    40% { content: "."; }
+    60% { content: ".."; }
+    80%, 100% { content: "..."; }
+}
+
+/* Perfil logueado */
+.logged-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 16px;
+
+    background: var(--rarity-soft);
+    border: 1px solid var(--rarity-border);
+
+    margin-bottom: 10px;
+
+    animation: unlockIn .4s ease;
+}
+
+.logged-user img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--rarity-border);
+    flex-shrink: 0;
+}
+
+.logged-user .user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.logged-user .user-name {
+    display: block;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--white);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.logged-user .user-email {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.logged-user .logout-btn {
+    background: transparent;
+    border: 0;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    cursor: pointer;
+    padding: 6px 8px;
+    transition: color .2s ease;
+}
+
+.logged-user .logout-btn:hover {
+    color: var(--logo-magenta);
+}
+
+.access-card .access-success {
+    position: relative;
+    z-index: 2;
+    margin-top: 8px;
+    padding: 24px 10px 10px;
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            header {
+                padding: 0 20px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a:not(.nav-cta) {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 145px;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .how-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .aura-grid {
+                grid-template-columns: 1fr;
+
+                gap: 45px;
+            }
+
+            .countdown {
+                gap: 8px;
+            }
+
+            .countdown > div {
+                min-width: 64px;
+                padding: 11px 12px;
+            }
+
+            .countdown strong {
+                font-size: 1.4rem;
+            }
+
+            .loadout-box {
+                grid-template-columns: 1fr;
+            }
+
+            .loadout-preview {
+                min-height: 320px;
+
+                border-right: none;
+
+                border-bottom:
+                    1px solid var(--rarity-border);
+            }
+
+            .loadout-details {
+                padding: 35px;
+            }
+
+            .access-section {
+                padding: 80px 20px;
+            }
+
+            .access-grid {
+                grid-template-columns: 1fr;
+
+                gap: 45px;
+            }
+
+            .access-copy h2 {
+                font-size:
+                    clamp(48px,14vw,72px);
+            }
+
+            .access-perk {
+                grid-template-columns:
+                    32px 120px 1fr;
+            }
+        }
+
+
+        /* =========================================================
+           MOBILE FIX
+        ========================================================= */
+
+        @media (max-width: 600px) {
+
+            .topbar {
+                height: 32px;
+                padding: 0 10px;
+                text-align: center;
+                font-size: .52rem;
+                letter-spacing: 1px;
+            }
+
+            header {
+                top: 32px;
+                height: 64px;
+                padding: 0 18px;
+            }
+
+            .brand img {
+                width: 92px;
+            }
+
+            .hero {
+                min-height: 100svh;
+                padding: 130px 18px 70px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem,10vw,3rem);
+                letter-spacing: -2px;
+            }
+
+            .hero-sub {
+                font-size: .82rem;
+            }
+
+            .countdown {
+                gap: 6px;
+                margin-top: 26px;
+            }
+
+            .countdown > div {
+                min-width: 56px;
+                padding: 10px 8px;
+                border-radius: 3px;
+            }
+
+            .countdown strong {
+                font-size: 1.25rem;
+            }
+
+            .countdown span {
+                font-size: .5rem;
+                letter-spacing: 1px;
+            }
+
+            .hero-buttons {
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+
+            .social-proof {
+                font-size: .66rem;
+                padding: 9px 14px;
+            }
+
+            .section {
+                padding: 75px 18px;
+            }
+
+            .section-title {
+                letter-spacing: -1.5px;
+            }
+
+            .product-bottom {
+                align-items: stretch;
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            .price {
+                text-align: left;
+            }
+
+            .select-product {
+                width: 100%;
+                padding: 14px;
+            }
+
+            .loadout-preview {
+                min-height: 260px;
+                padding: 20px;
+            }
+
+            .loadout-details {
+                padding: 28px 22px;
+            }
+
+            .loadout-details h3 {
+                font-size: 40px;
+            }
+
+            .loadout-cta {
+                width: 100%;
+            }
+
+            .aura-section {
+                padding: 80px 20px;
+            }
+
+            .aura-title {
+                letter-spacing: -3px;
+            }
+
+            .xp-number {
+                font-size: 3rem;
+            }
+
+            .access-section {
+                padding: 70px 14px 80px;
+            }
+
+            .access-grid {
+                width: 100%;
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .access-copy {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .access-copy .section-kicker {
+                margin-bottom: 16px;
+                font-size: 9px;
+            }
+
+            .access-copy h2 {
+                font-size: clamp(42px, 14vw, 62px);
+                line-height: .88;
+                letter-spacing: -3px;
+            }
+
+            .access-copy > p {
+                margin: 22px 0 28px;
+                font-size: 13px;
+                line-height: 1.65;
+            }
+
+            .access-perks {
+                width: 100%;
+                gap: 0;
+            }
+
+            .access-perk {
+                grid-template-columns: 28px 1fr;
+                gap: 8px 10px;
+                padding: 13px 0;
+            }
+
+            .access-perk > span {
+                grid-row: 1 / span 2;
+                font-size: 9px;
+            }
+
+            .access-perk strong {
+                font-size: 11px;
+            }
+
+            .access-perk small {
+                grid-column: 2;
+                font-size: 10px;
+                line-height: 1.4;
+            }
+
+            .access-card {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                padding: 18px;
+                overflow: hidden;
+            }
+
+            .access-card-top {
+                padding-bottom: 15px;
+                margin-bottom: 18px;
+                font-size: 8px;
+                letter-spacing: .08em;
+                gap: 10px;
+            }
+
+            .online-dot {
+                white-space: nowrap;
+            }
+
+            .selected-loadout {
+                width: 100%;
+                min-width: 0;
+                padding: 14px;
+                margin-bottom: 18px;
+                gap: 12px;
+            }
+
+            .selected-loadout > div:first-child {
+                min-width: 0;
+                overflow: hidden;
+            }
+
+            .selected-loadout small {
+                font-size: 8px;
+                margin-bottom: 5px;
+            }
+
+            .selected-loadout strong {
+                display: block;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 14px;
+            }
+
+            .selected-xp {
+                flex-shrink: 0;
+            }
+
+            .selected-xp span {
+                font-size: 8px;
+            }
+
+            .selected-xp strong {
+                font-size: 22px;
+            }
+
+            #accessForm {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            #accessForm label {
+                margin-bottom: 7px;
+                font-size: 9px;
+            }
+
+            #accessForm input {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                height: 50px;
+                padding: 0 13px;
+                margin: 0 0 12px;
+                font-size: 14px;
+                border-radius: 0;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            #accessForm input[type="email"],
+            #accessForm input[type="tel"] {
+                font-size: 16px;
+            }
+
+            .access-submit {
+                width: 100%;
+                max-width: 100%;
+                min-height: 52px;
+                padding: 0 14px;
+                gap: 10px;
+                font-size: 11px;
+            }
+
+            .access-submit span {
+                font-size: 10px;
+                letter-spacing: .06em;
+            }
+
+            .access-submit strong {
+                flex-shrink: 0;
+                font-size: 12px;
+            }
+
+            .form-disclaimer {
+                margin-top: 11px;
+                font-size: 8px;
+                line-height: 1.45;
+            }
+
+            .access-success {
+                width: 100%;
+                padding: 15px 0 2px;
+            }
+
+            .unlock-icon {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 14px;
+                font-size: 19px;
+            }
+
+            .unlock-label {
+                font-size: 9px;
+            }
+
+            .access-success h3 {
+                margin: 12px 0 4px;
+                font-size: 26px;
+                line-height: 1;
+            }
+
+            .success-xp {
+                font-size: 24px;
+            }
+
+            .unlock-status {
+                max-width: 100%;
+                margin: 18px 0;
+                padding: 7px 10px;
+                font-size: 8px;
+                text-align: center;
+            }
+
+            .access-success p {
+                font-size: 10px;
+                line-height: 1.6;
+            }
+
+            .back-to-drop {
+                width: 100%;
+                max-width: 100%;
+                padding: 12px 14px;
+                font-size: 9px;
+            }
+
+            .drop-note {
+                flex-direction: column;
+                gap: 8px;
+                font-size: .75rem;
+            }
+        }
+
+
+        /* =========================================================
+           VERY SMALL PHONES
+        ========================================================= */
+
+        @media (max-width: 380px) {
+
+            .access-section {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .access-card {
+                padding: 15px;
+            }
+
+            .access-card-top {
+                font-size: 7px;
+            }
+
+            .selected-loadout {
+                padding: 12px;
+            }
+
+            .selected-loadout strong {
+                font-size: 13px;
+            }
+
+            .selected-xp strong {
+                font-size: 20px;
+            }
+
+            #accessForm input {
+                height: 48px;
+            }
+
+            .access-submit {
+                min-height: 50px;
+            }
+
+            .countdown > div {
+                min-width: 50px;
+                padding: 9px 6px;
+            }
+
+            .countdown strong {
+                font-size: 1.1rem;
+            }
+        }
+
+
+        /* =========================================================
+           ACCESSIBILITY
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+
+                animation-duration:
+                    .01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                transition-duration:
+                    .01ms !important;
+            }
+        }
+
+    </style>
+    <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+    import {
+        getAuth,
+        GoogleAuthProvider,
+        signInWithPopup,
+        signInWithRedirect,
+        getRedirectResult,
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    import {
+        getFirestore,
+        collection,
+        addDoc,
+        doc,
+        setDoc,
+        getCountFromServer,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyA6sVrVsArVZEARA5JQjND4xxtGKRCLE0Q",
+        authDomain: "aura-xp-dd6d3.firebaseapp.com",
+        projectId: "aura-xp-dd6d3",
+        storageBucket: "aura-xp-dd6d3.firebasestorage.app",
+        messagingSenderId: "484718037800",
+        appId: "1:484718037800:web:b0713ffb61833505185e1d"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.firebaseAuth = auth;
+    window.firebaseDB = db;
+
+    window.GoogleAuthProvider = GoogleAuthProvider;
+    window.signInWithPopup = signInWithPopup;
+    window.signInWithRedirect = signInWithRedirect;
+    window.getRedirectResult = getRedirectResult;
+    window.onAuthStateChanged = onAuthStateChanged;
+    window.signOut = signOut;
+
+    window.firestoreCollection = collection;
+    window.firestoreAddDoc = addDoc;
+    window.firestoreDoc = doc;
+    window.firestoreSetDoc = setDoc;
+    window.firestoreServerTimestamp = serverTimestamp;
+    window.firestoreGetCountFromServer = getCountFromServer;
+
+    console.log("🔥 Firebase listo — Auth + Firestore");
+
+</script>
+</head>
+
+
+<body>
+
+    <!-- =========================================================
+         TOP BAR
+    ========================================================= -->
+
+    <div class="topbar">
+        DROP 001 · 100 UNIDADES · EDICIÓN LIMITADA
+    </div>
+
+
+    <!-- =========================================================
+         NAV
+    ========================================================= -->
+
+    <header id="navbar">
+
+        <a href="#" class="brand">
+
+            <img
+                src="assets/logo2.png"
+                alt="AURA Indumentaria"
+            >
+
+        </a>
+
+        <nav>
+
+            <a href="#drop">
+                DROP 001
+            </a>
+
+            <a href="#how">
+                CÓMO FUNCIONA
+            </a>
+
+            <a href="#aura">
+                AURA XP
+            </a>
+
+            <a href="#access" class="nav-cta">
+                RESERVAR
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =====================================================
+             HERO
+        ===================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-media">
+                <img
+                    src="assets/logo.png"
+                    alt="AURA XP Drop 001"
+                >
+                <div class="hero-overlay"></div>
+            </div>
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    DROP 001 · EDICIÓN LIMITADA
+                </div>
+
+                <h1>
+                    3 PIEZAS.<br>
+                    <span class="accent">100 UNIDADES.</span><br>
+                    1 SOLA VEZ.
+                </h1>
+
+                <p class="hero-sub">
+                    Indumentaria para farmear estilo.
+                    Sport × Gaming × Urban.
+                    Cuando se agota, no vuelve.
+                </p>
+
+                <div class="countdown" id="countdown">
+
+                    <div>
+                        <strong id="cd-days">00</strong>
+                        <span>DÍAS</span>
+                    </div>
+
+                    <div>
+                        <strong id="cd-hours">00</strong>
+                        <span>HS</span>
+                    </div>
+
+                    <div>
+                        <strong id="cd-mins">00</strong>
+                        <span>MIN</span>
+                    </div>
+
+                    <div>
+                        <strong id="cd-secs">00</strong>
+                        <span>SEG</span>
+                    </div>
+
+                </div>
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="btn-primary"
+                        onclick="scrollToSection('access')"
+                        type="button"
+                    >
+                        RESERVAR MI LUGAR →
+                    </button>
+
+                    <button
+                        class="btn-secondary"
+                        onclick="scrollToSection('drop')"
+                        type="button"
+                    >
+                        VER LAS 3 PIEZAS
+                    </button>
+
+                </div>
+
+                <div class="social-proof">
+
+                    <span class="pulse-dot"></span>
+
+                    <span>
+                        <strong id="registered-count">247</strong>
+                        FARMERS ya están dentro
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DROP
+        ===================================================== -->
+
+        <section class="drop" id="drop">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div class="section-kicker">
+                        DROP 001 · STARTER PACK
+                    </div>
+
+                    <h2 class="section-title">
+                        ELEGÍ TU<br>
+                        PIEZA.
+                    </h2>
+
+                    <p class="section-description">
+                        3 diseños. 100 unidades totales.
+                        Cada una te da XP real dentro de AURA.
+                        Cuanto más rara, menos hay.
+                    </p>
+
+                </div>
+
+
+                <div class="products">
+
+
+                    <!-- PIEZA 1 — FARM TEE -->
+
+                    <article
+                        class="product-card selected"
+                        data-product="FARM TEE"
+                        style="
+                            --product-color:#00ff87;
+                            --product-glow:rgba(0,255,135,.18);
+                        "
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="assets/remera.png"
+                                alt="FARM TEE frente"
+                            >
+
+                            <img
+                                src="assets/farm.png"
+                                alt="FARM TEE espalda"
+                                class="hover-img"
+                            >
+
+                            <div class="rarity rare">
+                                RARE
+                            </div>
+
+                            <div class="xp-badge">
+                                +100 XP
+                            </div>
+
+                            <div class="stock-badge">
+                                80 / 80 DISPONIBLES
+                            </div>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-type">
+                                REMERA OVERSIZE
+                            </span>
+
+                            <h3>
+                                FARM TEE
+                            </h3>
+
+                            <p>
+                                Algodón peinado 240g.
+                                Estampa frontal + espalda.
+                            </p>
+
+                            <ul class="product-features">
+                                <li>✓ Talles S al XXL</li>
+                                <li>✓ Envío en 5-7 días</li>
+                                <li>✓ +100 XP al registrarte</li>
+                            </ul>
+
+                            <div class="product-bottom">
+
+                                <div class="price">
+                                    <span class="price-label">PRECIO</span>
+                                    <strong>$24.900</strong>
+                                    <small>o 3 cuotas sin interés</small>
+                                </div>
+
+                                <button
+                                    class="select-product"
+                                    type="button"
+                                >
+                                    ELEGIR
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PIEZA 2 — SPORT AURA -->
+
+                    <article
+                        class="product-card"
+                        data-product="SPORT AURA"
+                        style="
+                            --product-color:#00e1ff;
+                            --product-glow:rgba(0,225,255,.18);
+                        "
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="assets/farm.png"
+                                alt="SPORT AURA frente"
+                            >
+
+                            <img
+                                src="assets/farm2.png"
+                                alt="SPORT AURA espalda"
+                                class="hover-img"
+                            >
+
+                            <div class="rarity epic">
+                                EPIC
+                            </div>
+
+                            <div class="xp-badge">
+                                +250 XP
+                            </div>
+
+                            <div class="stock-badge">
+                                15 / 15 DISPONIBLES
+                            </div>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-type">
+                                BUZO CON CANGURO
+                            </span>
+
+                            <h3>
+                                SPORT AURA
+                            </h3>
+
+                            <p>
+                                Frisa perchada. Corte relajado.
+                                Logo bordado.
+                            </p>
+
+                            <ul class="product-features">
+                                <li>✓ Talles S al XXL</li>
+                                <li>✓ Envío en 5-7 días</li>
+                                <li>✓ +250 XP al registrarte</li>
+                            </ul>
+
+                            <div class="product-bottom">
+
+                                <div class="price">
+                                    <span class="price-label">PRECIO</span>
+                                    <strong>$39.900</strong>
+                                    <small>o 3 cuotas sin interés</small>
+                                </div>
+
+                                <button
+                                    class="select-product"
+                                    type="button"
+                                >
+                                    ELEGIR
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PIEZA 3 — GRIND TEE -->
+
+                    <article
+                        class="product-card"
+                        data-product="GRIND TEE"
+                        style="
+                            --product-color:#ff007f;
+                            --product-glow:rgba(255,0,127,.18);
+                        "
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="assets/buzo.jpg"
+                                alt="GRIND TEE frente"
+                            >
+
+                            <img
+                                src="assets/farm.png"
+                                alt="GRIND TEE espalda"
+                                class="hover-img"
+                            >
+
+                            <div class="rarity legendary">
+                                LEGENDARY
+                            </div>
+
+                            <div class="xp-badge">
+                                +500 XP
+                            </div>
+
+                            <div class="stock-badge urgent">
+                                5 / 5 DISPONIBLES
+                            </div>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <span class="product-type">
+                                REMERA EDICIÓN LIMITADA
+                            </span>
+
+                            <h3>
+                                GRIND TEE
+                            </h3>
+
+                            <p>
+                                Numerada del 1 al 5.
+                                Algodón premium 280g.
+                            </p>
+
+                            <ul class="product-features">
+                                <li>✓ Numerada y firmada</li>
+                                <li>✓ Envío prioritario</li>
+                                <li>✓ +500 XP al registrarte</li>
+                            </ul>
+
+                            <div class="product-bottom">
+
+                                <div class="price">
+                                    <span class="price-label">PRECIO</span>
+                                    <strong>$34.900</strong>
+                                    <small>solo 5 unidades</small>
+                                </div>
+
+                                <button
+                                    class="select-product"
+                                    type="button"
+                                >
+                                    ELEGIR
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="drop-note">
+
+                    <span class="pulse-dot"></span>
+
+                    <span>
+                        <strong>100 unidades en total.</strong>
+                        Cuando se agotan, no se reimprimen.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             LOADOUT
+        ====================================================== -->
+
+        <section
+            class="loadout-section rarity-system rarity-rare"
+            id="loadout"
+        >
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div class="section-kicker">
+                        TU SELECCIÓN
+                    </div>
+
+                    <h2 class="section-title">
+                        LISTO PARA<br>
+                        EL DROP.
+                    </h2>
+
+                    <p class="section-description">
+                        Tu selección determina la rareza visual de tu loadout
+                        y la recompensa de XP.
+                    </p>
+
+                </div>
+
+
+                <div class="loadout-box">
+
+                    <div class="loadout-preview">
+
+                        <img
+                            id="loadoutImage"
+                            src="assets/farm.png"
+                            alt="Producto seleccionado"
+                        >
+
+                    </div>
+
+
+                    <div class="loadout-details">
+
+                        <div class="loadout-label">
+                            ITEM SELECCIONADO
+                        </div>
+
+                        <h3 id="loadoutName">
+                            FARM TEE
+                        </h3>
+
+                        <div
+                            class="loadout-rarity"
+                            id="loadoutRarity"
+                        >
+                            RARE
+                        </div>
+
+                        <p
+                            class="loadout-description"
+                            id="loadoutDescription"
+                        >
+                            Algodón peinado 240g.
+                            Estampa frontal + espalda.
+                        </p>
+
+                        <div class="loadout-xp">
+
+                            <strong id="loadoutXP">
+                                +100
+                            </strong>
+
+                            <span>
+                                XP
+                            </span>
+
+                        </div>
+                        <!-- SELECTOR DE TALLE -->
+<div class="size-picker" id="sizePicker">
+
+    <div class="size-picker-label">
+        <span>ELEGÍ TU TALLE</span>
+        <span class="size-selected" id="sizeSelected">M</span>
+    </div>
+
+    <div class="size-options" role="radiogroup" aria-label="Seleccionar talle">
+
+        <button type="button" class="size-option" data-size="S" role="radio" aria-checked="false">S</button>
+        <button type="button" class="size-option selected" data-size="M" role="radio" aria-checked="true">M</button>
+        <button type="button" class="size-option" data-size="L" role="radio" aria-checked="false">L</button>
+        <button type="button" class="size-option" data-size="XL" role="radio" aria-checked="false">XL</button>
+        <button type="button" class="size-option" data-size="XXL" role="radio" aria-checked="false">XXL</button>
+
+    </div>
+
+    <div class="size-hint" id="sizeHint">
+        Talle M seleccionado
+    </div>
+
+</div>
+
+                        <button
+                            class="loadout-cta"
+                            onclick="scrollToAccess()"
+                            type="button"
+                        >
+                            RESERVAR ESTA PIEZA →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CÓMO FUNCIONA
+        ====================================================== -->
+
+        <section class="how-section" id="how">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div class="section-kicker">
+                        CÓMO FUNCIONA
+                    </div>
+
+                    <h2 class="section-title">
+                        3 PASOS.<br>
+                        0 VUELTAS.
+                    </h2>
+
+                </div>
+
+
+                <div class="how-grid">
+
+                    <div class="how-step">
+
+                        <span class="step-num">
+                            01
+                        </span>
+
+                        <h3>
+                            ELEGÍ TU PIEZA
+                        </h3>
+
+                        <p>
+                            Tres diseños. Mirá bien,
+                            elegí la tuya.
+                        </p>
+
+                    </div>
+
+
+                    <div class="how-step">
+
+                        <span class="step-num">
+                            02
+                        </span>
+
+                        <h3>
+                            RESERVÁ TU LUGAR
+                        </h3>
+
+                        <p>
+        Un click con Google y te guardamos
+        la pieza por 24hs.
+    </p>
+
+                    </div>
+
+
+                    <div class="how-step">
+
+                        <span class="step-num">
+                            03
+                        </span>
+
+                        <h3>
+                            FARMEÁ XP
+                        </h3>
+
+                        <p>
+                            Cada compra suma XP.
+                            Desbloqueás drops futuros.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             AURA XP
+        ====================================================== -->
+
+        <section
+            class="aura-section"
+            id="aura"
+        >
+
+            <div class="aura-inner">
+
+                <div class="aura-grid">
+
+                    <div>
+
+                        <div class="section-kicker">
+                            THE AURA SYSTEM
+                        </div>
+
+                        <h2 class="aura-title">
+                            GANA<br>
+                            EXPERIENCIA.
+                        </h2>
+
+                        <p class="aura-text">
+                            En AURA XP, tu estilo también suma XP.
+                            Cada drop, cada challenge y cada movimiento
+                            forma parte de tu progreso.
+                        </p>
+
+                    </div>
+
+
+                    <div class="aura-card">
+
+                        <div class="aura-card-top">
+
+                            <span>
+                                AURA XP PROFILE
+                            </span>
+
+                            <span>
+                                LVL 01
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="xp-number"
+                            id="profileXP"
+                        >
+                            +100 XP
+                        </div>
+
+                        <div class="xp-bar">
+
+                            <div class="xp-progress"></div>
+
+                        </div>
+
+                        <div class="xp-level">
+
+                            <span>
+                                NEW FARMER
+                            </span>
+
+                            <span>
+                                670 / 1000 XP
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ACCESS
+        ====================================================== -->
+
+        <section
+            class="access-section rarity-system rarity-rare"
+            id="access"
+        >
+
+            <div class="access-grid">
+
+
+                <div class="access-copy">
+
+                    <span class="section-kicker">
+                        DROP 001 · ACCESS
+                    </span>
+
+                    <h2>
+                        RESERVÁ<br>
+                        <span>
+                            TU PIEZA.
+                        </span>
+                    </h2>
+
+                    <p>
+                        Dejá tu email y te guardamos la pieza
+                        que elegiste por 24hs antes del lanzamiento.
+                        Si no comprás, la liberamos.
+                    </p>
+
+
+                    <div class="access-perk">
+    <span>01</span>
+    <strong>RESERVA 24HS</strong>
+    <small>Un click con Google y guardamos tu pieza.</small>
+</div>
+
+<div class="access-perk">
+    <span>02</span>
+    <strong id="perkXP">+100 XP</strong>
+    <small>XP según tu selección, suma en tu perfil.</small>
+</div>
+
+<div class="access-perk">
+    <span>03</span>
+    <strong>AVISO 24HS ANTES</strong>
+    <small>Te avisamos por email antes que al público.</small>
+</div>
+
+                </div>
+
+
+                <!-- ACCESS CARD -->
+
+                <div
+                    class="access-card"
+                    id="accessCard"
+                >
+
+                    <div class="access-card-top">
+
+                        <span>
+                            PLAYER REGISTRATION
+                        </span>
+
+                        <span class="online-dot">
+                            ● ONLINE
+                        </span>
+
+                    </div>
+
+
+                    <!-- FORM -->
+
+                    <div id="registrationForm">
+
+                        <div class="selected-loadout">
+    <div>
+        <small>TU SELECCIÓN</small>
+        <strong id="accessProduct">FARM TEE</strong><br>
+        <span class="selected-size">TALLE <strong id="accessSize">M</strong>
+        </span>
+    </div>
+    <div class="selected-xp">
+        <span>XP</span>
+        <strong id="accessXP">100</strong>
+    </div>
+</div>
+
+
+                        <!-- LOGIN SOCIAL -->
+                        <div class="social-login">
+
+                            <button
+                                type="button"
+                                class="social-btn google-btn"
+                                id="googleLoginBtn"
+                            >
+                                <svg class="social-icon" viewBox="0 0 48 48" width="18" height="18" aria-hidden="true">
+                                    <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/>
+                                    <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+                                    <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.1-11.3-7.6l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
+                                    <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.7l6.2 5.2C41 35.5 44 30.2 44 24c0-1.3-.1-2.3-.4-3.5z"/>
+                                </svg>
+                                <span>CONTINUAR CON GOOGLE</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="social-btn apple-btn"
+                                id="appleLoginBtn"
+                                disabled
+                            >
+                                <svg class="social-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+                                    <path d="M17.05 12.54c-.03-2.6 2.13-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.9-1.75.03-3.36 1.02-4.26 2.58-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.88 2.65 3.22 2.6 1.29-.05 1.78-.83 3.34-.83 1.56 0 2 .83 3.37.81 1.39-.03 2.27-1.27 3.12-2.53.98-1.45 1.38-2.85 1.4-2.92-.03-.01-2.68-1.03-2.7-4.1zM14.6 4.9c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.14 1.14.09 2.3-.58 3.01-1.43z"/>
+                                </svg>
+                                <span>CONTINUAR CON APPLE</span>
+                                <small class="soon">PRÓXIMAMENTE</small>
+                            </button>
+
+                            <div class="divider">
+                                <span>O</span>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="social-btn email-btn"
+                                id="emailToggleBtn"
+                            >
+                                <svg class="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                    <path d="M3 7l9 6 9-6"/>
+                                </svg>
+                                <span>CONTINUAR CON EMAIL</span>
+                            </button>
+
+                            <!-- Form email — oculto por defecto -->
+                            <form id="accessForm" hidden>
+
+                                <label for="email">TU EMAIL</label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="tu@email.com"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                                <label for="whatsapp">WHATSAPP (OPCIONAL)</label>
+
+                                <input
+                                    type="tel"
+                                    id="whatsapp"
+                                    name="whatsapp"
+                                    placeholder="+54 11 1234 5678"
+                                    autocomplete="tel"
+                                >
+
+                                <button
+                                    type="submit"
+                                    class="access-submit"
+                                >
+                                    <span>RESERVAR AHORA</span>
+                                    <strong id="buttonXP">+100 XP →</strong>
+                                </button>
+
+                            </form>
+
+                            <p class="form-disclaimer">
+                                Sin spam. Te avisamos 24hs antes del drop.
+                                Podés darte de baja cuando quieras.
+                            </p>
+
+                        </div>
+
+                        
+                    </div>
+
+
+                    <!-- SUCCESS -->
+
+                    <div
+                        id="accessSuccess"
+                        class="access-success"
+                        hidden
+                    >
+
+                        <div class="unlock-icon">
+                            ✓
+                        </div>
+
+                        <span class="unlock-label">
+                            RESERVA CONFIRMADA
+                        </span>
+
+                        <h3 id="successProduct">FARM TEE</h3>
+
+<div class="success-size">
+    TALLE <strong id="successSize">M</strong>
+</div>
+
+
+                        <div class="success-xp">
+                            +<span id="successXP">100</span> XP
+                        </div>
+
+                        <div class="unlock-status">
+
+                            <span></span>
+
+                            TU PIEZA ESTÁ GUARDADA 24HS
+
+                        </div>
+
+                        <p>
+                            Ya estás dentro del Drop 001.<br>
+                            Te avisamos antes del lanzamiento.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="back-to-drop"
+                            onclick="scrollToDrop()"
+                        >
+                            VER MI SELECCIÓN →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <strong>
+            AURA XP
+        </strong>
+
+        <br><br>
+
+        INDUMENTARIA PARA FARMEAR ESTILO.
+
+        <div class="footer-links">
+
+            <a href="#drop">
+                DROP 001
+            </a>
+
+            <a href="#how">
+                CÓMO FUNCIONA
+            </a>
+
+            <a href="#aura">
+                AURA XP
+            </a>
+
+            <a href="#access">
+                RESERVAR
+            </a>
+
+        </div>
+
+        © 2025 AURA XP · DROP 001
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* =======================================================
+           CONFIGURACIÓN — EDITAR ACÁ
+        ======================================================== */
+
+        // Fecha del drop (año, mes-1, día, hora, min, seg)
+        const DROP_DATE =
+            new Date(2026, 10, 15, 20, 0, 0).getTime();
+
+        // Número base de registrados (sumale los que se registren)
+        const BASE_REGISTERED = 247;
+
+        const SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyoMRK48asxzhMptuLNaUq4D7dYr1b7Gu7AIdqoeFu_2vGmQX3byURtDZrAH0VbqdegTw/exec";
+        /* =======================================================
+           PRODUCT DATA
+        ======================================================== */
+
+        const products = {
+
+            "FARM TEE": {
+                name: "FARM TEE",
+                rarity: "rare",
+                rarityLabel: "RARE",
+                xp: 100,
+                image: "assets/farm.png",
+                description:
+                    "Algodón peinado 240g. Estampa frontal + espalda."
+            },
+
+            "SPORT AURA": {
+                name: "SPORT AURA",
+                rarity: "epic",
+                rarityLabel: "EPIC",
+                xp: 250,
+                image: "assets/farm.png",
+                description:
+                    "Frisa perchada. Corte relajado. Logo bordado."
+            },
+
+            "GRIND TEE": {
+                name: "GRIND TEE",
+                rarity: "legendary",
+                rarityLabel: "LEGENDARY",
+                xp: 500,
+                image: "assets/farm.png",
+                description:
+                    "Numerada del 1 al 5. Algodón premium 280g."
+            }
+
+        };
+
+
+        /* =======================================================
+           CURRENT PRODUCT
+        ======================================================== */
+
+        let selectedProduct = products["FARM TEE"];
+
+        let selectedSize = "M";
+        /* =======================================================
+           DOM
+        ======================================================== */
+
+        const productCards =
+            document.querySelectorAll(".product-card");
+
+        const loadoutSection =
+            document.querySelector(".loadout-section");
+
+        const accessSection =
+            document.querySelector(".access-section");
+
+        const loadoutImage =
+            document.getElementById("loadoutImage");
+
+        const loadoutName =
+            document.getElementById("loadoutName");
+
+        const loadoutRarity =
+            document.getElementById("loadoutRarity");
+
+        const loadoutDescription =
+            document.getElementById("loadoutDescription");
+
+        const loadoutXP =
+            document.getElementById("loadoutXP");
+
+        const accessProduct =
+            document.getElementById("accessProduct");
+
+        const accessXP =
+            document.getElementById("accessXP");
+
+        const buttonXP =
+            document.getElementById("buttonXP");
+
+        const perkXP =
+            document.getElementById("perkXP");
+
+        const successProduct =
+            document.getElementById("successProduct");
+
+        const successXP =
+            document.getElementById("successXP");
+
+        const accessSuccess =
+            document.getElementById("accessSuccess");
+
+        const registrationForm =
+            document.getElementById("registrationForm");
+
+        const profileXP =
+            document.getElementById("profileXP");
+
+        const navbar =
+            document.getElementById("navbar");
+
+        const registeredCount =
+            document.getElementById("registered-count");
+
+        /* Selector de talle */
+const sizeOptions = document.querySelectorAll(".size-option");
+const sizeSelected = document.getElementById("sizeSelected");
+const sizeHint = document.getElementById("sizeHint");
+const accessSize = document.getElementById("accessSize");
+const successSize = document.getElementById("successSize");
+
+
+        /* =======================================================
+           APPLY RARITY
+        ======================================================== */
+
+        function applyRarity(rarity) {
+
+            const rarityClasses = [
+                "rarity-rare",
+                "rarity-epic",
+                "rarity-legendary"
+            ];
+
+            rarityClasses.forEach(className => {
+
+                loadoutSection.classList.remove(className);
+                accessSection.classList.remove(className);
+
+            });
+
+            const newClass = `rarity-${rarity}`;
+
+            loadoutSection.classList.add(newClass);
+            accessSection.classList.add(newClass);
+
+        }
+
+
+        /* =======================================================
+           SELECT PRODUCT
+        ======================================================== */
+
+        function selectProduct(productName) {
+
+            const product = products[productName];
+
+            if (!product) return;
+
+            selectedProduct = product;
+
+
+            /* CARDS */
+
+            productCards.forEach(card => {
+
+                const isSelected =
+                    card.dataset.product === product.name;
+
+                card.classList.toggle("selected", isSelected);
+
+            });
+
+
+            /* RARITY */
+
+            applyRarity(product.rarity);
+
+
+            /* LOADOUT */
+
+            loadoutImage.src = product.image;
+            loadoutImage.alt = product.name;
+            loadoutName.textContent = product.name;
+            loadoutRarity.textContent = product.rarityLabel;
+            loadoutDescription.textContent = product.description;
+            loadoutXP.textContent = `+${product.xp}`;
+
+
+            /* ACCESS FORM */
+
+            accessProduct.textContent = product.name;
+            accessXP.textContent = product.xp;
+            buttonXP.textContent = `+${product.xp} XP →`;
+            perkXP.textContent = `+${product.xp} XP`;
+            successProduct.textContent = product.name;
+            successXP.textContent = product.xp;
+            profileXP.textContent = `+${product.xp} XP`;
+            /* Actualizar talle en el form */
+            if (accessSize) {
+                accessSize.textContent = selectedSize;
+            }
+
+
+            /* HIDE SUCCESS */
+
+            accessSuccess.hidden = true;
+            registrationForm.style.display = "";
+
+
+            /* SAVE */
+
+            localStorage.setItem(
+                "auraXP_selectedProduct",
+                product.name
+            );
+
+        }
+
+
+        /* =======================================================
+           PRODUCT BUTTONS
+        ======================================================== */
+
+        productCards.forEach(card => {
+
+            const productName = card.dataset.product;
+            const button = card.querySelector(".select-product");
+
+            button.addEventListener("click", event => {
+
+                event.stopPropagation();
+
+                selectProduct(productName);
+
+                document
+                    .getElementById("loadout")
+                    .scrollIntoView({ behavior: "smooth" });
+
+            });
+
+            card.addEventListener("click", event => {
+
+                if (event.target.closest(".select-product")) return;
+
+                selectProduct(productName);
+
+            });
+
+        });
+
+
+        /* =======================================================
+           COUNTDOWN
+        ======================================================== */
+
+        function updateCountdown() {
+
+            const now = Date.now();
+            const diff = DROP_DATE - now;
+
+            const countdownEl =
+                document.getElementById("countdown");
+
+            if (diff <= 0) {
+
+                countdownEl.innerHTML =
+                    '<strong style="color:var(--logo-magenta);font-size:1.4rem;letter-spacing:2px">DROP ACTIVO 🔥</strong>';
+
+                return;
+
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("cd-days").textContent =
+                String(d).padStart(2, "0");
+
+            document.getElementById("cd-hours").textContent =
+                String(h).padStart(2, "0");
+
+            document.getElementById("cd-mins").textContent =
+                String(m).padStart(2, "0");
+
+            document.getElementById("cd-secs").textContent =
+                String(s).padStart(2, "0");
+
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+
+        /* =======================================================
+           CONTADOR REAL DE FARMERS
+
+           BASE_REGISTERED = farmers históricos ya existentes.
+           Firestore /farmer_counters = nuevos farmers únicos registrados
+           desde la landing. El frontend NO incrementa el contador
+           manualmente: consulta la cantidad real de documentos.
+        ======================================================== */
+
+        function getFallbackRegisteredCount() {
+
+            let extra = 0;
+
+            try {
+
+                const leads = JSON.parse(
+                    localStorage.getItem("auraXP_interesados") || "[]"
+                );
+
+                extra = leads.length;
+
+            } catch (error) {
+
+                extra = 0;
+
+            }
+
+            return BASE_REGISTERED + extra;
+
+        }
+
+        function setRegisteredCount(value) {
+
+            const safeValue = Number.isFinite(Number(value))
+                ? Math.max(0, Math.floor(Number(value)))
+                : BASE_REGISTERED;
+
+            registeredCount.textContent =
+                safeValue.toLocaleString("es-AR");
+
+        }
+
+        async function refreshRegisteredCount() {
+
+            /* Mientras Firebase carga, mostramos un fallback útil. */
+            setRegisteredCount(getFallbackRegisteredCount());
+
+            if (
+                !window.firebaseDB ||
+                !window.firestoreCollection ||
+                !window.firestoreGetCountFromServer
+            ) {
+                return;
+            }
+
+            try {
+
+                const db = window.firebaseDB;
+                const farmersCollection =
+                    window.firestoreCollection(db, "farmer_counters");
+
+                const snapshot =
+                    await window.firestoreGetCountFromServer(
+                        farmersCollection
+                    );
+
+                const realFarmers = snapshot.data().count || 0;
+
+                setRegisteredCount(BASE_REGISTERED + realFarmers);
+
+                console.log(
+                    `👥 Farmers reales: ${BASE_REGISTERED + realFarmers}`
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "❌ No se pudo consultar el contador real de Farmers:",
+                    error
+                );
+
+                /* Si Firestore falla, no dejamos el contador en 0. */
+                setRegisteredCount(getFallbackRegisteredCount());
+
+            }
+
+        }
+
+        setRegisteredCount(BASE_REGISTERED);
+        refreshRegisteredCount();
+
+
+        /* =======================================================
+           SCROLL HELPERS
+        ======================================================== */
+
+        function scrollToSection(id) {
+
+            const element = document.getElementById(id);
+
+            if (!element) return;
+
+            element.scrollIntoView({ behavior: "smooth" });
+
+        }
+
+        function scrollToDrop() {
+            scrollToSection("drop");
+        }
+
+        function scrollToAccess() {
+
+            scrollToSection("access");
+
+            setTimeout(() => {
+
+                const email = document.getElementById("email");
+
+                if (email) email.focus();
+
+            }, 650);
+
+        }
+
+
+        /* =======================================================
+           NAVBAR
+        ======================================================== */
+
+        window.addEventListener("scroll", () => {
+
+            if (!navbar) return;
+
+            navbar.classList.toggle(
+                "scrolled",
+                window.scrollY > 25
+            );
+
+        });
+
+
+
+   /* =======================================================
+   FIREBASE AUTH — Google Login
+======================================================== */
+
+let auth = null;
+let currentFirebaseUser = null;
+
+
+/* =======================================================
+   CLAVE ANÓNIMA DEL FARMER
+======================================================== */
+
+async function createFarmerKey(email) {
+
+    if (!email || !window.crypto?.subtle) {
+        return encodeURIComponent(email || "");
+    }
+
+    const data = new TextEncoder().encode(email);
+    const hashBuffer = await window.crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    return hashArray
+        .map(byte => byte.toString(16).padStart(2, "0"))
+        .join("");
+
+}
+
+
+/* =======================================================
+   GUARDAR LEAD
+======================================================== */
+
+async function saveLead(userData) {
+
+    /* =======================================================
+       1. DATOS DEL FARMER
+    ======================================================== */
+
+    const normalizedEmail = String(userData.email || "")
+        .trim()
+        .toLowerCase();
+
+    if (!normalizedEmail) {
+        console.error("❌ No se puede crear Farmer sin email");
+        return;
+    }
+
+    const farmerKey = await createFarmerKey(normalizedEmail);
+
+    const lead = {
+        email: normalizedEmail,
+        name: userData.name || "",
+        picture: userData.picture || "",
+        provider: userData.provider || "email",
+        whatsapp: userData.whatsapp || "",
+        producto: selectedProduct.name,
+        rarity: selectedProduct.rarity,
+        xp: selectedProduct.xp,
+        talle: selectedSize,
+        fecha: new Date().toISOString(),
+        source: "landing",
+        campaign: "DROP_001"
+    };
+
+
+    /* =======================================================
+       2. LOCAL STORAGE
+    ======================================================== */
+
+    let leads = [];
+
+    try {
+
+        leads = JSON.parse(
+            localStorage.getItem("auraXP_interesados") || "[]"
+        );
+
+    } catch (error) {
+
+        leads = [];
+
+    }
+
+    const existsLocal = leads.some(
+        lead => String(lead.email || "").trim().toLowerCase() === normalizedEmail
+    );
+
+    if (!existsLocal) {
+
+        leads.push(lead);
+
+        localStorage.setItem(
+            "auraXP_interesados",
+            JSON.stringify(leads)
+        );
+
+    }
+
+
+    /* =======================================================
+       3. GOOGLE SHEETS
+    ======================================================== */
+
+    if (
+        SHEETS_WEBHOOK_URL &&
+        SHEETS_WEBHOOK_URL !== "PEGÁ_ACÁ_LA_URL_DE_TU_APPS_SCRIPT"
+    ) {
+
+        fetch(SHEETS_WEBHOOK_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain"
+            },
+            body: JSON.stringify(lead)
+        })
+        .then(() => {
+            console.log("✅ Lead enviado a Google Sheets");
+        })
+        .catch((error) => {
+            console.error("❌ Error Google Sheets:", error);
+        });
+
+    }
+
+
+    /* =======================================================
+       4. FIREBASE
+    ======================================================== */
+
+    if (!window.firebaseDB) {
+
+        console.error("❌ Firebase DB no está disponible");
+
+        setRegisteredCount(getFallbackRegisteredCount());
+
+        return;
+
+    }
+
+    const db = window.firebaseDB;
+
+    const timestamp =
+        window.firestoreServerTimestamp
+            ? window.firestoreServerTimestamp()
+            : new Date();
+
+
+    /* =======================================================
+       5. FARMER COUNTER
+       
+       IMPORTANTE:
+       Esto está separado del /leads.
+       Aunque falle el lead, el Farmer se intenta guardar.
+    ======================================================== */
+
+    try {
+
+        const farmerRef = window.firestoreDoc(
+            db,
+            "farmer_counters",
+            farmerKey
+        );
+
+        await window.firestoreSetDoc(
+            farmerRef,
+            {
+                createdAt: timestamp
+            },
+            {
+                merge: false
+            }
+        );
+
+        console.log(
+            "🌱 NUEVO FARMER GUARDADO:",
+            normalizedEmail
+        );
+
+    } catch (farmerError) {
+
+        if (farmerError?.code === "permission-denied") {
+
+            console.error(
+                "🚨 FIRESTORE RECHAZÓ EL FARMER: PERMISSION-DENIED"
+            );
+
+            console.error(
+                "👉 Revisar las Rules de farmer_counters en Firebase."
+            );
+
+        } else {
+
+            console.log(
+                "ℹ️ Farmer ya existente o error de Firebase:",
+                farmerError?.code || farmerError?.message
+            );
+
+        }
+
+    }
+
+
+    /* =======================================================
+       6. GUARDAR LEAD COMERCIAL
+    ======================================================== */
+
+    try {
+
+        const leadsCollection =
+            window.firestoreCollection(db, "leads");
+
+        await window.firestoreAddDoc(
+            leadsCollection,
+            {
+                ...lead,
+                timestamp
+            }
+        );
+
+        console.log("✅ Lead guardado en Firestore");
+
+    } catch (leadError) {
+
+        console.error(
+            "⚠️ No se pudo guardar el Lead en Firestore:",
+            leadError
+        );
+
+    }
+
+
+    /* =======================================================
+       7. ACTUALIZAR CONTADOR
+    ======================================================== */
+
+    await refreshRegisteredCount();
+
+}
+
+
+
+
+/* =======================================================
+   MOSTRAR SUCCESS
+======================================================== */
+
+function showSuccess(userData) {
+
+    successProduct.textContent = selectedProduct.name;
+    successXP.textContent = selectedProduct.xp;
+    successSize.textContent = selectedSize;
+
+    const successP = accessSuccess.querySelector("p");
+
+    if (successP && userData && userData.name) {
+
+        const firstName = userData.name.split(" ")[0];
+
+        successP.innerHTML =
+            `Listo, <strong>${firstName}</strong>.<br>` +
+            `Ya estás dentro del Drop 001.`;
+
+    }
+
+    registrationForm.style.display = "none";
+    accessSuccess.hidden = false;
+
+    refreshRegisteredCount();
+
+    setTimeout(() => {
+
+        accessSuccess.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }, 100);
+
+}
+
+
+/* =======================================================
+   INICIALIZAR FIREBASE
+======================================================== */
+
+function initFirebase() {
+
+    if (!window.firebaseAuth) {
+
+        console.warn("Firebase todavía no cargó. Reintentando...");
+        setTimeout(initFirebase, 500);
+        return;
+
+    }
+
+    auth = window.firebaseAuth;
+
+    console.log("✅ Firebase Auth inicializado");
+
+    /* Detectar si venimos de un redirect */
+    window.getRedirectResult(auth)
+        .then((result) => {
+
+            if (result && result.user) {
+
+                handleFirebaseUser(result.user);
+
+            }
+
+        })
+        .catch((error) => {
+
+            console.error("Error en redirect:", error);
+
+        });
+
+    /* Escuchar cambios de sesión */
+    window.onAuthStateChanged(auth, (user) => {
+
+        currentFirebaseUser = user;
+
+        if (user) {
+
+            console.log("👤 Usuario logueado:", user.email);
+
+        }
+
+    });
+
+}
+
+
+/* =======================================================
+   MANEJAR USUARIO DE FIREBASE
+======================================================== */
+
+function handleFirebaseUser(user) {
+
+    saveLead({
+
+        email: user.email,
+        name: user.displayName || "",
+        picture: user.photoURL || "",
+        provider: user.providerData?.[0]?.providerId || "google"
+
+    });
+
+    showSuccess({
+        name: user.displayName || "",
+        email: user.email
+    });
+
+}
+
+
+/* =======================================================
+   CLICK EN BOTÓN GOOGLE
+======================================================== */
+
+document
+    .getElementById("googleLoginBtn")
+    .addEventListener("click", async () => {
+
+        if (!auth) {
+
+            alert("Firebase no cargó todavía. Esperá unos segundos y probá de nuevo.");
+            return;
+
+        }
+
+        const btn = document.getElementById("googleLoginBtn");
+        btn.classList.add("loading");
+
+        const provider = new window.GoogleAuthProvider();
+
+        try {
+
+            /* Intentamos popup primero */
+            const result = await window.signInWithPopup(auth, provider);
+
+            btn.classList.remove("loading");
+
+            handleFirebaseUser(result.user);
+
+        } catch (error) {
+
+            btn.classList.remove("loading");
+
+            console.error("Error con popup:", error);
+
+            /* Si el popup falla (WebView de IG/TikTok), usamos redirect */
+            if (
+                error.code === "auth/popup-blocked" ||
+                error.code === "auth/popup-closed-by-user" ||
+                error.code === "auth/cancelled-popup-request"
+            ) {
+
+                console.log("Popup bloqueado, usando redirect...");
+
+                try {
+
+                    await window.signInWithRedirect(auth, provider);
+
+                } catch (redirectError) {
+
+                    console.error("Error con redirect:", redirectError);
+                    alert("No pudimos iniciar sesión. Probá de nuevo.");
+
+                }
+
+            } else {
+
+                alert("No pudimos iniciar sesión con Google. Probá de nuevo.");
+
+            }
+
+        }
+
+    });
+
+
+/* =======================================================
+   APPLE LOGIN (placeholder — activar cuando tengas Apple Dev)
+======================================================== */
+
+document
+    .getElementById("appleLoginBtn")
+    .addEventListener("click", () => {
+
+        alert(
+            "Apple Sign-In estará disponible pronto.\n" +
+            "Mientras tanto, usá Google o email."
+        );
+
+    });
+
+
+/* =======================================================
+   TOGGLE EMAIL FORM
+======================================================== */
+
+const emailToggleBtn = document.getElementById("emailToggleBtn");
+const accessFormEl = document.getElementById("accessForm");
+
+emailToggleBtn.addEventListener("click", () => {
+
+    const isHidden = accessFormEl.hasAttribute("hidden");
+
+    if (isHidden) {
+
+        accessFormEl.removeAttribute("hidden");
+
+        emailToggleBtn.querySelector("span").textContent =
+            "OCULTAR EMAIL";
+
+        setTimeout(() => {
+
+            document.getElementById("email").focus();
+
+        }, 100);
+
+    } else {
+
+        accessFormEl.setAttribute("hidden", "");
+
+        emailToggleBtn.querySelector("span").textContent =
+            "CONTINUAR CON EMAIL";
+
+    }
+
+});
+
+
+/* =======================================================
+   EMAIL FORM SUBMIT
+======================================================== */
+
+accessFormEl.addEventListener("submit", event => {
+
+    event.preventDefault();
+
+    const emailInput = document.getElementById("email");
+    const whatsappInput = document.getElementById("whatsapp");
+
+    const email = emailInput.value.trim().toLowerCase();
+    const whatsapp = whatsappInput ? whatsappInput.value.trim() : "";
+
+    if (!email) return;
+
+    saveLead({
+
+        email: email,
+        whatsapp: whatsapp,
+        provider: "email"
+
+    });
+
+    showSuccess({ email: email });
+
+    emailInput.value = "";
+    if (whatsappInput) whatsappInput.value = "";
+
+});
+
+
+/* =======================================================
+   SELECTOR DE TALLE
+======================================================== */
+
+sizeOptions.forEach(option => {
+
+    option.addEventListener("click", () => {
+
+        const newSize = option.dataset.size;
+
+        if (!newSize) return;
+
+        selectedSize = newSize;
+
+        /* Actualizar estilos */
+        sizeOptions.forEach(opt => {
+
+            opt.classList.toggle("selected", opt === option);
+            opt.setAttribute("aria-checked", opt === option ? "true" : "false");
+
+        });
+
+        /* Actualizar textos */
+        if (sizeSelected) sizeSelected.textContent = newSize;
+        if (sizeHint) sizeHint.textContent = `Talle ${newSize} seleccionado`;
+        if (accessSize) accessSize.textContent = newSize;
+
+        /* Guardar para próxima visita */
+        localStorage.setItem("auraXP_selectedSize", newSize);
+
+    });
+
+});
+
+/* Restaurar talle guardado */
+const savedSize = localStorage.getItem("auraXP_selectedSize");
+
+if (savedSize) {
+
+    const sizeBtn = document.querySelector(`.size-option[data-size="${savedSize}"]`);
+
+    if (sizeBtn) {
+
+        sizeBtn.click();
+
+    }
+
+}
+
+/* =======================================================
+   INIT AL CARGAR
+======================================================== */
+
+window.addEventListener("load", initFirebase);
+
+
+        /* =======================================================
+           RESTORE PRODUCT
+        ======================================================== */
+
+        const savedProduct =
+            localStorage.getItem("auraXP_selectedProduct");
+
+        if (savedProduct && products[savedProduct]) {
+
+            selectProduct(savedProduct);
+
+        } else {
+
+            selectProduct("FARM TEE");
+
+        }
+
+
+        /* =======================================================
+           ENTER KEY EN EMAIL
+        ======================================================== */
+
+        document
+            .getElementById("email")
+            .addEventListener("keydown", event => {
+
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    document
+                        .getElementById("accessForm")
+                        .requestSubmit();
+
+                }
+
+            });
+
+    </script>
+
+</body>
+</html>
