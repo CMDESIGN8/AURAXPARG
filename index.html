@@ -44,7 +44,7 @@
 
             --white: #f2f2ec;
             --muted: #8b8b8b;
-            --muted-light: #b7b7b0;
+            --muted-light: #ffffff;
 
             --logo-green: #00ff87;
             --logo-cyan: #00e1ff;
@@ -519,7 +519,7 @@
 
             border-radius: 40px;
 
-            font-size: .72rem;
+            font-size: .85rem;
             font-weight: 600;
 
             color: var(--muted-light);
@@ -527,6 +527,7 @@
 
         .social-proof strong {
             color: var(--logo-green);
+            font-size: 0.9rem;
         }
 
         .pulse-dot {
@@ -788,12 +789,12 @@
 
             padding: 6px 10px;
 
-            background: rgba(0,0,0,.75);
+            background: rgba(9, 104, 0, 0.75);
 
             border: 1px solid rgba(255,255,255,.1);
 
-            font-size: 8px;
-            font-weight: 800;
+            font-size: 10px;
+            font-weight: 700;
 
             letter-spacing: 1px;
 
@@ -3221,7 +3222,7 @@
                     <span class="pulse-dot"></span>
 
                     <span>
-                        <strong id="registered-count">247</strong>
+                        <strong id="registered-count">30</strong> &nbsp;
                         FARMERS ya están dentro
                     </span>
 
@@ -3319,9 +3320,9 @@
                                 +100 XP
                             </div>
 
-                            <div class="stock-badge">
-                                80 / 80 DISPONIBLES
-                            </div>
+                            <div class="stock-badge" id="stock-farm_tee">
+    80 / 80 DISPONIBLES
+</div>
 
                         </div>
 
@@ -3402,9 +3403,9 @@
                                 +250 XP
                             </div>
 
-                            <div class="stock-badge">
-                                15 / 15 DISPONIBLES
-                            </div>
+                            <div class="stock-badge" id="stock-sport_aura">
+    15 / 15 DISPONIBLES
+</div>
 
                         </div>
 
@@ -3485,9 +3486,9 @@
                                 +500 XP
                             </div>
 
-                            <div class="stock-badge urgent">
-                                5 / 5 DISPONIBLES
-                            </div>
+                           <div class="stock-badge" id="stock-grind_tee">
+    5 / 5 DISPONIBLES
+</div>
 
                         </div>
 
@@ -4124,7 +4125,7 @@
             new Date(2026, 10, 15, 20, 0, 0).getTime();
 
         // Número base de registrados (sumale los que se registren)
-        const BASE_REGISTERED = 30;
+        const BASE_REGISTERED = 5;
 
         const SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyoMRK48asxzhMptuLNaUq4D7dYr1b7Gu7AIdqoeFu_2vGmQX3byURtDZrAH0VbqdegTw/exec";
         /* =======================================================
@@ -4547,15 +4548,12 @@ async function createFarmerKey(email) {
 }
 
 
+
 /* =======================================================
-   GUARDAR LEAD
+   GUARDAR LEAD Y DESCONTAR STOCK REAL (VERSIÓN CORREGIDA)
 ======================================================== */
 
 async function saveLead(userData) {
-
-    /* =======================================================
-       1. DATOS DEL FARMER
-    ======================================================== */
 
     const normalizedEmail = String(userData.email || "")
         .trim()
@@ -4567,6 +4565,11 @@ async function saveLead(userData) {
     }
 
     const farmerKey = await createFarmerKey(normalizedEmail);
+
+    // Mapear el producto seleccionado a la clave exacta de Firestore
+    let productInventoryKey = "farm_tee"; // Por defecto
+    if (selectedProduct.name.includes("SPORT")) productInventoryKey = "sport_aura";
+    if (selectedProduct.name.includes("GRIND")) productInventoryKey = "grind_tee";
 
     const lead = {
         email: normalizedEmail,
@@ -4583,180 +4586,73 @@ async function saveLead(userData) {
         campaign: "DROP_001"
     };
 
-
-    /* =======================================================
-       2. LOCAL STORAGE
-    ======================================================== */
-
-    let leads = [];
-
-    try {
-
-        leads = JSON.parse(
-            localStorage.getItem("auraXP_interesados") || "[]"
-        );
-
-    } catch (error) {
-
-        leads = [];
-
-    }
-
-    const existsLocal = leads.some(
-        lead => String(lead.email || "").trim().toLowerCase() === normalizedEmail
-    );
-
-    if (!existsLocal) {
-
-        leads.push(lead);
-
-        localStorage.setItem(
-            "auraXP_interesados",
-            JSON.stringify(leads)
-        );
-
-    }
-
-
-    /* =======================================================
-       3. GOOGLE SHEETS
-    ======================================================== */
-
-    if (
-        SHEETS_WEBHOOK_URL &&
-        SHEETS_WEBHOOK_URL !== "PEGÁ_ACÁ_LA_URL_DE_TU_APPS_SCRIPT"
-    ) {
-
-        fetch(SHEETS_WEBHOOK_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-                "Content-Type": "text/plain"
-            },
-            body: JSON.stringify(lead)
-        })
-        .then(() => {
-            console.log("✅ Lead enviado a Google Sheets");
-        })
-        .catch((error) => {
-            console.error("❌ Error Google Sheets:", error);
-        });
-
-    }
-
-
-    /* =======================================================
-       4. FIREBASE
-    ======================================================== */
-
     if (!window.firebaseDB) {
-
         console.error("❌ Firebase DB no está disponible");
-
-        setRegisteredCount(getFallbackRegisteredCount());
-
         return;
-
     }
 
     const db = window.firebaseDB;
+    const timestamp = window.firestoreServerTimestamp ? window.firestoreServerTimestamp() : new Date();
 
-    const timestamp =
-        window.firestoreServerTimestamp
-            ? window.firestoreServerTimestamp()
-            : new Date();
+    // Importar las funciones necesarias de Firestore
+    const { doc, getDoc, updateDoc, collection, addDoc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
 
-
-    /* =======================================================
-       5. FARMER COUNTER
-       
-       IMPORTANTE:
-       Esto está separado del /leads.
-       Aunque falle el lead, el Farmer se intenta guardar.
-    ======================================================== */
-
+    // 1. DESCONTAR STOCK DIRECTAMENTE DE FIRESTORE
     try {
-
-        const farmerRef = window.firestoreDoc(
-            db,
-            "farmer_counters",
-            farmerKey
-        );
-
-        await window.firestoreSetDoc(
-            farmerRef,
-            {
-                createdAt: timestamp
-            },
-            {
-                merge: false
+        const inventoryRef = doc(db, "inventory", "drop_001");
+        
+        const invSnapshot = await getDoc(inventoryRef);
+        if (invSnapshot.exists()) {
+            const currentStock = invSnapshot.data()[productInventoryKey] ?? 0;
+            if (currentStock <= 0) {
+                alert("¡Lo sentimos! Este producto acaba de agotarse.");
+                return;
             }
-        );
-
-        console.log(
-            "🌱 NUEVO FARMER GUARDADO:",
-            normalizedEmail
-        );
-
-    } catch (farmerError) {
-
-        if (farmerError?.code === "permission-denied") {
-
-            console.error(
-                "🚨 FIRESTORE RECHAZÓ EL FARMER: PERMISSION-DENIED"
-            );
-
-            console.error(
-                "👉 Revisar las Rules de farmer_counters en Firebase."
-            );
-
-        } else {
-
-            console.log(
-                "ℹ️ Farmer ya existente o error de Firebase:",
-                farmerError?.code || farmerError?.message
-            );
-
+            // Actualizamos restando 1
+            await updateDoc(inventoryRef, {
+                [productInventoryKey]: currentStock - 1
+            });
+            console.log("✅ Stock actualizado correctamente.");
         }
-
+    } catch (stockError) {
+        console.error("❌ Error actualizando el stock:", stockError);
+        alert("Hubo un error al validar el stock. Inténtalo de nuevo.");
+        return;
     }
 
-
-    /* =======================================================
-       6. GUARDAR LEAD COMERCIAL
-    ======================================================== */
-
+    // 2. GUARDAR EL LEAD COMERCIAL EN FIRESTORE
     try {
-
-        const leadsCollection =
-            window.firestoreCollection(db, "leads");
-
-        await window.firestoreAddDoc(
-            leadsCollection,
-            {
-                ...lead,
-                timestamp
-            }
-        );
-
+        const leadsCollection = collection(db, "leads");
+        await addDoc(leadsCollection, {
+            ...lead,
+            timestamp
+        });
         console.log("✅ Lead guardado en Firestore");
-
     } catch (leadError) {
-
-        console.error(
-            "⚠️ No se pudo guardar el Lead en Firestore:",
-            leadError
-        );
-
+        console.error("⚠️ No se pudo guardar el Lead en Firestore:", leadError);
     }
 
+    // 3. REGISTRAR O ACTUALIZAR EL FARMER COUNTER
+    try {
+        const farmerRef = doc(db, "farmer_counters", farmerKey);
+        await setDoc(farmerRef, { createdAt: timestamp }, { merge: false });
+    } catch (farmerError) {
+        console.log("ℹ️ Info del farmer counter:", farmerError?.message);
+    }
 
-    /* =======================================================
-       7. ACTUALIZAR CONTADOR
-    ======================================================== */
+    // 4. ENVIAR A GOOGLE SHEETS
+    if (SHEETS_WEBHOOK_URL && SHEETS_WEBHOOK_URL !== "PEGÁ_ACÁ_LA_URL_DE_TU_APPS_SCRIPT") {
+        fetch(SHEETS_WEBHOOK_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain" },
+            body: JSON.stringify(lead)
+        }).catch(err => console.error("❌ Error Google Sheets:", err));
+    }
 
+    // 5. ACTUALIZAR CONTADOR GLOBAL Y MOSTRAR ÉXITO
     await refreshRegisteredCount();
-
+    showSuccess(userData);
 }
 
 
@@ -4820,6 +4716,7 @@ function initFirebase() {
     console.log("✅ Firebase Auth inicializado");
 
     refreshRegisteredCount();
+    refreshLiveStock();
 
     /* Detectar si venimos de un redirect */
     window.getRedirectResult(auth)
@@ -4853,6 +4750,54 @@ function initFirebase() {
 
 }
 
+/* =======================================================
+   CARGAR Y MOSTRAR STOCK REAL EN VIVO
+======================================================== */
+
+async function refreshLiveStock() {
+    if (!window.firebaseDB) {
+        console.warn("⚠️ Firebase DB no disponible para cargar stock.");
+        return;
+    }
+
+    try {
+        const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+        const inventoryRef = doc(window.firebaseDB, "inventory", "drop_001");
+        const invSnapshot = await getDoc(inventoryRef);
+
+        if (invSnapshot.exists()) {
+            const data = invSnapshot.data();
+
+            // Actualizar stock de Remera (FARM TEE)
+            const farmEl = document.getElementById("stock-farm_tee");
+            if (farmEl) {
+                const stock = data.farm_tee ?? 80;
+                farmEl.textContent = `${stock} / 80 DISPONIBLES`;
+                if (stock <= 0) farmEl.classList.add("urgent");
+            }
+
+            // Actualizar stock de Campera (SPORT AURA)
+            const sportEl = document.getElementById("stock-sport_aura");
+            if (sportEl) {
+                const stock = data.sport_aura ?? 15;
+                sportEl.textContent = `${stock} / 15 DISPONIBLES`;
+                if (stock <= 0) sportEl.classList.add("urgent");
+            }
+
+            // Actualizar stock de Buzo (GRIND)
+            const grindEl = document.getElementById("stock-grind_tee");
+            if (grindEl) {
+                const stock = data.grind_tee ?? 5;
+                grindEl.textContent = `${stock} / 5 DISPONIBLES`;
+                if (stock <= 0) grindEl.classList.add("urgent");
+            }
+
+            console.log("📦 Stock real sincronizado en la interfaz.");
+        }
+    } catch (error) {
+        console.error("❌ Error al obtener el stock en vivo:", error);
+    }
+}
 
 /* =======================================================
    MANEJAR USUARIO DE FIREBASE
