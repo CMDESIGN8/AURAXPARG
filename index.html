@@ -778,25 +778,34 @@
             letter-spacing: .1em;
         }
 
-         .stock-badge {
+        .stock-badge {
             position: absolute;
+
             bottom: 14px;
             left: 14px;
+
             z-index: 2;
+
             padding: 6px 10px;
-            background: var(--product-glow);
-            border: 1px solid var(--product-color);
+
+            background: rgba(0,0,0,.75);
+
+            border: 1px solid rgba(255,255,255,.1);
+
             font-size: 8px;
             font-weight: 800;
+
             letter-spacing: 1px;
-            color: var(--product-color);
+
+            color: var(--muted-light);
+
             backdrop-filter: blur(4px);
         }
 
         .stock-badge.urgent {
-            color: var(--product-color);
-            border-color: var(--product-color);
-            background: var(--product-glow);
+            color: var(--logo-magenta);
+            border-color: rgba(255,0,127,.5);
+            background: rgba(255,0,127,.08);
         }
 
         .product-info {
@@ -3060,8 +3069,7 @@
         setDoc,
         getCountFromServer,
         serverTimestamp,
-        getDocs,
-        runTransaction
+        getDocs
     } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -3094,7 +3102,6 @@
     window.firestoreGetDocs = getDocs;
     window.firestoreServerTimestamp = serverTimestamp;
     window.firestoreGetCountFromServer = getCountFromServer;
-    window.firestoreRunTransaction = runTransaction;
 
     console.log("🔥 Firebase listo — Auth + Firestore");
 
@@ -3312,7 +3319,7 @@
                                 +100 XP
                             </div>
 
-                            <div class="stock-badge" data-stock-product="FARM TEE">
+                            <div class="stock-badge">
                                 80 / 80 DISPONIBLES
                             </div>
 
@@ -3321,7 +3328,7 @@
                         <div class="product-info">
 
                             <span class="product-type">
-                                REMERA
+                                REMERA OVERSIZE EDICION LIMITADA
                             </span>
 
                             <h3>
@@ -3395,7 +3402,7 @@
                                 +250 XP
                             </div>
 
-                            <div class="stock-badge" data-stock-product="SPORT AURA">
+                            <div class="stock-badge">
                                 15 / 15 DISPONIBLES
                             </div>
 
@@ -3444,11 +3451,11 @@
                     </article>
 
 
-                    <!-- PIEZA 3 — GRIND -->
+                    <!-- PIEZA 3 — GRIND TEE -->
 
                     <article
                         class="product-card"
-                        data-product="GRIND"
+                        data-product="GRIND TEE"
                         style="
                             --product-color:#ff007f;
                             --product-glow:rgba(255,0,127,.18);
@@ -3459,12 +3466,12 @@
 
                             <img
                                 src="assets/buzo.jpg"
-                                alt="GRIND frente"
+                                alt="GRIND TEE frente"
                             >
 
                             <img
                                 src="assets/buzo2.jpg"
-                                alt="GRIND espalda"
+                                alt="GRIND TEE espalda"
                                 class="hover-img"
                                 loading="lazy"
                                 decoding="async"
@@ -3478,7 +3485,7 @@
                                 +500 XP
                             </div>
 
-                            <div class="stock-badge urgent" data-stock-product="GRIND">
+                            <div class="stock-badge urgent">
                                 5 / 5 DISPONIBLES
                             </div>
 
@@ -3491,16 +3498,16 @@
                             </span>
 
                             <h3>
-                                GRIND
+                                GRIND TEE
                             </h3>
 
                             <p>
-                                Edición limitada.
+                                Numerada del 1 al 5.
                                 Algodón premium 280g.
                             </p>
 
                             <ul class="product-features">
-                                <li>✓ Edición limitada</li>
+                                <li>✓ Numerada y firmada</li>
                                 <li>✓ Envío prioritario</li>
                                 <li>✓ +500 XP al registrarte</li>
                             </ul>
@@ -4030,7 +4037,7 @@
 
                             <span></span>
 
-                            <span id="successReservationStatus">TU PIEZA ESTÁ GUARDADA 24HS</span>
+                            TU PIEZA ESTÁ GUARDADA 24HS
 
                         </div>
 
@@ -4116,7 +4123,7 @@
             new Date(2026, 10, 15, 20, 0, 0).getTime();
 
         // Número base de registrados (sumale los que se registren)
-        const BASE_REGISTERED = 247;
+        const BASE_REGISTERED = 30;
 
         const SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyoMRK48asxzhMptuLNaUq4D7dYr1b7Gu7AIdqoeFu_2vGmQX3byURtDZrAH0VbqdegTw/exec";
         /* =======================================================
@@ -4130,7 +4137,7 @@
                 rarity: "rare",
                 rarityLabel: "RARE",
                 xp: 100,
-                image: "assets/remera.png",
+                image: "assets/remera3.png",
                 description:
                     "Algodón peinado 240g. Estampa frontal + espalda."
             },
@@ -4140,19 +4147,19 @@
                 rarity: "epic",
                 rarityLabel: "EPIC",
                 xp: 250,
-                image: "assets/farm5.png",
+                image: "assets/farm3.jpg",
                 description:
-                    "Campera sport. Corte relajado. Logo bordado."
+                    "Frisa perchada. Corte relajado. Logo bordado."
             },
 
-            "GRIND": {
-                name: "GRIND",
+            "GRIND TEE": {
+                name: "GRIND TEE",
                 rarity: "legendary",
                 rarityLabel: "LEGENDARY",
                 xp: 500,
-                image: "assets/buzo.jpg",
+                image: "assets/buzo3.jpg",
                 description:
-                    "Edición limitada. Algodón premium 280g."
+                    "Numerada del 1 al 5. Algodón premium 280g."
             }
 
         };
@@ -4211,8 +4218,8 @@
         const successXP =
             document.getElementById("successXP");
 
-        const successReservationStatus = document.getElementById("successReservationStatus");
-        const accessSuccess = document.getElementById("accessSuccess");
+        const accessSuccess =
+            document.getElementById("accessSuccess");
 
         const registrationForm =
             document.getElementById("registrationForm");
@@ -4431,14 +4438,25 @@ const successSize = document.getElementById("successSize");
         async function refreshRegisteredCount() {
             setRegisteredCount(BASE_REGISTERED);
 
-            if (!window.firebaseDB || !window.firestoreCollection || !window.firestoreGetCountFromServer) return;
+            if (
+                !window.firebaseDB ||
+                !window.firestoreCollection ||
+                !window.firestoreGetDocs
+            ) {
+                console.warn("⚠️ Firebase o Firestore tools no están listos todavía.");
+                return;
+            }
 
             try {
                 const db = window.firebaseDB;
                 const farmersCollection = window.firestoreCollection(db, "farmer_counters");
-                const snapshot = await window.firestoreGetCountFromServer(farmersCollection);
-                const realFarmers = snapshot.data().count || 0;
+                
+                const snapshot = await window.firestoreGetDocs(farmersCollection);
+                const realFarmers = snapshot.size || 0;
+
                 setRegisteredCount(BASE_REGISTERED + realFarmers);
+                console.log(`👥 Farmers reales actualizados: ${BASE_REGISTERED + realFarmers}`);
+
             } catch (error) {
                 console.error("❌ No se pudo consultar el contador real de Farmers:", error);
                 setRegisteredCount(BASE_REGISTERED);
@@ -4532,137 +4550,6 @@ async function createFarmerKey(email) {
    GUARDAR LEAD
 ======================================================== */
 
-const RESERVATION_HOURS = 24;
-
-const INVENTORY = {
-    "FARM TEE": { slug: "farm", total: 80 },
-    "SPORT AURA": { slug: "sport", total: 15 },
-    "GRIND": { slug: "grind", total: 5 }
-};
-
-function formatReservationDate(date) {
-    return new Intl.DateTimeFormat("es-AR", {
-        day: "2-digit",
-        month: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit"
-    }).format(date);
-}
-
-async function reserveInventorySlot(email) {
-    const config = INVENTORY[selectedProduct.name];
-
-    if (!window.firebaseDB || !window.firestoreDoc || !window.firestoreRunTransaction) {
-        throw new Error("Firebase no está listo.");
-    }
-
-    if (!config) throw new Error("Producto sin inventario configurado.");
-
-    const normalizedEmail = String(email || "").trim().toLowerCase();
-    const emailHash = await createFarmerKey(normalizedEmail);
-    const expiresAt = new Date(Date.now() + RESERVATION_HOURS * 60 * 60 * 1000);
-    const db = window.firebaseDB;
-
-    const result = await window.firestoreRunTransaction(db, async transaction => {
-        const refs = Array.from({ length: config.total }, (_, index) =>
-            window.firestoreDoc(db, "drop_inventory", `${config.slug}-${String(index + 1).padStart(3, "0")}`)
-        );
-
-        const snapshots = [];
-        for (const ref of refs) snapshots.push(await transaction.get(ref));
-
-        let selectedRef = null;
-        let selectedUnit = null;
-
-        for (let i = 0; i < snapshots.length; i++) {
-            const snap = snapshots[i];
-
-            if (!snap.exists()) {
-                selectedRef = refs[i];
-                selectedUnit = i + 1;
-                break;
-            }
-
-            const data = snap.data();
-            const expires = data.reservedUntil?.toMillis?.() || 0;
-
-            if (expires <= Date.now()) {
-                selectedRef = refs[i];
-                selectedUnit = i + 1;
-                break;
-            }
-        }
-
-        if (!selectedRef) return { ok: false, reason: "sold_out" };
-
-        transaction.set(selectedRef, {
-            product: selectedProduct.name,
-            rarity: selectedProduct.rarity,
-            xp: selectedProduct.xp,
-            unit: selectedUnit,
-            status: "reserved",
-            emailHash,
-            talle: selectedSize,
-            reservedAt: new Date(),
-            reservedUntil: expiresAt,
-            updatedAt: new Date()
-        });
-
-        return { ok: true, unit: selectedUnit, expiresAt };
-    });
-
-    if (!result?.ok) return result;
-
-    localStorage.setItem("auraXP_reservation", JSON.stringify({
-        product: selectedProduct.name,
-        unit: result.unit,
-        size: selectedSize,
-        expiresAt: result.expiresAt.toISOString()
-    }));
-
-    return result;
-}
-
-async function refreshProductStock() {
-    if (!window.firebaseDB || !window.firestoreCollection || !window.firestoreGetDocs) return;
-
-    try {
-        const snapshot = await window.firestoreGetDocs(
-            window.firestoreCollection(window.firebaseDB, "drop_inventory")
-        );
-
-        const now = Date.now();
-        const active = { "FARM TEE": 0, "SPORT AURA": 0, "GRIND": 0 };
-
-        snapshot.forEach(docSnap => {
-            const data = docSnap.data();
-            const expires = data.reservedUntil?.toMillis?.() || 0;
-
-            if (data.status === "reserved" &&
-                active.hasOwnProperty(data.product) &&
-                expires > now) {
-                active[data.product]++;
-            }
-        });
-
-        document.querySelectorAll("[data-stock-product]").forEach(badge => {
-            const productName = badge.dataset.stockProduct;
-            const config = INVENTORY[productName];
-            if (!config) return;
-
-            const available = Math.max(0, config.total - (active[productName] || 0));
-
-            badge.textContent = `${available} / ${config.total} DISPONIBLES`;
-            badge.classList.toggle(
-                "urgent",
-                available <= Math.max(1, Math.ceil(config.total * .2))
-            );
-        });
-    } catch (error) {
-        console.warn("⚠️ No se pudo actualizar el stock:", error);
-    }
-}
-
 async function saveLead(userData) {
 
     /* =======================================================
@@ -4680,16 +4567,6 @@ async function saveLead(userData) {
 
     const farmerKey = await createFarmerKey(normalizedEmail);
 
-    const reservation = await reserveInventorySlot(normalizedEmail);
-
-    if (!reservation?.ok) {
-        throw new Error(
-            reservation?.reason === "sold_out"
-                ? `No quedan unidades disponibles de ${selectedProduct.name}.`
-                : "No pudimos reservar esta pieza."
-        );
-    }
-
     const lead = {
         email: normalizedEmail,
         name: userData.name || "",
@@ -4700,8 +4577,6 @@ async function saveLead(userData) {
         rarity: selectedProduct.rarity,
         xp: selectedProduct.xp,
         talle: selectedSize,
-        reserva_unidad: reservation.unit,
-        reserva_hasta: reservation.expiresAt.toISOString(),
         fecha: new Date().toISOString(),
         source: "landing",
         campaign: "DROP_001"
@@ -4880,9 +4755,11 @@ async function saveLead(userData) {
     ======================================================== */
 
     await refreshRegisteredCount();
-    await refreshProductStock();
-    return true;
+
 }
+
+
+
 
 /* =======================================================
    MOSTRAR SUCCESS
@@ -4893,20 +4770,6 @@ function showSuccess(userData) {
     successProduct.textContent = selectedProduct.name;
     successXP.textContent = selectedProduct.xp;
     successSize.textContent = selectedSize;
-
-    if (successReservationStatus) {
-        const stored = localStorage.getItem("auraXP_reservation");
-        try {
-            const reservation = JSON.parse(stored || "null");
-            const expiresAt = new Date(reservation?.expiresAt || 0);
-            successReservationStatus.textContent =
-                expiresAt.getTime() > Date.now()
-                    ? `TU PIEZA ESTÁ GUARDADA HASTA ${formatReservationDate(expiresAt)}`
-                    : "TU PIEZA ESTÁ GUARDADA 24HS";
-        } catch (error) {
-            successReservationStatus.textContent = "TU PIEZA ESTÁ GUARDADA 24HS";
-        }
-    }
 
     const successP = accessSuccess.querySelector("p");
 
@@ -4956,7 +4819,6 @@ function initFirebase() {
     console.log("✅ Firebase Auth inicializado");
 
     refreshRegisteredCount();
-    refreshProductStock();
 
     /* Detectar si venimos de un redirect */
     window.getRedirectResult(auth)
@@ -4964,7 +4826,7 @@ function initFirebase() {
 
             if (result && result.user) {
 
-                await handleFirebaseUser(result.user);
+                handleFirebaseUser(result.user);
 
             }
 
@@ -4997,22 +4859,14 @@ function initFirebase() {
 
 async function handleFirebaseUser(user) {
 
-    try {
-        const saved = await saveLead({
+    await saveLead({
 
         email: user.email,
         name: user.displayName || "",
         picture: user.photoURL || "",
         provider: user.providerData?.[0]?.providerId || "google"
-        });
 
-        if (!saved) return;
-
-    } catch (error) {
-        console.error("❌ No se pudo completar la reserva:", error);
-        alert(error?.message || "No pudimos reservar esta pieza. Probá de nuevo.");
-        return;
-    }
+    });
 
     showSuccess({
         name: user.displayName || "",
@@ -5149,21 +5003,21 @@ accessFormEl.addEventListener("submit", async event => {
 
     try {
 
-        const saved = await saveLead({
-            email,
-            whatsapp,
+        await saveLead({
+
+            email: email,
+            whatsapp: whatsapp,
             provider: "email"
+
         });
 
-        if (saved) showSuccess({ email });
+        showSuccess({ email: email });
 
         emailInput.value = "";
         if (whatsappInput) whatsappInput.value = "";
 
-    } catch (error) {
-        console.error("❌ No se pudo completar la reserva:", error);
-        alert(error?.message || "No pudimos reservar esta pieza. Probá de nuevo.");
     } finally {
+
         if (submitButton) {
             submitButton.disabled = false;
             submitButton.style.opacity = "";
