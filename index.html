@@ -439,6 +439,54 @@
             flex-wrap: wrap;
         }
 
+        #bcAuthBox {
+    padding: 22px 20px 24px;
+    border: 1px solid rgba(0, 140, 255, 0.45);
+    background: rgba(255,255,255,.02);
+}
+#bcAuthBox .social-login { gap: 12px; }
+#bcAccessForm { margin-top: 2px; }
+#bcAccessForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    color: var(--muted);
+}
+#bcAccessForm input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 14px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.2);
+    color: var(--white);
+    font-family: inherit;
+    font-size: .85rem;
+    outline: none;
+    transition: border-color .2s ease, background .2s ease;
+}
+#bcAccessForm input:focus { border-color: var(--logo-cyan); background: rgba(0,225,255,.05); }
+#bcAccessForm .access-submit {
+    width: 100%;
+    border: 1px solid var(--logo-cyan);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: var(--logo-cyan);
+    color: #060609;
+    font-family: inherit;
+    font-weight: 900;
+    font-size: .82rem;
+    letter-spacing: .05em;
+    box-shadow: 0 0 25px rgba(0,225,255,.25);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+#bcAccessForm .access-submit:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(0,225,255,.35); }
+#bcAuthBox .form-disclaimer { margin-top: 14px; }
+
         .btn-primary,
         .btn-secondary {
             min-height: 52px;
@@ -2407,7 +2455,7 @@
 .email-btn {
     background: transparent;
     color: var(--white);
-    border-color: rgba(255,255,255,.18);
+    border-color: rgba(255, 255, 255, 0.18);
 }
 
 .email-btn:hover {
@@ -3047,6 +3095,407 @@
             }
         }
 
+
+        /* =========================================================
+           AURA XP CUSTOM BOOTS
+        ========================================================= */
+        .boots-section {
+            position: relative;
+            overflow: hidden;
+            padding: 110px 0 90px;
+            background:
+                radial-gradient(circle at 78% 38%, rgba(0,225,255,.10), transparent 28%),
+                radial-gradient(circle at 20% 75%, rgba(0,225,255,.10), transparent 30%);
+            border-top: 1px solid rgba(255,255,255,.07);
+        }
+        .boots-inner {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 70px;
+            align-items: center;
+        }
+        .boots-copy .section-kicker { margin-bottom: 18px; }
+        .boots-copy h2 {
+            margin: 0 0 20px;
+            font-size: clamp(3.4rem, 7vw, 7rem);
+            line-height: .82;
+            letter-spacing: -.06em;
+        }
+        .boots-copy h2 span {
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,.8);
+        }
+        .boots-copy > p:not(.boots-description) {
+            font-size: clamp(1.25rem, 2vw, 1.7rem);
+            font-weight: 800;
+            margin: 0 0 16px;
+        }
+        .boots-description {
+            max-width: 520px;
+            color: #8b949e;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+        .boots-cta {
+            border: 1px solid #00e1ff;
+            background: #00e1ff;
+            color: #060609;
+            padding: 15px 24px;
+            font-weight: 900;
+            letter-spacing: .04em;
+            cursor: pointer;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .boots-cta:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0,225,255,.25); }
+        .boots-visual { position: relative; min-height: 500px; display:flex; align-items:center; justify-content:center; }
+        .boots-glow {
+            position:absolute; width:72%; aspect-ratio:1; border-radius:50%;
+            background: radial-gradient(circle, rgba(0,225,255,.20), transparent 68%);
+            filter: blur(8px);
+        }
+        .main-boot { position:relative; z-index:2; width:min(100%, 650px); max-height:500px; object-fit:contain; filter: drop-shadow(0 30px 45px rgba(0,0,0,.55)); transition: opacity .18s ease, transform .25s ease; }
+        .boot-tag {
+            position:absolute; z-index:3; right:4%; bottom:8%; padding:12px 16px;
+            background:rgba(6,6,9,.82); border:1px solid rgba(0,225,255,.5); backdrop-filter:blur(10px);
+        }
+        .boot-tag span { display:block; font-size:10px; color:#00e1ff; letter-spacing:.18em; }
+        .boot-tag strong { display:block; font-size:15px; margin-top:4px; }
+        .boots-models {
+            width:min(1180px, calc(100% - 40px)); margin: 28px auto 0;
+            display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+        }
+        .boot-model {
+            min-height:150px; position:relative; display:flex; align-items:center; justify-content:center;
+            border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.025); cursor:pointer; overflow:hidden;
+            transition:border-color .2s ease, transform .2s ease, background .2s ease;
+        }
+        .boot-model:hover, .boot-model.active { border-color:#00e1ff; background:rgba(0,225,255,.045); transform:translateY(-2px); }
+        .boot-model img { width:82%; height:125px; object-fit:contain; }
+        .boot-model span { position:absolute; left:12px; bottom:10px; font-size:10px; font-weight:900; letter-spacing:.14em; color:#8b949e; }
+        .boots-flow {
+            width:min(1180px, calc(100% - 40px)); margin:75px auto 0; padding-top:55px;
+            border-top:1px solid rgba(255,255,255,.08);
+        }
+        .boots-flow-title { font-size:clamp(2rem,4vw,3.6rem); line-height:.95; margin:0 0 35px; }
+        .boots-flow-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+        .boots-flow-step { padding:22px 18px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.02); }
+        .boots-flow-step b { display:block; color:#00e1ff; font-size:11px; letter-spacing:.16em; margin-bottom:15px; }
+        .boots-flow-step span { font-weight:900; font-size:13px; }
+        @media (max-width: 800px) {
+            .boots-section { padding:80px 0 65px; }
+            .boots-inner { grid-template-columns:1fr; gap:35px; }
+            .boots-visual { min-height:330px; }
+            .main-boot { max-height:340px; }
+            .boots-models { grid-template-columns:1fr; }
+            .boot-model { min-height:190px; }
+            .boots-flow-grid { grid-template-columns:1fr 1fr; }
+            .boots-flow-step:last-child { grid-column:1/-1; }
+        }
+
+        /* =========================================================
+           BOTINES — SECCIÓN PROTAGONISTA + CIERRE DE CONVERSIÓN
+        ========================================================= */
+        .boots-section { padding: 130px 0 110px; }
+        .boots-visual { min-height: 560px; }
+        .main-boot { width: min(100%, 720px); max-height: 560px; }
+
+        .boots-identity {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 10px;
+            margin: 0 0 22px;
+        }
+        .boots-identity li {
+            padding: 8px 13px;
+            border: 1px solid rgba(0,225,255,.35);
+            background: rgba(0,225,255,.05);
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .boots-models-label {
+            width: min(1180px, calc(100% - 40px));
+            margin: 60px auto 0;
+            font-size: .68rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--logo-cyan);
+        }
+        .boots-models { margin-top: 16px; gap: 18px; }
+        .boot-model { min-height: 270px; }
+        .boot-model img { width: 88%; height: 215px; }
+        .boot-model span { left: 16px; bottom: 14px; font-size: 11px; }
+
+        .boots-finale {
+            width: min(1180px, calc(100% - 40px));
+            margin: 90px auto 0;
+            text-align: center;
+        }
+        .boots-finale h3 {
+            font-size: clamp(1.8rem, 4.8vw, 4.2rem);
+            font-weight: 900;
+            letter-spacing: -.045em;
+            line-height: .98;
+        }
+        .boots-finale h3 span {
+            background: linear-gradient(90deg, var(--logo-green), var(--logo-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        /* Cierre: dos puertas */
+        .finale-section {
+            position: relative;
+            overflow: hidden;
+            padding: 130px 30px;
+            border-top: 1px solid rgba(255,255,255,.07);
+            text-align: center;
+            background:
+                radial-gradient(circle at 72% 62%, rgba(0,225,255,.10), transparent 40%),
+                radial-gradient(circle at 22% 40%, rgba(0,255,135,.06), transparent 40%);
+        }
+        .finale-inner { max-width: 1080px; margin: 0 auto; }
+        .finale-title {
+            margin-bottom: 60px;
+            font-size: clamp(2.4rem, 6.4vw, 5.2rem);
+            font-weight: 900;
+            letter-spacing: -.05em;
+            line-height: .92;
+        }
+        .finale-title span {
+            background: linear-gradient(90deg, var(--logo-green), var(--logo-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+        .finale-doors {
+            display: grid;
+            grid-template-columns: 1fr auto 1.35fr;
+            gap: 26px;
+            align-items: stretch;
+            text-align: left;
+        }
+        .finale-door {
+            display: flex;
+            flex-direction: column;
+            padding: 34px 30px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.02);
+        }
+        .finale-door small {
+            font-size: .68rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+        .finale-door h3 {
+            margin-top: 14px;
+            font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+            font-weight: 900;
+            letter-spacing: -.03em;
+            line-height: 1;
+        }
+        .finale-door p {
+            margin: 12px 0 28px;
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.6;
+        }
+        .finale-door--boots {
+            padding: 44px 38px;
+            border-color: rgba(0,225,255,.55);
+            background: linear-gradient(160deg, rgba(0,225,255,.10), rgba(255,0,127,.05));
+            box-shadow: 0 0 60px rgba(0,225,255,.10);
+        }
+        .finale-door--boots small { color: var(--logo-cyan); }
+        .finale-door--boots h3 { font-size: clamp(1.9rem, 3.4vw, 3rem); }
+        .finale-door--boots p { color: var(--white); }
+        .finale-or {
+            align-self: center;
+            font-size: .75rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+        .finale-btn {
+            margin-top: auto;
+            width: 100%;
+            padding: 16px 22px;
+            border-radius: 4px;
+            font-size: .8rem;
+            font-weight: 900;
+            letter-spacing: .05em;
+            transition: transform .2s ease, box-shadow .2s ease, color .2s ease, border-color .2s ease;
+        }
+        .finale-btn--ghost {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,.35);
+        }
+        .finale-btn--ghost:hover { color: var(--logo-green); border-color: var(--logo-green); }
+        .finale-btn--boots {
+            background: var(--logo-cyan);
+            color: #060609;
+            border: 1px solid var(--logo-cyan);
+        }
+        .finale-btn--boots:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0,225,255,.3); }
+
+        @media (max-width: 850px) {
+            .finale-section { padding: 90px 20px; }
+            .finale-title { margin-bottom: 40px; }
+            .finale-doors { grid-template-columns: 1fr; gap: 16px; }
+            .finale-or { justify-self: center; }
+            .finale-door--boots { padding: 34px 26px; }
+        }
+        @media (max-width: 800px) {
+            .boots-section { padding: 80px 0 70px; }
+            .boots-visual { min-height: 340px; }
+            .main-boot { max-height: 340px; }
+            .boots-models-label { margin-top: 45px; }
+            .boot-model { min-height: 200px; }
+            .boot-model img { height: 150px; }
+            .boots-finale { margin-top: 65px; }
+        }
+
+        /* ===== CONFIGURADOR DE BOTINES ===== */
+        .boots-config { width:min(1180px,calc(100% - 40px)); margin:60px auto 0; display:grid; grid-template-columns:1.5fr 1fr; gap:26px; align-items:center; }
+        .bc-stage {  background:transparent; padding:30px 20px 14px; text-align:center; }
+        #bcCanvas { width:100%; height:auto; max-height:420px; object-fit:contain; filter:drop-shadow(0 26px 34px rgba(0,0,0,.55)); }
+        .bc-note { margin-top:10px; font-size:.68rem; color:var(--muted); letter-spacing:.04em; }
+        .bc-panel { display:flex; flex-direction:column; gap:22px; }
+        .bc-group label { display:block; margin-bottom:10px; font-size:.68rem; font-weight:900; letter-spacing:2px; color:var(--logo-cyan); }
+        .bc-swatches { display:flex; flex-wrap:wrap; gap:9px; }
+        .bc-sw, .bc-custom { width:32px; height:32px; border-radius:50%; border:2px solid rgba(255,255,255,.18); padding:0; cursor:pointer; transition:transform .15s ease,border-color .15s ease; }
+        .bc-custom { background:conic-gradient(red,yellow,lime,cyan,blue,magenta,red); -webkit-appearance:none; appearance:none; overflow:hidden; }
+        .bc-custom::-webkit-color-swatch-wrapper { padding:0; } .bc-custom::-webkit-color-swatch { border:none; opacity:0; }
+        .bc-sw:hover, .bc-custom:hover { transform:scale(1.12); }
+        .bc-sw.on, .bc-custom.on { border-color:var(--logo-cyan); box-shadow:0 0 0 2px rgba(0,225,255,.35); }
+        .bc-toggle { display:grid; grid-template-columns:1fr 1fr; }
+        .bc-toggle button { padding:14px 10px; background:transparent; color:var(--white); border:1px solid rgba(255,255,255,.2); font-size:.72rem; font-weight:900; letter-spacing:.06em; }
+        .bc-toggle button.active { background:var(--logo-cyan); color:#060609; border-color:var(--logo-cyan); }
+        .bc-reset { align-self:flex-start; background:none; border:none; color:var(--muted); font-size:.68rem; font-weight:800; letter-spacing:.08em; text-decoration:underline; }
+        @media (max-width:800px) { .boots-config { grid-template-columns:1fr; margin-top:45px; } }
+
+        /* ===== CONFIGURADOR: nombre, número, talle, reserva ===== */
+        .bc-row { display:flex; gap:8px; }
+        .bc-input { width:100%; padding:14px 14px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.2); color:var(--white); font-size:.85rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; border-radius:0; }
+        .bc-input[type=email], .bc-input[type=tel] { text-transform:none; letter-spacing:.02em; font-weight:600; }
+        .bc-input:focus { outline:none; border-color:var(--logo-cyan); }
+        .bc-num { width:84px; text-align:center; }
+        .bc-plate { display:flex; align-items:center; gap:14px; margin-top:12px; padding:14px 16px; border:1px dashed rgba(0,225,255,.5); background:rgba(0,225,255,.05); }
+        .bc-plate span { font-weight:900; letter-spacing:.12em; font-size:1rem; }
+        .bc-plate b { font-size:1.6rem; font-weight:900; color:var(--logo-cyan); }
+        .bc-plate small { margin-left:auto; font-size:.58rem; font-weight:800; letter-spacing:.1em; color:var(--muted); text-align:right; }
+        .bc-sizes { display:flex; flex-wrap:wrap; gap:8px; }
+        .bc-size { min-width:46px; padding:11px 0; background:transparent; color:var(--white); border:1px solid rgba(255,255,255,.2); font-size:.8rem; font-weight:800; }
+        .bc-size.on { background:var(--logo-cyan); color:#060609; border-color:var(--logo-cyan); }
+        .bc-submit { padding:17px 22px; background:var(--logo-cyan); color:#060609; border:1px solid var(--logo-cyan); font-weight:900; letter-spacing:.05em; font-size:.85rem; transition:transform .2s ease, box-shadow .2s ease; }
+        .bc-submit:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 0 30px rgba(0,225,255,.3); }
+        .bc-submit:disabled { opacity:.6; cursor:default; }
+        .bc-msg { min-height:1.2em; font-size:.8rem; line-height:1.5; color:var(--logo-green); }
+        .bc-msg.err { color:var(--logo-magenta); }
+
+        /* ===== WIZARD DEL CONFIGURADOR (3 PASOS) ===== */
+        .bc-steps { display:flex; align-items:center; gap:8px; margin:4px 0 26px; }
+        .bc-step-dot { display:flex; flex-direction:column; align-items:center; gap:5px; color:var(--muted); }
+        .bc-step-dot i { display:flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:50%; border:1px solid rgba(255,255,255,.25); font-style:normal; font-size:.75rem; font-weight:900; }
+        .bc-step-dot small { font-size:.58rem; font-weight:800; letter-spacing:.08em; }
+        .bc-step-dot.on { color:var(--white); }
+        .bc-step-dot.on i { border-color:var(--logo-cyan); color:var(--logo-cyan); }
+        .bc-step-dot.done i { background:var(--logo-cyan); border-color:var(--logo-cyan); color:#060609; }
+        .bc-step-line { flex:1; height:1px; background:rgba(255,255,255,.18); margin-bottom:16px; }
+        .bc-step { display:flex; flex-direction:column; gap:22px; }
+        .bc-step[hidden] { display:none; }
+        .bc-nav { display:flex; align-items:center; justify-content:space-between; margin-top:4px; }
+        .bc-next, .bc-back { padding:15px 24px; font-size:.78rem; font-weight:900; letter-spacing:.05em; }
+        .bc-next { background:var(--logo-cyan); color:#060609; border:1px solid var(--logo-cyan); }
+        .bc-next:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 0 30px rgba(0,225,255,.3); }
+        .bc-next:disabled { opacity:.45; cursor:default; }
+        .bc-back { background:transparent; color:var(--white); border:1px solid rgba(255,255,255,.25); }
+        .bc-back:hover { border-color:var(--logo-green); color:var(--logo-green); }
+        .bc-sizes { display:flex; flex-wrap:wrap; gap:8px; }
+        .bc-size { min-width:46px; padding:11px 0; background:transparent; color:var(--white); border:1px solid rgba(255,255,255,.2); font-size:.8rem; font-weight:800; }
+        .bc-size.on { background:var(--logo-cyan); color:#060609; border-color:var(--logo-cyan); }
+        .bc-summary { padding:16px 18px; border:1px solid rgba(0, 119, 199, 0.651); background:rgba(255,255,255,.02); font-size:.78rem; line-height:1.8; color:var(--muted); }
+        .bc-summary b { color:var(--white); }
+        .bc-success {
+            text-align: center;
+            padding: 30px 24px;
+            border: 1px solid rgba(0,225,255,.35);
+            background: linear-gradient(160deg, rgba(0,225,255,.08), rgba(255,255,255,.02));
+        }
+        .bc-success .unlock-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--logo-cyan);
+            border-radius: 50%;
+            color: var(--logo-cyan);
+            font-size: 18px;
+            font-weight: 900;
+        }
+        .bc-success p { margin: 0 0 10px; font-size: .92rem; line-height: 1.6; color: var(--white); }
+        .bc-success p strong { color: var(--logo-cyan); }
+        .bc-success small {
+            display: inline-block;
+            margin-bottom: 4px;
+            padding: 7px 14px;
+            border: 1px dashed rgba(0,225,255,.45);
+            background: rgba(0,225,255,.06);
+            color: var(--logo-cyan);
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+        }
+        .bc-msg.err { color:var(--logo-magenta); }
+
+        /* ===== CROSS-SELL Y RESET (Drop 001 ↔ Botines) ===== */
+        .cross-sell-link {
+            display: block;
+            margin-top: 16px;
+            padding: 14px 16px;
+            text-align: center;
+            font-size: .74rem;
+            font-weight: 900;
+            letter-spacing: .04em;
+            color: var(--logo-cyan);
+            border: 1px dashed rgba(0,225,255,.4);
+            background: rgba(0,225,255,.05);
+            transition: border-color .2s ease, background .2s ease;
+        }
+        .cross-sell-link:hover { border-color: var(--logo-cyan); background: rgba(0,225,255,.1); }
+        .reset-link {
+            display: block;
+            margin: 12px auto 0;
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .drop-msg {
+            margin-top: 12px;
+            min-height: 1.2em;
+            font-size: .8rem;
+            line-height: 1.5;
+            text-align: center;
+            color: var(--logo-green);
+        }
+        .drop-msg.err { color: var(--logo-magenta); }
+
     </style>
     <script type="module">
 
@@ -3140,6 +3589,10 @@
 
             <a href="#drop">
                 DROP 001
+            </a>
+
+            <a href="#boots">
+                CUSTOM BOOTS
             </a>
 
             <a href="#how">
@@ -3571,8 +4024,8 @@
                     </div>
 
                     <h2 class="section-title">
-                        LISTO PARA<br>
-                        EL DROP.
+                        ARMÁ TU<br>
+                        LOADOUT.
                     </h2>
 
                     <p class="section-description">
@@ -3670,6 +4123,187 @@
 
             </div>
 
+        </section>
+
+
+        <!-- =====================================================
+             AURA XP CUSTOM BOOTS — BUILD YOUR AURA
+        ====================================================== -->
+        <section class="boots-section" id="boots">
+            <div class="boots-inner">
+                <div class="boots-copy">
+                    <div class="section-kicker">AURA XP · CUSTOM BOOTS</div>
+                    <h2>BUILD<br><span>YOUR AURA.</span></h2>
+                    <p>TU BOTÍN. TU AURA.</p>
+                    <ul class="boots-identity" aria-label="Qué podés personalizar">
+                        <li>Tus colores.</li>
+                        <li>Tu nombre.</li>
+                        <li>Tu número.</li>
+                        <li>Tu identidad.</li>
+                    </ul>
+                    <p class="boots-description">
+                        Diseñá un par que sea solamente tuyo y llevá tu identidad AURA XP a la cancha.
+                        Elegí tu modelo y después personalizalo.
+                    </p>
+                    <button class="boots-cta" type="button" onclick="scrollToBootCustomizer()">
+                        CREAR MI PAR →
+                    </button>
+                </div>
+                <div class="boots-visual">
+                    <div class="boots-glow"></div>
+                    <img src="assets/botin1.png" alt="AURA XP Custom Boots" class="main-boot" id="mainBootImage">
+                    <div class="boot-tag">
+                        <span>CUSTOM ITEM</span>
+                        <strong>AURA XP</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="boots-models-label">ELEGÍ TU MODELO</div>
+            <div class="boots-models" id="bootCustomizer">
+                <div class="boot-model active" data-boot="assets/botin1.png">
+                    <img src="assets/botin1.png" alt="AURA XP Modelo 01">
+                    <span>MODEL 01</span>
+                </div>
+                <div class="boot-model" data-boot="assets/botin2.png">
+                    <img src="assets/botin2.png" alt="AURA XP Modelo 02">
+                    <span>MODEL 02</span>
+                </div>
+                <div class="boot-model" data-boot="assets/botin3.png">
+                    <img src="assets/botin3.png" alt="AURA XP Modelo 03">
+                    <span>MODEL 03</span>
+                </div>
+            </div>
+
+            <div class="boots-config" id="bootConfigurator">
+                <div class="bc-stage">
+                    <canvas id="bcCanvas" aria-label="Vista previa de tu botín"></canvas>
+                    <p class="bc-note" id="bcNote">Vista referencial. El resultado final puede variar levemente.</p>
+                </div>
+                <div class="bc-panel">
+                    <div class="section-kicker">PERSONALIZÁ TU PAR</div>
+
+                    <div class="bc-steps" aria-hidden="true">
+                        <span class="bc-step-dot on" data-dot="1"><i>1</i><small>DISEÑO</small></span>
+                        <span class="bc-step-line"></span>
+                        <span class="bc-step-dot" data-dot="2"><i>2</i><small>TALLE</small></span>
+                        <span class="bc-step-line"></span>
+                        <span class="bc-step-dot" data-dot="3"><i>3</i><small>RESERVAR</small></span>
+                    </div>
+
+                    <!-- PASO 1: DISEÑO -->
+                    <div class="bc-step" data-step="1">
+                        <div class="bc-group"><label>TALÓN</label><div class="bc-swatches" data-zone="heel"></div></div>
+                        <div class="bc-group"><label>FRENTE / LATERAL</label><div class="bc-swatches" data-zone="front"></div></div>
+                        <div class="bc-group"><label>SUELA</label>
+                            <div class="bc-toggle">
+                                <button type="button" class="active" data-sole="futsal">FUTSAL</button>
+                                <button type="button" data-sole="turf">PASTO SINTÉTICO</button>
+                            </div>
+                        </div>
+                        <div class="bc-group"><label>NOMBRE Y NÚMERO</label>
+                            <div class="bc-row">
+                                <input class="bc-input" id="bcName" type="text" maxlength="12" placeholder="TU NOMBRE" autocomplete="off">
+                                <input class="bc-input bc-num" id="bcNumber" type="text" inputmode="numeric" maxlength="2" placeholder="10" autocomplete="off">
+                            </div>
+                            <div class="bc-plate">
+                                <span id="bcPlateName">TU NOMBRE</span><b id="bcPlateNum">00</b>
+                                <small id="bcPlateId">AURA ID · SE GENERA AL RESERVAR</small>
+                            </div>
+                        </div>
+                        <button type="button" class="bc-reset" id="bcReset">RESTABLECER DISEÑO ORIGINAL</button>
+                        <div class="bc-nav"><span></span><button type="button" class="bc-next" id="bcNext1">SIGUIENTE →</button></div>
+                    </div>
+
+                    <!-- PASO 2: TALLE -->
+                    <div class="bc-step" data-step="2" hidden>
+                        <div class="bc-group"><label>ELEGÍ TU TALLE</label><div class="bc-sizes" id="bcSizes" role="radiogroup" aria-label="Talle"></div></div>
+                        <div class="bc-nav">
+                            <button type="button" class="bc-back" id="bcBack2">← ATRÁS</button>
+                            <button type="button" class="bc-next" id="bcNext2" disabled>SIGUIENTE →</button>
+                        </div>
+                    </div>
+
+                    <!-- PASO 3: RESERVAR -->
+                    <div class="bc-step" data-step="3" hidden>
+                        <div class="bc-summary" id="bcSummary"></div>
+
+                        <div id="bcAuthBox">
+                            <!-- LOGIN SOCIAL -->
+                            <div class="social-login">
+                                
+                                <button type="button" class="social-btn google-btn" id="bcGoogleBtn">
+                                    <svg class="social-icon" viewBox="0 0 48 48" width="18" height="18" aria-hidden="true">
+                                    <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/>
+                                    <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+                                    <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.1-11.3-7.6l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
+                                    <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.7l6.2 5.2C41 35.5 44 30.2 44 24c0-1.3-.1-2.3-.4-3.5z"/>
+                                </svg>
+                                    <span>CONTINUAR CON GOOGLE</span>
+                                </button>
+
+                                <div class="divider"><span>O</span></div>
+
+                                <button type="button" class="social-btn email-btn" id="bcEmailToggleBtn">
+                                    <svg class="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                        <path d="M3 7l9 6 9-6"/>
+                                    </svg>
+                                    <span>CONTINUAR CON EMAIL</span>
+                                </button>
+
+                                <!-- Form email — oculto por defecto -->
+                                <form id="bcAccessForm" hidden>
+                                    <label for="bcEmailInput">TU EMAIL</label>
+                                    <input type="email" id="bcEmailInput" name="email" placeholder="tu@email.com" autocomplete="email" required>
+                                    <label for="bcWhatsappInput">WHATSAPP (OPCIONAL)</label>
+                                    <input type="tel" id="bcWhatsappInput" name="whatsapp" placeholder="+54 11 1234 5678" autocomplete="tel">
+                                    <button type="submit" class="access-submit">
+                                        <span>RESERVAR MI PAR →</span>
+                                    </button>
+                                </form>
+
+                                <p class="form-disclaimer">
+                                    Sin spam. Te contactamos para coordinar la producción de tu par.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="bc-success" id="bcSuccessBox" hidden>
+                            <div class="unlock-icon">✓</div>
+                            <p id="bcSuccessMsg"></p>
+                            <small id="bcPlateId2"></small>
+                            <a href="#drop" class="cross-sell-link" id="bootCrossSell">
+                                ¿YA RESERVASTE TU PRENDA DEL DROP 001? →
+                            </a>
+                            <button type="button" class="reset-link" id="bootResetLink">
+                                DISEÑAR OTRO PAR
+                            </button>
+                        </div>
+
+                        <p class="bc-msg" id="bcMsg" aria-live="polite"></p>
+                        <div class="bc-nav"><button type="button" class="bc-back" id="bcBack3">← ATRÁS</button><span></span></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="boots-flow">
+                <div class="section-kicker">CUSTOM EXPERIENCE</div>
+                <h3 class="boots-flow-title">NO ES UN BOTÍN MÁS.<br>ES TU AURA.</h3>
+                <div class="boots-flow-grid">
+                    <div class="boots-flow-step"><b>01</b><span>ELEGÍ TU MODELO</span></div>
+                    <div class="boots-flow-step"><b>02</b><span>ELEGÍ TUS COLORES</span></div>
+                    <div class="boots-flow-step"><b>03</b><span>AGREGÁ TU NOMBRE</span></div>
+                    <div class="boots-flow-step"><b>04</b><span>ELEGÍ TU NÚMERO</span></div>
+                    <div class="boots-flow-step"><b>05</b><span>CREÁ TU AURA ID</span></div>
+                </div>
+            </div>
+
+            <div class="boots-finale">
+                <h3>TU AURA NO SE QUEDA<br>EN LA PANTALLA.<br><span>LLEVALA A LA CANCHA.</span></h3>
+            </div>
         </section>
 
 
@@ -3839,6 +4473,47 @@
 
 
         <!-- =====================================================
+             CIERRE — LISTO PARA CONSTRUIR TU AURA
+        ====================================================== -->
+        <section class="finale-section" id="cierre">
+            <div class="finale-inner">
+
+                <div class="section-kicker">AURA XP</div>
+
+                <h2 class="finale-title">
+                    LISTO PARA<br>
+                    <span>CONSTRUIR TU AURA?</span>
+                </h2>
+
+                <div class="finale-doors">
+
+                    <div class="finale-door finale-door--drop">
+                        <small>DROP 001</small>
+                        <h3>3 PRENDAS</h3>
+                        <p>Edición limitada. Cuando se agota, no vuelve.</p>
+                        <button class="finale-btn finale-btn--ghost" type="button" onclick="scrollToAccess()">
+                            RESERVAR MI PRENDA →
+                        </button>
+                    </div>
+
+                    <div class="finale-or">O</div>
+
+                    <div class="finale-door finale-door--boots">
+                        <small>AURA XP CUSTOM BOOTS</small>
+                        <h3>TU BOTÍN.<br>TU AURA.</h3>
+                        <p>Solo tuyo.</p>
+                        <button class="finale-btn finale-btn--boots" type="button" onclick="scrollToSection('boots')">
+                            CREAR MI PAR →
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =====================================================
              ACCESS
         ====================================================== -->
 
@@ -4002,6 +4677,8 @@
                                 Podés darte de baja cuando quieras.
                             </p>
 
+                            <p class="drop-msg" id="dropMsg" aria-live="polite"></p>
+
                         </div>
 
                         
@@ -4056,6 +4733,14 @@
                             VER MI SELECCIÓN →
                         </button>
 
+                        <a href="#boots" class="cross-sell-link" id="dropCrossSell">
+                            ¿YA VISTE LOS BOTINES CUSTOM? DISEÑÁ EL TUYO →
+                        </a>
+
+                        <button type="button" class="reset-link" id="dropResetLink">
+                            ¿NO FUISTE VOS? REINICIAR
+                        </button>
+
                     </div>
 
                 </div>
@@ -4089,6 +4774,9 @@
 
             <a href="#drop">
                 DROP 001
+            </a>
+            <a href="#boots">
+                CUSTOM BOOTS
             </a>
 
             <a href="#how">
@@ -4174,6 +4862,34 @@
         let selectedProduct = products["FARM TEE"];
 
         let selectedSize = "M";
+
+        /* =======================================================
+           CUSTOM BOOTS
+        ======================================================== */
+        const mainBootImage = document.getElementById("mainBootImage");
+        const bootModels = document.querySelectorAll(".boot-model");
+
+        bootModels.forEach(model => {
+            model.addEventListener("click", () => {
+                const image = model.dataset.boot;
+                if (!mainBootImage || !image) return;
+                mainBootImage.style.opacity = "0";
+                setTimeout(() => {
+                    mainBootImage.src = image;
+                    mainBootImage.style.opacity = "1";
+                }, 120);
+                bootModels.forEach(item => item.classList.remove("active"));
+                model.classList.add("active");
+            });
+        });
+
+        window.scrollToBootCustomizer = function () {
+            document.getElementById("bootConfigurator")?.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        };
+
         /* =======================================================
            DOM
         ======================================================== */
@@ -4329,6 +5045,7 @@ const successSize = document.getElementById("successSize");
 
             accessSuccess.hidden = true;
             registrationForm.style.display = "";
+            showDropMsg("", false);
 
 
             /* SAVE */
@@ -4553,6 +5270,13 @@ async function createFarmerKey(email) {
    GUARDAR LEAD Y DESCONTAR STOCK REAL (VERSIÓN CORREGIDA)
 ======================================================== */
 
+function showDropMsg(text, isErr) {
+    const el = document.getElementById("dropMsg");
+    if (!el) return;
+    el.textContent = text;
+    el.className = "drop-msg" + (isErr ? " err" : "");
+}
+
 async function saveLead(userData) {
 
     const normalizedEmail = String(userData.email || "")
@@ -4588,7 +5312,8 @@ async function saveLead(userData) {
 
     if (!window.firebaseDB) {
         console.error("❌ Firebase DB no está disponible");
-        return;
+        showDropMsg("No pudimos conectar con el servidor. Probá de nuevo en unos segundos.", true);
+        return false;
     }
 
     const db = window.firebaseDB;
@@ -4605,8 +5330,8 @@ async function saveLead(userData) {
         if (invSnapshot.exists()) {
             const currentStock = invSnapshot.data()[productInventoryKey] ?? 0;
             if (currentStock <= 0) {
-                alert("¡Lo sentimos! Este producto acaba de agotarse.");
-                return;
+                showDropMsg("¡Lo sentimos! Este producto acaba de agotarse.", true);
+                return false;
             }
             // Actualizamos restando 1
             await updateDoc(inventoryRef, {
@@ -4616,8 +5341,8 @@ async function saveLead(userData) {
         }
     } catch (stockError) {
         console.error("❌ Error actualizando el stock:", stockError);
-        alert("Hubo un error al validar el stock. Inténtalo de nuevo.");
-        return;
+        showDropMsg("Hubo un error al validar el stock. Inténtalo de nuevo.", true);
+        return false;
     }
 
     // 2. GUARDAR EL LEAD COMERCIAL EN FIRESTORE
@@ -4650,9 +5375,10 @@ async function saveLead(userData) {
         }).catch(err => console.error("❌ Error Google Sheets:", err));
     }
 
-    // 5. ACTUALIZAR CONTADOR GLOBAL Y MOSTRAR ÉXITO
+    // 5. ACTUALIZAR CONTADOR GLOBAL
     await refreshRegisteredCount();
-    showSuccess(userData);
+    showDropMsg("", false);
+    return true;
 }
 
 
@@ -4682,6 +5408,16 @@ function showSuccess(userData) {
 
     registrationForm.style.display = "none";
     accessSuccess.hidden = false;
+
+    localStorage.setItem("auraXP_dropReserved", JSON.stringify({
+        product: selectedProduct.name,
+        size: selectedSize,
+        xp: selectedProduct.xp,
+        ts: Date.now()
+    }));
+
+    const dropCross = document.getElementById("dropCrossSell");
+    if (dropCross) dropCross.hidden = !!localStorage.getItem("auraXP_bootReserved");
 
     refreshRegisteredCount();
 
@@ -4805,7 +5541,7 @@ async function refreshLiveStock() {
 
 async function handleFirebaseUser(user) {
 
-    await saveLead({
+    const ok = await saveLead({
 
         email: user.email,
         name: user.displayName || "",
@@ -4814,10 +5550,12 @@ async function handleFirebaseUser(user) {
 
     });
 
-    showSuccess({
-        name: user.displayName || "",
-        email: user.email
-    });
+    if (ok) {
+        showSuccess({
+            name: user.displayName || "",
+            email: user.email
+        });
+    }
 
 }
 
@@ -4832,7 +5570,7 @@ document
 
         if (!auth) {
 
-            alert("Firebase no cargó todavía. Esperá unos segundos y probá de nuevo.");
+            showDropMsg("Firebase no cargó todavía. Esperá unos segundos y probá de nuevo.", true);
             return;
 
         }
@@ -4873,13 +5611,13 @@ document
                 } catch (redirectError) {
 
                     console.error("Error con redirect:", redirectError);
-                    alert("No pudimos iniciar sesión. Probá de nuevo.");
+                    showDropMsg("No pudimos iniciar sesión. Probá de nuevo.", true);
 
                 }
 
             } else {
 
-                alert("No pudimos iniciar sesión con Google. Probá de nuevo.");
+                showDropMsg("No pudimos iniciar sesión con Google. Probá de nuevo.", true);
 
             }
 
@@ -4949,7 +5687,7 @@ accessFormEl.addEventListener("submit", async event => {
 
     try {
 
-        await saveLead({
+        const ok = await saveLead({
 
             email: email,
             whatsapp: whatsapp,
@@ -4957,10 +5695,11 @@ accessFormEl.addEventListener("submit", async event => {
 
         });
 
-        showSuccess({ email: email });
-
-        emailInput.value = "";
-        if (whatsappInput) whatsappInput.value = "";
+        if (ok) {
+            showSuccess({ email: email });
+            emailInput.value = "";
+            if (whatsappInput) whatsappInput.value = "";
+        }
 
     } finally {
 
@@ -5047,6 +5786,34 @@ window.addEventListener("load", initFirebase);
 
         }
 
+        /* =======================================================
+           RESTAURAR "YA RESERVASTE" SI VUELVE A ENTRAR
+        ======================================================== */
+
+        (function restoreDropReservation() {
+            const saved = localStorage.getItem("auraXP_dropReserved");
+            if (!saved) return;
+            try {
+                const r = JSON.parse(saved);
+                successProduct.textContent = r.product || selectedProduct.name;
+                successXP.textContent = r.xp ?? selectedProduct.xp;
+                if (successSize) successSize.textContent = r.size || selectedSize;
+                registrationForm.style.display = "none";
+                accessSuccess.hidden = false;
+                const dropCross = document.getElementById("dropCrossSell");
+                if (dropCross) dropCross.hidden = !!localStorage.getItem("auraXP_bootReserved");
+            } catch (e) { console.warn("No se pudo restaurar la reserva guardada:", e); }
+        })();
+
+        const dropResetLink = document.getElementById("dropResetLink");
+        if (dropResetLink) {
+            dropResetLink.addEventListener("click", () => {
+                localStorage.removeItem("auraXP_dropReserved");
+                accessSuccess.hidden = true;
+                registrationForm.style.display = "";
+            });
+        }
+
 
         /* =======================================================
            ENTER KEY EN EMAIL (Versión Segura)
@@ -5065,6 +5832,358 @@ window.addEventListener("load", initFirebase);
         }
 
     </script>
+
+<script>
+/* ===== CONFIGURADOR DE BOTINES: talón + frente/lateral + suela (el decorado no se toca) ===== */
+(function () {
+    const cv = document.getElementById("bcCanvas");
+    if (!cv) return;
+    const ctx = cv.getContext("2d", { willReadFrequently: true });
+    const note = document.getElementById("bcNote");
+    const PAL = ["#f5f5f0","#0b0b10","#1b2a5c","#2f4bff","#00e1ff","#00ff87","#ffcc00","#ff5a1f","#e21b3c","#ff007f","#8a2be2","#8b8b8b"];
+    const state = { heel: null, front: null, sole: "futsal" };   // null = color original
+    window.auraBootState = state;
+    window.auraBootRender = () => render();
+    const cache = {}; let cur = null;
+    const loadImg = src => new Promise((ok, ko) => { const i = new Image(); i.onload = () => ok(i); i.onerror = ko; i.src = src; });
+    const luma = (d, i) => .299 * d[i] + .587 * d[i+1] + .114 * d[i+2];
+    const rgb = h => { const n = parseInt(h.slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255]; };
+
+    async function load(n) {
+        if (cache[n]) return cache[n];
+        const [s, z] = await Promise.all([loadImg(`assets/botin${n}_side.png`), loadImg(`assets/botin${n}_zones.png`)]);
+        const w = s.width, h = s.height, c = document.createElement("canvas");
+        c.width = w; c.height = h;
+        const x = c.getContext("2d", { willReadFrequently: true });
+        x.drawImage(s, 0, 0); const base = x.getImageData(0, 0, w, h);
+        x.clearRect(0, 0, w, h); x.drawImage(z, 0, 0); const zn = x.getImageData(0, 0, w, h);
+        // zonas: canal R = talón, G = frente/lateral, B = suela
+        const ref = [0, 0, 0]; let sx0 = w, sx1 = 0;
+        [0, 1, 2].forEach(k => {
+            const arr = [];
+            for (let i = 0; i < base.data.length; i += 4) if (zn.data[i+k] > 128 && base.data[i+3] > 200) {
+                arr.push(luma(base.data, i));
+                if (k === 2) { const px = (i / 4) % w; if (px < sx0) sx0 = px; if (px > sx1) sx1 = px; }
+            }
+            arr.sort((a, b) => a - b);
+            ref[k] = arr.length ? Math.max(arr[Math.floor(arr.length * .92)], 30) : 255;
+        });
+        return (cache[n] = { w, h, base, zn, ref, sx0, sx1 });
+    }
+
+    function studs(m) {
+        const { w, h, base, sx0, sx1 } = m, N = 9;
+        for (let s = 0; s < N; s++) {
+            const px = Math.round(sx0 + (sx1 - sx0) * (0.07 + 0.86 * s / (N - 1)));
+            let by = -1;
+            for (let y = h - 1; y >= 0; y--) if (base.data[(y * w + px) * 4 + 3] > 200) { by = y; break; }
+            if (by < 0) continue;
+            ctx.fillStyle = "#15151a"; ctx.beginPath(); ctx.roundRect(px - 7, by - 3, 14, 17, 4); ctx.fill();
+            ctx.fillStyle = "rgba(255,255,255,.14)"; ctx.fillRect(px - 5, by - 1, 3, 11);
+        }
+    }
+
+    const TEXT = {"1": {"x": 0.1708, "y": 0.6621, "lw": 0.1778, "lh": 0.1207, "a": 9.6096}, "2": {"x": 0.1249, "y": 0.6129, "lw": 0.1169, "lh": 0.047, "a": 0.0}, "3": {"x": 0.1777, "y": 0.5941, "lw": 0.1422, "lh": 0.1218, "a": 8.0}};
+    function drawText() {
+        const P = TEXT[state.model], txt = [state.name, state.number].filter(Boolean).join(" ");
+        if (!P || !txt) return;
+        const { w, h } = cur, lw = P.lw * w * 1.05, fs = Math.max(10, P.lh * h * .55);
+        const c = state.heel ? rgb(state.heel) : null;
+        const dark = c && (.299 * c[0] + .587 * c[1] + .114 * c[2]) > 150;   // texto oscuro sobre talón claro
+        ctx.save();
+        ctx.translate(P.x * w, P.y * h + fs * .35); ctx.rotate(P.a * Math.PI / 180);
+        ctx.textAlign = "center"; ctx.textBaseline = "top";
+        ctx.fillStyle = dark ? "rgba(11,11,16,.92)" : "rgba(245,245,240,.95)";
+        if ("letterSpacing" in ctx) ctx.letterSpacing = Math.round(fs * .08) + "px";
+        ctx.font = `700 ${fs}px Montserrat, sans-serif`;
+        const k = Math.min(1, lw / ctx.measureText(txt).width);
+        ctx.font = `700 ${fs * k}px Montserrat, sans-serif`;
+        ctx.fillText(txt, 0, 0);
+        ctx.restore();
+    }
+
+    function render() {
+        if (!cur) return;
+        const { w, h, base, zn, ref } = cur, turf = state.sole === "turf";
+        cv.width = w; cv.height = h + 18;
+        const out = new ImageData(new Uint8ClampedArray(base.data), w, h), d = out.data;
+        const cols = [state.heel && rgb(state.heel), state.front && rgb(state.front), turf ? [30, 30, 36] : null];
+        for (let i = 0; i < d.length; i += 4) {
+            if (d[i+3] < 8) continue;
+            const l = luma(base.data, i);
+            let a0 = 0, a1 = 0, a2 = 0, ws = 0;
+            for (let k = 0; k < 3; k++) {
+                const c = cols[k], wt = zn.data[i+k] / 255;
+                if (!c || wt < .02) continue;
+                const sh = .42 + .58 * Math.pow(Math.min(1, l / ref[k]), .8);
+                a0 += c[0] * sh * wt; a1 += c[1] * sh * wt; a2 += c[2] * sh * wt; ws += wt;
+            }
+            if (ws > 0) {
+                const q = ws > 1 ? 1 / ws : 1, f = 1 - Math.min(1, ws);
+                d[i] = d[i] * f + a0 * q; d[i+1] = d[i+1] * f + a1 * q; d[i+2] = d[i+2] * f + a2 * q;
+            }
+        }
+        ctx.putImageData(out, 0, 0);
+        if (turf) studs(cur);
+        drawText();
+    }
+
+    async function select(n) {
+        try { cur = await load(n); state.model = n; try { await document.fonts.load('700 24px Montserrat'); } catch (_) {} note.textContent = "Vista referencial. El resultado final puede variar levemente."; render(); }
+        catch (e) {
+            console.warn("Configurador: no se pudieron leer las imágenes (¿faltan assets/botinN_side|zones.png o abriste el archivo con file://?)", e);
+            note.textContent = "El configurador necesita abrirse desde un servidor o hosting (no como archivo local).";
+        }
+    }
+
+    const mark = (box, el) => { box.querySelectorAll(".on").forEach(x => x.classList.remove("on")); if (el) el.classList.add("on"); };
+    document.querySelectorAll(".bc-swatches").forEach(box => {
+        const zone = box.dataset.zone;
+        PAL.forEach(c => {
+            const b = document.createElement("button");
+            b.type = "button"; b.className = "bc-sw"; b.style.background = c; b.setAttribute("aria-label", "Color " + c);
+            b.onclick = () => { state[zone] = c; mark(box, b); render(); };
+            box.appendChild(b);
+        });
+        const inp = document.createElement("input");
+        inp.type = "color"; inp.className = "bc-custom"; inp.value = "#ffffff"; inp.title = "Color personalizado";
+        inp.oninput = () => { state[zone] = inp.value; mark(box, inp); render(); };
+        box.appendChild(inp);
+    });
+    document.querySelectorAll(".bc-toggle button").forEach(b => b.addEventListener("click", () => {
+        state.sole = b.dataset.sole;
+        document.querySelectorAll(".bc-toggle button").forEach(x => x.classList.toggle("active", x === b));
+        render();
+    }));
+    document.getElementById("bcReset").addEventListener("click", () => {
+        state.heel = state.front = null; state.sole = "futsal";
+        document.querySelectorAll(".bc-swatches").forEach(b => mark(b, null));
+        document.querySelectorAll(".bc-toggle button").forEach(x => x.classList.toggle("active", x.dataset.sole === "futsal"));
+        render();
+    });
+    document.querySelectorAll(".boot-model").forEach(el => el.addEventListener("click", () => {
+        const m = /botin(\d)/.exec(el.dataset.boot || ""); if (m) select(+m[1]);
+    }));
+    select(1);
+})();
+</script>
+
+<script>
+/* =======================================================
+   BOTINES CUSTOM — nombre/número, talle y reserva (wizard)
+   Guarda en Firestore "custom_boots" y en la misma Google
+   Sheet del Drop 001 (mismo webhook, campaign distinto).
+======================================================== */
+(function () {
+    const st = window.auraBootState; if (!st) return;
+    const $ = id => document.getElementById(id);
+    const BOOTS_SHEETS_WEBHOOK_URL =
+        "https://script.google.com/macros/s/AKfycbyoMRK48asxzhMptuLNaUq4D7dYr1b7Gu7AIdqoeFu_2vGmQX3byURtDZrAH0VbqdegTw/exec";
+
+    const nameI = $("bcName"), numI = $("bcNumber"), sizesBox = $("bcSizes");
+    let size = null, auth = null, savedAuraId = null;
+    st.name = ""; st.number = "";
+
+    function plate() {
+        $("bcPlateName").textContent = st.name || "TU NOMBRE";
+        $("bcPlateNum").textContent = st.number || "00";
+        if (window.auraBootRender) window.auraBootRender();
+    }
+    nameI.addEventListener("input", () => { nameI.value = nameI.value.toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ0-9 .\-]/g, ""); st.name = nameI.value.trim(); plate(); });
+    numI.addEventListener("input", () => { numI.value = numI.value.replace(/\D/g, "").slice(0, 2); st.number = numI.value; plate(); });
+
+    ["36","37","38","39","40","41","42","43","44","45"].forEach(s => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "bc-size"; b.textContent = s; b.setAttribute("role", "radio"); b.setAttribute("aria-checked", "false");
+        b.onclick = () => {
+            size = s;
+            sizesBox.querySelectorAll(".bc-size").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-checked", x === b); });
+            $("bcNext2").disabled = false;
+        };
+        sizesBox.appendChild(b);
+    });
+
+    $("bcReset").addEventListener("click", () => { nameI.value = numI.value = ""; st.name = st.number = ""; plate(); });
+
+    /* ---------- NAVEGACIÓN ENTRE PASOS ---------- */
+    function goTo(step) {
+        document.querySelectorAll(".bc-step").forEach(el => { el.hidden = el.dataset.step !== String(step); });
+        document.querySelectorAll(".bc-step-dot").forEach(d => {
+            const n = +d.dataset.dot;
+            d.classList.toggle("on", n === step);
+            d.classList.toggle("done", n < step);
+        });
+        if (step === 3) fillSummary();
+        document.querySelector(".boots-config")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    function fillSummary() {
+        const nn = [st.name, st.number].filter(Boolean).join(" ");
+        $("bcSummary").innerHTML =
+            `<b>MODEL 0${st.model || 1}</b> · SUELA <b>${st.sole === "turf" ? "PASTO SINTÉTICO" : "FUTSAL"}</b> · TALLE <b>${size || "-"}</b>` +
+            (nn ? ` · <b>${nn}</b>` : "");
+    }
+    $("bcNext1").addEventListener("click", () => goTo(2));
+    $("bcBack2").addEventListener("click", () => goTo(1));
+    $("bcNext2").addEventListener("click", () => { if (size) goTo(3); });
+    $("bcBack3").addEventListener("click", () => goTo(2));
+
+    /* ---------- GUARDAR LEAD (Firestore + Sheets), igual que el Drop 001 ---------- */
+    async function createKey(email) {
+        if (!email || !window.crypto?.subtle) return encodeURIComponent(email || "");
+        const buf = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(email));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function saveBootLead(userData) {
+        const email = String(userData.email || "").trim().toLowerCase();
+        if (!email) throw new Error("Falta email");
+        if (!window.firebaseDB) throw new Error("Firebase no disponible");
+
+        const auraId = "AX-" + Date.now().toString(36).slice(-4).toUpperCase() + Math.random().toString(36).slice(2, 4).toUpperCase();
+        const lead = {
+            email, name: userData.name || "", picture: userData.picture || "", provider: userData.provider || "email",
+            whatsapp: userData.whatsapp || "",
+            modelo: "MODEL 0" + (st.model || 1),
+            colorTalon: st.heel || "original", colorFrente: st.front || "original",
+            suela: st.sole === "turf" ? "pasto_sintetico" : "futsal",
+            nombre: st.name, numero: st.number, talle: size,
+            auraId, fecha: new Date().toISOString(), source: "landing", campaign: "CUSTOM_BOOTS"
+        };
+
+        const { collection, addDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+        const timestamp = window.firestoreServerTimestamp ? window.firestoreServerTimestamp() : new Date();
+        await addDoc(collection(window.firebaseDB, "custom_boots"), { ...lead, timestamp });
+
+        try {
+            const farmerKey = await createKey(email);
+            const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+            
+            // CAMBIO: Guardar también en "farmer_counters" para que sume al contador general de la landing
+            await setDoc(doc(window.firebaseDB, "farmer_counters", farmerKey), { createdAt: timestamp }, { merge: true });
+            
+            // Opcional: si quieres mantener el registro específico de botines
+            await setDoc(doc(window.firebaseDB, "boot_farmer_counters", farmerKey), { createdAt: timestamp }, { merge: false });
+        } catch (e) { console.log("ℹ️ boot farmer counter:", e?.message); }
+
+        // Actualizar el contador en la interfaz inmediatamente
+        if (typeof refreshRegisteredCount === "function") {
+            refreshRegisteredCount();
+        }
+
+        if (BOOTS_SHEETS_WEBHOOK_URL) {
+            fetch(BOOTS_SHEETS_WEBHOOK_URL, {
+                method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(lead)
+            }).catch(err => console.error("❌ Error Google Sheets (botines):", err));
+        }
+        return { lead, auraId };
+    }
+
+    function showSuccess(auraId, firstName) {
+        $("bcAuthBox").hidden = true; $("bcBack3").hidden = true;
+        $("bcSuccessMsg").innerHTML = firstName
+            ? `Listo, <strong>${firstName}</strong>. Guardamos el diseño de tu par.`
+            : "Listo. Guardamos el diseño de tu par.";
+        $("bcPlateId2").textContent = "AURA ID · " + auraId;
+        $("bcSuccessBox").hidden = false;
+        $("bcMsg").textContent = "";
+        localStorage.setItem("auraXP_bootReserved", JSON.stringify({ auraId, model: st.model || 1, ts: Date.now() }));
+        savedAuraId = auraId;
+        const bootCross = document.getElementById("bootCrossSell");
+        if (bootCross) bootCross.hidden = !!localStorage.getItem("auraXP_dropReserved");
+    }
+
+    function restoreBootReservation() {
+        const saved = localStorage.getItem("auraXP_bootReserved");
+        if (!saved) return;
+        try {
+            const r = JSON.parse(saved);
+            savedAuraId = r.auraId;
+            $("bcAuthBox").hidden = true; $("bcBack3").hidden = true;
+            $("bcSuccessMsg").textContent = "Ya diseñaste un par. Podés ver los detalles o diseñar otro.";
+            $("bcPlateId2").textContent = "AURA ID · " + r.auraId;
+            $("bcSuccessBox").hidden = false;
+            const bootCross = document.getElementById("bootCrossSell");
+            if (bootCross) bootCross.hidden = !!localStorage.getItem("auraXP_dropReserved");
+            goTo(3);
+        } catch (e) { console.warn("No se pudo restaurar el par guardado:", e); }
+    }
+
+    $("bootResetLink").addEventListener("click", () => {
+        localStorage.removeItem("auraXP_bootReserved");
+        $("bcSuccessBox").hidden = true;
+        $("bcAuthBox").hidden = false; $("bcBack3").hidden = false;
+        $("bcMsg").textContent = ""; savedAuraId = null;
+        goTo(1);
+    });
+    const say = (t, err) => { const m = $("bcMsg"); m.textContent = t; m.className = "bc-msg" + (err ? " err" : ""); };
+
+    async function handleUser(user) {
+        try {
+            const { auraId } = await saveBootLead({ email: user.email, name: user.displayName || "", picture: user.photoURL || "", provider: user.providerData?.[0]?.providerId || "google" });
+            showSuccess(auraId, (user.displayName || "").split(" ")[0]);
+        } catch (err) {
+            console.error("❌ Error guardando el par custom:", err);
+            say("No pudimos guardar tu diseño. Probá de nuevo.", true);
+        }
+    }
+
+    function initAuth() {
+        if (!window.firebaseAuth) { setTimeout(initAuth, 500); return; }
+        auth = window.firebaseAuth;
+    }
+    initAuth();
+
+    $("bcGoogleBtn").addEventListener("click", async () => {
+        if (!auth) { say("Firebase no cargó todavía. Esperá unos segundos y probá de nuevo.", true); return; }
+        if (!size) { say("Elegí tu talle antes de continuar.", true); return; }
+        const btn = $("bcGoogleBtn"); btn.classList.add("loading"); say("");
+        const provider = new window.GoogleAuthProvider();
+        try {
+            const result = await window.signInWithPopup(auth, provider);
+            btn.classList.remove("loading");
+            handleUser(result.user);
+        } catch (error) {
+            btn.classList.remove("loading");
+            console.error("Error con popup:", error);
+            if (["auth/popup-blocked", "auth/popup-closed-by-user", "auth/cancelled-popup-request"].includes(error.code)) {
+                try { await window.signInWithRedirect(auth, provider); }
+                catch (e) { say("No pudimos iniciar sesión. Probá de nuevo.", true); }
+            } else say("No pudimos iniciar sesión con Google. Probá de nuevo.", true);
+        }
+    });
+
+    const emailToggleBtn = $("bcEmailToggleBtn"), formEl = $("bcAccessForm");
+    emailToggleBtn.addEventListener("click", () => {
+        const hidden = formEl.hasAttribute("hidden");
+        if (hidden) { formEl.removeAttribute("hidden"); emailToggleBtn.querySelector("span").textContent = "OCULTAR EMAIL"; setTimeout(() => $("bcEmailInput").focus(), 100); }
+        else { formEl.setAttribute("hidden", ""); emailToggleBtn.querySelector("span").textContent = "CONTINUAR CON EMAIL"; }
+    });
+
+    formEl.addEventListener("submit", async event => {
+        event.preventDefault();
+        if (!size) { say("Elegí tu talle antes de continuar.", true); return; }
+        const email = $("bcEmailInput").value.trim().toLowerCase(), whatsapp = $("bcWhatsappInput").value.trim();
+        if (!email) return;
+        const submitBtn = formEl.querySelector(".access-submit");
+        submitBtn.disabled = true; submitBtn.style.opacity = ".7"; say("Guardando tu diseño…");
+        try {
+            const { auraId } = await saveBootLead({ email, whatsapp, provider: "email" });
+            showSuccess(auraId, null);
+            formEl.reset();
+        } catch (err) {
+            console.error("❌ Error guardando el par custom:", err);
+            say("No pudimos guardar tu diseño. Probá de nuevo.", true);
+        } finally {
+            submitBtn.disabled = false; submitBtn.style.opacity = "";
+        }
+    });
+
+    document.querySelectorAll(".boot-model").forEach(el => el.addEventListener("click", () => goTo(1)));
+    restoreBootReservation();
+})();
+</script>
+
+</body>
 
 </body>
 </html>
