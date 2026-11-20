@@ -111,6 +111,36 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 .nav-home{padding:8px 11px}
 @media(max-width:600px){header{height:56px;min-height:56px;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:0 14px} .brand img{width:110px;height:100px}nav{width:auto;min-width:0;flex:1;justify-content:flex-end;gap:10px;font-size:7px;letter-spacing:.025em;white-space:nowrap;overflow-x:auto;scrollbar-width:none}nav::-webkit-scrollbar{display:none}.nav-home{padding:6px 7px}}
 @media(max-width:380px){header{padding:0 10px;gap:7px}.brand img{width:72px;height:27px}nav{gap:7px;font-size:6.5px}}
+
+/* TRAINING MODE HUD */
+.hero{padding-top:82px;padding-bottom:78px}
+.hero-stamp{margin-bottom:18px}
+.hero-hud{width:min(690px,100%);margin:30px auto 0;padding:17px 19px 14px;text-align:left;border:1px solid rgba(8,201,244,.32);background:linear-gradient(115deg,rgba(8,201,244,.09),rgba(5,12,21,.76) 58%);box-shadow:0 12px 36px rgba(0,0,0,.22);position:relative}
+.hero-hud:before{content:"";position:absolute;left:-1px;top:18px;bottom:18px;width:3px;background:var(--lime);box-shadow:0 0 13px rgba(183,255,60,.45)}
+.hud-heading,.hud-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:8px;font-weight:900;letter-spacing:.13em}
+.hud-heading{color:var(--cyan)}
+.hud-live{color:var(--lime);font-size:7px}
+.skill-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+.skill{min-width:0;display:grid;grid-template-columns:25px 1fr;align-items:center;gap:7px;padding:9px 8px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09)}
+.skill-icon{display:grid;place-items:center;width:24px;height:24px;border:1px solid rgba(183,255,60,.5);color:var(--lime);font-size:8px;font-weight:900}
+.skill b{font-size:8px;letter-spacing:.06em;white-space:nowrap}
+.skill i{grid-column:1/-1;height:3px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+.skill i:after{content:"";display:block;width:34%;height:100%;background:var(--cyan);box-shadow:0 0 8px rgba(8,201,244,.55)}
+.skill:nth-child(2) i:after{width:22%;background:var(--lime)}
+.skill:nth-child(3) i:after{width:16%}
+.skill:nth-child(4) i:after{width:12%;background:var(--lime)}
+.hud-foot{padding-top:11px;border-top:1px solid rgba(255,255,255,.1);color:#aab8c7;font-size:7px}
+.hud-foot em{color:var(--lime);font-style:normal;padding:0 4px}
+@media(max-width:600px){
+.hero{padding:66px 16px 58px}
+.hero-hud{padding:14px 12px 12px;margin-top:24px}
+.hud-heading{font-size:7px}.hud-live{font-size:6px}
+.skill-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:13px 0}
+.skill{padding:8px 7px}.skill b{font-size:8px}
+.hud-foot{font-size:6px;letter-spacing:.08em}
+}
+@media(max-width:360px){.hud-heading{letter-spacing:.08em}.hud-foot{letter-spacing:0}.skill b{font-size:7px}}
+
 </style>
 </head>
 <body>
@@ -126,30 +156,40 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <main>
 <section class="hero">
 <div class="hero-inner">
-<div class="hero-stamp">NO ES MAGIA. ES ENTRENAMIENTO.</div>
+<div class="hero-stamp">AURA TRAINING MODE · TEMPORADA 01</div>
 
-<h1>FARMEÁ TU JUEGO.<br><span>ENTRENÁ EN SERIO.</span></h1>
-<p class="hero-copy">Kits de entrenamiento para llevar tu juego más allá. <strong>Equipamiento físico + un programa digital guiado</strong> para trabajar habilidades dentro y fuera de la cancha.</p>
+<h1>TU PRÓXIMA<br><span>VERSIÓN EMPIEZA ACÁ.</span></h1>
+<p class="hero-copy">No desbloqueás habilidades mirando. <strong>Las construís entrenando.</strong> Elegí un desafío, seguí tu programa y llevá tu trabajo a la cancha.</p>
+<div class="hero-hud" aria-label="Habilidades que podés trabajar con los sistemas AURA">
+  <div class="hud-heading"><span>ÁRBOL DE HABILIDADES</span><span class="hud-live">TU CAMINO EMPIEZA HOY</span></div>
+  <div class="skill-grid">
+    <div class="skill"><span class="skill-icon">01</span><b>COORDINACIÓN</b><i></i></div>
+    <div class="skill"><span class="skill-icon">02</span><b>VELOCIDAD</b><i></i></div>
+    <div class="skill"><span class="skill-icon">03</span><b>AGILIDAD</b><i></i></div>
+    <div class="skill"><span class="skill-icon">04</span><b>TÉCNICA</b><i></i></div>
+  </div>
+  <div class="hud-foot"><span>SELECCIONÁ TU RUTA</span><span>7 DÍAS <em>→</em> 21 DÍAS <em>→</em> 30 DÍAS</span></div>
+</div>
 <div class="hero-actions">
-<a class="btn btn-main" href="#sistemas">ELEGÍ TU SISTEMA</a>
-<a class="btn btn-ghost" href="#como-funciona">ASÍ SE ENTRENA</a>
+<a class="btn btn-main" href="#sistemas">ELEGIR MI PRIMER DESAFÍO</a>
+<a class="btn btn-ghost" href="#como-funciona">CÓMO SE JUEGA</a>
 </div>
 </div>
 </section>
 <div class="wrap">
 <section class="intro" id="sistemas">
 <div>
-<div class="kicker">TRES FORMAS DE ENTRENAR</div>
-<h2>¿DÓNDE QUERÉS<br>LLEVAR TU JUEGO?</h2>
-<div class="scribble">Elegí tu punto de partida.</div>
+<div class="kicker">ELEGÍ TU RUTA DE PROGRESIÓN</div>
+<h2>¿QUÉ DESAFÍO<br>VAS A TOMAR?</h2>
+<div class="scribble">Cada sesión cuenta.</div>
 </div>
-<p>Cada sistema combina herramientas físicas con una guía digital. Compará qué incluye cada kit y qué tipo de trabajo propone antes de elegir.<strong class="choose-note"> TU PRIMER PASO: encontrá el nivel que acompaña tu momento.</strong></p>
+<p>Cada ruta combina equipamiento y un programa digital con objetivos concretos. No se trata de elegir el más alto: se trata de empezar por el desafío que puedas sostener.<strong class="choose-note"> TU MISIÓN: elegí, entrená y completá el recorrido.</strong></p>
 </section>
 <section class="systems" aria-label="Sistemas de entrenamiento AURA XP">
 <article class="card">
 <div class="visual"><span class="tag">01 · PARA EMPEZAR</span><div class="number">01</div></div>
 <div class="card-body">
-<div class="level">AURA XP · INICIO</div>
+<div class="level">RUTA 01 · PRIMER DESAFÍO</div>
 <h3>START</h3>
 <p class="promise">Construí una base de coordinación y control del movimiento.</p>
 <span class="objective">OBJETIVO · COORDINACIÓN</span>
@@ -164,7 +204,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <article class="card featured">
 <div class="visual"><span class="tag">02 · SISTEMA RECOMENDADO</span><div class="number">02</div></div>
 <div class="card-body">
-<div class="level">AURA XP · DESARROLLO</div>
+<div class="level">RUTA 02 · EVOLUCIÓN</div>
 <h3>PRO</h3>
 <p class="promise">Trabajá velocidad, agilidad y técnica con un plan progresivo.</p>
 <span class="objective">OBJETIVO · VELOCIDAD + AGILIDAD</span>
@@ -181,7 +221,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <article class="card">
 <div class="visual"><span class="tag">03 · ENTRENAMIENTO AVANZADO</span><div class="number">03</div></div>
 <div class="card-body">
-<div class="level">AURA XP · AVANZADO</div>
+<div class="level">RUTA 03 · MÁXIMO DESAFÍO</div>
 <h3>ELITE</h3>
 <p class="promise">Sumá variedad y estructura a tu entrenamiento individual.</p>
 <span class="objective">OBJETIVO · TRABAJO INTEGRAL</span>
@@ -199,27 +239,27 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <section class="launch" id="lanzamiento">
 <div class="launch-mark">AURA!</div>
 <div>
-<strong>LANZAMIENTO EN PREPARACIÓN</strong>
-<p>Estamos validando proveedores, calidad, composición final y costos de cada sistema. Los precios y la disponibilidad se publicarán cuando estén confirmados. Las imágenes y representaciones de esta página son conceptuales; el contenido final de cada kit puede ajustarse según el abastecimiento.</p>
+<strong>PRÓXIMO OBJETIVO: EQUIPAR TU ENTRENAMIENTO</strong>
+<p>Tu recorrido empieza con un plan que puedas cumplir. Estamos validando proveedores, calidad, composición final y costos de cada kit. Los precios y la disponibilidad se publicarán cuando estén confirmados. Las imágenes son conceptuales y el contenido final puede ajustarse según el abastecimiento.</p>
 </div>
 </section>
 <section class="steps" id="como-funciona">
 <div class="steps-head">
-<div class="kicker">MÁS QUE UN KIT</div>
-<h2>EL EQUIPAMIENTO ES EL INICIO.<br>EL TRABAJO LO HACÉS VOS.</h2>
+<div class="kicker">TU PROGRESO SE CONSTRUYE</div>
+<h2>ACEPTÁ EL DESAFÍO.<br>COMPLETÁ CADA SESIÓN.</h2>
 </div>
 <div class="steps-grid">
-<div class="step"><span class="step-no">01</span><b>EQUIPÁ TU ESPACIO</b><p>Prepará los elementos del sistema que elegiste y armá tu lugar de entrenamiento.</p></div>
-<div class="step"><span class="step-no">02</span><b>SEGUÍ EL PROGRAMA</b><p>Usá la guía digital para organizar ejercicios, series, repeticiones y descansos.</p></div>
-<div class="step"><span class="step-no">03</span><b>SOSTENÉ EL PROCESO</b><p>Entrená con constancia y completá las etapas del plan. La mejora se construye sesión a sesión.</p></div>
+<div class="step"><span class="step-no">01</span><b>PREPARÁ TU ZONA</b><p>Dejá listo el equipamiento y prepará tu espacio. Cada detalle suma al entrenamiento.</p></div>
+<div class="step"><span class="step-no">02</span><b>ACTIVÁ LA MISIÓN</b><p>Seguí la guía digital y completá los ejercicios, series, repeticiones y descansos.</p></div>
+<div class="step"><span class="step-no">03</span><b>SUMÁ SESIONES</b><p>Volvé a entrenar, sostené el proceso y completá las etapas. La evolución se construye sesión a sesión.</p></div>
 </div>
 </section>
 </div>
 <section class="closing">
-<div class="kicker">AURA XP TRAINING SYSTEMS</div>
-<h2>NO ESPERES EL CAMBIO.<br><span>ENTRENALO.</span></h2>
-<p>Elegí el sistema que acompaña tu objetivo y empezá a construir tu mejor versión en la cancha.</p>
-<a class="btn btn-main" href="#sistemas">VER LOS SISTEMAS</a>
+<div class="kicker">TU SIGUIENTE NIVEL NO SE REGALA</div>
+<h2>NO ESPERES EL CAMBIO.<br><span>DESBLOQUEALO.</span></h2>
+<p>Tu próxima versión no aparece de un día para el otro. Se construye con cada entrenamiento que decidís completar.</p>
+<a class="btn btn-main" href="#sistemas">QUIERO DESBLOQUEAR MI POTENCIAL</a>
 </section>
 </main>
 <footer>AURA XP · FUTSAL × GAMING × STREETWEAR · FARMEÁ ESTILO. SUBÍ DE NIVEL.</footer>
