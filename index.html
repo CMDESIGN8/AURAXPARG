@@ -3644,10 +3644,35 @@
 .countdown{gap:8px;margin-top:28px}
 .countdown>div{min-width:82px;padding:13px 16px;border:1px solid rgba(8,201,244,.35);border-radius:2px;background:linear-gradient(145deg,rgba(7,24,40,.9),rgba(4,11,20,.8));box-shadow:inset 0 0 18px rgba(8,201,244,.07),0 8px 30px rgba(0,0,0,.24)}
 .countdown strong{color:#b7ff3c;text-shadow:0 0 16px rgba(183,255,60,.28);font-variant-numeric:tabular-nums}
-.social-proof{border-radius:2px;background:rgba(4,17,29,.76);border-color:rgba(8,201,244,.32);backdrop-filter:blur(8px)}
-.social-proof .farmers-label{color:var(--logo-magenta);font-size:1.4rem;letter-spacing:2px;font-weight:900;text-shadow:0 0 16px rgba(255,45,120,.28)}
-.social-proof .farmers-label strong{color:inherit;font-size:inherit;font-weight:inherit}
-@media(max-width:700px){.social-proof .farmers-label{font-size:clamp(.78rem,3.5vw,1rem);letter-spacing:1px}}
+/* Prueba social: dato claro, secundario al titular */
+.social-proof{
+    display:flex;flex-direction:column;align-items:center;gap:3px;
+    margin-top:24px;padding:0;border:0;border-radius:0;
+    background:transparent;box-shadow:none;backdrop-filter:none;
+}
+.social-proof .farmers-label{
+    display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;
+    color:rgba(234,247,252,.88);font-size:clamp(.82rem,1.2vw,.96rem);
+    font-weight:600;letter-spacing:.01em;text-shadow:none;
+}
+.social-proof .farmers-label strong{
+    color:var(--logo-green);font-size:1.45rem;line-height:1;
+    font-weight:900;letter-spacing:-.04em;text-shadow:0 0 12px rgba(183,255,60,.18);
+}
+.social-proof .farmers-caption{
+    color:rgba(8,201,244,.72);font-size:.58rem;line-height:1.4;
+    font-weight:800;letter-spacing:.2em;
+}
+@media(max-width:700px){
+    .social-proof{margin-top:20px;gap:4px}
+    .social-proof .farmers-label{gap:7px;font-size:clamp(.76rem,3.35vw,.9rem)}
+    .social-proof .farmers-label strong{font-size:1.3rem}
+    .social-proof .farmers-caption{font-size:.52rem;letter-spacing:.16em}
+}
+@media(max-width:380px){
+    .social-proof .farmers-label{gap:6px;font-size:.74rem}
+    .social-proof .farmers-label strong{font-size:1.2rem}
+}
 .hero-buttons{gap:10px}
 .hero-buttons .btn-primary,.hero-buttons .btn-secondary{min-height:52px;display:inline-flex;align-items:center;justify-content:center;border-radius:2px;letter-spacing:.1em;font-weight:900}
 .hero-buttons .btn-primary{background:linear-gradient(115deg,#08c9f4,#087da9);box-shadow:0 0 24px rgba(8,201,244,.2),inset 0 1px rgba(255,255,255,.3)}
@@ -4958,12 +4983,11 @@
                 </div>
                 <div class="social-proof">
 
-                    <span class="pulse-dot"></span>
-
                     <span class="farmers-label">
-                        <strong id="registered-count">31</strong> &nbsp;
-                        FARMERS ya están dentro
+                        <strong id="registered-count">31</strong>
+                        <span>personas ya se sumaron a AURA</span>
                     </span>
+                    <span class="farmers-caption">LA COMUNIDAD ESTÁ CRECIENDO</span>
 
                 </div>
                 <div class="hero-buttons">
