@@ -93,7 +93,7 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
 .session-toggle span:last-child{font-size:16px;line-height:1}
 .day .details,.day .dose{display:none}
 .day.expanded .details,.day.expanded .dose{display:block}
-.day.expanded .session-toggle span:last-child{transform:rotate(45deg)}
+.day.expanded .session-toggle span:last-child{transform:none}
 .day .mark{padding-top:10px;border-top:1px solid var(--line)}
 .day.done .mark{color:var(--lime)}
 .day.done .mark:after{content:" +50 XP";color:var(--lime);margin-left:auto}
@@ -274,6 +274,10 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
     toggle.innerHTML='<span class="toggle-label">VER EJERCICIOS Y SERIES</span><span class="toggle-icon" aria-hidden="true">+</span>';
     details.parentNode.insertBefore(toggle,details);
     toggle.addEventListener('click',()=>setExpanded(card,!card.classList.contains('expanded')));
+    card.addEventListener('click',event=>{
+      if(!event.target.closest('.day-top,h3,.focus')) return;
+      setExpanded(card,!card.classList.contains('expanded'));
+    });
 
     const box=card.querySelector('input[type="checkbox"]');
     box.addEventListener('change',()=>{
