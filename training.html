@@ -689,6 +689,81 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  .hero-hud .drill-content > b{font-size:7px}
 }
 
+
+/* FINAL TYPE SCALE — una jerarquía real entre etapa, guía y ejercicios */
+#aura-player-missions .hero-hud .mission-card .skill-info > b{
+  display:block;
+  font:900 clamp(30px,4.2vw,38px)/.98 Montserrat,sans-serif;
+  letter-spacing:-.055em;
+  color:#fff;
+  text-shadow:3px 3px 0 rgba(8,201,244,.18);
+}
+#aura-player-missions .hero-hud .mission-card .skill-info > small{
+  font:600 13px/1.4 Montserrat,sans-serif;
+  letter-spacing:0;
+  color:#c2d2de;
+}
+#aura-player-missions .hero-hud .mission-benefit > span{
+  display:block;
+  font:900 7px/1.2 Montserrat,sans-serif;
+  letter-spacing:.19em;
+  color:var(--skill-accent);
+}
+#aura-player-missions .hero-hud .mission-benefit > p{
+  font:500 10px/1.5 Montserrat,sans-serif;
+  letter-spacing:0;
+  color:#dce7ef;
+}
+#aura-player-missions .hero-hud .drills-title > b{
+  font:400 13px/1.1 "Permanent Marker",cursive;
+  letter-spacing:.025em;
+  color:var(--lime);
+  text-shadow:1px 2px 0 rgba(0,0,0,.45);
+}
+#aura-player-missions .hero-hud .drills-title > small{
+  font:800 7px/1.2 Montserrat,sans-serif;
+  letter-spacing:.12em;
+  color:var(--skill-accent);
+}
+#aura-player-missions .hero-hud .drill-content > b{
+  display:block;
+  font:900 9px/1.3 Montserrat,sans-serif;
+  letter-spacing:.035em;
+  color:#f4f7fb;
+}
+#aura-player-missions .hero-hud .drill-content > small{
+  display:block;
+  margin-top:2px;
+  font:800 7px/1.25 Montserrat,sans-serif;
+  letter-spacing:.06em;
+  color:var(--skill-accent);
+}
+#aura-player-missions .hero-hud .drill-content > p{
+  font:500 9px/1.45 Montserrat,sans-serif;
+  letter-spacing:0;
+  color:#aebfce;
+}
+#aura-player-missions .hero-hud .mission-reward{
+  font-size:7px;
+  line-height:1.3;
+}
+#aura-player-missions .hero-hud .mission-reward strong{
+  font:900 9px/1.2 Montserrat,sans-serif;
+  letter-spacing:.07em;
+}
+@media(max-width:600px){
+  #aura-player-missions .hero-hud .mission-card .skill-info > b{font-size:27px}
+  #aura-player-missions .hero-hud .mission-card .skill-info > small{font-size:11px}
+  #aura-player-missions .hero-hud .drills-title > b{font-size:12px}
+  #aura-player-missions .hero-hud .drill-content > b{font-size:9px}
+  #aura-player-missions .hero-hud .drill-content > p{font-size:9px}
+}
+@media(max-width:360px){
+  #aura-player-missions .hero-hud .mission-card .skill-info > b{font-size:24px}
+  #aura-player-missions .hero-hud .drills-title > b{font-size:11px}
+  #aura-player-missions .hero-hud .drill-content > b{font-size:8px}
+}
+
 </style>
 </head>
 <body>
