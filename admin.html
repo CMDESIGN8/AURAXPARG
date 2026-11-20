@@ -27,10 +27,10 @@
             --white: #f2f2ec;
             --muted: #8b8b8b;
             --muted-light: #b7b7b0;
-            --green: #00ff87;
-            --cyan: #00e1ff;
-            --magenta: #ff007f;
-            --yellow: #ffcc00;
+            --green: #b7ff3c;
+            --cyan: #08c9f4;
+            --magenta: #08c9f4;
+            --yellow: #f2f7ff;
             --border: rgba(255,255,255,.08);
         }
 
@@ -664,7 +664,7 @@
                 </div>
 
                 <div class="stat-card">
-                    <span class="stat-label">GRIND TEE</span>
+                    <span class="stat-label">GRIND</span>
                     <span class="stat-value magenta" id="statGrind">0</span>
                 </div>
 
@@ -685,7 +685,7 @@
                     <option value="">Todos los productos</option>
                     <option value="FARM TEE">FARM TEE</option>
                     <option value="SPORT AURA">SPORT AURA</option>
-                    <option value="GRIND TEE">GRIND TEE</option>
+                    <option value="GRIND">GRIND</option>
                 </select>
 
                 <select id="sizeFilter">
@@ -992,7 +992,7 @@
             filteredLeads = allLeads.filter(lead => {
 
                 /* Filtro por producto */
-                if (product && lead.producto !== product) return false;
+                if (product && String(lead.producto || "").trim() !== product) return false;
 
                 /* Filtro por talle */
                 if (size && lead.talle !== size) return false;
@@ -1044,7 +1044,7 @@
             ).length;
 
             const grindCount = allLeads.filter(
-                lead => lead.producto === "GRIND TEE"
+                lead => String(lead.producto || "").trim() === "GRIND"
             ).length;
 
             statTotal.textContent = total;
