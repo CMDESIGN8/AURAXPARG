@@ -4732,6 +4732,64 @@
   letter-spacing: .08em;
 }
 
+
+/* AURA XP — HERO GAMER HUD POLISH */
+.hero{isolation:isolate;background-color:#050d18}
+.hero-media img{opacity:.43;filter:blur(1px) brightness(.48) saturate(.82);transform:scale(1.025)}
+.hero-overlay{background:linear-gradient(90deg,rgba(3,10,19,.78),rgba(3,10,19,.30) 50%,rgba(3,10,19,.78)),linear-gradient(180deg,rgba(3,10,19,.58),rgba(3,10,19,.82) 72%,#07111f)}
+.hero::before{content:"";position:absolute;z-index:1;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(8,201,244,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(8,201,244,.16) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,transparent 4%,#000 28%,#000 82%,transparent)}
+.hero-content{max-width:1040px}
+.hero .eyebrow{gap:11px;padding:10px 17px;border:1px solid rgba(8,201,244,.48);background:linear-gradient(100deg,rgba(5,18,31,.9),rgba(8,201,244,.08));color:#8feaff;box-shadow:0 0 26px rgba(8,201,244,.13),inset 0 0 18px rgba(8,201,244,.06);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.hero h1{max-width:1000px;margin-left:auto;margin-right:auto;font-size:clamp(48px,8.7vw,112px);line-height:.88;letter-spacing:-.085em;text-shadow:0 10px 50px rgba(0,0,0,.72),0 0 22px rgba(8,201,244,.08)}
+.hero h1 .accent{color:#08c9f4;text-shadow:0 0 18px rgba(8,201,244,.62),0 0 55px rgba(8,201,244,.26)}
+.hero-sub{position:relative;width:min(620px,100%);margin:27px auto 0;padding:13px 20px;border-top:1px solid rgba(8,201,244,.38);border-bottom:1px solid rgba(8,201,244,.2);background:linear-gradient(90deg,transparent,rgba(5,20,34,.82) 16%,rgba(5,20,34,.82) 84%,transparent);color:#e6f7ff;font-size:clamp(.9rem,1.35vw,1.05rem);font-weight:600;letter-spacing:.025em;line-height:1.6;text-shadow:0 2px 12px #000}
+.hero-sub::before{content:"AURA XP // PLAYER IDENTITY";display:block;margin-bottom:5px;color:#08c9f4;font-size:8px;font-weight:900;letter-spacing:.22em}
+.countdown{margin-top:26px;gap:10px}
+.countdown>div{min-width:86px;padding:13px 17px;border:1px solid rgba(8,201,244,.42);background:linear-gradient(150deg,rgba(7,26,43,.94),rgba(3,11,20,.94));box-shadow:inset 0 0 20px rgba(8,201,244,.075),0 8px 28px rgba(0,0,0,.32);clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,0 100%)}
+.countdown strong{color:#b7ff3c;text-shadow:0 0 16px rgba(183,255,60,.4)}
+.countdown span{color:#9ab8c9;font-weight:900}
+.countdown strong[style]{display:block;min-width:0;padding:14px 24px;border:1px solid rgba(183,255,60,.62);background:linear-gradient(100deg,rgba(183,255,60,.12),rgba(8,201,244,.1));color:#b7ff3c!important;font-size:clamp(1rem,2vw,1.3rem)!important;font-weight:900;letter-spacing:.16em;text-shadow:0 0 18px rgba(183,255,60,.4);box-shadow:0 0 28px rgba(183,255,60,.12),inset 0 0 18px rgba(183,255,60,.06);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.social-proof{margin-top:22px;padding:11px 18px;border:1px solid rgba(8,201,244,.34);border-radius:2px;background:linear-gradient(100deg,rgba(4,17,29,.92),rgba(8,201,244,.08));box-shadow:inset 0 0 18px rgba(8,201,244,.045),0 8px 25px rgba(0,0,0,.22);color:#d8eff9;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+.social-proof strong{color:#b7ff3c;font-size:1rem;text-shadow:0 0 12px rgba(183,255,60,.28)}
+.pulse-dot{background:#b7ff3c;box-shadow:0 0 8px #b7ff3c,0 0 18px rgba(183,255,60,.5)}
+.hero-buttons{margin-top:27px;gap:13px}
+.hero-buttons .btn-primary,.hero-buttons .btn-secondary{min-height:56px;padding:0 25px;border-radius:2px;font-size:.72rem;letter-spacing:.105em;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)}
+.hero-buttons .btn-primary:first-child{background:linear-gradient(110deg,#08c9f4,#087da9);color:#03111b;box-shadow:0 0 25px rgba(8,201,244,.3),inset 0 1px rgba(255,255,255,.35)}
+.hero-buttons .btn-secondary{border:1px solid rgba(8,201,244,.55);background:rgba(3,13,24,.7);color:#eafaff}
+.hero-buttons>a.btn-primary{border:1px solid rgba(183,255,60,.65);background:linear-gradient(110deg,rgba(183,255,60,.14),rgba(8,201,244,.08));color:#dfffaa;box-shadow:inset 0 0 18px rgba(183,255,60,.06)}
+.hero-buttons>a.btn-primary:hover{background:#b7ff3c;color:#07111f;box-shadow:0 0 28px rgba(183,255,60,.25)}
+@media(max-width:700px){
+.hero{min-height:100svh;padding:125px 16px 88px}
+.hero-game-hud{font-size:7px;letter-spacing:.12em}
+.hud-topline,.hud-bottomline{left:15px;right:15px;gap:10px}
+.hud-topline{top:88px}
+.hud-side{display:none}
+.hud-crosshair{top:43%;width:30px;height:30px;opacity:.28}
+.hero .eyebrow{margin-bottom:20px;padding:9px 12px;font-size:.59rem;letter-spacing:.14em}
+.hero h1{font-size:clamp(42px,12vw,68px);line-height:.9;letter-spacing:-.075em}
+.hero-sub{margin-top:20px;padding:11px 9px;font-size:.82rem;line-height:1.5}
+.hero-sub::before{font-size:7px}
+.countdown{margin-top:20px;gap:6px}
+.countdown>div{min-width:0;flex:1;padding:11px 7px}
+.countdown strong{font-size:1.45rem}
+.countdown span{font-size:.5rem;letter-spacing:.1em}
+.countdown strong[style]{flex:0 1 auto;padding:12px 18px;font-size:.95rem!important}
+.social-proof{margin-top:17px;padding:10px 12px;font-size:.63rem;letter-spacing:.045em}
+.social-proof strong{font-size:.9rem}
+.hero-buttons{width:min(420px,100%);margin:20px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.hero-buttons .btn-primary,.hero-buttons .btn-secondary{min-height:50px;padding:0 10px;font-size:.62rem;letter-spacing:.055em;text-align:center}
+.hero-buttons>a.btn-primary{grid-column:1/-1}
+}
+@media(max-width:380px){
+.hero{padding-left:12px;padding-right:12px}
+.hero h1{font-size:clamp(38px,11.8vw,48px)}
+.hero-buttons{grid-template-columns:1fr}
+.hero-buttons>a.btn-primary{grid-column:auto}
+.hero-buttons .btn-primary,.hero-buttons .btn-secondary{width:100%}
+.social-proof{font-size:.58rem;gap:7px}
+}
+@media(prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
+
 </style>
 
 </head>
