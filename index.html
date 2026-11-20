@@ -7320,7 +7320,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 import {
-  getFirestore, doc, getDoc, setDoc,
+  getFirestore, doc, getDoc, setDoc, runTransaction,
   serverTimestamp, increment
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
@@ -7330,7 +7330,6 @@ import QRCode from "https://cdn.skypack.dev/qrcode";
 const XP_REWARDS = {
   selectProduct:      25,
   selectSize:         15,
-  googleLogin:        100,
   completeReservation:500,
   completeBootConfig: 300,
   shareDrop:          50,
@@ -7486,20 +7485,29 @@ async function awardXP(action, originEl = null) {
 
   if (!currentUser) return;
 
+  const eventKey = arguments[2] || (action + '_' + todayKey());
   const userRef = doc(db, 'users', currentUser.uid);
+  const eventRef = doc(db, 'users', currentUser.uid, 'xpEvents', eventKey);
   const before = currentXP;
-  currentXP += amount;
-
   try {
-    await setDoc(userRef, {
-      xp: increment(amount),
-      lastAction: action,
-      updatedAt: serverTimestamp()
-    }, { merge: true });
+    const result = await runTransaction(db, async (tx) => {
+      const eventSnap = await tx.get(eventRef);
+      if (eventSnap.exists()) return { duplicate: true };
+      const userSnap = await tx.get(userRef);
+      const storedXP = userSnap.exists() ? Number(userSnap.data().xp || 0) : 0;
+      tx.set(userRef, { xp: storedXP + amount, lastAction: action, updatedAt: serverTimestamp() }, { merge: true });
+      tx.set(eventRef, { action, amount, createdAt: serverTimestamp() });
+      return { duplicate: false, xp: storedXP + amount };
+    });
+    if (result.duplicate) return false;
+    currentXP = result.xp;
   } catch (err) {
     console.warn('XP award failed:', err);
+    showToast({ icon: '⚠️', title: 'XP NO SINCRONIZADA', subtitle: 'No se modificó tu progreso. Probá de nuevo.', color: '#ffbd4a' });
+    return false;
   }
-
+  showXPFloat(amount, originEl);
+  playSfx('xp');
   renderHUD();
 
   // ¿Subió de nivel?
@@ -7521,40 +7529,31 @@ async function awardXP(action, originEl = null) {
 
 // ---------- HOOKS DE UI ----------
 function bindUIHooks() {
-  // Click SFX universal
   document.addEventListener('click', (e) => {
     const t = e.target.closest('button, a, .product-card, .size-option, .kit-card, .boot-model');
     if (t) playSfx('click');
-  });
-
-  // Select de producto
-  document.querySelectorAll('.select-product, .product-card').forEach(el => {
-    el.addEventListener('click', () => {
-      awardXP('selectProduct', el);
-    });
-  });
-
-  // Select de talle
-  document.querySelectorAll('.size-option, .bc-size').forEach(el => {
-    el.addEventListener('click', () => {
-      awardXP('selectSize', el);
-    });
-  });
-
-  // Botín configurado
-  document.querySelectorAll('.bc-submit').forEach(el => {
-    el.addEventListener('click', () => {
-      setTimeout(() => awardXP('completeBootConfig', el), 600);
-    });
-  });
-
-  // Login con Google
-  document.querySelectorAll('.google-btn').forEach(el => {
-    el.addEventListener('click', () => {
+    const product = e.target.closest('.select-product, .product-card');
+    if (product && !product.dataset.xpHandled) {
+      product.dataset.xpHandled = '1';
+      awardXP('selectProduct', product, 'product_' + todayKey());
+      trackMissionProgress('daily_select', 1);
+    }
+    const size = e.target.closest('.size-option, .bc-size');
+    if (size && !size.dataset.xpHandled) {
+      size.dataset.xpHandled = '1';
+      awardXP('selectSize', size, 'size_' + todayKey());
+      trackMissionProgress('daily_size', 1);
+    }
+    const boot = e.target.closest('.bc-submit');
+    if (boot && !boot.dataset.xpHandled) {
+      boot.dataset.xpHandled = '1';
       setTimeout(() => {
-        if (currentUser) awardXP('googleLogin');
-      }, 1500);
-    });
+        if (document.querySelector('.access-success')) {
+          awardXP('completeBootConfig', boot, 'boot_' + todayKey());
+          trackMissionProgress('daily_boot', 1);
+        }
+      }, 800);
+    }
   });
 }
 
@@ -7625,21 +7624,19 @@ async function shareAchievement(code) {
 function observeSuccessScreen() {
   const target = document.querySelector('.access-card');
   if (!target) return;
-  const obs = new MutationObserver(() => {
-    if (document.querySelector('.access-success')) {
-      enhanceSuccessScreen();
-      awardXP('completeReservation');
-      showToast({
-        icon: '🎯',
-        title: 'MISIÓN CUMPLIDA',
-        subtitle: 'Reserva confirmada · +500 XP',
-        color: '#b7ff3c',
-        duration: 5000
-      });
-      playSfx('unlock');
-    }
-  });
+  const processSuccess = () => {
+    const success = target.querySelector('.access-success');
+    if (!success || success.dataset.xpProcessed === '1') return;
+    success.dataset.xpProcessed = '1';
+    enhanceSuccessScreen();
+    const code = success.dataset.reservationId || 'confirmed';
+    awardXP('completeReservation', success, 'reservation_' + code);
+    showToast({ icon: '🏆', title: 'MISIÓN CUMPLIDA', subtitle: 'Reserva registrada · +500 XP', color: '#b7ff3c', duration: 5000 });
+    playSfx('unlock');
+  };
+  const obs = new MutationObserver(processSuccess);
   obs.observe(target, { childList: true, subtree: true });
+  processSuccess();
 }
 
 // ---------- AUTH ----------
@@ -7655,12 +7652,8 @@ function watchAuth() {
       const snap = await getDoc(doc(db, 'users', user.uid));
       currentXP = snap.exists() ? (snap.data().xp || 0) : 0;
       if (!snap.exists()) {
-        await setDoc(doc(db, 'users', user.uid), {
-          xp: XP_REWARDS.googleLogin,
-          createdAt: serverTimestamp(),
-          updatedAt: serverTimestamp()
-        }, { merge: true });
-        currentXP = XP_REWARDS.googleLogin;
+        await setDoc(doc(db, 'users', user.uid), { xp: 0, createdAt: serverTimestamp(), updatedAt: serverTimestamp() }, { merge: true });
+        currentXP = 0;
       }
     } catch (err) {
       console.warn('XP load failed:', err);
@@ -7846,15 +7839,23 @@ function renderMissions() {
 
 async function claimMission(missionId, xp, btn) {
   const state = loadMissionsState();
-  if (state.claimed[missionId]) return;
-
+  const mission = DAILY_MISSIONS.find(m => m.id === missionId);
+  if (!mission || !btn || btn.disabled || state.claimed[missionId]) return;
+  if ((state.progress[missionId] || 0) < mission.target) return;
+  if (!currentUser) { showToast({ icon: '🔒', title: 'INICIÁ SESIÓN', subtitle: 'Necesitás una cuenta para reclamar XP', color: '#08c9f4' }); return; }
+  btn.disabled = true;
   state.claimed[missionId] = true;
   saveMissionsState(state);
 
-  btn.disabled = true;
-  btn.textContent = 'RECLAMADO ✓';
+  btn.textContent = 'SINCRONIZANDO…';
 
-  await awardXPForMission(xp);
+  const credited = await awardXPForMission(xp, missionId);
+  if (!credited) {
+    state.claimed[missionId] = false; saveMissionsState(state);
+    btn.disabled = false; btn.textContent = 'RECLAMAR +' + xp + ' XP';
+    showToast({ icon: '⚠️', title: 'NO SE PUDO RECLAMAR', subtitle: 'Intentá nuevamente.', color: '#ffbd4a' }); return;
+  }
+  btn.textContent = 'RECLAMADO ✓';
   showToast({
     icon: '🎁',
     title: 'MISIÓN RECLAMADA',
@@ -7883,20 +7884,23 @@ async function claimMission(missionId, xp, btn) {
 }
 
 // Versión específica para misiones (usa XP_REWARDS genérico + custom)
-async function awardXPForMission(amount) {
-  showXPFloat(amount);
-  playSfx('xp');
-  if (!currentUser) return;
-  currentXP += amount;
+async function awardXPForMission(amount, missionId) {
+  if (!currentUser) return false;
+  const eventRef = doc(db, 'users', currentUser.uid, 'xpEvents', 'mission_' + todayKey() + '_' + missionId);
+  const userRef = doc(db, 'users', currentUser.uid);
   try {
-    await setDoc(doc(db, 'users', currentUser.uid), {
-      xp: increment(amount),
-      updatedAt: serverTimestamp()
-    }, { merge: true });
-  } catch (err) {
-    console.warn('Mission XP save failed:', err);
-  }
-  renderHUD();
+    const result = await runTransaction(db, async (tx) => {
+      const eventSnap = await tx.get(eventRef);
+      if (eventSnap.exists()) return { duplicate: true };
+      const userSnap = await tx.get(userRef);
+      const xp = Number(userSnap.exists() ? userSnap.data().xp || 0 : 0);
+      tx.set(userRef, { xp: xp + amount, updatedAt: serverTimestamp() }, { merge: true });
+      tx.set(eventRef, { action: 'daily_mission', missionId, amount, createdAt: serverTimestamp() });
+      return { duplicate: false, xp: xp + amount };
+    });
+    if (result.duplicate) return false;
+    currentXP = result.xp; showXPFloat(amount); playSfx('xp'); renderHUD(); return true;
+  } catch (err) { console.warn('Mission XP save failed:', err); return false; }
 }
 
 /* --- Countdown de reset (medianoche local) --- */
@@ -7930,30 +7934,10 @@ function initMissions() {
   });
 
   // Track: seleccionar prenda
-  document.querySelectorAll('.select-product').forEach(el => {
-    el.addEventListener('click', () => trackMissionProgress('daily_select', 1));
-  });
-
-  // Track: elegir talle
-  document.querySelectorAll('.size-option').forEach(el => {
-    el.addEventListener('click', () => trackMissionProgress('daily_size', 1));
-  });
-
-  // Track: botín custom
-  document.querySelectorAll('.bc-submit').forEach(el => {
-    el.addEventListener('click', () => {
-      setTimeout(() => trackMissionProgress('daily_boot', 1), 800);
-    });
-  });
+  // Product, size and boot mission tracking is handled by the delegated game listener.
 
   // Track: compartir (engancha shareAchievement)
-  const originalShare = window.shareAchievement;
-  if (typeof originalShare === 'function') {
-    window.shareAchievement = async function(code) {
-      await originalShare.call(this, code);
-      trackMissionProgress('daily_share', 1);
-    };
-  }
+  // Share tracking is handled inside shareAchievement.
 }
 
 </script>
