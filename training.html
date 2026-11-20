@@ -102,3 +102,137 @@ footer{border-top:1px solid var(--line);padding:25px 18px;text-align:center;colo
 @media(max-width:600px){.topline{font-size:8px;letter-spacing:.1em}.wrap{width:calc(100% - 32px)}header{height:auto;min-height:68px;align-items:flex-start;flex-direction:column;justify-content:center;gap:9px;padding:12px 18px}nav{width:100%;justify-content:space-between;gap:8px;font-size:8px}.nav-home{padding:7px 9px}.hero{padding:76px 18px 65px}.hero-copy{font-size:13px}.hero-actions{flex-direction:column;align-items:stretch;max-width:340px;margin:25px auto 0}.btn{width:100%;min-height:50px}.intro{padding:58px 0 20px}.systems{padding-top:10px;padding-bottom:54px}.visual{height:165px}.visual .number{font-size:88px}.card-body{padding:20px}.card.featured:after{font-size:7px;top:16px;right:-35px}.launch{grid-template-columns:1fr;gap:12px;padding:21px;margin-bottom:55px}.launch-mark{font-size:26px}.steps{padding:54px 0}.steps-grid{grid-template-columns:1fr;gap:23px}.step{padding-top:12px}.closing{padding:56px 18px}}
 @media(max-width:420px){.card-body{padding:18px}.cta{font-size:8px;letter-spacing:.06em;padding:10px}.objective{font-size:7px}.launch{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+
+/* HEADER Y LOGO: MISMAS PROPORCIONES QUE LA LANDING */
+header{height:58px;padding:0 max(4vw,18px);gap:18px}
+.brand{display:flex;align-items:center;flex:0 0 auto;line-height:0}
+.brand img{display:block;width:105px;height:auto;max-height:42px;object-fit:contain;object-position:left center}
+nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap;align-items:center}
+.nav-home{padding:8px 11px}
+@media(max-width:600px){
+ header{height:56px;min-height:56px;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:0 14px}
+ .brand img{width:92px;height:auto;max-height:34px}
+ nav{width:auto;min-width:0;flex:1;justify-content:flex-end;gap:10px;font-size:7px;letter-spacing:.025em;white-space:nowrap;overflow-x:auto;scrollbar-width:none}
+ nav::-webkit-scrollbar{display:none}
+ .nav-home{padding:6px 7px}
+}
+@media(max-width:380px){
+ header{padding:0 10px;gap:7px}
+ .brand img{width:82px;max-height:30px}
+ nav{gap:7px;font-size:6.5px}
+}
+</style>
+</head>
+<body>
+<div class="topline">AURA XP · ENTRENAMIENTO DE FUTSAL · EQUIPAMIENTO + PLAN DIGITAL</div>
+<header>
+<a class="brand" href="index.html" aria-label="Volver al universo AURA"><img src="assets/logo2.png" alt="AURA XP"></a>
+<nav aria-label="Navegación principal">
+<a class="nav-home" href="index.html">Volver a AURA</a>
+<a href="#sistemas">Los sistemas</a>
+<a href="#como-funciona">Cómo funciona</a>
+</nav>
+</header>
+<main>
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-stamp">NO ES MAGIA. ES ENTRENAMIENTO.</div>
+<div class="kicker">AURA XP · TRAINING SYSTEMS</div>
+<h1>FARMEÁ TU JUEGO.<br><span>ENTRENÁ EN SERIO.</span></h1>
+<p class="hero-copy">Kits de entrenamiento para llevar tu juego más allá. <strong>Equipamiento físico + un programa digital guiado</strong> para trabajar habilidades dentro y fuera de la cancha.</p>
+<div class="hero-actions">
+<a class="btn btn-main" href="#sistemas">ELEGÍ TU SISTEMA</a>
+<a class="btn btn-ghost" href="#como-funciona">ASÍ SE ENTRENA</a>
+</div>
+</div>
+</section>
+<div class="wrap">
+<section class="intro" id="sistemas">
+<div>
+<div class="kicker">TRES FORMAS DE ENTRENAR</div>
+<h2>¿DÓNDE QUERÉS<br>LLEVAR TU JUEGO?</h2>
+<div class="scribble">Elegí tu punto de partida.</div>
+</div>
+<p>Cada sistema combina herramientas físicas con una guía digital. Compará qué incluye cada kit y qué tipo de trabajo propone antes de elegir.<strong class="choose-note"> TU PRIMER PASO: encontrá el nivel que acompaña tu momento.</strong></p>
+</section>
+<section class="systems" aria-label="Sistemas de entrenamiento AURA XP">
+<article class="card">
+<div class="visual"><span class="tag">01 · PARA EMPEZAR</span><div class="number">01</div></div>
+<div class="card-body">
+<div class="level">AURA XP · INICIO</div>
+<h3>START</h3>
+<p class="promise">Construí una base de coordinación y control del movimiento.</p>
+<span class="objective">OBJETIVO · COORDINACIÓN</span>
+<ul class="items">
+<li>Escalera de coordinación</li>
+<li>Conos de entrenamiento</li>
+</ul>
+<div class="digital"><strong>GUÍA DIGITAL · 7 DÍAS</strong><p>Rutina inicial guiada para incorporar coordinación y control del movimiento.</p></div>
+<span class="cta is-soon" aria-label="Sistema START en preparación">START · PRÓXIMAMENTE</span>
+</div>
+</article>
+<article class="card featured">
+<div class="visual"><span class="tag">02 · SISTEMA RECOMENDADO</span><div class="number">02</div></div>
+<div class="card-body">
+<div class="level">AURA XP · DESARROLLO</div>
+<h3>PRO</h3>
+<p class="promise">Trabajá velocidad, agilidad y técnica con un plan progresivo.</p>
+<span class="objective">OBJETIVO · VELOCIDAD + AGILIDAD</span>
+<ul class="items">
+<li>Escalera de coordinación</li>
+<li>Conos de entrenamiento</li>
+<li>Aros de agilidad</li>
+<li>Mini vallas</li>
+</ul>
+<div class="digital"><strong>PROGRAMA DIGITAL · 21 DÍAS</strong><p>Plan progresivo con sesiones organizadas para trabajar velocidad, coordinación y técnica.</p></div>
+<a class="cta" href="pro-21-days.html">EMPEZAR MI RECORRIDO · 21 DÍAS</a>
+</div>
+</article>
+<article class="card">
+<div class="visual"><span class="tag">03 · ENTRENAMIENTO AVANZADO</span><div class="number">03</div></div>
+<div class="card-body">
+<div class="level">AURA XP · AVANZADO</div>
+<h3>ELITE</h3>
+<p class="promise">Sumá variedad y estructura a tu entrenamiento individual.</p>
+<span class="objective">OBJETIVO · TRABAJO INTEGRAL</span>
+<ul class="items">
+<li>Kit de coordinación</li>
+<li>Kit de velocidad</li>
+<li>Pelota</li>
+<li>Bolsa de transporte</li>
+</ul>
+<div class="digital"><strong>GUÍA DIGITAL · 30 DÍAS</strong><p>Plan integral con objetivos y progresión de entrenamiento durante un mes.</p></div>
+<span class="cta is-soon" aria-label="Sistema ELITE en preparación">ELITE · PRÓXIMAMENTE</span>
+</div>
+</article>
+</section>
+<section class="launch" id="lanzamiento">
+<div class="launch-mark">AURA!</div>
+<div>
+<strong>LANZAMIENTO EN PREPARACIÓN</strong>
+<p>Estamos validando proveedores, calidad, composición final y costos de cada sistema. Los precios y la disponibilidad se publicarán cuando estén confirmados. Las imágenes y representaciones de esta página son conceptuales; el contenido final de cada kit puede ajustarse según el abastecimiento.</p>
+</div>
+</section>
+<section class="steps" id="como-funciona">
+<div class="steps-head">
+<div class="kicker">MÁS QUE UN KIT</div>
+<h2>EL EQUIPAMIENTO ES EL INICIO.<br>EL TRABAJO LO HACÉS VOS.</h2>
+</div>
+<div class="steps-grid">
+<div class="step"><span class="step-no">01</span><b>EQUIPÁ TU ESPACIO</b><p>Prepará los elementos del sistema que elegiste y armá tu lugar de entrenamiento.</p></div>
+<div class="step"><span class="step-no">02</span><b>SEGUÍ EL PROGRAMA</b><p>Usá la guía digital para organizar ejercicios, series, repeticiones y descansos.</p></div>
+<div class="step"><span class="step-no">03</span><b>SOSTENÉ EL PROCESO</b><p>Entrená con constancia y completá las etapas del plan. La mejora se construye sesión a sesión.</p></div>
+</div>
+</section>
+</div>
+<section class="closing">
+<div class="kicker">AURA XP TRAINING SYSTEMS</div>
+<h2>NO ESPERES EL CAMBIO.<br><span>ENTRENALO.</span></h2>
+<p>Elegí el sistema que acompaña tu objetivo y empezá a construir tu mejor versión en la cancha.</p>
+<a class="btn btn-main" href="#sistemas">VER LOS SISTEMAS</a>
+</section>
+</main>
+<footer>AURA XP · FUTSAL × GAMING × STREETWEAR · FARMEÁ ESTILO. SUBÍ DE NIVEL.</footer>
+</body>
+</html>
