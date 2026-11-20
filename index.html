@@ -7367,7 +7367,7 @@ import {
   serverTimestamp, increment
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-import QRCode from "https://cdn.skypack.dev/qrcode";
+// QR como imagen remota: no dependemos de un CDN de módulos para iniciar el juego.
 
 // ---------- CONSTANTES ----------
 const XP_REWARDS = {
@@ -7627,11 +7627,8 @@ function enhanceSuccessScreen() {
   const qr = document.createElement('img');
   qr.className = 'reservation-qr';
   qr.alt = 'Acceso al Drop AURA XP';
-  QRCode.toDataURL(`${location.origin}${location.pathname}#access`, {
-    width: 300,
-    margin: 1,
-    color: { dark: '#08c9f4', light: '#050b14' }
-  }).then(url => qr.src = url).catch(() => {});
+  const qrTarget = `${location.origin}${location.pathname}#access`;
+  qr.src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=1&color=08c9f4&bgcolor=050b14&data=' + encodeURIComponent(qrTarget);
   success.appendChild(qr);
 
   const btn = document.createElement('button');
