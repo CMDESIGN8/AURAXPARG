@@ -28,7 +28,10 @@ El futsal es nuestro punto de entrada, no nuestro límite. AURA XP no es un club
 - **FARM TEE:** pieza de entrada, streetwear cotidiano.
 - **SPORT AURA:** capa deportiva urbana para cancha y ciudad.
 - **GRIND:** pieza premium / edición limitada.
+- **FUTSAL KITS:** STARTER KIT (RARE, +100 XP), MATCHDAY KIT (EPIC, +250 XP) y ELITE KIT (LEGENDARY, +500 XP). Cada kit contempla camiseta, short y medias.
 - **CUSTOM BOOTS:** línea especializada de personalización de botines; mantenerla diferenciada del catálogo principal de indumentaria.
+
+Los kits ya cuentan con selección visual y rareza dinámica en la landing. No habilitar reservas hasta configurar inventario por componente, talles, precios y fotos finales; no descontar stock de FARM TEE como sustituto.
 
 ## Experiencia digital
 
