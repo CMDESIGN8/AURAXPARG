@@ -644,6 +644,16 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 .hero-hud .drill p{font-size:9px;line-height:1.45}
 .hero-hud .drill small{font-size:6px}
 }
+
+/* EXERCISE MINI-DIAGRAMS: visual first, compact labels */
+.hero-hud .drill{display:block;padding:8px 7px}
+.hero-hud .drill-num{display:block;font-size:9px;margin-bottom:4px}
+.hero-hud .drill-art{height:64px;display:grid;place-items:center;margin:0 0 7px;background:linear-gradient(180deg,rgba(8,201,244,.07),rgba(2,8,14,.12));border:1px solid rgba(255,255,255,.045);overflow:hidden}
+.hero-hud .drill-art svg{width:100%;height:100%;max-width:150px}
+.hero-hud .drill b{font-size:6.5px;line-height:1.3;letter-spacing:.035em}
+.hero-hud .drill small{font-size:6px;margin:3px 0}
+.hero-hud .drill p{font-size:7px;line-height:1.35}
+@media(max-width:600px){.hero-hud .drill-art{height:56px}.hero-hud .drill b{font-size:6px}.hero-hud .drill p{font-size:6.5px}}
 </style>
 </head>
 <body>
@@ -826,6 +836,16 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     {name:'AGILIDAD',desc:'Frená, girá y cambiá de dirección.',exercises:[['ZIGZAG ENTRE CONOS','4 pasadas','Desplazate de lado a lado, bajá el centro de gravedad y acelerá al salir.'],['FRENAR + GIRAR','6 repeticiones por lado','Llegá a una marca, frená, girá y salí hacia el lado opuesto.'],['CUADRADO DE MOVIMIENTO','4 vueltas','Avanzá, desplazate lateral, retrocedé y cambiá de lado sin cruzar los pies.']],benefit:'Esquivá marcas, cambiá el ritmo y volvé a arrancar sin perder el equilibrio.',action:'DESEQUILIBRAR',mark:'↔',reward:'CAMBIO DE DIRECCIÓN',className:'skill-agility',coach:'La agilidad te permite cambiar de plan en un instante. Frenar, girar y volver a arrancar puede darte el espacio que necesitás para superar una marca.',tip:'No hagas todos los cambios a máxima velocidad. Primero dominá la frenada y el equilibrio; después sumá explosividad.'},
     {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',exercises:[['CONTROL ORIENTADO','10 por perfil','Recibí y llevá el primer toque hacia el espacio libre.'],['PASE CONTRA PARED','20 pases','Alterná pie derecho e izquierdo. Prepará el cuerpo antes de recibir.'],['CONDUCCIÓN + CAMBIO','5 recorridos','Conducí, cambiá de dirección y salí con un toque más largo.']],benefit:'Controlá, pasá y resolvé con más recursos cuando tenés la pelota.',action:'RESOLVER',mark:'✳',reward:'DOMINIO DE PELOTA',className:'skill-technique',coach:'La técnica transforma lo que pensás en una acción. Un buen control o un pase preciso te dan más opciones para resolver bajo presión.',tip:'Antes de recibir, levantá la mirada y pensá tu próxima acción. El control empieza antes de que la pelota llegue.'}
   ];
+
+  function exerciseArt(challengeIndex,exerciseIndex){
+    const art=[
+      '<svg viewBox="0 0 140 64" aria-hidden="true"><g fill="none" stroke="#08c9f4" stroke-width="2"><rect x="24" y="8" width="92" height="48" rx="2"/><path d="M47 8v48M70 8v48M93 8v48M24 24h92M24 40h92" stroke-opacity=".65"/></g><g fill="#b7ff3c"><circle cx="'+(exerciseIndex===0?58:exerciseIndex===1?82:38)+'" cy="'+(exerciseIndex===0?19:exerciseIndex===1?44:31)+'" r="5"/><circle cx="'+(exerciseIndex===0?83:exerciseIndex===1?52:99)+'" cy="'+(exerciseIndex===0?44:exerciseIndex===1?20:36)+'" r="5"/></g><path d="M36 51 Q52 25 70 32 T105 15" fill="none" stroke="#b7ff3c" stroke-width="2" stroke-dasharray="4 4"/></svg>',
+      '<svg viewBox="0 0 140 64" aria-hidden="true"><path d="M18 52H122" stroke="#08c9f4" stroke-width="2"/><path d="M25 46V54M115 46V54" stroke="#08c9f4" stroke-width="2"/><circle cx="32" cy="40" r="5" fill="#b7ff3c"/><path d="M32 45L38 31l8 6 8-11" fill="none" stroke="#b7ff3c" stroke-width="3" stroke-linecap="round"/><path d="M62 32H108m-10-8 10 8-10 8" fill="none" stroke="#08c9f4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M72 14h14v14H72z" fill="none" stroke="#08c9f4" stroke-width="2"/><circle cx="79" cy="21" r="3" fill="#b7ff3c"/></svg>',
+      '<svg viewBox="0 0 140 64" aria-hidden="true"><g fill="#b7ff3c"><path d="M20 12l8 13H12z"/><path d="M55 32l8 13H47z"/><path d="M95 12l8 13H87z"/><path d="M118 42l8 13h-16z"/></g><path d="M24 27Q48 20 59 36T94 21T119 46" fill="none" stroke="#08c9f4" stroke-width="2.5" stroke-dasharray="5 4"/><circle cx="24" cy="27" r="4" fill="#08c9f4"/><path d="M110 42l9 4-1-10" fill="none" stroke="#08c9f4" stroke-width="2.5"/></svg>',
+      '<svg viewBox="0 0 140 64" aria-hidden="true"><path d="M12 48H128" stroke="#08c9f4" stroke-width="2"/><circle cx="42" cy="36" r="12" fill="none" stroke="#b7ff3c" stroke-width="2"/><path d="M42 24v24M30 36h24M33 27l18 18M51 27L33 45" stroke="#b7ff3c" stroke-width="1.5"/><path d="M76 18Q91 25 98 36" fill="none" stroke="#08c9f4" stroke-width="2.5" stroke-dasharray="4 4"/><circle cx="105" cy="43" r="8" fill="none" stroke="#08c9f4" stroke-width="2"/><path d="M99 37l12 12M111 37l-12 12" stroke="#08c9f4" stroke-width="1.5"/></svg>'
+    ];
+    return art[Math.min(3,challengeIndex)];
+  }
   let current=0;
   const stage=root.querySelector('#mission-stage');
   const counter=root.querySelector('#mission-counter');
@@ -852,7 +872,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   }
   function render(){
     const item=challenges[current];
-    stage.innerHTML='<article class="skill mission-card '+item.className+'"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+item.mark+'</span></div><div class="skill-info"><em class="skill-mission">DESAFÍO '+String(current+1).padStart(2,'0')+' · '+item.action+'</em><b>'+item.name+'</b><small>'+item.desc+'</small><div class="mission-benefit"><span>¿QUÉ CAMBIA EN TU JUEGO?</span><p>'+item.benefit+'</p><div class="quick-drills"><div class="drills-title"><b>ENTRENALO YA</b><small>3 EJERCICIOS · '+item.exercises.length+'<\/small><\/div><div class="drill-list">'+item.exercises.map((drill,i)=>'<div class="drill"><span class="drill-num">0'+(i+1)+'</span><div><b>'+drill[0]+'</b><small>'+drill[1]+'</small><p>'+drill[2]+'</p></div></div>').join('')+'<\/div><\/div></div><div class="mission-reward"><i>✦</i><span>RECURSO QUE SUMÁS AL RECORRIDO<br><strong>'+item.reward+'</strong></span></div></article>';
+    stage.innerHTML='<article class="skill mission-card '+item.className+'"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+item.mark+'</span></div><div class="skill-info"><em class="skill-mission">DESAFÍO '+String(current+1).padStart(2,'0')+' · '+item.action+'</em><b>'+item.name+'</b><small>'+item.desc+'</small><div class="mission-benefit"><span>¿QUÉ CAMBIA EN TU JUEGO?</span><p>'+item.benefit+'</p><div class="quick-drills"><div class="drills-title"><b>ENTRENALO YA</b><small>3 EJERCICIOS · '+item.exercises.length+'<\/small><\/div><div class="drill-list">'+item.exercises.map((drill,i)=>'<div class="drill"><span class="drill-num">0'+(i+1)+'</span><div class="drill-content"><div class="drill-art">'+exerciseArt(current,i)+'</div><b>'+drill[0]+'</b><small>'+drill[1]+'</small><p>'+drill[2]+'</p></div></div>').join('')+'<\/div><\/div></div><div class="mission-reward"><i>✦</i><span>RECURSO QUE SUMÁS AL RECORRIDO<br><strong>'+item.reward+'</strong></span></div></article>';
     counter.innerHTML='DESAFÍO '+String(current+1).padStart(2,'0')+' <b>/ 04</b>';
     index.textContent=String(current+1).padStart(2,'0')+' — 04';
     percent.textContent=Math.round(current/challenges.length*100)+'%';
