@@ -3620,8 +3620,12 @@
 
         <nav>
 
+            <a href="training.html">
+                TRAINING SYSTEMS
+            </a>
+
             <a href="#drop">
-                DROP 001
+                APPAREL · DROP 001
             </a>
 
             <a href="#boots">
@@ -5309,10 +5313,6 @@ function showDropMsg(text, isErr) {
 
 async function saveLead(userData) {
 
-    if (selectedProduct.type === "kit") {
-        showDropMsg("La línea FUTSAL ya se puede explorar y seleccionar. Las reservas se habilitarán cuando publiquemos talles, precios y stock de los tres componentes.", true);
-        return false;
-    }
 
 
     const normalizedEmail = String(userData.email || "")
