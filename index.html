@@ -4817,6 +4817,28 @@
             text-shadow: 1px 2px 0 rgba(0,0,0,.85);
             transform: rotate(.25deg);
         }
+        .farmers-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 1px;
+            color: rgba(234,247,252,.88);
+            font-family: "Montserrat", sans-serif;
+            font-size: clamp(.72rem, 1.05vw, .86rem);
+            font-weight: 600;
+            letter-spacing: .01em;
+            text-shadow: none;
+        }
+        .farmers-line strong {
+            color: var(--logo-green);
+            font-size: 1.25rem;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -.04em;
+            text-shadow: 0 0 12px rgba(183,255,60,.18);
+        }
         @media (max-width: 700px) {
             .hero-sub-graffiti {
                 width: 100%;
@@ -4833,6 +4855,8 @@
                 font-size: clamp(.78rem, 3.25vw, .9rem);
                 line-height: 1.45;
             }
+            .farmers-line { gap: 6px; font-size: clamp(.7rem, 3vw, .8rem); }
+            .farmers-line strong { font-size: 1.15rem; }
         }
         @media (max-width: 380px) {
             .hero-sub-graffiti { padding-left: 3px; padding-right: 3px; }
@@ -4953,7 +4977,11 @@
                     <span class="graffiti-tagline">Futsal × Gaming × Streetwear.</span>
 
 
-                    <span class="graffiti-manifesto">Nacida en la cancha. Diseñada para todos los días.</span>
+                    <span class="graffiti-manifesto">La comunidad está creciendo.</span>
+                    <span class="farmers-line">
+                        <strong id="registered-count">31</strong>
+                        <span>personas ya se sumaron a AURA</span>
+                    </span>
 
 
                 </p>
@@ -4981,15 +5009,7 @@
                     </div>
 
                 </div>
-                <div class="social-proof">
-
-                    <span class="farmers-label">
-                        <strong id="registered-count">31</strong>
-                        <span>personas ya se sumaron a AURA</span>
-                    </span>
-                    <span class="farmers-caption">LA COMUNIDAD ESTÁ CRECIENDO</span>
-
-                </div>
+                
                 <div class="hero-buttons">
 
                     <button
