@@ -7478,29 +7478,54 @@ function ensureHUD() {
   return hud;
 }
 
+const GUEST_XP_KEY = 'aura_guest_shopping_xp_v1';
+const GUEST_ENTRY_KEY = 'aura_guest_entry_v1';
+function readGuestXP() {
+  try { const value = JSON.parse(localStorage.getItem(GUEST_XP_KEY) || 'null'); return value && typeof value.xp === 'number' ? value : { xp: 0, claimed: [] }; }
+  catch (_) { return { xp: 0, claimed: [] }; }
+}
+function saveGuestXP(value) { try { localStorage.setItem(GUEST_XP_KEY, JSON.stringify(value)); } catch (_) {} }
 function renderHUD() {
   const hud = ensureHUD();
-  if (!currentUser) {
-    hud.classList.remove('show');
-    return;
-  }
+  const guest = !currentUser;
+  const xp = guest ? readGuestXP().xp : currentXP;
   hud.classList.add('show');
-  const level = getLevel(currentXP);
-  const progress = getLevelProgress(currentXP);
+  hud.querySelector('.aura-hud-label').textContent = guest ? 'SHOPPING XP · VISITA' : 'PLAYER STATUS';
+  const level = getLevel(xp);
+  const progress = getLevelProgress(xp);
   const idx = LEVELS.indexOf(level);
   const next = LEVELS[idx + 1];
-  const remaining = next ? next.min - currentXP : 0;
-
+  const remaining = next ? next.min - xp : 0;
   hud.querySelector('.hud-level-name').textContent = level.name;
-  hud.querySelector('.hud-xp-count').textContent = `${currentXP} XP`;
+  hud.querySelector('.hud-xp-count').textContent = xp + ' XP';
   hud.querySelector('.aura-hud-bar i').style.width = progress + '%';
-  hud.querySelector('.hud-next').textContent = next ? `${remaining} XP` : 'MAX';
+  hud.querySelector('.hud-next').textContent = next ? remaining + ' XP' : 'MAX';
 }
 
+function awardGuestXP(action, originEl = null) {
+  const amount = XP_REWARDS[action];
+  if (!amount) return;
+  const state = readGuestXP();
+  const day = new Date().toLocaleDateString('en-CA');
+  let key = action + ':' + day;
+  if (action === 'selectProduct') {
+    const card = originEl && originEl.closest ? originEl.closest('.product-card') : null;
+    const product = (card && card.dataset.product) || 'producto';
+    key = action + ':' + product + ':' + day;
+  }
+  if (state.claimed.includes(key)) return;
+  state.claimed.push(key);
+  state.xp += amount;
+  saveGuestXP(state);
+  showXPFloat(amount, originEl);
+  playSfx('xp');
+  renderHUD();
+}
 // ---------- AWARD XP ----------
 async function awardXP(action, originEl = null) {
   const amount = XP_REWARDS[action];
-  if (!amount || !currentUser) return;
+  if (!amount) return;
+  if (!currentUser) { awardGuestXP(action, originEl); return; }
   let claimKey = null;
   if (action === 'selectProduct' || action === 'selectSize') {
     const card = originEl && originEl.closest ? originEl.closest('.product-card') : null;
@@ -7703,18 +7728,11 @@ function watchAuth() {
     } catch (err) {
       console.warn('XP load failed:', err);
     }
-    const loginKey = 'aura_daily_login_' + user.uid + '_' + new Date().toISOString().slice(0,10);
-    try {
-      if (!localStorage.getItem(loginKey)) {
-        await awardXP('dailyLogin');
-        localStorage.setItem(loginKey, '1');
-      }
-    } catch (err) { console.warn('Daily login XP skipped:', err); }
     renderHUD();
     showToast({
       icon: '🟢',
       title: 'PERFIL CONECTADO',
-      subtitle: `+50 XP CHECK-IN · TOTAL: ${currentXP} XP`,
+      subtitle: `XP DE CUENTA: ${currentXP}`,
       color: '#08c9f4'
     });
   });
@@ -7727,6 +7745,20 @@ function init() {
   bindUIHooks();
   ensureMissionProgress();
   observeSuccessScreen();
+  // Check-in de visitante: +50 Shopping XP sin iniciar sesión ni vincular reserva.
+  const entryState = readGuestXP();
+  const entryDay = new Date().toLocaleDateString('en-CA');
+  if (localStorage.getItem(GUEST_ENTRY_KEY) !== entryDay) {
+    entryState.xp += 50;
+    entryState.claimed.push('entry:' + entryDay);
+    saveGuestXP(entryState);
+    localStorage.setItem(GUEST_ENTRY_KEY, entryDay);
+    setTimeout(() => {
+      renderHUD();
+      showToast({ icon: '⚡', title: '¡BIENVENIDO A AURA!', subtitle: '+50 SHOPPING XP POR TU VISITA', color: '#b7ff3c' });
+      showXPFloat(50);
+    }, 350);
+  }
   watchAuth();
   initLeaderboard();   // ← NUEVO
   initMissions();      // ← NUEVO (parte 2)
