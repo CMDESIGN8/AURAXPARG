@@ -449,6 +449,60 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 @media(max-width:600px){.aura-coach{grid-template-columns:57px minmax(0,1fr);gap:11px;margin-top:10px;padding:12px 11px}.coach-portrait{width:55px;height:65px}.coach-portrait:before{width:31px;height:31px;top:9px}.coach-portrait:after{width:49px;height:29px}.coach-portrait i{top:21px;width:24px}.coach-content>p{font-size:10px}.coach-meta{font-size:6px}.coach-meta b{font-size:8px}.coach-actions{align-items:flex-start;flex-direction:column;gap:7px}.coach-actions small{text-align:left}.coach-tip{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.aura-coach,.coach-tip{animation:none}}
 
+
+/* KAI COACH — tutorial cinematográfico a pantalla completa */
+.coach-tutorial{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:28px;background:rgba(1,5,12,.9);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);opacity:1;visibility:visible;transition:opacity .35s ease,visibility .35s ease}
+.coach-tutorial[hidden]{display:none}
+.coach-tutorial-inner{width:min(980px,100%);min-height:min(590px,calc(100dvh - 56px));display:grid;grid-template-columns:minmax(250px,.82fr) minmax(0,1.18fr);align-items:center;gap:clamp(22px,5vw,64px);position:relative}
+.coach-tutorial-scene{height:100%;min-height:440px;display:flex;align-items:flex-end;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 68%,rgba(8,201,244,.24),transparent 54%),linear-gradient(180deg,rgba(8,201,244,.035),rgba(3,8,15,.2));border-bottom:1px solid rgba(8,201,244,.4)}
+.coach-tutorial-scene:before{content:"";position:absolute;left:5%;right:5%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 24px var(--cyan)}
+.coach-tutorial-scene:after{content:"KAI";position:absolute;top:10%;left:0;right:0;text-align:center;font:900 clamp(60px,10vw,120px)/1 Montserrat,sans-serif;letter-spacing:-.1em;color:rgba(8,201,244,.07)}
+.coach-figure{position:relative;z-index:1;width:min(100%,330px);height:430px;display:flex;align-items:flex-end;justify-content:center;filter:drop-shadow(0 0 35px rgba(8,201,244,.16));animation:coachEnter .65s cubic-bezier(.2,.8,.2,1) both}
+.coach-figure:before{content:"";position:absolute;bottom:0;width:88%;height:58%;background:linear-gradient(110deg,#081521 0%,#1a3c50 48%,#07111d 100%);clip-path:polygon(27% 0,73% 0,91% 18%,100% 100%,0 100%,9% 18%);border-top:3px solid var(--cyan)}
+.coach-figure:after{content:"";position:absolute;bottom:45%;width:38%;height:45%;border-radius:46% 46% 40% 40%;background:linear-gradient(90deg,#263d4d,#d5e0e7 48%,#314656);box-shadow:0 -18px 0 -5px #101b28,0 0 0 8px rgba(8,201,244,.08)}
+.coach-figure-face{position:absolute;z-index:2;bottom:65%;width:29%;height:8px;background:var(--cyan);box-shadow:0 0 14px var(--cyan);border-radius:8px}
+.coach-figure-tag{position:absolute;z-index:3;bottom:8%;left:50%;transform:translateX(-50%);padding:7px 13px;border:1px solid rgba(183,255,60,.5);background:rgba(3,10,17,.86);color:var(--lime);font:900 8px Montserrat,sans-serif;letter-spacing:.2em;white-space:nowrap}
+.coach-dialog{position:relative;padding:clamp(24px,4vw,42px);border:1px solid rgba(8,201,244,.45);background:linear-gradient(145deg,rgba(17,34,51,.98),rgba(5,12,21,.99) 75%);box-shadow:0 25px 90px rgba(0,0,0,.55),inset 0 1px rgba(255,255,255,.06);text-align:left}
+.coach-dialog:before{content:"";position:absolute;top:-1px;left:28px;width:90px;height:3px;background:var(--lime);box-shadow:0 0 16px rgba(183,255,60,.5)}
+.coach-dialog-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;color:var(--cyan);font-size:9px;font-weight:900;letter-spacing:.18em}
+.coach-dialog-meta span:last-child{color:var(--lime);font-size:8px}
+.coach-dialog h2{font-size:clamp(28px,4vw,43px);line-height:.98;letter-spacing:-.065em;margin-bottom:17px}
+.coach-dialog p{font-size:clamp(13px,1.5vw,15px);line-height:1.75;color:#d3dee8;max-width:540px}
+.coach-dialog strong{color:var(--lime)}
+.coach-dialog-progress{display:flex;gap:6px;margin-top:28px}
+.coach-dialog-progress i{height:3px;flex:1;background:rgba(255,255,255,.13)}
+.coach-dialog-progress i.is-active{background:var(--cyan);box-shadow:0 0 10px rgba(8,201,244,.5)}
+.coach-dialog-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:25px}
+.coach-dialog-actions button{min-height:46px;padding:0 18px;border:1px solid rgba(183,255,60,.45);background:var(--lime);color:#071019;font:900 9px Montserrat,sans-serif;letter-spacing:.12em;cursor:pointer}
+.coach-dialog-actions button:hover{background:#fff}
+.coach-dialog-actions .coach-skip{border-color:rgba(255,255,255,.2);background:transparent;color:#aab8c7}
+.coach-dialog-actions .coach-skip:hover{border-color:var(--cyan);color:var(--cyan)}
+.coach-launcher{position:fixed;z-index:80;right:20px;bottom:20px;display:flex;align-items:center;gap:10px;padding:10px 15px;border:1px solid rgba(8,201,244,.55);background:rgba(5,14,24,.94);color:var(--white);font:900 9px Montserrat,sans-serif;letter-spacing:.1em;box-shadow:0 8px 30px rgba(0,0,0,.4);cursor:pointer}
+.coach-launcher[hidden]{display:none}
+.coach-launcher b{display:grid;place-items:center;width:27px;height:27px;background:var(--cyan);color:#061019;font-size:12px}
+@keyframes coachEnter{from{opacity:0;transform:translateY(28px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:700px){
+ .coach-tutorial{padding:14px;overflow-y:auto;place-items:center}
+ .coach-tutorial-inner{min-height:0;grid-template-columns:1fr;gap:0;width:min(520px,100%);padding:10px 0}
+ .coach-tutorial-scene{min-height:0;height:190px;border:0;background:radial-gradient(ellipse at 50% 85%,rgba(8,201,244,.22),transparent 60%)}
+ .coach-tutorial-scene:after{top:0;font-size:68px}
+ .coach-figure{height:190px;width:190px}
+ .coach-figure:before{height:57%;width:88%}
+ .coach-figure:after{height:45%;width:38%;bottom:42%}
+ .coach-figure-face{bottom:64%;height:5px}
+ .coach-figure-tag{bottom:4%;font-size:7px}
+ .coach-dialog{padding:22px 19px}
+ .coach-dialog-meta{margin-bottom:14px;font-size:8px}
+ .coach-dialog h2{font-size:29px;margin-bottom:12px}
+ .coach-dialog p{font-size:13px;line-height:1.6}
+ .coach-dialog-progress{margin-top:19px}
+ .coach-dialog-actions{margin-top:18px}
+ .coach-dialog-actions button{min-height:43px;padding:0 13px;font-size:8px}
+ .coach-launcher{right:12px;bottom:12px}
+}
+@media(max-width:380px){.coach-tutorial{padding:8px}.coach-tutorial-scene{height:155px}.coach-figure{height:160px;width:160px}.coach-dialog{padding:18px 15px}.coach-dialog h2{font-size:25px}.coach-dialog-actions{gap:7px}.coach-dialog-actions button{padding:0 9px}}
+@media(prefers-reduced-motion:reduce){.coach-figure{animation:none}.coach-tutorial{transition:none}}
+
 </style>
 </head>
 <body>
@@ -523,15 +577,6 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   </div>
 </div>
 
-<div class="aura-coach" id="aura-coach" aria-label="Guía del entrenador AURA">
-  <div class="coach-portrait" aria-hidden="true"><span>K</span><i></i></div>
-  <div class="coach-content">
-    <div class="coach-meta"><span><b>KAI</b> <i>//</i> COACH AURA</span><span class="coach-online"><i></i> EN LÍNEA</span></div>
-    <p id="coach-message" aria-live="polite">Bienvenido al entrenamiento. Vamos a descubrir qué recursos podés desarrollar y cómo llevarlos a la cancha. Un desafío a la vez.</p>
-    <div class="coach-tip" id="coach-tip" hidden></div>
-    <div class="coach-actions"><button type="button" id="coach-tip-toggle" aria-expanded="false" aria-controls="coach-tip">DAME UNA PISTA <span>＋</span></button><small id="coach-context">GUÍA DE INICIO · AURA TRAINING</small></div>
-  </div>
-</div>
 <div class="hero-actions">
 <a class="btn btn-main" href="#sistemas">ELEGIR MI PRIMER DESAFÍO</a>
 <a class="btn btn-ghost" href="#como-funciona">CÓMO SE JUEGA</a>
@@ -732,6 +777,61 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     render();
   });
   render();
+})();
+</script>
+
+<div class="coach-tutorial" id="coach-tutorial" role="dialog" aria-modal="true" aria-labelledby="coach-tutorial-title">
+  <div class="coach-tutorial-inner">
+    <div class="coach-tutorial-scene" aria-hidden="true">
+      <div class="coach-figure"><span class="coach-figure-face"></span><span class="coach-figure-tag">COACH AURA · KAI</span></div>
+    </div>
+    <section class="coach-dialog">
+      <div class="coach-dialog-meta"><span>KAI <b>//</b> TU ENTRENADOR</span><span id="coach-step-count">INICIO · 01/06</span></div>
+      <h2 id="coach-tutorial-title">BIENVENIDO A AURA</h2>
+      <p id="coach-tutorial-copy">Vamos a recorrer tu entrenamiento juntos. Te voy a explicar qué significa cada etapa y cómo puede ayudarte a jugar mejor.</p>
+      <div class="coach-dialog-progress" id="coach-dialog-progress" aria-hidden="true"></div>
+      <div class="coach-dialog-actions">
+        <button type="button" class="coach-skip" id="coach-tutorial-skip">SALTAR GUÍA</button>
+        <button type="button" id="coach-tutorial-next">VAMOS <span>↗</span></button>
+      </div>
+    </section>
+  </div>
+</div>
+<button type="button" class="coach-launcher" id="coach-launcher" hidden><b>K</b> HABLAR CON KAI</button>
+
+<script>
+(function(){
+ const modal=document.getElementById('coach-tutorial');
+ const launcher=document.getElementById('coach-launcher');
+ if(!modal||!launcher)return;
+ const title=document.getElementById('coach-tutorial-title');
+ const copy=document.getElementById('coach-tutorial-copy');
+ const count=document.getElementById('coach-step-count');
+ const progress=document.getElementById('coach-dialog-progress');
+ const next=document.getElementById('coach-tutorial-next');
+ const skip=document.getElementById('coach-tutorial-skip');
+ const steps=[
+  ['BIENVENIDO A AURA','Soy Kai, tu entrenador. Voy a acompañarte para que entiendas qué podés trabajar y cómo llevarlo a la cancha. No hace falta mejorar todo de golpe.'],
+  ['ESTE ES TU RECORRIDO','Este panel reúne cuatro desafíos. Cada uno representa una habilidad importante del futsal. Vas a poder ver en qué etapa estás y qué viene después.'],
+  ['01 · COORDINACIÓN','Empezamos por el control del cuerpo y los apoyos. Esto te ayuda a conducir, recibir y moverte con más precisión. Mirá el primer desafío destacado en pantalla.'],
+  ['02 · VELOCIDAD','Después trabajamos la reacción y los primeros metros. La idea es llegar antes, atacar espacios y ganar ventaja cuando arranca una jugada.'],
+  ['03 · AGILIDAD','Frenar, girar y volver a arrancar también se entrena. Esta habilidad te ayuda a cambiar de dirección y superar una marca sin perder el equilibrio.'],
+  ['04 · TÉCNICA','Por último, el dominio de pelota: controlar, pasar y resolver con más recursos. Cuando termines de explorar, vas a poder elegir un sistema para entrenar estas capacidades.']
+ ];
+ let step=0;
+ function render(){
+  const item=steps[step];title.textContent=item[0];copy.textContent=item[1];
+  count.textContent=(step===0?'INICIO': 'RECORRIDO')+' · '+String(step+1).padStart(2,'0')+'/'+String(steps.length).padStart(2,'0');
+  progress.innerHTML=steps.map((_,i)=>'<i class="'+(i<=step?'is-active':'')+'"></i>').join('');
+  next.innerHTML=step===steps.length-1?'EMPEZAR A EXPLORAR <span>↗</span>':'CONTINUAR <span>↗</span>';
+  skip.textContent=step===steps.length-1?'CERRAR':'SALTAR GUÍA';
+ }
+ function close(){modal.hidden=true;launcher.hidden=false;document.body.classList.remove('coach-tutorial-open')}
+ function open(){step=0;render();modal.hidden=false;launcher.hidden=true;document.body.classList.add('coach-tutorial-open');next.focus()}
+ next.addEventListener('click',function(){if(step<steps.length-1){step++;render()}else close()});
+ skip.addEventListener('click',close);launcher.addEventListener('click',open);
+ document.addEventListener('keydown',function(e){if(modal.hidden)return;if(e.key==='Escape')close();if(e.key==='Enter'&&e.target===modal)next.click()});
+ render();document.body.classList.add('coach-tutorial-open');
 })();
 </script>
 </body>
