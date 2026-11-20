@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AURA XP — Futsal × Gaming × Streetwear | Drop 001</title>
+    <title>AURA XP — Futsal × Gaming × Streetwear</title>
 
     <meta
         name="description"
-        content="AURA XP: indumentaria Futsal × Gaming × Streetwear. Farmeá estilo, subí de nivel. Descubrí el Drop 001."
+        content="AURA XP: indumentaria Futsal × Gaming × Streetwear. Farmeá estilo, subí de nivel. Conocé la colección."
     >
 
     <meta name="theme-color" content="#07111f">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="AURA XP — Futsal × Gaming × Streetwear | Drop 001">
+    <meta property="og:title" content="AURA XP — Futsal × Gaming × Streetwear">
     <meta property="og:description" content="Futsal × Gaming × Streetwear. Farmeá estilo. Subí de nivel.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/og-image.jpg">
@@ -513,19 +513,36 @@
         }
 
         .btn-primary {
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--logo-magenta),
-                    var(--logo-cyan)
-                );
+            background: linear-gradient(135deg, #08c9f4, #42dcff);
+            color: #041018;
+            border: 1px solid rgba(8,201,244,.9);
+            box-shadow: 0 8px 26px rgba(8,201,244,.2);
+        }
 
-            color: #fff;
+        .hero-collection-cta {
+            min-width: 190px;
+            min-height: 56px;
+            padding: 0 34px;
+            font-size: .82rem;
+            letter-spacing: 1.15px;
+        }
 
-            border: none;
+        .hero-collection-cta::after {
+            content: "↗";
+            margin-left: 12px;
+            font-size: 1rem;
+            transition: transform .25s ease;
+        }
 
-            box-shadow:
-                0 0 25px rgba(8,201,244,.25);
+        .hero-collection-cta:hover {
+            background: var(--logo-green);
+            border-color: var(--logo-green);
+            color: #071009;
+            box-shadow: 0 10px 30px rgba(183,255,60,.22);
+        }
+
+        .hero-collection-cta:hover::after {
+            transform: translate(3px, -2px);
         }
 
         .btn-primary:hover {
@@ -4885,7 +4902,7 @@
     ========================================================= -->
 
     <div class="topbar">
-        FUTSAL × GAMING × STREETWEAR · DROP 001
+        FUTSAL × GAMING × STREETWEAR · AURA
     </div>
 
 
@@ -4911,7 +4928,7 @@
             </a>
 
             <a href="#drop">
-                APPAREL · DROP 001
+                INDUMENTARIA
             </a>
 
             <a href="#boots">
@@ -4963,7 +4980,7 @@
             <div class="hero-content">
 
                 <div class="eyebrow">
-                    FUTSAL CULTURE · DROP 001
+                    FUTSAL CULTURE · AURA
                 </div>
 
                 <h1>
@@ -5013,14 +5030,14 @@
                 <div class="hero-buttons">
 
                     <button
-                        class="btn-secondary"
+                        class="btn-primary hero-collection-cta"
                         onclick="scrollToSection('drop')"
                         type="button"
                     >
-                        VER DROP 001
+                        VER COLECCIÓN
                     </button>
 
-                    <a class="btn-primary" href="training.html">DESCUBRÍ TRAINING SYSTEMS →</a>
+                    <a class="btn-secondary" href="training.html">DESCUBRÍ TRAINING SYSTEMS →</a>
 
                 </div>
 
@@ -5042,7 +5059,7 @@
                 <div class="section-header">
 
                     <div class="section-kicker">
-                        DROP 001 · FUTSAL × GAMING × STREETWEAR
+                        COLECCIÓN AURA · FUTSAL × GAMING × STREETWEAR
                     </div>
 
                     <h2 class="section-title">
