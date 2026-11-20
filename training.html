@@ -690,6 +690,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   const preview=root.querySelector('#mission-preview');
   const next=root.querySelector('#mission-next');
   const controls=root.querySelector('.mission-controls');
+  function callCoach(index,finished=false){window.dispatchEvent(new CustomEvent('aura:coach',{detail:{index:index,finished:finished}}));}
   const finished=root.querySelector('#mission-finished');
   const journey=root.querySelector('#journey-nodes');
   const journeyStatus=root.querySelector('#journey-status');
@@ -737,7 +738,11 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
         percent.textContent='100%';
         fill.style.width='100%';
         renderJourney();
-      }else render();
+        callCoach(current-1,true);
+      }else{
+        render();
+        callCoach(current);
+      }
       next.disabled=false;
     },300);
   });
@@ -750,10 +755,11 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     render();
   });
   render();
+  window.setTimeout(function(){callCoach(current);},350);
 })();
 </script>
 
-<div class="coach-tutorial" id="coach-tutorial" role="dialog" aria-modal="true" aria-labelledby="coach-tutorial-title">
+<div class="coach-tutorial" id="coach-tutorial" hidden role="dialog" aria-modal="true" aria-labelledby="coach-tutorial-title">
   <div class="coach-tutorial-inner">
     <div class="coach-tutorial-scene" aria-hidden="true">
       <div class="coach-figure"><span class="coach-figure-face"></span><span class="coach-figure-tag">COACH AURA · KAI</span></div>
@@ -783,28 +789,35 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  const progress=document.getElementById('coach-dialog-progress');
  const next=document.getElementById('coach-tutorial-next');
  const skip=document.getElementById('coach-tutorial-skip');
- const steps=[
-  ['BIENVENIDO A AURA','Soy Kai, tu entrenador. Voy a acompañarte para que entiendas qué podés trabajar y cómo llevarlo a la cancha. No hace falta mejorar todo de golpe.'],
-  ['ESTE ES TU RECORRIDO','Este panel reúne cuatro desafíos. Cada uno representa una habilidad importante del futsal. Vas a poder ver en qué etapa estás y qué viene después.'],
-  ['01 · COORDINACIÓN','Empezamos por el control del cuerpo y los apoyos. Esto te ayuda a conducir, recibir y moverte con más precisión. Mirá el primer desafío destacado en pantalla.'],
-  ['02 · VELOCIDAD','Después trabajamos la reacción y los primeros metros. La idea es llegar antes, atacar espacios y ganar ventaja cuando arranca una jugada.'],
-  ['03 · AGILIDAD','Frenar, girar y volver a arrancar también se entrena. Esta habilidad te ayuda a cambiar de dirección y superar una marca sin perder el equilibrio.'],
-  ['04 · TÉCNICA','Por último, el dominio de pelota: controlar, pasar y resolver con más recursos. Cuando termines de explorar, vas a poder elegir un sistema para entrenar estas capacidades.']
+ const names=['COORDINACIÓN','VELOCIDAD','AGILIDAD','TÉCNICA'];
+ const descriptions=[
+  'Vamos a trabajar el control de tu cuerpo y tus apoyos. Esto te ayuda a conducir y recibir con más precisión. Mirá el desafío destacado: ese es tu primer objetivo.',
+  'Ahora toca la velocidad. En futsal, reaccionar y ganar los primeros metros puede darte ventaja para llegar antes y atacar los espacios.',
+  'Es momento de trabajar la agilidad: frenar, girar y volver a arrancar sin perder el equilibrio. Es una herramienta clave para superar marcas.',
+  'Llegamos a la técnica. Mejorá tu dominio de pelota para controlar, pasar y resolver con más recursos cuando la jugada te exige decidir rápido.'
  ];
- let step=0;
- function render(){
-  const item=steps[step];title.textContent=item[0];copy.textContent=item[1];
-  count.textContent=(step===0?'INICIO': 'RECORRIDO')+' · '+String(step+1).padStart(2,'0')+'/'+String(steps.length).padStart(2,'0');
-  progress.innerHTML=steps.map((_,i)=>'<i class="'+(i<=step?'is-active':'')+'"></i>').join('');
-  next.innerHTML=step===steps.length-1?'EMPEZAR A EXPLORAR <span>↗</span>':'CONTINUAR <span>↗</span>';
-  skip.textContent=step===steps.length-1?'CERRAR':'SALTAR GUÍA';
- }
+ let activeIndex=0;let isFinished=false;
  function close(){modal.hidden=true;launcher.hidden=false;document.body.classList.remove('coach-tutorial-open')}
- function open(){step=0;render();modal.hidden=false;launcher.hidden=true;document.body.classList.add('coach-tutorial-open');next.focus()}
- next.addEventListener('click',function(){if(step<steps.length-1){step++;render()}else close()});
- skip.addEventListener('click',close);launcher.addEventListener('click',open);
- document.addEventListener('keydown',function(e){if(modal.hidden)return;if(e.key==='Escape')close();if(e.key==='Enter'&&e.target===modal)next.click()});
- render();document.body.classList.add('coach-tutorial-open');
+ function show(index,finished){
+  activeIndex=index;isFinished=finished;
+  if(finished){
+   title.textContent='RECORRIDO COMPLETADO';
+   copy.textContent='¡Buen trabajo! Ya recorriste las cuatro habilidades. Ahora podés elegir un sistema AURA y convertir estos objetivos en un plan de entrenamiento.';
+   count.textContent='ETAPA FINAL · 04/04';progress.innerHTML='<i class="is-active"></i>'.repeat(4);
+   next.innerHTML='ELEGIR MI SISTEMA <span>↗</span>';skip.textContent='CERRAR';
+  }else{
+   title.textContent='DESAFÍO '+String(index+1).padStart(2,'0')+' · '+names[index];
+   copy.textContent=descriptions[index];count.textContent='COACH EN CANCHA · '+String(index+1).padStart(2,'0')+'/04';
+   progress.innerHTML=names.map((_,i)=>'<i class="'+(i<=index?'is-active':'')+'"></i>').join('');
+   next.innerHTML='ENTENDIDO, VAMOS <span>↗</span>';skip.textContent='AHORA NO';
+  }
+  modal.hidden=false;launcher.hidden=true;document.body.classList.add('coach-tutorial-open');
+ }
+ function reopen(){show(activeIndex,isFinished)}
+ next.addEventListener('click',function(){if(isFinished){close();const target=document.getElementById('sistemas');if(target)target.scrollIntoView({behavior:'smooth'});}else close()});
+ skip.addEventListener('click',close);launcher.addEventListener('click',reopen);
+ window.addEventListener('aura:coach',function(e){const d=e.detail||{};show(d.index||0,!!d.finished)});
+ document.addEventListener('keydown',function(e){if(!modal.hidden&&e.key==='Escape')close()});
 })();
 </script>
 </body>
