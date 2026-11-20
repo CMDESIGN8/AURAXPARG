@@ -4449,6 +4449,49 @@
 
 </style>
 
+<style id="aura-xp-epic-polish">
+/* AURA XP — EPIC CAREER FEEDBACK */
+:root{--aura-cyan:#08c9f4;--aura-lime:#b7ff3c;--aura-ice:#eaf8ff}
+.aura-hud{
+  position:fixed;z-index:1200;right:22px;top:124px;width:min(270px,calc(100vw - 32px));
+  padding:16px 18px 14px;color:var(--aura-ice);
+  background:linear-gradient(135deg,rgba(4,18,31,.94),rgba(3,9,18,.88));
+  border:1px solid rgba(8,201,244,.42);
+  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);
+  box-shadow:0 14px 50px rgba(0,0,0,.38),inset 0 0 24px rgba(8,201,244,.06);
+  backdrop-filter:blur(18px);opacity:0;transform:translateX(18px);pointer-events:none;
+  transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1)
+}
+.aura-hud.show{opacity:1;transform:translateX(0)}
+.aura-hud:before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:linear-gradient(var(--aura-lime),var(--aura-cyan));box-shadow:0 0 18px var(--aura-cyan)}
+.aura-hud-label{font-size:.56rem;font-weight:900;letter-spacing:.2em;color:var(--aura-cyan);margin-bottom:9px}
+.aura-hud-level{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.hud-level-name{font-size:1.08rem;letter-spacing:.08em;color:#fff;text-shadow:0 0 18px rgba(8,201,244,.35)}
+.hud-xp-count{font-size:.72rem;font-weight:900;color:var(--aura-lime);font-variant-numeric:tabular-nums}
+.aura-hud-bar{height:5px;margin:12px 0 8px;background:rgba(255,255,255,.1);overflow:hidden}
+.aura-hud-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--aura-cyan),var(--aura-lime));box-shadow:0 0 14px rgba(8,201,244,.65);transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.aura-hud-xp{font-size:.59rem;color:rgba(234,248,255,.62);letter-spacing:.08em}
+.aura-hud-xp b{float:right;color:#fff}
+#toast-container{position:fixed;z-index:1500;top:118px;left:50%;transform:translateX(-50%);display:grid;gap:10px;width:min(390px,calc(100vw - 28px));pointer-events:none}
+.achievement-toast{display:flex;align-items:center;gap:14px;padding:15px 18px;background:linear-gradient(115deg,rgba(5,20,34,.97),rgba(5,10,20,.96));border:1px solid var(--toast-color);box-shadow:0 12px 40px rgba(0,0,0,.45),0 0 28px color-mix(in srgb,var(--toast-color) 20%,transparent);opacity:0;transform:translateY(-12px) scale(.97);transition:opacity .3s ease,transform .4s cubic-bezier(.2,.8,.2,1)}
+.achievement-toast.show{opacity:1;transform:translateY(0) scale(1)}
+.toast-icon{font-size:1.65rem;filter:drop-shadow(0 0 10px var(--toast-color))}
+.achievement-toast strong{display:block;font-size:.72rem;letter-spacing:.13em;color:#fff}
+.achievement-toast small{display:block;margin-top:4px;font-size:.65rem;color:rgba(234,248,255,.65)}
+#xp-float-container{position:fixed;inset:0;z-index:1600;pointer-events:none}
+.xp-float{position:fixed;color:var(--aura-lime);font-size:1.2rem;font-weight:1000;letter-spacing:.08em;text-shadow:0 0 12px rgba(183,255,60,.9),0 0 30px rgba(8,201,244,.65);animation:auraXpBurst 1.25s cubic-bezier(.15,.75,.25,1) forwards}
+@keyframes auraXpBurst{0%{opacity:0;translate:0 12px;scale:.65}15%{opacity:1;scale:1.18}35%{scale:1}100%{opacity:0;translate:0 -82px;scale:.92}}
+.ms-card{background:linear-gradient(145deg,rgba(10,35,55,.96),rgba(4,12,23,.98));border-color:rgba(8,201,244,.18);box-shadow:inset 0 1px rgba(255,255,255,.04),0 12px 34px rgba(0,0,0,.16)}
+.ms-card.done{box-shadow:inset 0 0 30px rgba(183,255,60,.06),0 0 24px rgba(183,255,60,.08)}
+.ms-claim-btn{background:linear-gradient(110deg,#caff63,#8fe92b);box-shadow:0 0 22px rgba(183,255,60,.18)}
+.reservation-code{font-weight:1000;letter-spacing:.14em;color:var(--aura-cyan);text-shadow:0 0 18px rgba(8,201,244,.4)}
+.reservation-qr{display:block;width:148px;height:148px;object-fit:contain;margin:18px auto;padding:8px;background:#050b14;border:1px solid rgba(8,201,244,.38);box-shadow:0 0 30px rgba(8,201,244,.12)}
+.share-btn{border:1px solid var(--aura-cyan);background:linear-gradient(110deg,rgba(8,201,244,.18),rgba(8,201,244,.04));color:#eaf8ff;padding:13px 18px;font:900 .7rem Montserrat,sans-serif;letter-spacing:.12em;cursor:pointer;transition:.25s}
+.share-btn:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(8,201,244,.25)}
+@media(max-width:700px){.aura-hud{top:auto;bottom:14px;right:12px;width:min(245px,calc(100vw - 24px));padding:12px 14px}.aura-hud-label{margin-bottom:5px}#toast-container{top:116px}.achievement-toast{padding:12px 14px}}
+@media(prefers-reduced-motion:reduce){.aura-hud,.achievement-toast,.aura-hud-bar i,.share-btn{transition:none}.xp-float{animation-duration:.01ms}}
+</style>
+
 </head>
 
 
@@ -7577,7 +7620,7 @@ function enhanceSuccessScreen() {
   if (!success || success.dataset.enhanced) return;
   success.dataset.enhanced = '1';
 
-  const code = success.dataset.reservationId || success.querySelector('[data-reservation-id]')?.dataset.reservationId || 'AURA-001-PENDING';
+  const code = success.dataset.reservationId || success.querySelector('[data-reservation-id]')?.dataset.reservationId || 'DROP-001';
 
   const codeEl = document.createElement('div');
   codeEl.className = 'reservation-code';
@@ -7586,7 +7629,7 @@ function enhanceSuccessScreen() {
 
   const qr = document.createElement('img');
   qr.className = 'reservation-qr';
-  qr.alt = 'QR de reserva';
+  qr.alt = 'Acceso al Drop AURA XP';
   QRCode.toDataURL(`${location.origin}${location.pathname}#access`, {
     width: 300,
     margin: 1,
