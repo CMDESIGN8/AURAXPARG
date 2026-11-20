@@ -825,6 +825,79 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   #aura-player-missions .drill-art{height:42px !important}
 }
 
+
+/* MOBILE EXERCISE ROWS — ilustración a la izquierda, explicación a la derecha */
+@media(max-width:600px){
+  #aura-player-missions .drill{
+    position:relative !important;
+    display:grid !important;
+    grid-template-columns:minmax(82px,30%) minmax(0,1fr) !important;
+    align-items:center !important;
+    column-gap:11px !important;
+    padding:9px 10px !important;
+    min-height:82px !important;
+  }
+  #aura-player-missions .drill-content{display:contents !important}
+  #aura-player-missions .drill-art{
+    grid-column:1 !important;
+    grid-row:1 / 4 !important;
+    width:100% !important;
+    height:62px !important;
+    min-height:0 !important;
+    margin:0 !important;
+    display:grid !important;
+    place-items:center !important;
+  }
+  #aura-player-missions .drill-art svg{
+    display:block !important;
+    width:100% !important;
+    max-width:112px !important;
+    height:100% !important;
+  }
+  #aura-player-missions .drill-content > b{
+    grid-column:2 !important;
+    grid-row:1 !important;
+    align-self:end !important;
+    margin:0 !important;
+    font-size:8px !important;
+    line-height:1.25 !important;
+    text-align:left !important;
+  }
+  #aura-player-missions .drill-content > small{
+    grid-column:2 !important;
+    grid-row:2 !important;
+    margin:2px 0 0 !important;
+    font-size:7px !important;
+    text-align:left !important;
+  }
+  #aura-player-missions .drill-content > p{
+    grid-column:2 !important;
+    grid-row:3 !important;
+    margin:3px 0 0 !important;
+    font-size:7px !important;
+    line-height:1.35 !important;
+    text-align:left !important;
+  }
+  #aura-player-missions .drill-num{
+    position:absolute !important;
+    top:5px !important;
+    left:5px !important;
+    z-index:2 !important;
+    margin:0 !important;
+  }
+}
+@media(max-width:360px){
+  #aura-player-missions .drill{
+    grid-template-columns:minmax(72px,29%) minmax(0,1fr) !important;
+    column-gap:8px !important;
+    min-height:76px !important;
+    padding:8px !important;
+  }
+  #aura-player-missions .drill-art{height:56px !important}
+  #aura-player-missions .drill-content > b{font-size:7px !important}
+  #aura-player-missions .drill-content > p{font-size:6.5px !important}
+}
+
 </style>
 </head>
 <body>
