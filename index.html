@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Permanent+Marker&family=Rubik+Spray+Paint&display=swap"
         rel="stylesheet"
     >
 
@@ -4732,6 +4732,81 @@
   letter-spacing: .08em;
 }
 
+
+        /* AURA XP — GRAFFITI STATEMENT */
+        .hero-sub-graffiti {
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 13px;
+            width: fit-content;
+            max-width: min(760px, 100%);
+            margin: 30px auto 0;
+            padding: 12px 22px 15px;
+            line-height: 1.25;
+        }
+        .hero-sub-graffiti::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 7px 2px 9px;
+            transform: rotate(-1.6deg);
+            background:
+                radial-gradient(circle at 8% 18%, rgba(8,201,244,.75) 0 2px, transparent 3px),
+                radial-gradient(circle at 92% 78%, rgba(183,255,60,.8) 0 2px, transparent 3px),
+                linear-gradient(175deg, rgba(8,201,244,.12), rgba(8,201,244,.025) 55%, transparent);
+            border-left: 3px solid var(--logo-cyan);
+            border-right: 3px solid var(--logo-green);
+            clip-path: polygon(2% 4%, 97% 0, 100% 83%, 4% 100%, 0 25%);
+        }
+        .graffiti-tagline {
+            position: relative;
+            display: block;
+            color: #f5f4ef;
+            font-family: "Rubik Spray Paint", "Montserrat", sans-serif;
+            font-size: clamp(1.15rem, 3.1vw, 2.05rem);
+            line-height: 1.18;
+            letter-spacing: .015em;
+            text-transform: uppercase;
+            text-shadow: 2px 3px 0 rgba(0,0,0,.9), 4px 5px 0 rgba(8,201,244,.48), -2px -1px 0 rgba(183,255,60,.25);
+            transform: rotate(-1.2deg);
+        }
+        .graffiti-tagline::after {
+            content: "";
+            position: absolute;
+            left: 4%;
+            right: 1%;
+            bottom: -7px;
+            height: 5px;
+            background: var(--logo-cyan);
+            transform: rotate(-1.5deg);
+            clip-path: polygon(0 25%, 100% 0, 96% 70%, 8% 100%);
+            box-shadow: 0 0 15px rgba(8,201,244,.35);
+        }
+        .graffiti-manifesto {
+            display: block;
+            max-width: 100%;
+            color: var(--logo-green);
+            font-family: "Permanent Marker", "Montserrat", sans-serif;
+            font-size: clamp(1rem, 2.2vw, 1.45rem);
+            line-height: 1.35;
+            letter-spacing: .01em;
+            text-shadow: 2px 3px 0 rgba(0,0,0,.9), 0 0 18px rgba(183,255,60,.18);
+            transform: rotate(.7deg);
+        }
+        @media (max-width: 700px) {
+            .hero-sub-graffiti { width: 100%; gap: 12px; margin-top: 25px; padding: 12px 10px 15px; }
+            .graffiti-tagline { font-size: clamp(1.08rem, 5vw, 1.55rem); line-height: 1.25; }
+            .graffiti-manifesto { max-width: 330px; font-size: clamp(.94rem, 4vw, 1.12rem); line-height: 1.45; }
+        }
+        @media (max-width: 380px) {
+            .hero-sub-graffiti { padding-left: 5px; padding-right: 5px; }
+            .graffiti-tagline { font-size: 1rem; }
+            .graffiti-manifesto { font-size: .9rem; }
+        }
+
 </style>
 
 </head>
@@ -4840,9 +4915,15 @@
                     <span class="accent">SUBÍ DE NIVEL.</span>
                 </h1>
 
-                <p class="hero-sub">
-                    Futsal × Gaming × Streetwear.<br>
-                    Nacida en la cancha. Diseñada para todos los días.
+                <p class="hero-sub hero-sub-graffiti">
+
+
+                    <span class="graffiti-tagline">Futsal × Gaming × Streetwear.</span>
+
+
+                    <span class="graffiti-manifesto">Nacida en la cancha. Diseñada para todos los días.</span>
+
+
                 </p>
 
                 <div class="countdown" id="countdown">
