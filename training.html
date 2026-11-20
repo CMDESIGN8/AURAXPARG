@@ -620,6 +620,30 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 @keyframes levelPulse{0%,100%{box-shadow:0 0 0 rgba(8,201,244,0)}50%{box-shadow:0 0 17px rgba(8,201,244,.45)}}
 @media(prefers-reduced-motion:reduce){.hero-hud .journey-node.is-current i{animation:none}}
 
+
+/* EXERCISES INLINE — quick game instructions */
+.hero-hud .mission-card{min-height:0}
+.hero-hud .mission-benefit{max-width:none}
+.hero-hud .quick-drills{margin-top:12px}
+.hero-hud .drills-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.hero-hud .drills-title b{color:#fff;font:900 8px Montserrat,sans-serif;letter-spacing:.15em}
+.hero-hud .drills-title small{color:var(--skill-accent);font:800 6px Montserrat,sans-serif;letter-spacing:.1em}
+.hero-hud .drill-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.hero-hud .drill{display:flex;gap:8px;padding:9px 8px;background:rgba(3,10,17,.55);border:1px solid rgba(255,255,255,.09);border-top:1px solid color-mix(in srgb,var(--skill-accent) 40%,transparent)}
+.hero-hud .drill-num{flex:0 0 auto;color:var(--skill-accent);font:900 13px Montserrat,sans-serif}
+.hero-hud .drill>div{min-width:0}
+.hero-hud .drill b{display:block;color:#f5f8fb;font:900 7px Montserrat,sans-serif;letter-spacing:.06em}
+.hero-hud .drill small{display:block;color:var(--skill-accent);font:800 6px Montserrat,sans-serif;margin:3px 0}
+.hero-hud .drill p{color:#aebfce;font-size:8px;line-height:1.45}
+@media(max-width:600px){
+.hero-hud .mission-card{padding:14px 12px}
+.hero-hud .mission-benefit{padding:9px}
+.hero-hud .drill-list{grid-template-columns:1fr;gap:5px}
+.hero-hud .drill{padding:8px;gap:8px}
+.hero-hud .drill b{font-size:7px}
+.hero-hud .drill p{font-size:9px;line-height:1.45}
+.hero-hud .drill small{font-size:6px}
+}
 </style>
 </head>
 <body>
@@ -793,10 +817,14 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   const root=document.getElementById('aura-player-missions');
   if(!root)return;
   const challenges=[
-    {name:'COORDINACIÓN',desc:'Dominá tu cuerpo y cada apoyo.',benefit:'Conducí y recibí con más precisión. Ganá control sobre tus movimientos y la pelota.',action:'CONTROLAR',mark:'◎',reward:'CONTROL CORPORAL',className:'skill-coordination',coach:'La coordinación conecta tus pies, tu cuerpo y la pelota. Es la base para moverte con control cuando el juego se acelera.',tip:'En la cancha, buscá que cada apoyo tenga intención. Primero calidad de movimiento; después, velocidad.'},
-    {name:'VELOCIDAD',desc:'Acelerá y reaccioná más rápido.',benefit:'Llegá antes a la pelota, atacá los espacios y ganá ventaja en los primeros metros.',action:'ACELERAR',mark:'↗',reward:'PRIMEROS METROS',className:'skill-speed',coach:'En futsal, muchas ventajas aparecen en los primeros metros. No se trata solo de correr: también importa cuándo reaccionás y cómo arrancás.',tip:'Prestá atención a tu primera reacción y a la postura de salida. Acelerar con control te ayuda a llegar mejor a cada pelota.'},
-    {name:'AGILIDAD',desc:'Frená, girá y cambiá de dirección.',benefit:'Esquivá marcas, cambiá el ritmo y volvé a arrancar sin perder el equilibrio.',action:'DESEQUILIBRAR',mark:'↔',reward:'CAMBIO DE DIRECCIÓN',className:'skill-agility',coach:'La agilidad te permite cambiar de plan en un instante. Frenar, girar y volver a arrancar puede darte el espacio que necesitás para superar una marca.',tip:'No hagas todos los cambios a máxima velocidad. Primero dominá la frenada y el equilibrio; después sumá explosividad.'},
-    {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',benefit:'Controlá, pasá y resolvé con más recursos cuando tenés la pelota.',action:'RESOLVER',mark:'✳',reward:'DOMINIO DE PELOTA',className:'skill-technique',coach:'La técnica transforma lo que pensás en una acción. Un buen control o un pase preciso te dan más opciones para resolver bajo presión.',tip:'Antes de recibir, levantá la mirada y pensá tu próxima acción. El control empieza antes de que la pelota llegue.'}
+    {name:'COORDINACIÓN',desc:'Dominá tu cuerpo y cada apoyo.',exercises:[
+['TOQUES EN ESCALERA','3 pasadas','Entrá y salí de cada cuadro con ambos pies. Mantené la cabeza arriba y el ritmo constante.'],
+['SLALOM ENTRE CONOS','4 recorridos','Conducí la pelota en zigzag, tocándola con ambos perfiles sin perder el control.'],
+['RECIBIR + SALIR','10 repeticiones','Simulá una recepción, orientá el primer toque hacia un lado y acelerá 3 pasos.']
+],benefit:'Conducí y recibí con más precisión. Ganá control sobre tus movimientos y la pelota.',action:'CONTROLAR',mark:'◎',reward:'CONTROL CORPORAL',className:'skill-coordination',coach:'La coordinación conecta tus pies, tu cuerpo y la pelota. Es la base para moverte con control cuando el juego se acelera.',tip:'En la cancha, buscá que cada apoyo tenga intención. Primero calidad de movimiento; después, velocidad.'},
+    {name:'VELOCIDAD',desc:'Acelerá y reaccioná más rápido.',exercises:[['SALIDAS CORTAS','6 repeticiones','Desde parado, acelerá 5 metros con decisión. Volvé caminando.'],['REACCIÓN A SEÑAL','8 repeticiones','Usá una señal visual o sonora y arrancá lo más rápido que puedas.'],['SPRINT + FRENO','5 repeticiones','Acelerá 5 metros y frená en una zona marcada, con control.']],benefit:'Llegá antes a la pelota, atacá los espacios y ganá ventaja en los primeros metros.',action:'ACELERAR',mark:'↗',reward:'PRIMEROS METROS',className:'skill-speed',coach:'En futsal, muchas ventajas aparecen en los primeros metros. No se trata solo de correr: también importa cuándo reaccionás y cómo arrancás.',tip:'Prestá atención a tu primera reacción y a la postura de salida. Acelerar con control te ayuda a llegar mejor a cada pelota.'},
+    {name:'AGILIDAD',desc:'Frená, girá y cambiá de dirección.',exercises:[['ZIGZAG ENTRE CONOS','4 pasadas','Desplazate de lado a lado, bajá el centro de gravedad y acelerá al salir.'],['FRENAR + GIRAR','6 repeticiones por lado','Llegá a una marca, frená, girá y salí hacia el lado opuesto.'],['CUADRADO DE MOVIMIENTO','4 vueltas','Avanzá, desplazate lateral, retrocedé y cambiá de lado sin cruzar los pies.']],benefit:'Esquivá marcas, cambiá el ritmo y volvé a arrancar sin perder el equilibrio.',action:'DESEQUILIBRAR',mark:'↔',reward:'CAMBIO DE DIRECCIÓN',className:'skill-agility',coach:'La agilidad te permite cambiar de plan en un instante. Frenar, girar y volver a arrancar puede darte el espacio que necesitás para superar una marca.',tip:'No hagas todos los cambios a máxima velocidad. Primero dominá la frenada y el equilibrio; después sumá explosividad.'},
+    {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',exercises:[['CONTROL ORIENTADO','10 por perfil','Recibí y llevá el primer toque hacia el espacio libre.'],['PASE CONTRA PARED','20 pases','Alterná pie derecho e izquierdo. Prepará el cuerpo antes de recibir.'],['CONDUCCIÓN + CAMBIO','5 recorridos','Conducí, cambiá de dirección y salí con un toque más largo.']],benefit:'Controlá, pasá y resolvé con más recursos cuando tenés la pelota.',action:'RESOLVER',mark:'✳',reward:'DOMINIO DE PELOTA',className:'skill-technique',coach:'La técnica transforma lo que pensás en una acción. Un buen control o un pase preciso te dan más opciones para resolver bajo presión.',tip:'Antes de recibir, levantá la mirada y pensá tu próxima acción. El control empieza antes de que la pelota llegue.'}
   ];
   let current=0;
   const stage=root.querySelector('#mission-stage');
@@ -824,7 +852,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   }
   function render(){
     const item=challenges[current];
-    stage.innerHTML='<article class="skill mission-card '+item.className+'"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+item.mark+'</span></div><div class="skill-info"><em class="skill-mission">DESAFÍO '+String(current+1).padStart(2,'0')+' · '+item.action+'</em><b>'+item.name+'</b><small>'+item.desc+'</small><div class="mission-benefit"><span>¿QUÉ CAMBIA EN TU JUEGO?</span><p>'+item.benefit+'</p></div></div><div class="mission-reward"><i>✦</i><span>RECURSO QUE SUMÁS AL RECORRIDO<br><strong>'+item.reward+'</strong></span></div></article>';
+    stage.innerHTML='<article class="skill mission-card '+item.className+'"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+item.mark+'</span></div><div class="skill-info"><em class="skill-mission">DESAFÍO '+String(current+1).padStart(2,'0')+' · '+item.action+'</em><b>'+item.name+'</b><small>'+item.desc+'</small><div class="mission-benefit"><span>¿QUÉ CAMBIA EN TU JUEGO?</span><p>'+item.benefit+'</p><div class="quick-drills"><div class="drills-title"><b>ENTRENALO YA</b><small>3 EJERCICIOS · '+item.exercises.length+'<\/small><\/div><div class="drill-list">'+item.exercises.map((drill,i)=>'<div class="drill"><span class="drill-num">0'+(i+1)+'</span><div><b>'+drill[0]+'</b><small>'+drill[1]+'</small><p>'+drill[2]+'</p></div></div>').join('')+'<\/div><\/div></div><div class="mission-reward"><i>✦</i><span>RECURSO QUE SUMÁS AL RECORRIDO<br><strong>'+item.reward+'</strong></span></div></article>';
     counter.innerHTML='DESAFÍO '+String(current+1).padStart(2,'0')+' <b>/ 04</b>';
     index.textContent=String(current+1).padStart(2,'0')+' — 04';
     percent.textContent=Math.round(current/challenges.length*100)+'%';
