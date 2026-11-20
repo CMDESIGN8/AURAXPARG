@@ -219,6 +219,69 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  .skill-info small,.skill-info p{font-size:7px}
 }
 
+
+/* AURA PLAYER HUD — estilos limitados al panel de habilidades */
+.hero-hud{width:min(760px,100%);padding:19px 21px 16px;border:1px solid rgba(8,201,244,.48);background:linear-gradient(135deg,rgba(10,34,52,.98),rgba(5,12,22,.97) 68%);box-shadow:0 18px 48px rgba(0,0,0,.32),inset 0 0 28px rgba(8,201,244,.055);position:relative;isolation:isolate;overflow:hidden}
+.hero-hud:after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(8,201,244,.045) 50%,transparent 65%);pointer-events:none}
+.hero-hud .hud-topline{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.hero-hud .hud-topline>div{display:grid;gap:4px}
+.hero-hud .hud-eyebrow{font-size:7px;letter-spacing:.2em;color:#8eaabd;font-weight:900}
+.hero-hud .hud-topline strong{display:block;font-size:14px;line-height:1.2;letter-spacing:.12em;color:var(--white)}
+.hero-hud .hud-subtitle{font-size:7px;letter-spacing:.12em;color:#9eb1c2;font-weight:800}
+.hero-hud .hud-live{display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid rgba(183,255,60,.3);background:rgba(183,255,60,.055);color:var(--lime);font-size:7px;letter-spacing:.09em;font-weight:900;white-space:nowrap}
+.hero-hud .hud-live i{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px rgba(183,255,60,.8)}
+.hero-hud .skill-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0}
+.hero-hud .skill{position:relative;display:grid;grid-template-columns:27px minmax(0,1fr) 15px;align-items:start;gap:9px;min-width:0;min-height:124px;padding:12px;background:linear-gradient(145deg,rgba(18,48,68,.9),rgba(8,19,31,.94));border:1px solid rgba(8,201,244,.2);transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.hero-hud .skill:nth-child(2n){border-color:rgba(183,255,60,.18)}
+.hero-hud .skill:hover{transform:translateY(-3px);border-color:rgba(8,201,244,.65);background:linear-gradient(145deg,rgba(18,55,76,.98),rgba(8,19,31,.98))}
+.hero-hud .skill-icon{display:grid;place-items:center;width:26px;height:26px;border:1px solid rgba(8,201,244,.6);background:rgba(8,201,244,.08);color:var(--cyan);font:900 8px Montserrat,sans-serif}
+.hero-hud .skill-info{display:grid;gap:5px;min-width:0}
+.hero-hud .skill-info b{font-size:9px;line-height:1.25;letter-spacing:.08em;color:#f4f7fb}
+.hero-hud .skill-info small{font-size:8px;line-height:1.4;color:#b5c5d3}
+.hero-hud .skill-info p{font-size:8px;line-height:1.45;color:#dce7ef}
+.hero-hud .skill-info p strong{color:var(--lime);font-size:7px;letter-spacing:.08em}
+.hero-hud .skill-mission{display:inline-flex;justify-self:start;margin-top:2px;padding:4px 6px;border-left:2px solid var(--lime);background:rgba(183,255,60,.07);color:var(--lime);font:900 6px Montserrat,sans-serif;letter-spacing:.1em;font-style:normal}
+.hero-hud .skill-mark{justify-self:end;color:var(--lime);font-size:15px;line-height:1;text-shadow:0 0 12px rgba(183,255,60,.35)}
+.hero-hud .hud-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12)}
+.hero-hud .hud-foot-label{max-width:145px;color:#aabac8;font-size:7px;line-height:1.4;letter-spacing:.1em;font-weight:900}
+.hero-hud .hud-path{display:flex;align-items:center;gap:8px}
+.hero-hud .hud-path>span{display:grid;grid-template-columns:auto auto;align-items:baseline;gap:4px}
+.hero-hud .hud-path b{font-size:14px;line-height:1;color:var(--white);letter-spacing:-.05em}
+.hero-hud .hud-path small{font-size:7px;color:var(--cyan);font-weight:900;letter-spacing:.08em}
+.hero-hud .hud-path>i{width:22px;height:1px;background:linear-gradient(90deg,var(--cyan),rgba(8,201,244,.2));position:relative}
+.hero-hud .hud-path>i:after{content:"";position:absolute;right:0;top:-2px;width:4px;height:4px;border-top:1px solid var(--lime);border-right:1px solid var(--lime);transform:rotate(45deg)}
+.hero-hud .hud-path em{font-size:6px;color:#8193a5;font-style:normal;font-weight:900;letter-spacing:.1em}
+@media(max-width:600px){
+.hero-hud{padding:14px 12px 12px;margin-top:22px}
+.hero-hud .hud-topline{align-items:flex-start;gap:8px}
+.hero-hud .hud-topline strong{font-size:11px;letter-spacing:.08em}
+.hero-hud .hud-eyebrow{font-size:6px}
+.hero-hud .hud-subtitle{font-size:6px;letter-spacing:.07em}
+.hero-hud .hud-live{font-size:5.5px;padding:6px;letter-spacing:.03em}
+.hero-hud .skill-grid{gap:7px;margin:11px 0}
+.hero-hud .skill{grid-template-columns:21px minmax(0,1fr) 10px;gap:6px;min-height:137px;padding:9px 7px}
+.hero-hud .skill-icon{width:21px;height:21px;font-size:7px}
+.hero-hud .skill-info{gap:5px}
+.hero-hud .skill-info b{font-size:7px;letter-spacing:.045em}
+.hero-hud .skill-info small,.hero-hud .skill-info p{font-size:7px;line-height:1.4}
+.hero-hud .skill-info p strong{font-size:6px}
+.hero-hud .skill-mission{font-size:5.5px;padding:4px}
+.hero-hud .skill-mark{font-size:12px}
+.hero-hud .hud-foot{align-items:flex-start;flex-direction:column;gap:8px}
+.hero-hud .hud-foot-label{max-width:none}
+.hero-hud .hud-path{width:100%;justify-content:space-between;gap:6px}
+.hero-hud .hud-path>i{flex:1;max-width:42px}
+}
+@media(max-width:360px){
+.hero-hud .hud-topline strong{font-size:10px}
+.hero-hud .hud-live{font-size:5px}
+.hero-hud .skill{min-height:145px;padding:8px 6px;gap:5px}
+.hero-hud .skill-info b{font-size:6.5px}
+.hero-hud .skill-info small,.hero-hud .skill-info p{font-size:6.5px}
+.hero-hud .skill-mission{font-size:5px}
+}
+@media(prefers-reduced-motion:reduce){.hero-hud .skill:hover{transform:none}}
+
 </style>
 </head>
 <body>
@@ -238,35 +301,59 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 
 <h1>FARMEÁ TU JUEGO.<br><span>ENTRENÁ EN SERIO.</span></h1>
 <p class="hero-copy">No desbloqueás habilidades mirando. <strong>Las construís entrenando.</strong> Elegí un desafío, seguí tu programa y llevá tu trabajo a la cancha.</p>
-<div class="hero-hud" aria-label="Mapa de habilidades trabajadas por los programas AURA">
+<div class="hero-hud" aria-label="Panel de habilidades que podés desarrollar con AURA">
   <div class="hud-topline">
-    <div><span class="hud-eyebrow">AURA PLAYER DEVELOPMENT</span><strong>¿QUÉ VAS A MEJORAR EN LA CANCHA?</strong></div>
-    <span class="hud-live"><i></i> 4 RECURSOS DE JUEGO</span>
+    <div>
+      <span class="hud-eyebrow">AURA XP // PLAYER DEVELOPMENT</span>
+      <strong>DESARROLLÁ TU JUEGO</strong>
+      <small class="hud-subtitle">4 ATRIBUTOS. MÁS RECURSOS PARA LA CANCHA.</small>
+    </div>
+    <span class="hud-live"><i></i> PANEL DE JUGADOR</span>
   </div>
   <div class="skill-grid">
     <div class="skill">
       <span class="skill-icon">01</span>
-      <div class="skill-info"><b>COORDINACIÓN</b><small>Controlá mejor tu cuerpo y la pelota.</small><p>En el partido: más precisión al conducir y recibir.</p></div>
+      <div class="skill-info">
+        <b>COORDINACIÓN</b>
+        <small>Dominá tu cuerpo y cada apoyo.</small>
+        <p><strong>EN CANCHA</strong> · Conducí y recibí con más precisión.</p>
+        <em class="skill-mission">MISIÓN: CONTROLAR</em>
+      </div>
       <span class="skill-mark">◎</span>
     </div>
     <div class="skill">
       <span class="skill-icon">02</span>
-      <div class="skill-info"><b>VELOCIDAD</b><small>Acelerá y reaccioná más rápido.</small><p>En el partido: llegá antes y ganá espacios.</p></div>
+      <div class="skill-info">
+        <b>VELOCIDAD</b>
+        <small>Acelerá y reaccioná más rápido.</small>
+        <p><strong>EN CANCHA</strong> · Llegá antes y ganá espacios.</p>
+        <em class="skill-mission">MISIÓN: ACELERAR</em>
+      </div>
       <span class="skill-mark">↗</span>
     </div>
     <div class="skill">
       <span class="skill-icon">03</span>
-      <div class="skill-info"><b>AGILIDAD</b><small>Frená y cambiá de dirección.</small><p>En el partido: esquivá marcas sin perder equilibrio.</p></div>
+      <div class="skill-info">
+        <b>AGILIDAD</b>
+        <small>Frená y cambiá de dirección.</small>
+        <p><strong>EN CANCHA</strong> · Esquivá marcas y volvé a arrancar.</p>
+        <em class="skill-mission">MISIÓN: DESEQUILIBRAR</em>
+      </div>
       <span class="skill-mark">↔</span>
     </div>
     <div class="skill">
       <span class="skill-icon">04</span>
-      <div class="skill-info"><b>TÉCNICA</b><small>Mejorá tu dominio de pelota.</small><p>En el partido: controlá, pasá y resolvé mejor.</p></div>
+      <div class="skill-info">
+        <b>TÉCNICA</b>
+        <small>Mejorá tu dominio de pelota.</small>
+        <p><strong>EN CANCHA</strong> · Controlá, pasá y resolvé mejor.</p>
+        <em class="skill-mission">MISIÓN: RESOLVER</em>
+      </div>
       <span class="skill-mark">✳</span>
     </div>
   </div>
   <div class="hud-foot">
-    <span class="hud-foot-label">ELEGÍ CUÁNTO QUERÉS ENTRENAR</span>
+    <span class="hud-foot-label">ELEGÍ TU RUTA DE ENTRENAMIENTO</span>
     <div class="hud-path">
       <span><b>07</b><small>START</small></span><i></i>
       <span><b>21</b><small>PRO</small></span><i></i>
