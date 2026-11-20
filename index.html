@@ -7487,10 +7487,9 @@ function readGuestXP() {
 function saveGuestXP(value) { try { localStorage.setItem(GUEST_XP_KEY, JSON.stringify(value)); } catch (_) {} }
 function renderHUD() {
   const hud = ensureHUD();
-  const guest = !currentUser;
-  const xp = guest ? readGuestXP().xp : currentXP;
+  const xp = readGuestXP().xp;
   hud.classList.add('show');
-  hud.querySelector('.aura-hud-label').textContent = guest ? 'SHOPPING XP · VISITA' : 'PLAYER STATUS';
+  hud.querySelector('.aura-hud-label').textContent = 'SHOPPING XP · VISITA';
   const level = getLevel(xp);
   const progress = getLevelProgress(xp);
   const idx = LEVELS.indexOf(level);
@@ -7508,11 +7507,10 @@ function awardGuestXP(action, originEl = null) {
   const state = readGuestXP();
   const day = new Date().toLocaleDateString('en-CA');
   let key = action + ':' + day;
-  if (action === 'selectProduct') {
-    const card = originEl && originEl.closest ? originEl.closest('.product-card') : null;
-    const product = (card && card.dataset.product) || 'producto';
-    key = action + ':' + product + ':' + day;
-  }
+  const card = originEl && originEl.closest ? originEl.closest('.product-card') : null;
+  const product = (card && card.dataset.product) || 'producto';
+  if (action === 'selectProduct') key = action + ':' + product + ':' + day;
+  if (action === 'selectSize') key = action + ':' + product + ':' + ((originEl && (originEl.dataset.size || originEl.textContent.trim())) || 'talle') + ':' + day;
   if (state.claimed.includes(key)) return;
   state.claimed.push(key);
   state.xp += amount;
@@ -7525,7 +7523,8 @@ function awardGuestXP(action, originEl = null) {
 async function awardXP(action, originEl = null) {
   const amount = XP_REWARDS[action];
   if (!amount) return;
-  if (!currentUser) { awardGuestXP(action, originEl); return; }
+  if (action === 'selectProduct' || action === 'selectSize') { awardGuestXP(action, originEl); return; }
+  if (!currentUser) return;
   let claimKey = null;
   if (action === 'selectProduct' || action === 'selectSize') {
     const card = originEl && originEl.closest ? originEl.closest('.product-card') : null;
