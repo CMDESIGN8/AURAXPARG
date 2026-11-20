@@ -141,6 +141,60 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 }
 @media(max-width:360px){.hud-heading{letter-spacing:.08em}.hud-foot{letter-spacing:0}.skill b{font-size:7px}}
 
+
+/* HUD SKILL MAP — jerarquía clara, sin métricas ficticias */
+.hero-hud{width:min(760px,100%);padding:19px 21px 16px;border-color:rgba(8,201,244,.38);background:linear-gradient(125deg,rgba(8,201,244,.105),rgba(6,14,24,.94) 62%);box-shadow:0 18px 48px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.045)}
+.hero-hud:after{content:"";position:absolute;right:0;top:0;width:76px;height:2px;background:var(--lime);box-shadow:0 0 14px rgba(183,255,60,.5)}
+.hud-topline{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.11)}
+.hud-topline>div{display:grid;gap:3px}
+.hud-eyebrow{font-size:7px;letter-spacing:.2em;color:#8ea3b8;font-weight:900}
+.hud-topline strong{font-size:12px;letter-spacing:.13em;color:var(--white)}
+.hud-live{display:flex;align-items:center;gap:7px;color:var(--lime);font-size:7px;letter-spacing:.1em;font-weight:900;white-space:nowrap}
+.hud-live i{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px rgba(183,255,60,.8)}
+.skill-grid{gap:8px;margin:13px 0 15px}
+.skill{position:relative;grid-template-columns:27px minmax(0,1fr) 16px;gap:8px;min-height:62px;padding:10px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.1);transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.skill:hover{transform:translateY(-2px);border-color:rgba(8,201,244,.55);background:rgba(8,201,244,.07)}
+.skill-icon{width:26px;height:26px;border:1px solid rgba(8,201,244,.55);color:var(--cyan);font-size:8px}
+.skill-info{min-width:0;display:grid;gap:3px}
+.skill b{font-size:8px;letter-spacing:.08em;white-space:normal}
+.skill-info small{font-size:8px;color:#9eafc0;line-height:1.25}
+.skill-mark{justify-self:end;color:var(--lime);font-size:14px;font-weight:700;line-height:1}
+.skill i{display:none}
+.hud-foot{align-items:center;padding-top:12px;gap:14px}
+.hud-foot-label{color:#9eafc0;font-size:7px;letter-spacing:.12em;font-weight:900;white-space:nowrap}
+.hud-path{display:flex;align-items:center;gap:8px}
+.hud-path>span{display:grid;grid-template-columns:auto auto;align-items:baseline;gap:4px}
+.hud-path b{font-size:13px;line-height:1;color:var(--white);letter-spacing:-.05em}
+.hud-path small{font-size:7px;color:var(--cyan);font-weight:900;letter-spacing:.08em}
+.hud-path>i{width:22px;height:1px;background:linear-gradient(90deg,var(--cyan),rgba(8,201,244,.25));position:relative}
+.hud-path>i:after{content:"";position:absolute;right:0;top:-2px;width:4px;height:4px;border-top:1px solid var(--lime);border-right:1px solid var(--lime);transform:rotate(45deg)}
+.hud-path em{font-size:6px;color:#8193a5;font-style:normal;font-weight:900;letter-spacing:.12em}
+@media(max-width:600px){
+.hero-hud{padding:14px 12px 12px}
+.hud-topline{align-items:flex-start;gap:8px}
+.hud-topline strong{font-size:10px}
+.hud-eyebrow{font-size:6px}
+.hud-live{font-size:6px;letter-spacing:.04em;gap:5px}
+.skill-grid{gap:7px;margin:11px 0 13px}
+.skill{min-height:61px;padding:8px 7px;grid-template-columns:23px minmax(0,1fr) 12px;gap:6px}
+.skill-icon{width:22px;height:22px;font-size:7px}
+.skill b{font-size:7px;letter-spacing:.045em}
+.skill-info small{font-size:7px}
+.skill-mark{font-size:12px}
+.hud-foot{align-items:flex-start;flex-direction:column;gap:8px}
+.hud-path{width:100%;justify-content:space-between;gap:6px}
+.hud-path>i{flex:1;max-width:42px}
+.hud-path b{font-size:14px}
+}
+@media(max-width:360px){
+.hud-topline strong{font-size:9px}
+.hud-live{font-size:5.5px}
+.skill{grid-template-columns:21px minmax(0,1fr) 10px;gap:5px;padding:7px 6px}
+.skill b{font-size:6.5px}
+.skill-info small{font-size:6.5px}
+}
+@media(prefers-reduced-motion:reduce){.skill:hover{transform:none}}
+
 </style>
 </head>
 <body>
@@ -160,15 +214,42 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 
 <h1>FARMEÁ TU JUEGO.<br><span>ENTRENÁ EN SERIO.</span></h1>
 <p class="hero-copy">No desbloqueás habilidades mirando. <strong>Las construís entrenando.</strong> Elegí un desafío, seguí tu programa y llevá tu trabajo a la cancha.</p>
-<div class="hero-hud" aria-label="Habilidades que podés trabajar con los sistemas AURA">
-  <div class="hud-heading"><span>ÁRBOL DE HABILIDADES</span><span class="hud-live">TU CAMINO EMPIEZA HOY</span></div>
-  <div class="skill-grid">
-    <div class="skill"><span class="skill-icon">01</span><b>COORDINACIÓN</b><i></i></div>
-    <div class="skill"><span class="skill-icon">02</span><b>VELOCIDAD</b><i></i></div>
-    <div class="skill"><span class="skill-icon">03</span><b>AGILIDAD</b><i></i></div>
-    <div class="skill"><span class="skill-icon">04</span><b>TÉCNICA</b><i></i></div>
+<div class="hero-hud" aria-label="Mapa de habilidades trabajadas por los programas AURA">
+  <div class="hud-topline">
+    <div><span class="hud-eyebrow">AURA PLAYER DEVELOPMENT</span><strong>MAPA DE HABILIDADES</strong></div>
+    <span class="hud-live"><i></i> 4 ÁREAS DE ENTRENAMIENTO</span>
   </div>
-  <div class="hud-foot"><span>SELECCIONÁ TU RUTA</span><span>7 DÍAS <em>→</em> 21 DÍAS <em>→</em> 30 DÍAS</span></div>
+  <div class="skill-grid">
+    <div class="skill">
+      <span class="skill-icon">01</span>
+      <div class="skill-info"><b>COORDINACIÓN</b><small>Controlá cada apoyo.</small></div>
+      <span class="skill-mark">＋</span>
+    </div>
+    <div class="skill">
+      <span class="skill-icon">02</span>
+      <div class="skill-info"><b>VELOCIDAD</b><small>Reaccioná y acelerá.</small></div>
+      <span class="skill-mark">↗</span>
+    </div>
+    <div class="skill">
+      <span class="skill-icon">03</span>
+      <div class="skill-info"><b>AGILIDAD</b><small>Cambiá de dirección.</small></div>
+      <span class="skill-mark">↔</span>
+    </div>
+    <div class="skill">
+      <span class="skill-icon">04</span>
+      <div class="skill-info"><b>TÉCNICA</b><small>Convertí control en juego.</small></div>
+      <span class="skill-mark">◎</span>
+    </div>
+  </div>
+  <div class="hud-foot">
+    <span class="hud-foot-label">ELEGÍ TU RECORRIDO</span>
+    <div class="hud-path">
+      <span><b>07</b><small>START</small></span><i></i>
+      <span><b>21</b><small>PRO</small></span><i></i>
+      <span><b>30</b><small>ELITE</small></span>
+      <em>DÍAS</em>
+    </div>
+  </div>
 </div>
 <div class="hero-actions">
 <a class="btn btn-main" href="#sistemas">ELEGIR MI PRIMER DESAFÍO</a>
