@@ -47,6 +47,7 @@ h1 span{color:var(--cyan);text-shadow:0 0 30px rgba(8,201,244,.18)}
 .card{position:relative;isolation:isolate;overflow:hidden;min-width:0;display:flex;flex-direction:column;background:linear-gradient(155deg,#152438,#0c1521 76%);border:1px solid var(--line);transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
 .card:before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(circle at 80% 8%,rgba(8,201,244,.12),transparent 36%);opacity:.8}
 .card:hover{transform:translateY(-7px);border-color:rgba(8,201,244,.5);box-shadow:0 16px 36px rgba(0,0,0,.25)}
+.card:focus-within{border-color:var(--lime);box-shadow:0 0 0 2px rgba(183,255,60,.12),0 18px 38px rgba(0,0,0,.3)}
 .card.featured{border-color:rgba(8,201,244,.8);box-shadow:0 0 38px rgba(8,201,244,.1)}
 .card.featured:after{content:"MÁS COMPLETO";position:absolute;z-index:3;top:18px;right:-31px;padding:7px 38px;background:var(--lime);color:var(--ink);font-size:8px;font-weight:900;letter-spacing:.12em;transform:rotate(39deg)}
 .visual{height:205px;position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,rgba(8,201,244,.19),transparent 56%),linear-gradient(135deg,#0a1522,#101f31)}
@@ -70,6 +71,10 @@ h3{font-size:31px;letter-spacing:-.06em;margin-top:5px;line-height:1}
 .digital p{font-size:11px;color:var(--muted);margin-top:6px}
 .cta{margin-top:20px;display:flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:10px 14px;background:var(--cyan);color:var(--ink);font-size:9px;font-weight:900;letter-spacing:.09em;text-align:center;text-transform:uppercase;transition:background .2s ease,transform .2s ease}
 .cta:after{content:"↗";font-size:15px}.cta:hover{background:var(--white);transform:translateY(-2px)}
+.cta:focus-visible,.btn:focus-visible,a:focus-visible{outline:3px solid var(--lime);outline-offset:4px}
+.cta.is-soon{background:rgba(255,255,255,.045);border:1px dashed rgba(255,255,255,.22);color:#aab7c5;cursor:default;letter-spacing:.08em}
+.cta.is-soon:after{content:"·";color:var(--lime)}
+.cta.is-soon:hover{background:rgba(255,255,255,.045);transform:none}
 .featured .cta{background:var(--lime)}.featured .cta:hover{background:#fff}
 .launch{position:relative;overflow:hidden;max-width:900px;margin:0 auto 76px;padding:25px 28px;border:1px solid rgba(8,201,244,.35);background:linear-gradient(110deg,rgba(8,201,244,.09),rgba(13,23,36,.9) 55%);display:grid;grid-template-columns:auto 1fr;gap:17px;align-items:start}
 .launch-mark{font-family:"Permanent Marker",cursive;font-size:30px;color:var(--lime);line-height:1;transform:rotate(-5deg)}
@@ -88,8 +93,9 @@ h3{font-size:31px;letter-spacing:-.06em;margin-top:5px;line-height:1}
 .closing h2 span{color:var(--lime);font-family:"Permanent Marker",cursive;font-weight:400}
 .closing p{max-width:540px;margin:0 auto 22px;color:var(--muted);font-size:13px}
 footer{border-top:1px solid var(--line);padding:25px 18px;text-align:center;color:var(--muted);font-size:9px;letter-spacing:.12em}
-@media(max-width:900px){.systems{grid-template-columns:1fr;max-width:620px;margin:auto;gap:16px}.card.featured{transform:none;order:-1}.visual{height:185px}.visual .number{font-size:100px}.card-body{padding:23px}.promise{min-height:0}.intro{align-items:flex-start;flex-direction:column;gap:14px}.intro p{max-width:600px}}
+@media(max-width:900px){.systems{grid-template-columns:1fr;max-width:620px;margin:auto;gap:16px}.card.featured{transform:none;order:-1}.visual{height:185px}.visual .number{font-size:100px}.card-body{padding:23px}.promise{min-height:0}.intro{align-items:flex-start;flex-direction:column;gap:14px}.intro p{max-width:600px}.choose-note{display:block;color:var(--lime);font-size:11px;font-weight:800;margin-top:10px;letter-spacing:.02em}}
 @media(max-width:600px){.topline{font-size:8px;letter-spacing:.1em}.wrap{width:calc(100% - 32px)}header{height:auto;min-height:68px;align-items:flex-start;flex-direction:column;justify-content:center;gap:9px;padding:12px 18px}nav{width:100%;justify-content:space-between;gap:8px;font-size:8px}.nav-home{padding:7px 9px}.hero{padding:76px 18px 65px}.hero-copy{font-size:13px}.hero-actions{flex-direction:column;align-items:stretch;max-width:340px;margin:25px auto 0}.btn{width:100%;min-height:50px}.intro{padding:58px 0 20px}.systems{padding-top:10px;padding-bottom:54px}.visual{height:165px}.visual .number{font-size:88px}.card-body{padding:20px}.card.featured:after{font-size:7px;top:16px;right:-35px}.launch{grid-template-columns:1fr;gap:12px;padding:21px;margin-bottom:55px}.launch-mark{font-size:26px}.steps{padding:54px 0}.steps-grid{grid-template-columns:1fr;gap:23px}.step{padding-top:12px}.closing{padding:56px 18px}}
+@media(max-width:420px){.card-body{padding:18px}.cta{font-size:8px;letter-spacing:.06em;padding:10px}.objective{font-size:7px}.launch{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -123,7 +129,7 @@ footer{border-top:1px solid var(--line);padding:25px 18px;text-align:center;colo
 <h2>¿DÓNDE QUERÉS<br>LLEVAR TU JUEGO?</h2>
 <div class="scribble">Elegí tu punto de partida.</div>
 </div>
-<p>Cada sistema combina herramientas físicas con una guía digital. Compará qué incluye cada kit y qué tipo de trabajo propone antes de elegir.</p>
+<p>Cada sistema combina herramientas físicas con una guía digital. Compará qué incluye cada kit y qué tipo de trabajo propone antes de elegir.<strong class="choose-note"> TU PRIMER PASO: encontrá el nivel que acompaña tu momento.</strong></p>
 </section>
 <section class="systems" aria-label="Sistemas de entrenamiento AURA XP">
 <article class="card">
@@ -138,7 +144,7 @@ footer{border-top:1px solid var(--line);padding:25px 18px;text-align:center;colo
 <li>Conos de entrenamiento</li>
 </ul>
 <div class="digital"><strong>GUÍA DIGITAL · 7 DÍAS</strong><p>Rutina inicial guiada para incorporar coordinación y control del movimiento.</p></div>
-<a class="cta" href="#lanzamiento">CONOCER EL LANZAMIENTO</a>
+<span class="cta is-soon" aria-label="Sistema START en preparación">START · PRÓXIMAMENTE</span>
 </div>
 </article>
 <article class="card featured">
@@ -155,7 +161,7 @@ footer{border-top:1px solid var(--line);padding:25px 18px;text-align:center;colo
 <li>Mini vallas</li>
 </ul>
 <div class="digital"><strong>PROGRAMA DIGITAL · 21 DÍAS</strong><p>Plan progresivo con sesiones organizadas para trabajar velocidad, coordinación y técnica.</p></div>
-<a class="cta" href="pro-21-days.html">EXPLORAR EL PLAN DE 21 DÍAS</a>
+<a class="cta" href="pro-21-days.html">EMPEZAR MI RECORRIDO · 21 DÍAS</a>
 </div>
 </article>
 <article class="card">
@@ -172,7 +178,7 @@ footer{border-top:1px solid var(--line);padding:25px 18px;text-align:center;colo
 <li>Bolsa de transporte</li>
 </ul>
 <div class="digital"><strong>GUÍA DIGITAL · 30 DÍAS</strong><p>Plan integral con objetivos y progresión de entrenamiento durante un mes.</p></div>
-<a class="cta" href="#lanzamiento">CONOCER EL LANZAMIENTO</a>
+<span class="cta is-soon" aria-label="Sistema ELITE en preparación">ELITE · PRÓXIMAMENTE</span>
 </div>
 </article>
 </section>
