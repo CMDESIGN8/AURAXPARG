@@ -35,7 +35,7 @@ Los kits ya cuentan con selección visual y rareza dinámica en la landing. No h
 
 ## Experiencia digital
 
-La web presenta el Drop 001, permite explorar prendas y talles, acceder al flujo de reserva existente y descubrir Custom Boots y el sistema AURA XP.
+La web separa las experiencias: `index.html` presenta AURA XP y el catálogo Apparel/Custom Boots existente; `training.html` presenta exclusivamente AURA XP Training Systems. Mantener las propuestas de entrenamiento fuera del selector de indumentaria y del inventario de ropa.
 
 La XP debe comunicarse de forma transparente: no prometer recompensas, beneficios o funcionalidades que todavía no estén implementados y disponibles.
 
