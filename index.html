@@ -3764,16 +3764,36 @@
   45% { transform:translateX(0) scale(1.09); }
 }
 @media (max-width:600px) {
-  .aura-hud { right:10px; top:108px; width:176px; min-width:0; padding:11px 12px; transform-origin:top right; }
+  .aura-hud {
+    top:94px; right:10px; width:205px; min-width:0;
+    padding:11px 12px; gap:7px; transform-origin:top right;
+  }
   .aura-hud-label { font-size:8px; letter-spacing:.12em; }
-  .aura-hud-info { width:24px; height:24px; flex:0 0 24px; font-size:13px; }
+  .aura-hud-info {
+    width:100%; min-height:30px; padding:6px 8px; flex:none;
+    border-radius:2px; font:900 9px/1.2 "Montserrat",sans-serif;
+    letter-spacing:.09em; white-space:nowrap;
+  }
   .aura-hud-level b { font-size:1rem; }
   .aura-hud-level small { font-size:.62rem; }
   .aura-hud-xp { font-size:.62rem; }
-  .aura-hud-info-panel {
-    position:fixed; top:174px; left:12px; right:12px; width:auto; max-width:none;
-    max-height:calc(100dvh - 194px); overflow-y:auto; padding:18px;
-    border-width:1px; box-shadow:0 16px 46px rgba(0,0,0,.78),0 0 24px rgba(8,201,244,.18);
+
+  /* En móvil, la explicación se convierte en una tarjeta modal centrada. */
+  .aura-hud.xp-info-open {
+    position:fixed; top:50%; right:12px; left:12px; bottom:auto;
+    width:auto; max-width:440px; min-width:0; max-height:82dvh;
+    margin:0 auto; padding:18px; gap:10px; overflow-y:auto;
+    transform:translateY(-50%); transform-origin:center;
+    z-index:10002;
+    background:rgba(4,10,19,.98);
+    border:1px solid rgba(8,201,244,.75);
+    box-shadow:0 0 0 100vmax rgba(0,0,0,.78),0 0 42px rgba(8,201,244,.25);
+  }
+  .aura-hud.xp-info-open .aura-hud-info-panel {
+    position:static; inset:auto; width:auto; max-width:none;
+    max-height:none; overflow:visible; padding:14px 0 0;
+    border:0; border-top:1px solid rgba(8,201,244,.28);
+    box-shadow:none; background:transparent;
   }
   .aura-hud-info-panel > strong { font-size:12px; }
   .aura-hud-info-panel p { font-size:13px; line-height:1.55; }
@@ -7518,7 +7538,7 @@ function ensureHUD() {
   hud.innerHTML = `
     <div class="aura-hud-label">
       <span>SHOPPING XP · VISITA</span>
-      <button class="aura-hud-info" type="button" aria-label="Cómo funciona Shopping XP" aria-expanded="false">?</button>
+      <button class="aura-hud-info" type="button" aria-label="Cómo ganar Shopping XP" aria-expanded="false">¿CÓMO SUMAR XP?</button>
     </div>
     <div class="aura-hud-level">
       <b class="hud-level-name">ROOKIE</b>
@@ -7540,16 +7560,16 @@ function ensureHUD() {
   infoButton.addEventListener('click', () => {
     const opening = infoPanel.hidden;
     infoPanel.hidden = !opening;
-    infoButton.textContent = opening ? '×' : '?';
-    infoButton.setAttribute('aria-label', opening ? 'Cerrar información de Shopping XP' : 'Cómo funciona Shopping XP');
+    infoButton.textContent = opening ? 'CERRAR ×' : '¿CÓMO SUMAR XP?';
+    infoButton.setAttribute('aria-label', opening ? 'Cerrar información de Shopping XP' : 'Cómo ganar Shopping XP');
     infoButton.setAttribute('aria-expanded', String(opening));
     hud.classList.toggle('xp-info-open', opening);
   });
   document.addEventListener('click', (event) => {
     if (!hud.contains(event.target)) {
       infoPanel.hidden = true;
-      infoButton.textContent = '?';
-      infoButton.setAttribute('aria-label', 'Cómo funciona Shopping XP');
+      infoButton.textContent = '¿CÓMO SUMAR XP?';
+      infoButton.setAttribute('aria-label', 'Cómo ganar Shopping XP');
       infoButton.setAttribute('aria-expanded', 'false');
       hud.classList.remove('xp-info-open');
     }
