@@ -7732,34 +7732,6 @@ function watchAuth() {
   });
 }
 
-// ---------- INIT ----------
-function init() {
-  loadSfx();
-  ensureHUD();
-  bindUIHooks();
-  ensureMissionProgress();
-  observeSuccessScreen();
-  watchAuth();
-  initLeaderboard();   // ← NUEVO
-  initMissions();      // ← NUEVO (parte 2)
-  console.log('🎮 AURA XP Game Layer + Missions + Leaderboard ready');
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
-
-// Exponer helpers por si los necesitás
-window.AURA = {
-  awardXP,
-  showToast,
-  showXPFloat,
-  getLevel,
-  getCurrentXP: () => currentXP
-};
-
 /* =========================================================
    DAILY MISSIONS
 ========================================================= */
@@ -8002,6 +7974,33 @@ function initMissions() {
 
   // Track: compartir (engancha shareAchievement)
   // Share tracking is handled inside shareAchievement.
+}
+
+// ---------- INIT (después de declarar DAILY_MISSIONS y missionsState) ----------
+function init() {
+  // Audio opcional desactivado hasta incorporar los archivos MP3 reales.
+  ensureHUD();
+  bindUIHooks();
+  ensureMissionProgress();
+  observeSuccessScreen();
+  watchAuth();
+  initLeaderboard();
+  initMissions();
+  console.log('🎮 AURA XP Game Layer + Missions + Leaderboard ready');
+}
+
+window.AURA = {
+  awardXP,
+  showToast,
+  showXPFloat,
+  getLevel,
+  getCurrentXP: () => currentXP
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init, { once: true });
+} else {
+  init();
 }
 
 </script>
