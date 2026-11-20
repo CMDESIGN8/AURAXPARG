@@ -219,6 +219,50 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  .skill-info small,.skill-info p{font-size:7px}
 }
 
+
+/* AURA GAME LAYER — interfaz de progresión deportiva */
+:root{--hud-cyan:#20d9ff;--hud-lime:#c4ff45}
+.hero{background-image:linear-gradient(rgba(8,201,244,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(8,201,244,.025) 1px,transparent 1px),radial-gradient(ellipse at 50% 5%,rgba(8,201,244,.2),transparent 53%),linear-gradient(180deg,#0d1b2b 0%,#080e18 72%,var(--bg) 100%);background-size:34px 34px,34px 34px,auto,auto}
+.hero-hud{border:1px solid rgba(32,217,255,.5);clip-path:polygon(0 0,calc(100% - 15px) 0,100% 15px,100% 100%,0 100%);box-shadow:0 0 0 1px rgba(32,217,255,.06),0 18px 50px rgba(0,0,0,.38),inset 0 0 28px rgba(8,201,244,.045)}
+.hero-hud:before{width:4px;background:linear-gradient(180deg,var(--hud-lime),var(--hud-cyan))}
+.hero-hud:after{width:100px;height:2px;background:var(--hud-lime)}
+.hud-topline{position:relative}
+.hud-eyebrow{color:#8ea9bd}
+.hud-live{padding:6px 8px;border:1px solid rgba(183,255,60,.28);background:rgba(183,255,60,.055);font-size:6.5px}
+.skill{background:linear-gradient(145deg,rgba(14,39,58,.9),rgba(8,18,30,.88));border-color:rgba(32,217,255,.17);clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,0 100%)}
+.skill:before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:var(--cyan);opacity:.65}
+.skill:nth-child(even):before{background:var(--lime)}
+.skill-icon{background:rgba(8,201,244,.08);font-family:monospace;font-size:10px}
+.skill-mark{font-family:monospace;text-shadow:0 0 12px rgba(183,255,60,.5)}
+.skill-info p{color:var(--hud-lime)}
+.hud-path>span{padding:5px 7px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.025)}
+.hud-path>span:nth-of-type(2){border-color:rgba(32,217,255,.35);background:rgba(8,201,244,.07)}
+.card{border-color:rgba(32,217,255,.17);box-shadow:inset 0 1px rgba(255,255,255,.035)}
+.card:before{background:radial-gradient(circle at 82% 5%,rgba(8,201,244,.18),transparent 39%),linear-gradient(135deg,rgba(8,201,244,.025),transparent 50%)}
+.visual{background-image:linear-gradient(rgba(8,201,244,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(8,201,244,.055) 1px,transparent 1px),radial-gradient(ellipse at 50% 55%,rgba(8,201,244,.2),transparent 56%),linear-gradient(135deg,#0a1522,#101f31);background-size:22px 22px,22px 22px,auto,auto}
+.visual .tag{border-color:rgba(32,217,255,.55);font-family:monospace}
+.visual .number{font-family:monospace;letter-spacing:-.14em}
+.card-body{position:relative}
+.level{font-family:monospace;letter-spacing:.12em}
+.objective{font-family:monospace;letter-spacing:.06em}
+.mission-brief{display:grid;gap:5px;margin:14px 0 2px;padding:12px 12px 13px;border:1px solid rgba(183,255,60,.2);border-left:3px solid var(--lime);background:linear-gradient(100deg,rgba(183,255,60,.07),rgba(255,255,255,.018))}
+.mission-brief span{font:900 7px Montserrat,sans-serif;letter-spacing:.16em;color:var(--lime)}
+.mission-brief b{font-size:10px;line-height:1.3;letter-spacing:.035em}
+.mission-brief small{font-size:9px;line-height:1.45;color:#aebdca}
+.card.featured{box-shadow:0 0 0 1px rgba(8,201,244,.12),0 0 42px rgba(8,201,244,.1),inset 0 0 28px rgba(8,201,244,.035)}
+.card.featured .visual{background-color:#10283c}
+.card.featured .level{color:var(--lime)}
+.cta{font-family:monospace;letter-spacing:.1em;box-shadow:0 5px 18px rgba(8,201,244,.12)}
+.featured .cta{box-shadow:0 5px 22px rgba(183,255,60,.12)}
+.step{position:relative}
+.step .step-no{display:inline-block;text-shadow:0 0 15px rgba(8,201,244,.25)}
+.launch{border-left:3px solid var(--lime)}
+@keyframes hudPulse{0%,100%{box-shadow:0 0 0 1px rgba(32,217,255,.06),0 18px 50px rgba(0,0,0,.38),inset 0 0 28px rgba(8,201,244,.045)}50%{box-shadow:0 0 0 1px rgba(32,217,255,.16),0 18px 50px rgba(0,0,0,.38),inset 0 0 35px rgba(8,201,244,.075)}}
+.hero-hud{animation:hudPulse 5s ease-in-out infinite}
+@media(hover:hover){.skill:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,.22)}.card:hover .visual .number{transform:scale(1.045);transition:transform .35s ease}}
+@media(max-width:600px){.hud-live{max-width:125px;white-space:normal;line-height:1.3}.mission-brief{padding:10px}.mission-brief b{font-size:9px}.mission-brief small{font-size:8px}.card.featured:after{z-index:4}}
+@media(prefers-reduced-motion:reduce){.hero-hud{animation:none}}
+
 </style>
 </head>
 <body>
@@ -241,7 +285,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <div class="hero-hud" aria-label="Mapa de habilidades trabajadas por los programas AURA">
   <div class="hud-topline">
     <div><span class="hud-eyebrow">AURA PLAYER DEVELOPMENT</span><strong>¿QUÉ VAS A MEJORAR EN LA CANCHA?</strong></div>
-    <span class="hud-live"><i></i> 4 RECURSOS DE JUEGO</span>
+    <span class="hud-live"><i></i> 4 ATRIBUTOS PARA DESARROLLAR</span>
   </div>
   <div class="skill-grid">
     <div class="skill">
@@ -266,7 +310,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     </div>
   </div>
   <div class="hud-foot">
-    <span class="hud-foot-label">ELEGÍ CUÁNTO QUERÉS ENTRENAR</span>
+    <span class="hud-foot-label">ELEGÍ TU RUTA DE EVOLUCIÓN</span>
     <div class="hud-path">
       <span><b>07</b><small>START</small></span><i></i>
       <span><b>21</b><small>PRO</small></span><i></i>
@@ -276,8 +320,8 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   </div>
 </div>
 <div class="hero-actions">
-<a class="btn btn-main" href="#sistemas">ELEGIR MI PRIMER DESAFÍO</a>
-<a class="btn btn-ghost" href="#como-funciona">CÓMO SE JUEGA</a>
+<a class="btn btn-main" href="#sistemas">ELEGIR MI PRIMERA MISIÓN</a>
+<a class="btn btn-ghost" href="#como-funciona">CÓMO FUNCIONA</a>
 </div>
 </div>
 </section>
@@ -294,10 +338,10 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <article class="card">
 <div class="visual"><span class="tag">01 · PARA EMPEZAR</span><div class="number">01</div></div>
 <div class="card-body">
-<div class="level">RUTA 01 · PRIMER DESAFÍO</div>
+<div class="level">MISIÓN 01 · INICIACIÓN</div>
 <h3>START</h3>
 <p class="promise">Empezá a moverte con más control para dominar mejor cada pelota.</p>
-<span class="objective">OBJETIVO · COORDINACIÓN</span>
+<span class="objective">ATRIBUTO EN FOCO · COORDINACIÓN</span><div class="mission-brief"><span>OBJETIVO DE MISIÓN</span><b>GANÁ CONTROL EN CADA APOYO</b><small>Practicá ritmo, equilibrio y coordinación para conducir y recibir con más precisión.</small></div>
 <ul class="items">
 <li>Escalera de coordinación</li>
 <li>Conos de entrenamiento</li>
@@ -309,10 +353,10 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <article class="card featured">
 <div class="visual"><span class="tag">02 · SISTEMA RECOMENDADO</span><div class="number">02</div></div>
 <div class="card-body">
-<div class="level">RUTA 02 · EVOLUCIÓN</div>
+<div class="level">MISIÓN 02 · DESARROLLO</div>
 <h3>PRO</h3>
 <p class="promise">Acelerá, cambiá de dirección y ganá control en situaciones de juego.</p>
-<span class="objective">OBJETIVO · VELOCIDAD + AGILIDAD</span>
+<span class="objective">ATRIBUTOS EN FOCO · VELOCIDAD + AGILIDAD</span><div class="mission-brief"><span>OBJETIVO DE MISIÓN</span><b>ACELERÁ. FRENÁ. VOLVÉ A ARRANCAR.</b><small>Entrená cambios de ritmo y dirección para ganar espacio y reaccionar antes.</small></div>
 <ul class="items">
 <li>Escalera de coordinación</li>
 <li>Conos de entrenamiento</li>
@@ -326,10 +370,10 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <article class="card">
 <div class="visual"><span class="tag">03 · ENTRENAMIENTO AVANZADO</span><div class="number">03</div></div>
 <div class="card-body">
-<div class="level">RUTA 03 · MÁXIMO DESAFÍO</div>
+<div class="level">MISIÓN 03 · DESAFÍO AVANZADO</div>
 <h3>ELITE</h3>
 <p class="promise">Combiná distintas capacidades para llevar tu entrenamiento un paso más allá.</p>
-<span class="objective">OBJETIVO · TRABAJO INTEGRAL</span>
+<span class="objective">ATRIBUTOS EN FOCO · DESARROLLO INTEGRAL</span><div class="mission-brief"><span>OBJETIVO DE MISIÓN</span><b>COMBINÁ TUS RECURSOS</b><small>Integrá coordinación, velocidad y técnica en un recorrido más completo.</small></div>
 <ul class="items">
 <li>Kit de coordinación</li>
 <li>Kit de velocidad</li>
