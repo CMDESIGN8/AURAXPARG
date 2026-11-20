@@ -3627,19 +3627,35 @@
 .hud-topline span:first-child{color:#08c9f4}.hud-topline b{color:#eaf8ff;font-weight:800}
 .hud-live,.hud-online{display:inline-block;width:7px;height:7px;border-radius:50%;background:#b7ff3c;box-shadow:0 0 12px #b7ff3c;margin:0 8px 1px 0}
 .hud-online{margin:0 0 1px 8px}
-.hud-side{position:absolute;top:43%;display:flex;flex-direction:column;align-items:center;gap:9px;writing-mode:vertical-rl;padding:14px 10px;border:1px solid rgba(8,201,244,.42);background:linear-gradient(180deg,rgba(3,18,32,.88),rgba(3,10,20,.48));box-shadow:0 8px 28px rgba(0,0,0,.28),inset 0 0 18px rgba(8,201,244,.07)}
-.hud-side-left{left:clamp(18px,3vw,44px);transform:rotate(180deg);border-left:2px solid #08c9f4}
-.hud-side-right{right:clamp(18px,3vw,44px);border-right:2px solid #b7ff3c}
+.hud-side{position:absolute;top:44%;left:clamp(18px,3vw,44px);display:flex;flex-direction:column;gap:8px;writing-mode:vertical-rl;transform:rotate(180deg);padding:12px 9px;border-left:2px solid #08c9f4;background:rgba(3,15,27,.62);border-top:1px solid rgba(8,201,244,.24);border-bottom:1px solid rgba(8,201,244,.24)}
 .hud-side span{font-size:7px;letter-spacing:.2em;color:rgba(225,245,255,.56)}
-.hud-side b{font-size:19px;color:#08c9f4;letter-spacing:.08em;text-shadow:0 0 16px rgba(8,201,244,.45);white-space:nowrap}
-.hud-side-right b{color:#b7ff3c;text-shadow:0 0 16px rgba(183,255,60,.32)}
-.hud-side small{font-size:7px;color:rgba(225,245,255,.62);letter-spacing:.15em;white-space:nowrap}
-.hud-side-meter{display:block;width:4px;height:54px;background:linear-gradient(180deg,#08c9f4 0 68%,rgba(8,201,244,.12) 68%);box-shadow:0 0 10px rgba(8,201,244,.28)}
-.hud-side-right .hud-side-meter{background:linear-gradient(180deg,#b7ff3c 0 42%,rgba(183,255,60,.12) 42%)}
+.hud-side b{font-size:19px;color:#08c9f4;letter-spacing:.08em;text-shadow:0 0 16px rgba(8,201,244,.45)}
+.hud-side small{font-size:7px;color:rgba(225,245,255,.62);letter-spacing:.15em}
+.hud-career-card{position:absolute;right:clamp(28px,6vw,92px);top:34%;width:246px;padding:16px 17px 13px;border:1px solid rgba(8,201,244,.48);border-right:3px solid #08c9f4;background:linear-gradient(145deg,rgba(3,17,31,.94),rgba(3,9,18,.78));box-shadow:0 18px 50px rgba(0,0,0,.38),inset 0 0 24px rgba(8,201,244,.07);clip-path:polygon(0 0,94% 0,100% 7%,100% 100%,6% 100%,0 93%);backdrop-filter:blur(12px)}
+.career-card-head,.career-xp>div,.career-card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.career-card-head{padding-bottom:10px;border-bottom:1px solid rgba(8,201,244,.25);font-size:8px;letter-spacing:.16em;color:#08c9f4}
+.career-card-head b{color:#b7ff3c;font-size:8px}
+.career-player{display:flex;align-items:center;gap:12px;padding:15px 0}
+.career-avatar{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;border:1px solid #08c9f4;background:linear-gradient(145deg,rgba(8,201,244,.24),rgba(3,12,24,.8));color:#e9fbff;font-size:17px;font-weight:900;box-shadow:0 0 20px rgba(8,201,244,.15)}
+.career-player div{display:grid;gap:4px}
+.career-player small{font-size:7px;letter-spacing:.16em;color:#b7ff3c}
+.career-player strong{font-size:13px;letter-spacing:.06em;color:#fff}
+.career-player em{font-size:8px;font-style:normal;letter-spacing:.12em;color:#08c9f4}
+.career-xp{padding:10px 0;border-top:1px solid rgba(8,201,244,.18)}
+.career-xp>div{font-size:7px;letter-spacing:.1em;color:rgba(225,245,255,.65)}
+.career-xp b{color:#b7ff3c;font-size:7px}
+.career-xp>i{display:block;height:5px;margin-top:8px;background:rgba(8,201,244,.14)}
+.career-xp>i span{display:block;width:25%;height:100%;background:linear-gradient(90deg,#08c9f4,#b7ff3c);box-shadow:0 0 12px rgba(8,201,244,.5)}
+.career-next{display:grid;gap:5px;padding:10px 0;border-top:1px solid rgba(8,201,244,.18)}
+.career-next span{font-size:7px;letter-spacing:.15em;color:rgba(225,245,255,.5)}
+.career-next b{font-size:9px;letter-spacing:.08em;color:#fff}
+.career-card-foot{padding-top:10px;border-top:1px solid rgba(8,201,244,.18);font-size:7px;letter-spacing:.12em;color:#08c9f4}
+.career-card-foot span:last-child{color:rgba(225,245,255,.6)}
+.career-card-foot b{color:#b7ff3c;font-size:11px}
 .hud-bottomline{bottom:28px;padding-top:13px;border-top:1px solid rgba(8,201,244,.28);color:rgba(225,245,255,.48);font-size:8px}
 .hud-bottomline span:first-child{color:#08c9f4}
 .hud-bottomline i{display:inline-block;width:4px;height:4px;background:#b7ff3c;transform:rotate(45deg);margin:0 7px 2px}
-.hero-content{max-width:980px;text-shadow:0 2px 22px rgba(0,0,0,.65)}
+.hero-content{max-width:760px;text-shadow:0 2px 22px rgba(0,0,0,.65)}
 .hero .eyebrow{padding:10px 14px;border:1px solid rgba(8,201,244,.42);background:rgba(3,13,24,.58);box-shadow:0 0 28px rgba(8,201,244,.1);backdrop-filter:blur(12px);margin-bottom:26px}
 .hero h1{font-size:clamp(46px,8.4vw,104px);letter-spacing:-.075em;text-shadow:0 8px 40px rgba(0,0,0,.5)}
 .hero h1 .accent{color:#08c9f4;text-shadow:0 0 18px rgba(8,201,244,.55),0 0 52px rgba(8,201,244,.25)}
@@ -3656,14 +3672,14 @@
  .hero{min-height:100svh;padding:145px 18px 78px}
  .hero-media img{object-position:center}
  .hud-topline{top:100px;left:12px;right:12px;padding:10px 11px;font-size:6px;letter-spacing:.08em}
- .hud-side{display:none}
+ .hud-side,.hud-career-card{display:none}
  .hud-bottomline{left:16px;right:16px;bottom:15px;padding-top:10px;font-size:6px;letter-spacing:.08em}
  .hud-bottomline span:last-child{display:none}
  .hero h1{font-size:clamp(43px,12vw,68px);letter-spacing:-.07em}
  .hero .eyebrow{font-size:.58rem;letter-spacing:1.4px;margin-bottom:21px}
  .countdown>div{min-width:58px;padding:10px 7px}
 }
-@media(prefers-reduced-motion:no-preference){
+@media(max-width:1100px) and (min-width:701px){.hud-career-card{right:24px;width:210px;transform:scale(.9);transform-origin:right center}.hero-content{max-width:650px}.hero h1{font-size:clamp(46px,6.4vw,82px)}}\n@media(prefers-reduced-motion:no-preference){
  .hero-media img{animation:heroReveal 1.2s ease-out both}
  .hero-game-hud .hud-crosshair{animation:crossPulse 4s ease-in-out infinite}
 }
@@ -3754,14 +3770,17 @@
                     <span><i class="hud-live"></i> AURA XP <b>/ CAREER MODE</b></span>
                     <span>SEASON 01 <i class="hud-online"></i> ONLINE</span>
                 </div>
-                <div class="hud-side hud-side-left">
-                    <span>PLAYER PROFILE</span><b>LVL. 01</b><small>FUTSAL DIVISION</small>
-                    <i class="hud-side-meter"></i>
+                <div class="hud-career-card">
+                    <div class="career-card-head"><span>PLAYER CARD</span><b>01 / 99</b></div>
+                    <div class="career-player">
+                        <span class="career-avatar">AX</span>
+                        <div><small>ROOKIE · FUTSAL</small><strong>YOUR CAREER</strong><em>LEVEL 01</em></div>
+                    </div>
+                    <div class="career-xp"><div><span>EXPERIENCIA</span><b>250 / 1.000 XP</b></div><i><span></span></i></div>
+                    <div class="career-next"><span>NEXT OBJECTIVE</span><b>UNLOCK YOUR POTENTIAL</b></div>
+                    <div class="career-card-foot"><span>TRAINING</span><span>SKILL TREE <b>↗</b></span></div>
                 </div>
-                <div class="hud-side hud-side-right">
-                    <span>ACTIVE QUEST</span><b>DROP 001</b><small>THE GRIND STARTS</small>
-                    <i class="hud-side-meter"></i>
-                </div>
+                <div class="hud-side hud-side-left"><span>CAREER MODE</span><b>BUILD</b><small>YOUR LEGACY</small></div>
                 <div class="hud-bottomline">
                     <span>TRAIN <i></i> PLAY <i></i> REPEAT</span>
                     <span>PROGRESS // UNLOCK YOUR POTENTIAL</span>
