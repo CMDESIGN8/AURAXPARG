@@ -4966,14 +4966,6 @@
                 <div class="hero-buttons">
 
                     <button
-                        class="btn-primary"
-                        onclick="scrollToSection('access')"
-                        type="button"
-                    >
-                        RESERVAR MI DROP →
-                    </button>
-
-                    <button
                         class="btn-secondary"
                         onclick="scrollToSection('drop')"
                         type="button"
@@ -6385,9 +6377,7 @@ const successSize = document.getElementById("successSize");
 
             if (diff <= 0) {
 
-                countdownEl.innerHTML =
-                    '<strong style="color:var(--logo-magenta);font-size:1.4rem;letter-spacing:2px">DROP ACTIVO 🔥</strong>';
-
+                countdownEl.innerHTML = "";
                 return;
 
             }
