@@ -498,8 +498,8 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     const m=missions[current];
     stage.innerHTML='<article class="skill mission-card"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+m.mark+'</span></div><div class="skill-info"><em class="skill-mission">MISIÓN: '+m.action+'</em><b>'+m.name+'</b><small>'+m.desc+'</small><p><strong>EN CANCHA</strong> · '+m.impact+'</p></div></article>';
     counter.textContent='MISIÓN '+String(current+1).padStart(2,'0')+' / 04';
-    percent.textContent=Math.round(((current+1)/missions.length)*100)+'%';
-    fill.style.width=((current+1)/missions.length*100)+'%';
+    percent.textContent=Math.round((current/missions.length)*100)+'%';
+    fill.style.width=(current/missions.length*100)+'%';
     next.innerHTML=current===missions.length-1?'COMPLETAR RECORRIDO <span>✦</span>':'COMPLETAR MISIÓN <span>↗</span>';
   }
   next.addEventListener('click',function(){
