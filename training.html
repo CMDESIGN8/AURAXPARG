@@ -764,6 +764,35 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   #aura-player-missions .hero-hud .drill-content > b{font-size:8px}
 }
 
+
+/* AJUSTE DE CONTRASTE: el nombre del desafío debe dominar claramente */
+#aura-player-missions .mission-card .skill-info > b{
+  font-size:clamp(32px,4.5vw,40px) !important;
+  line-height:.96 !important;
+  letter-spacing:-.06em !important;
+}
+#aura-player-missions .drill-content > b{
+  font:800 7px/1.3 Montserrat,sans-serif !important;
+  letter-spacing:.025em !important;
+  text-transform:uppercase;
+  color:#dce7ef !important;
+}
+#aura-player-missions .drill-content > small{
+  font:700 6px/1.25 Montserrat,sans-serif !important;
+}
+#aura-player-missions .drills-title > b{
+  font:400 11px/1.1 "Permanent Marker",cursive !important;
+}
+@media(max-width:600px){
+  #aura-player-missions .mission-card .skill-info > b{font-size:28px !important}
+  #aura-player-missions .drill-content > b{font-size:7px !important}
+  #aura-player-missions .drills-title > b{font-size:10px !important}
+}
+@media(max-width:360px){
+  #aura-player-missions .mission-card .skill-info > b{font-size:25px !important}
+  #aura-player-missions .drill-content > b{font-size:6.5px !important}
+}
+
 </style>
 </head>
 <body>
