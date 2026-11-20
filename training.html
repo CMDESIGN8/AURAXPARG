@@ -693,26 +693,6 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   const finished=root.querySelector('#mission-finished');
   const journey=root.querySelector('#journey-nodes');
   const journeyStatus=root.querySelector('#journey-status');
-  const coachMessage=root.querySelector('#coach-message');
-  const coachTip=root.querySelector('#coach-tip');
-  const coachToggle=root.querySelector('#coach-tip-toggle');
-  const coachContext=root.querySelector('#coach-context');
-  function updateCoach(){
-    const item=challenges[current];
-    coachMessage.textContent=item.coach;
-    coachContext.textContent='COACH KAI · DESAFÍO '+String(current+1).padStart(2,'0')+' / 04';
-    coachTip.innerHTML='<strong>PISTA DEL COACH //</strong> '+item.tip;
-    coachTip.hidden=true;
-    coachToggle.setAttribute('aria-expanded','false');
-    coachToggle.innerHTML='DAME UNA PISTA <span>＋</span>';
-  }
-  coachToggle.addEventListener('click',function(){
-    const opening=coachTip.hidden;
-    coachTip.hidden=!opening;
-    coachToggle.setAttribute('aria-expanded',String(opening));
-    coachToggle.innerHTML=opening?'OCULTAR PISTA <span>−</span>':'DAME UNA PISTA <span>＋</span>';
-  });
-
   function renderJourney(){
     const nodes=journey.querySelectorAll('.journey-node');
     const links=journey.querySelectorAll('.journey-link');
@@ -740,7 +720,6 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     }
     next.innerHTML=current===challenges.length-1?'FINALIZAR RECORRIDO <span>✦</span>':'DESAFÍO SUPERADO <span>↗</span>';
     renderJourney();
-    updateCoach();
   }
   next.addEventListener('click',function(){
     const card=stage.querySelector('.mission-card');
@@ -758,18 +737,12 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
         percent.textContent='100%';
         fill.style.width='100%';
         renderJourney();
-        coachMessage.textContent='Recorrido completado. Ya conocés cuatro recursos que podés llevar a la cancha. Ahora elegí un sistema y convertí estos objetivos en entrenamiento.';
-        coachContext.textContent='COACH KAI · ETAPA COMPLETADA';
-        coachTip.hidden=true;
-        coachToggle.disabled=true;
-        coachToggle.textContent='RECORRIDO COMPLETADO';
       }else render();
       next.disabled=false;
     },300);
   });
   root.querySelector('#mission-restart').addEventListener('click',function(){
     current=0;
-    coachToggle.disabled=false;
     finished.hidden=true;
     stage.hidden=false;
     preview.hidden=false;
