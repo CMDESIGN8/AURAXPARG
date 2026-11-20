@@ -7540,12 +7540,18 @@ function ensureHUD() {
   infoButton.addEventListener('click', () => {
     const opening = infoPanel.hidden;
     infoPanel.hidden = !opening;
+    infoButton.textContent = opening ? '×' : '?';
+    infoButton.setAttribute('aria-label', opening ? 'Cerrar información de Shopping XP' : 'Cómo funciona Shopping XP');
     infoButton.setAttribute('aria-expanded', String(opening));
+    hud.classList.toggle('xp-info-open', opening);
   });
   document.addEventListener('click', (event) => {
     if (!hud.contains(event.target)) {
       infoPanel.hidden = true;
+      infoButton.textContent = '?';
+      infoButton.setAttribute('aria-label', 'Cómo funciona Shopping XP');
       infoButton.setAttribute('aria-expanded', 'false');
+      hud.classList.remove('xp-info-open');
     }
   });
   document.body.appendChild(hud);
