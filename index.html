@@ -3736,6 +3736,30 @@
   letter-spacing: .08em;
 }
 .aura-hud-xp b { color: #b7ff3c; font-weight: 900; }
+.aura-hud { pointer-events: auto; }
+.aura-hud-label { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.aura-hud-info {
+  width:18px; height:18px; padding:0; border-radius:50%;
+  border:1px solid rgba(8,201,244,.65); background:rgba(8,201,244,.12);
+  color:#08c9f4; font:900 11px/16px "Montserrat",sans-serif; cursor:pointer;
+}
+.aura-hud-info-panel {
+  position:absolute; top:calc(100% + 9px); right:0; width:min(290px, calc(100vw - 32px));
+  padding:15px; background:rgba(5,11,20,.97); border:1px solid rgba(8,201,244,.45);
+  box-shadow:0 12px 36px rgba(0,0,0,.55); color:#dce8f4; z-index:1001;
+  white-space:normal; letter-spacing:normal;
+}
+.aura-hud-info-panel[hidden] { display:none; }
+.aura-hud-info-panel > strong { display:block; color:#08c9f4; font-size:10px; letter-spacing:.14em; margin-bottom:7px; }
+.aura-hud-info-panel p { margin:0 0 10px; color:#c0cedc; font-size:11px; line-height:1.5; }
+.aura-xp-rule { display:flex; align-items:baseline; gap:9px; padding:6px 0; border-top:1px solid rgba(255,255,255,.08); }
+.aura-xp-rule b { min-width:55px; color:#b7ff3c; font-size:12px; }
+.aura-xp-rule span { color:#dce8f4; font-size:10px; }
+.aura-hud-info-panel > small { display:block; margin-top:9px; color:#91a4b8; font-size:9px; line-height:1.5; }
+@media (max-width:600px) {
+  .aura-hud { right:10px; top:108px; min-width:145px; padding:10px 12px; }
+  .aura-hud-info-panel { right:0; }
+}
 
 /* --- Toast de achievement --- */
 .achievement-toast {
@@ -7462,18 +7486,43 @@ function showXPFloat(amount, originEl = null) {
 
 // ---------- HUD ----------
 function ensureHUD() {
-  if (document.querySelector('.aura-hud')) return document.querySelector('.aura-hud');
-  const hud = document.createElement('div');
+  let hud = document.querySelector('.aura-hud');
+  if (hud) return hud;
+  hud = document.createElement('div');
   hud.className = 'aura-hud';
   hud.innerHTML = `
-    <div class="aura-hud-label">PLAYER STATUS</div>
+    <div class="aura-hud-label">
+      <span>SHOPPING XP · VISITA</span>
+      <button class="aura-hud-info" type="button" aria-label="Cómo funciona Shopping XP" aria-expanded="false">?</button>
+    </div>
     <div class="aura-hud-level">
       <b class="hud-level-name">ROOKIE</b>
       <small class="hud-xp-count">0 XP</small>
     </div>
     <div class="aura-hud-bar"><i></i></div>
     <div class="aura-hud-xp">Próximo rango en <b class="hud-next">—</b></div>
+    <div class="aura-hud-info-panel" hidden>
+      <strong>¿QUÉ ES SHOPPING XP?</strong>
+      <p>Son puntos por explorar AURA. Acumulalos para subir de rango y seguir tu progreso.</p>
+      <div class="aura-xp-rule"><b>+50 XP</b><span>Por tu primera visita del día</span></div>
+      <div class="aura-xp-rule"><b>+25 XP</b><span>Por descubrir cada producto</span></div>
+      <div class="aura-xp-rule"><b>+15 XP</b><span>Por elegir un talle</span></div>
+      <small>Los puntos se acreditan una vez por acción, producto y día. Por ahora son puntos de progreso dentro de AURA; no son dinero ni descuentos canjeables.</small>
+    </div>
   `;
+  const infoButton = hud.querySelector('.aura-hud-info');
+  const infoPanel = hud.querySelector('.aura-hud-info-panel');
+  infoButton.addEventListener('click', () => {
+    const opening = infoPanel.hidden;
+    infoPanel.hidden = !opening;
+    infoButton.setAttribute('aria-expanded', String(opening));
+  });
+  document.addEventListener('click', (event) => {
+    if (!hud.contains(event.target)) {
+      infoPanel.hidden = true;
+      infoButton.setAttribute('aria-expanded', 'false');
+    }
+  });
   document.body.appendChild(hud);
   return hud;
 }
