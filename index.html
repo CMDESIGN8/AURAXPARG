@@ -8013,6 +8013,32 @@ function initMissions() {
 </script>
 
 
+
+<!-- AURA XP SHOPPING — SESSION PROGRESSION -->
+<script>
+(function(){
+  const KEY='aura_shopping_xp_v1';
+  const tiers=[{name:'ROOKIE',min:0,benefit:'Explorá el drop'},{name:'PLAYER',min:100,benefit:'Acceso a perk de bienvenida'},{name:'PRO',min:250,benefit:'Beneficio de loadout'},{name:'ELITE',min:450,benefit:'Bonus por equipamiento completo'},{name:'LEGEND',min:700,benefit:'Perk premium de lanzamiento'}];
+  const actions={product:35,size:20,boot:100,access:50,kit:150};
+  let state;
+  try{state=JSON.parse(sessionStorage.getItem(KEY)||'null')}catch(e){}
+  if(!state||!Array.isArray(state.done)){state={xp:0,done:[],selected:[],size:false,boot:false,access:false};}
+  const save=()=>{try{sessionStorage.setItem(KEY,JSON.stringify(state))}catch(e){}};
+  const tier=()=>tiers.slice().reverse().find(t=>state.xp>=t.min)||tiers[0];
+  const next=()=>tiers.find(t=>t.min>state.xp)||tiers[tiers.length-1];
+  function award(key,amount,label){if(state.done.includes(key))return;state.done.push(key);state.xp+=amount;save();render();toast('+'+amount+' XP · '+label);}
+  function toast(msg){let t=document.getElementById('aura-shop-toast');if(!t){t=document.createElement('div');t.id='aura-shop-toast';document.body.appendChild(t)}t.textContent=msg;t.classList.add('show');clearTimeout(t._timer);t._timer=setTimeout(()=>t.classList.remove('show'),2300)}
+  function render(){const el=document.getElementById('aura-shopping-hud');if(!el)return;const cur=tier(),nxt=next(),progress=nxt.min===cur.min?100:Math.min(100,Math.round((state.xp-cur.min)/(nxt.min-cur.min)*100));el.querySelector('[data-xp]').textContent=state.xp;el.querySelector('[data-tier]').textContent=cur.name;el.querySelector('[data-benefit]').textContent=cur.benefit;el.querySelector('[data-progress]').style.width=progress+'%';el.querySelector('[data-next]').textContent=nxt.min===cur.min?'NIVEL MÁXIMO':'PRÓXIMO NIVEL '+nxt.name+' · '+Math.max(0,nxt.min-state.xp)+' XP';el.querySelector('[data-kit]').textContent=state.selected.length+' PIEZA'+(state.selected.length===1?'':'S')+' SELECCIONADA'+(state.selected.length===1?'':'S');}
+  function mount(){if(document.getElementById('aura-shopping-hud'))return;const access=document.getElementById('access');if(!access)return;const panel=document.createElement('section');panel.id='aura-shopping-hud';panel.innerHTML='<div class="ash-inner"><div class="ash-kicker">SHOPPING XP · PROGRESO DE ESTA VISITA</div><div class="ash-row"><div><small>NIVEL ACTUAL</small><strong data-tier>ROOKIE</strong></div><div class="ash-score"><small>XP DE SHOPPING</small><strong data-xp>0</strong></div></div><p data-benefit>Explorá el drop</p><div class="ash-track"><i data-progress></i></div><div class="ash-next" data-next>PRÓXIMO NIVEL</div><div class="ash-kit" data-kit>0 PIEZAS SELECCIONADAS</div><p class="ash-note">Sumá prendas y equipamiento para desbloquear beneficios de tu loadout. El progreso es de esta visita y no requiere cuenta.</p></div>';access.parentNode.insertBefore(panel,access);render();}
+  const css=document.createElement('style');css.textContent='#aura-shopping-hud{margin:24px auto 38px;padding:0 20px;max-width:1180px}.ash-inner{background:linear-gradient(120deg,#071725,#0b1e30);border:1px solid rgba(8,201,244,.45);padding:22px;position:relative;overflow:hidden}.ash-inner:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(8,201,244,.06),transparent 70%)}.ash-kicker{color:#08c9f4;font-size:10px;letter-spacing:.2em;font-weight:900;margin-bottom:16px}.ash-row{display:flex;align-items:center;justify-content:space-between;gap:15px}.ash-row small{display:block;color:#91a8ba;font-size:9px;letter-spacing:.14em;font-weight:800}.ash-row strong{display:block;font-size:25px;font-weight:900;letter-spacing:-.04em}.ash-score{text-align:right}.ash-score strong{color:#b7ff3c}.ash-inner p[data-benefit]{font-size:12px;color:#eaf5ff;font-weight:700;margin:10px 0}.ash-track{height:6px;background:#1b2c3d;margin:14px 0;overflow:hidden}.ash-track i{display:block;height:100%;width:0;background:linear-gradient(90deg,#08c9f4,#b7ff3c);transition:width .4s}.ash-next{color:#08c9f4;font-size:9px;font-weight:900;letter-spacing:.12em}.ash-kit{margin-top:14px;font-size:10px;font-weight:900;color:#b7ff3c;letter-spacing:.12em}.ash-note{font-size:10px!important;color:#92a8ba!important;line-height:1.5;margin-top:12px!important;max-width:700px}#aura-shop-toast{position:fixed;z-index:9999;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#b7ff3c;color:#061018;padding:12px 18px;font-size:11px;font-weight:900;letter-spacing:.06em;box-shadow:0 0 25px rgba(183,255,60,.2);transition:.25s}#aura-shop-toast.show{opacity:1;transform:translate(-50%,0)}@media(max-width:600px){#aura-shopping-hud{padding:0 12px}.ash-inner{padding:17px}.ash-row strong{font-size:21px}}';document.head.appendChild(css);mount();
+  document.addEventListener('click',e=>{const productBtn=e.target.closest('.select-product');if(productBtn){const card=productBtn.closest('.product-card');const name=card?.dataset.product||'producto';if(!state.selected.includes(name)){state.selected.push(name);save();award('product:'+name,actions.product,'PRODUCTO DESCUBIERTO');}if(state.selected.length>=2)award('kit:two',actions.kit,'LOADOUT EN ARMADO');}
+    if(e.target.closest('.size-option')){award('size:first',actions.size,'TALLE DEFINIDO');}
+    if(e.target.closest('.bc-submit')){award('boot:config',actions.boot,'BOTÍN PERSONALIZADO');}
+    if(e.target.closest('a[href="#access"],button[type="submit"]')){award('access:first',actions.access,'INICIO DE RESERVA');}
+  },true);
+})();
+</script>
+
 </body>
 
 </body>
