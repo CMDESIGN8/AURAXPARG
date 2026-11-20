@@ -7518,17 +7518,14 @@ function renderHUD() {
 }
 
 // ---------- AWARD XP ----------
-async function awardXP(action, originEl = null) {
+async function awardXP(action, originEl = null, eventKey = null) {
   const amount = XP_REWARDS[action];
-  if (!amount) return;
-
-  // Feedback inmediato, aunque no haya user logueado
-  showXPFloat(amount, originEl);
-  playSfx('xp');
-
-  if (!currentUser) return;
-
-  const eventKey = arguments[2] || (action + '_' + todayKey());
+  if (!amount) return false;
+  if (!currentUser) {
+    showToast({ icon: '🔒', title: 'INICIÁ SESIÓN', subtitle: 'Tu progreso se guarda en tu cuenta', color: '#08c9f4' });
+    return false;
+  }
+  eventKey = eventKey || (action + '_' + todayKey());
   const userRef = doc(db, 'users', currentUser.uid);
   const eventRef = doc(db, 'users', currentUser.uid, 'xpEvents', eventKey);
   const before = currentXP;
