@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AURA XP PRO · 21 DAY PERFORMANCE PROGRAM</title>
-<meta name="description" content="Programa AURA XP PRO de 21 días: coordinación, aceleración, agilidad y técnica aplicada al futsal.">
+<title>AURA XP PRO · PERFORMANCE CLUB</title>
+<meta name="description" content="AURA XP PRO Performance Club: tu experiencia interactiva de entrenamiento de futsal de 21 días.">
 <meta name="theme-color" content="#060b12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,6 +69,43 @@ h1 span{color:var(--cyan)}
 footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var(--muted);font-size:9px;letter-spacing:.12em}
 @media(max-width:720px){.days{grid-template-columns:1fr}.weeks{grid-template-columns:1fr}.guidance{grid-template-columns:1fr}header{height:auto;min-height:66px;align-items:flex-start;flex-direction:column;justify-content:center;gap:7px;padding:10px 18px}nav{width:100%;justify-content:space-between;gap:8px;font-size:8px}.hero{padding:60px 16px 44px}}
 @media print{header,.top,.controls,.mark input{display:none!important}body{background:#fff;color:#111}.hero{background:#fff;color:#111;padding:20px}.hero p,.section-head p,.week p,.day .focus,.details li,.dose,.guide p,.guide li,.disclaimer{color:#333}.day,.week,.guide{break-inside:avoid;background:#fff;border:1px solid #bbb}.days{grid-template-columns:1fr 1fr}.day h3{color:#111}}
+
+/* PERFORMANCE CLUB EXPERIENCE */
+.club-shell{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin:24px 0 18px}
+.club-main,.club-side{border:1px solid var(--line);background:linear-gradient(145deg,#102338,#0a1420);padding:20px;position:relative;overflow:hidden}
+.club-main:after{content:"XP";position:absolute;right:15px;bottom:-38px;font-size:140px;font-weight:900;color:rgba(8,201,244,.055);letter-spacing:-.1em;pointer-events:none}
+.club-label{font-size:9px;font-weight:900;letter-spacing:.18em;color:var(--cyan)}
+.club-main h2{font-size:clamp(24px,4vw,38px);letter-spacing:-.06em;line-height:1;margin:9px 0}
+.club-main p{font-size:11px;color:var(--muted);max-width:500px}
+.club-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.club-side{display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.xp-number{font-size:42px;font-weight:900;letter-spacing:-.07em;color:var(--lime);line-height:1}
+.xp-caption{font-size:9px;color:var(--muted);letter-spacing:.14em;font-weight:900}
+.stat-row{display:flex;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}
+.stat-row b{color:var(--white);font-size:12px}
+.week-filter{display:flex;gap:7px;flex-wrap:wrap;margin:20px 0 12px}
+.filter-btn{padding:10px 13px;border:1px solid var(--line);background:#0b1420;color:var(--muted);font:900 9px Montserrat;letter-spacing:.1em;cursor:pointer}
+.filter-btn.active{background:var(--cyan);border-color:var(--cyan);color:#031018}
+.day{transition:border-color .2s,transform .2s}
+.day:hover{border-color:rgba(8,201,244,.48);transform:translateY(-2px)}
+.day[hidden]{display:none}
+.session-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left;border:0;background:transparent;color:var(--cyan);font:900 9px Montserrat;letter-spacing:.12em;padding:13px 0 0;cursor:pointer}
+.session-toggle span:last-child{font-size:16px;line-height:1}
+.day .details,.day .dose{display:none}
+.day.expanded .details,.day.expanded .dose{display:block}
+.day.expanded .session-toggle span:last-child{transform:rotate(45deg)}
+.day .mark{padding-top:10px;border-top:1px solid var(--line)}
+.day.done .mark{color:var(--lime)}
+.day.done .mark:after{content:" +50 XP";color:var(--lime);margin-left:auto}
+.next-tag{display:inline-block;font-size:8px;font-weight:900;letter-spacing:.1em;color:#061018;background:var(--lime);padding:5px 7px;margin-left:7px;vertical-align:middle}
+.level-track{height:5px;background:#263647;margin-top:9px;overflow:hidden}
+.level-track span{display:block;height:100%;width:0;background:var(--lime);transition:width .25s}
+.empty-state{display:none;border:1px dashed var(--line);padding:25px;text-align:center;color:var(--muted);font-size:11px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--lime);color:#061018;padding:12px 18px;font-size:10px;font-weight:900;letter-spacing:.1em;z-index:20;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:720px){.club-shell{grid-template-columns:1fr}.club-main,.club-side{padding:16px}.club-side{display:grid;grid-template-columns:1fr 1fr}.club-side .xp-block{grid-row:span 2}.filter-btn{flex:1;min-width:calc(50% - 7px)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -90,6 +127,30 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
 <div class="week"><b>WEEK 02</b><strong>AGILITY & SPEED</strong><p>Sumá reacción, aceleración corta y cambios de dirección con control.</p></div>
 <div class="week"><b>WEEK 03</b><strong>GAME APPLICATION</strong><p>Combiná coordinación y pelota en secuencias específicas de futsal.</p></div>
 </div>
+<section class="club-shell" aria-label="Tu panel de rendimiento">
+  <div class="club-main">
+    <div class="club-label">YOUR PERFORMANCE SPACE</div>
+    <h2>EL PRÓXIMO NIVEL<br>SE ENTRENA.</h2>
+    <p>Elegí tu semana, abrí la sesión y registrá cada avance. Cada jornada completada suma 50 XP a tu progreso local.</p>
+    <div class="club-actions">
+      <button class="btn" id="continueBtn">CONTINUAR MI PLAN ↗</button>
+      <button class="btn secondary" id="showAllBtn">VER LAS 3 SEMANAS</button>
+    </div>
+  </div>
+  <aside class="club-side">
+    <div class="xp-block"><div class="club-label">AURA XP POINTS</div><div class="xp-number" id="xpTotal">000</div><div class="xp-caption">XP ACUMULADOS</div><div class="level-track"><span id="xpTrack"></span></div></div>
+    <div><div class="xp-caption">DÍAS COMPLETADOS</div><div class="xp-number" id="completedTotal">0<span style="font-size:18px;color:var(--muted)"> / 21</span></div></div>
+    <div><div class="xp-caption">SIGUIENTE MISIÓN</div><div id="nextMission" style="font-size:12px;font-weight:900;margin-top:5px">DÍA 01 · ACTIVÁ TU MOTOR</div></div>
+    <div class="stat-row"><span>PROGRESO DEL PLAN</span><b id="percentTotal">0%</b></div>
+  </aside>
+</section>
+<div class="week-filter" role="group" aria-label="Filtrar por semana">
+  <button class="filter-btn active" data-filter="all">TODAS LAS SEMANAS</button>
+  <button class="filter-btn" data-filter="1">WEEK 01 · BASE</button>
+  <button class="filter-btn" data-filter="2">WEEK 02 · SPEED</button>
+  <button class="filter-btn" data-filter="3">WEEK 03 · GAME</button>
+</div>
+<div class="empty-state" id="emptyState">No hay jornadas en esta selección.</div>
 <section class="days" id="days">
 <article class="day" data-day="1"><div class="day-top"><span class="day-num">DAY 01 · BASELINE</span><span class="pill training">SESIÓN · 30'</span></div><h3>Activá tu motor</h3><p class="focus">Objetivo: conocer tu punto de partida y dominar la postura atlética.</p><div class="details"><b>Bloque principal</b><ul><li>Movilidad dinámica + trote suave: 6 min</li><li>Escalera: 4 pasadas caminando, un apoyo por cuadro</li><li>Conos: 4 × recorrido recto de 5 m, ida y vuelta controlada</li><li>Con pelota: conducción libre con ambos pies, 4 × 45 s</li></ul></div><div class="dose">Pausa: 45–60 s. Anotá sensaciones y calidad, no busques velocidad máxima.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
 <article class="day" data-day="2"><div class="day-top"><span class="day-num">DAY 02 · BALL FEEL</span><span class="pill training">SESIÓN · 25'</span></div><h3>Primer toque</h3><p class="focus">Objetivo: coordinación de pies y control cercano de pelota.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 6 min</li><li>Escalera: 3 × 2 pasadas alternando apoyos</li><li>Conos: slalom con pelota, 5 × 20 s</li><li>Toques cortos interior-exterior: 4 × 30 s por pie</li></ul></div><div class="dose">Pausa: 40–60 s. Mantené la pelota cerca y levantá la mirada entre toques.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
@@ -123,18 +184,82 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
 <div class="disclaimer"><strong>NOTA DE USO:</strong> Este es un programa general de entrenamiento recreativo y una primera versión editorial de AURA XP PRO. No es una evaluación individual ni reemplaza la planificación de un entrenador. Antes de comercializarlo como producto digital, el contenido debe ser revisado y validado por un profesional de educación física con experiencia en futsal, y adaptado por edad, experiencia y carga semanal de cada deportista. El progreso marcado se guarda únicamente en este navegador y dispositivo.</div>
 </div>
 </main>
-<footer>AURA XP · TRAINING SYSTEMS · FARMEÁ ESTILO. SUBÍ DE NIVEL.</footer>
+<div class="toast" id="toast" role="status" aria-live="polite">+50 XP · MISIÓN COMPLETADA</div><footer>AURA XP · PERFORMANCE CLUB · FARMEÁ ESTILO. SUBÍ DE NIVEL.</footer>
 <script>
 (function(){
  const KEY='auraxp-pro-21day-progress-v1';
- const boxes=[...document.querySelectorAll('[data-day] input[type="checkbox"]')];
+ const cards=[...document.querySelectorAll('[data-day]')];
+ const boxes=cards.map(card=>card.querySelector('input[type="checkbox"]'));
  const fill=document.getElementById('progressFill');
- const text=document.getElementById('progressText');
- function load(){let saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}boxes.forEach((box,i)=>{box.checked=!!saved[i+1];box.closest('.day').classList.toggle('done',box.checked)});update()}
- function update(){const count=boxes.filter(b=>b.checked).length;fill.style.width=(count/21*100)+'%';text.textContent=count+' / 21 DÍAS';}
- boxes.forEach((box,i)=>box.addEventListener('change',()=>{box.closest('.day').classList.toggle('done',box.checked);let saved={};boxes.forEach((b,j)=>{if(b.checked)saved[j+1]=true});localStorage.setItem(KEY,JSON.stringify(saved));update()}));
- document.getElementById('resetProgress').addEventListener('click',()=>{if(!confirm('¿Reiniciar el progreso de los 21 días en este dispositivo?'))return;localStorage.removeItem(KEY);load()});
- load();
+ const progressText=document.getElementById('progressText');
+ const xpTotal=document.getElementById('xpTotal');
+ const completedTotal=document.getElementById('completedTotal');
+ const percentTotal=document.getElementById('percentTotal');
+ const xpTrack=document.getElementById('xpTrack');
+ const nextMission=document.getElementById('nextMission');
+ const toast=document.getElementById('toast');
+ let saved={};
+ try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
+ function persist(){localStorage.setItem(KEY,JSON.stringify(saved))}
+ function update(){
+   const count=boxes.filter((b,i)=>!!saved[i+1]).length;
+   const xp=count*50;
+   const percent=Math.round(count/21*100);
+   fill.style.width=percent+'%';
+   progressText.textContent=count+' / 21 DÍAS';
+   xpTotal.textContent=String(xp).padStart(3,'0');
+   completedTotal.innerHTML=count+'<span style="font-size:18px;color:var(--muted)"> / 21</span>';
+   percentTotal.textContent=percent+'%';
+   xpTrack.style.width=(xp%500/500*100)+'%';
+   const next=cards.find((card,i)=>!saved[i+1]);
+   nextMission.textContent=next?'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase():'PROGRAMA COMPLETADO';
+   cards.forEach((card,i)=>{
+     const done=!!saved[i+1];
+     boxes[i].checked=done;
+     card.classList.toggle('done',done);
+     const badge=card.querySelector('.next-tag');
+     if(badge)badge.remove();
+   });
+   if(next){const tag=document.createElement('span');tag.className='next-tag';tag.textContent='NEXT';next.querySelector('.day-num').append(tag)}
+ }
+ function expand(card){card.classList.add('expanded');const btn=card.querySelector('.session-toggle');btn.setAttribute('aria-expanded','true');btn.querySelector('span:last-child').textContent='+'}
+ function collapse(card){card.classList.remove('expanded');const btn=card.querySelector('.session-toggle');btn.setAttribute('aria-expanded','false');btn.querySelector('span:last-child').textContent='+'}
+ cards.forEach((card,i)=>{
+   const details=card.querySelector('.details');
+   const toggle=document.createElement('button');
+   toggle.className='session-toggle';toggle.type='button';toggle.setAttribute('aria-expanded','false');
+   toggle.innerHTML='<span>VER DETALLE DE LA SESIÓN</span><span>+</span>';
+   details.parentNode.insertBefore(toggle,details);
+   toggle.addEventListener('click',()=>{card.classList.contains('expanded')?collapse(card):expand(card)});
+   boxes[i].addEventListener('change',()=>{
+     const wasDone=!!saved[i+1];
+     if(boxes[i].checked)saved[i+1]=true;else delete saved[i+1];
+     persist();update();
+     if(!wasDone&&saved[i+1]){toast.textContent='+50 XP · MISIÓN COMPLETADA';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1900)}
+   });
+ }
+ document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{
+   document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===btn));
+   const filter=btn.dataset.filter;
+   cards.forEach(card=>{const day=Number(card.dataset.day);const week=Math.ceil(day/7);card.hidden=filter!=='all'&&week!==Number(filter)});
+   document.getElementById('emptyState').style.display='none';
+ }));
+ document.getElementById('showAllBtn').addEventListener('click',()=>{
+   document.querySelector('[data-filter="all"]').click();
+   document.querySelector('.week-filter').scrollIntoView({behavior:'smooth',block:'center'});
+ });
+ document.getElementById('continueBtn').addEventListener('click',()=>{
+   const next=cards.find((card,i)=>!saved[i+1]);
+   if(!next){document.querySelector('[data-filter="all"]').click();return}
+   document.querySelector('[data-filter="'+Math.ceil(Number(next.dataset.day)/7)+'"]').click();
+   expand(next);
+   next.scrollIntoView({behavior:'smooth',block:'center'});
+ });
+ document.getElementById('resetProgress').addEventListener('click',()=>{
+   if(!confirm('¿Reiniciar los XP y el progreso de los 21 días en este dispositivo?'))return;
+   saved={};persist();update();cards.forEach(c=>collapse(c));
+ });
+ update();
 })();
 </script>
 </body>
