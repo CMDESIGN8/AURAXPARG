@@ -3811,6 +3811,191 @@
   .aura-hud.xp-focus { animation:none; }
 }
 
+/* =========================================================
+   AURA XP — RESPONSIVE HUD PATCH
+   Evita solapamientos entre el CTA, el nivel y el panel explicativo.
+========================================================= */
+.aura-hud {
+  box-sizing: border-box;
+  width: 226px;
+  min-width: 0;
+}
+.aura-hud *,
+.aura-hud *::before,
+.aura-hud *::after { box-sizing: border-box; }
+.aura-hud-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+.aura-hud-label > span {
+  min-width: 0;
+  line-height: 1.35;
+}
+.aura-hud-info {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  min-height: 25px;
+  padding: 5px 7px;
+  border-radius: 2px;
+  font: 900 8px/1.2 "Montserrat", sans-serif;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+.aura-hud-info-panel {
+  box-sizing: border-box;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.aura-xp-rule {
+  display: grid;
+  grid-template-columns: 62px minmax(0,1fr);
+  align-items: start;
+  gap: 9px;
+}
+.aura-xp-rule b { min-width: 0; }
+.aura-xp-rule span { min-width: 0; line-height: 1.45; }
+
+@media (min-width: 601px) {
+  .aura-hud { width: 226px; max-width: calc(100vw - 32px); }
+  .aura-hud.xp-info-open {
+    width: 300px;
+    max-width: min(300px, calc(100vw - 32px));
+  }
+  .aura-hud.xp-info-open .aura-hud-info-panel {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  /* HUD compacto fijo abajo: no invade el título ni los botones del hero. */
+  .aura-hud {
+    top: auto;
+    right: 12px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    left: 12px;
+    width: auto;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 9px 11px;
+    gap: 5px;
+    border-color: rgba(8,201,244,.55);
+    background: rgba(4,10,19,.96);
+    transform: translateY(0);
+    transform-origin: center bottom;
+  }
+  .aura-hud.show { transform: translateY(0); }
+  .aura-hud-label {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    align-items: center;
+    gap: 8px;
+    font-size: 8px;
+    letter-spacing: .12em;
+  }
+  .aura-hud-info {
+    width: auto;
+    min-width: 104px;
+    min-height: 27px;
+    padding: 6px 8px;
+    font-size: 8px;
+    letter-spacing: .04em;
+  }
+  .aura-hud-level { gap: 7px; }
+  .aura-hud-level b { font-size: 14px; }
+  .aura-hud-level small,
+  .aura-hud-xp { font-size: 10px; }
+  .aura-hud-bar { height: 3px; }
+
+  /* Abierto: tarjeta modal centrada, con contenido en una sola columna. */
+  .aura-hud.xp-info-open {
+    top: 50%;
+    right: 14px;
+    bottom: auto;
+    left: 14px;
+    width: auto;
+    max-width: 430px;
+    max-height: min(82dvh, 680px);
+    margin: 0 auto;
+    padding: 17px;
+    gap: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform: translateY(-50%);
+    transform-origin: center;
+    z-index: 10002;
+    background: rgba(4,10,19,.985);
+    border: 1px solid rgba(8,201,244,.8);
+    box-shadow: 0 0 0 100vmax rgba(0,0,0,.8), 0 0 42px rgba(8,201,244,.25);
+  }
+  .aura-hud.xp-info-open .aura-hud-label {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    font-size: 9px;
+  }
+  .aura-hud.xp-info-open .aura-hud-label > span {
+    font-size: 9px;
+    letter-spacing: .14em;
+  }
+  .aura-hud.xp-info-open .aura-hud-info {
+    width: 100%;
+    min-width: 0;
+    min-height: 36px;
+    font-size: 10px;
+  }
+  .aura-hud.xp-info-open .aura-hud-info-panel {
+    position: static;
+    inset: auto;
+    display: block;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 13px 0 0;
+    overflow: visible;
+    border: 0;
+    border-top: 1px solid rgba(8,201,244,.28);
+    background: transparent;
+    box-shadow: none;
+  }
+  .aura-hud.xp-info-open .aura-hud-info-panel[hidden] { display: none; }
+  .aura-hud-info-panel > strong { font-size: 12px; }
+  .aura-hud-info-panel p { font-size: 13px; line-height: 1.55; }
+  .aura-xp-rule {
+    grid-template-columns: 68px minmax(0,1fr);
+    gap: 10px;
+    padding: 9px 0;
+  }
+  .aura-xp-rule b { font-size: 14px; }
+  .aura-xp-rule span { font-size: 12px; line-height: 1.45; }
+  .aura-hud-info-panel > small { font-size: 11px; line-height: 1.55; }
+
+  @keyframes auraHudFocusMobile {
+    0%,100% { transform: translateY(-50%) scale(1); }
+    45% { transform: translateY(-50%) scale(1.015); }
+  }
+  .aura-hud.xp-focus.xp-info-open { animation: auraHudFocusMobile 1.05s ease 2; }
+  .aura-hud.xp-info-open .aura-hud-level,
+  .aura-hud.xp-info-open .aura-hud-bar,
+  .aura-hud.xp-info-open .aura-hud-xp { display: none; }
+}
+@media (max-width: 360px) {
+  .aura-hud { right: 8px; left: 8px; padding: 8px 9px; }
+  .aura-hud-label { font-size: 7px; }
+  .aura-hud-info { min-width: 96px; font-size: 7px; }
+  .aura-hud.xp-info-open { right: 10px; left: 10px; padding: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aura-hud.xp-focus { animation: none !important; }
+}
+
+
 /* --- Toast de achievement --- */
 .achievement-toast {
   position: fixed;
