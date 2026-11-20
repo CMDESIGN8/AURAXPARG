@@ -3620,8 +3620,12 @@
 
         <nav>
 
+            <a href="training.html">
+                TRAINING SYSTEMS
+            </a>
+
             <a href="#drop">
-                DROP 001
+                APPAREL · DROP 001
             </a>
 
             <a href="#boots">
@@ -3726,8 +3730,10 @@
                         onclick="scrollToSection('drop')"
                         type="button"
                     >
-                        VER DROP + KITS
+                        VER DROP 001
                     </button>
+
+                    <a class="btn-primary" href="training.html">DESCUBRÍ TRAINING SYSTEMS →</a>
 
                 </div>
 
@@ -4035,92 +4041,6 @@
 
         </section>
 
-
-        <!-- =====================================================
-             FUTSAL KITS
-        ====================================================== -->
-
-        <section class="drop kits-section" id="kits">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-kicker">AURA XP FUTSAL · EQUIPAMIENTO</div>
-                    <h2 class="section-title">ELEGÍ TU<br>KIT.</h2>
-                    <p class="section-description">
-                        Tres piezas. Un solo loadout. Camiseta, short y medias
-                        diseñados para jugar futsal con identidad propia.
-                    </p>
-                </div>
-
-                <div class="products kit-products">
-                    <article class="product-card kit-card" data-kit="STARTER KIT"
-                        style="--product-color:#b7ff3c;--product-glow:rgba(183,255,60,.18)">
-                        <div class="product-image kit-art starter-kit-art">
-                            <div class="kit-garment jersey">AURA<br><b>XP</b><small>CAMISETA</small></div>
-                            <div class="kit-garment shorts">XP<small>SHORT</small></div>
-                            <div class="kit-garment socks">AURA<small>MEDIAS</small></div>
-                            <div class="rarity rare">RARE</div><div class="xp-badge">+100 XP</div>
-                            <div class="kit-edition">KIT 3 PIEZAS</div>
-                        </div>
-                        <div class="product-info">
-                            <span class="product-type">FUTSAL · PRIMER LOADOUT</span>
-                            <h3>STARTER KIT</h3>
-                            <p>Tu primer equipamiento AURA XP: camiseta, short y medias.</p>
-                            <ul class="product-features">
-                                <li>✓ Camiseta de futsal</li><li>✓ Short deportivo</li><li>✓ Medias de juego</li>
-                            </ul>
-                            <div class="product-bottom"><div class="price"><span class="price-label">COLECCIÓN</span><strong>STARTER</strong></div>
-                                <button class="select-product select-kit" type="button">ELEGIR KIT</button></div>
-                        </div>
-                    </article>
-
-                    <article class="product-card kit-card" data-kit="MATCHDAY KIT"
-                        style="--product-color:#08c9f4;--product-glow:rgba(8,201,244,.18)">
-                        <div class="product-image kit-art matchday-kit-art">
-                            <div class="kit-garment jersey">AURA<br><b>XP</b><small>CAMISETA</small></div>
-                            <div class="kit-garment shorts">XP<small>SHORT</small></div>
-                            <div class="kit-garment socks">AURA<small>MEDIAS</small></div>
-                            <div class="rarity epic">EPIC</div><div class="xp-badge">+250 XP</div>
-                            <div class="kit-edition">MATCHDAY EDITION</div>
-                        </div>
-                        <div class="product-info">
-                            <span class="product-type">FUTSAL · DÍA DE PARTIDO</span>
-                            <h3>MATCHDAY KIT</h3>
-                            <p>Una versión de cancha con identidad visual de nivel competitivo.</p>
-                            <ul class="product-features">
-                                <li>✓ Camiseta técnica</li><li>✓ Short de juego</li><li>✓ Medias deportivas</li>
-                            </ul>
-                            <div class="product-bottom"><div class="price"><span class="price-label">COLECCIÓN</span><strong>MATCHDAY</strong></div>
-                                <button class="select-product select-kit" type="button">ELEGIR KIT</button></div>
-                        </div>
-                    </article>
-
-                    <article class="product-card kit-card" data-kit="ELITE KIT"
-                        style="--product-color:#ffbd4a;--product-glow:rgba(255,189,74,.22)">
-                        <div class="product-image kit-art elite-kit-art">
-                            <div class="kit-garment jersey">AURA<br><b>XP</b><small>CAMISETA</small></div>
-                            <div class="kit-garment shorts">XP<small>SHORT</small></div>
-                            <div class="kit-garment socks">AURA<small>MEDIAS</small></div>
-                            <div class="rarity legendary">LEGENDARY</div><div class="xp-badge">+500 XP</div>
-                            <div class="kit-edition">LIMITED DROP</div>
-                        </div>
-                        <div class="product-info">
-                            <span class="product-type">FUTSAL · EDICIÓN LIMITADA</span>
-                            <h3>ELITE KIT</h3>
-                            <p>El loadout premium AURA XP. Diseño exclusivo y detalles de edición limitada.</p>
-                            <ul class="product-features">
-                                <li>✓ Camiseta premium</li><li>✓ Short premium</li><li>✓ Medias edición especial</li>
-                            </ul>
-                            <div class="product-bottom"><div class="price"><span class="price-label">COLECCIÓN</span><strong>ELITE</strong></div>
-                                <button class="select-product select-kit" type="button">ELEGIR KIT</button></div>
-                        </div>
-                    </article>
-                </div>
-                <div class="drop-note kit-note">
-                    <span class="pulse-dot"></span>
-                    <span><strong>NUEVA LÍNEA FUTSAL.</strong> Los diseños, talles, precios y disponibilidad se confirmarán antes de abrir reservas.</span>
-                </div>
-            </div>
-        </section>
 
         <!-- =====================================================
              LOADOUT
@@ -4968,13 +4888,6 @@
         };
 
 
-        const kitCards = document.querySelectorAll(".kit-card");
-        const kitProducts = {
-            "STARTER KIT": { name:"STARTER KIT", rarity:"rare", rarityLabel:"RARE", xp:100, image:"assets/remera3.png", description:"Kit futsal de tres piezas: camiseta, short y medias.", type:"kit" },
-            "MATCHDAY KIT": { name:"MATCHDAY KIT", rarity:"epic", rarityLabel:"EPIC", xp:250, image:"assets/farm3.jpg", description:"Kit futsal de tres piezas con identidad de partido.", type:"kit" },
-            "ELITE KIT": { name:"ELITE KIT", rarity:"legendary", rarityLabel:"LEGENDARY", xp:500, image:"assets/buzo3.jpg", description:"Kit futsal premium de edición limitada: camiseta, short y medias.", type:"kit" }
-        };
-
         /* =======================================================
            CURRENT PRODUCT
         ======================================================== */
@@ -5112,7 +5025,7 @@ const successSize = document.getElementById("successSize");
 
         function selectProduct(productName) {
 
-            const product = products[productName] || kitProducts[productName];
+            const product = products[productName];
 
             if (!product) return;
 
@@ -5131,7 +5044,6 @@ const successSize = document.getElementById("successSize");
             });
 
 
-            kitCards.forEach(card => card.classList.toggle("selected", card.dataset.kit === product.name));
 
             /* RARITY */
 
@@ -5179,20 +5091,6 @@ const successSize = document.getElementById("successSize");
 
         }
 
-
-        kitCards.forEach(card => {
-            const kitName = card.dataset.kit;
-            card.addEventListener("click", event => {
-                if (event.target.closest("button")) event.preventDefault();
-                selectProduct(kitName);
-                document.getElementById("loadout").scrollIntoView({ behavior:"smooth" });
-            });
-            card.querySelector(".select-kit")?.addEventListener("click", event => {
-                event.stopPropagation();
-                selectProduct(kitName);
-                document.getElementById("loadout").scrollIntoView({ behavior:"smooth" });
-            });
-        });
 
         /* =======================================================
            PRODUCT BUTTONS
@@ -5415,10 +5313,6 @@ function showDropMsg(text, isErr) {
 
 async function saveLead(userData) {
 
-    if (selectedProduct.type === "kit") {
-        showDropMsg("La línea FUTSAL ya se puede explorar y seleccionar. Las reservas se habilitarán cuando publiquemos talles, precios y stock de los tres componentes.", true);
-        return false;
-    }
 
 
     const normalizedEmail = String(userData.email || "")

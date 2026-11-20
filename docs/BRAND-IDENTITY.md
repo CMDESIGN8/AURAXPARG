@@ -65,7 +65,9 @@ Evitar: frases corporativas, infantilización, exceso de anglicismos sin context
 - **FARM TEE:** producto de entrada; streetwear cotidiano.
 - **SPORT AURA:** pieza deportiva urbana para cancha y ciudad.
 - **GRIND:** pieza premium y limitada.
-- **CUSTOM BOOTS:** categoría independiente para botines personalizados.
+- **AURA XP TRAINING SYSTEMS:** START (7 días), PRO (21 días) y ELITE (30 días), soluciones de entrenamiento que combinan equipamiento físico con programa digital.
+- **APPAREL:** FARM TEE, SPORT AURA y GRIND; prendas individuales.
+- **CUSTOM BOOTS:** categoría independiente para botines personalizados, con configurador propio.
 
 Los nombres de display deben mantenerse consistentes en la web, los formularios, Firestore y el panel admin. El ID interno recomendado para GRIND es `GRIND` (sin espacios finales).
 
@@ -88,11 +90,14 @@ El futsal es el punto de entrada y la primera comunidad. La marca debe poder cre
 - SPORT AURA: capa deportiva urbana.
 - GRIND: pieza premium LEGENDARY.
 
-### FUTSAL KITS
-- STARTER KIT — RARE — +100 XP.
-- MATCHDAY KIT — EPIC — +250 XP.
-- ELITE KIT — LEGENDARY — +500 XP.
-- Composición de cada kit: camiseta de futsal + short + medias.
+### AURA XP TRAINING SYSTEMS
 
-Los nombres, rarezas y XP describen la experiencia de selección de la colección. Precios, talles, especificaciones técnicas, fotos definitivas y disponibilidad deben confirmarse antes de abrir reservas. Cada componente necesita inventario propio; un kit no debe descontar unidades de las prendas URBAN.
+- **START:** escalera de coordinación + conos + programa digital de 7 días.
+- **PRO:** escalera + conos + aros + mini vallas + programa digital de 21 días.
+- **ELITE:** kit de coordinación + kit de velocidad + pelota + bolsa + programa digital de 30 días.
 
+La propuesta comercial es vender una solución de entrenamiento, no accesorios sueltos. El programa digital debe incluir ejercicios, series, repeticiones, descansos, objetivos y registro de progreso. La composición física final depende de la validación de proveedores y costos.
+
+Los precios objetivo iniciales son START $34.990, PRO $59.990 y ELITE $89.990. Son referencias internas no validadas; no publicarlos ni habilitar compras hasta calcular costos reales y confirmar stock, calidad y logística.
+
+La experiencia de Training Systems vive en `training.html`, separada de Apparel y Custom Boots. No mezclar los sistemas de entrenamiento con el selector, loadout ni inventario de indumentaria.
