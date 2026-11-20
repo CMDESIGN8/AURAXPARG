@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#060b12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#060b12;--panel:#0d1724;--panel2:#111f30;--cyan:#08c9f4;--lime:#b7ff3c;--white:#f4f8fc;--muted:#9aadc0;--line:rgba(255,255,255,.11)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -89,6 +89,22 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
 .day{transition:border-color .2s,transform .2s}
 .day:hover{border-color:rgba(8,201,244,.48);transform:translateY(-2px)}
 .day[hidden]{display:none}
+.day.next-up{border-color:rgba(183,255,60,.72);box-shadow:0 0 0 1px rgba(183,255,60,.12),0 12px 30px rgba(0,0,0,.22)}
+.day.next-up .day-num{color:var(--lime)}
+.day:focus-within{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(8,201,244,.12)}
+.btn,.filter-btn,.session-toggle{transition:transform .2s ease,background .2s ease,border-color .2s ease,color .2s ease}
+.btn:hover,.filter-btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,.filter-btn:focus-visible,.session-toggle:focus-visible,a:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+.hero{position:relative;overflow:hidden}
+.hero:before{content:"AURA";position:absolute;left:-25px;top:22px;font:clamp(90px,19vw,220px)/1 "Permanent Marker",cursive;color:rgba(8,201,244,.035);transform:rotate(-9deg);pointer-events:none}
+.hero .kicker{font-family:"Permanent Marker",cursive;font-size:13px;letter-spacing:.08em;color:var(--lime);transform:rotate(-2deg)}
+h1 span{text-shadow:0 0 30px rgba(8,201,244,.22)}
+.club-main{border-color:rgba(8,201,244,.36);box-shadow:inset 0 0 34px rgba(8,201,244,.035)}
+.club-main:before{content:"";position:absolute;left:20px;top:0;width:90px;height:3px;background:var(--lime);box-shadow:0 0 16px rgba(183,255,60,.4)}
+.week{transition:transform .2s ease,border-color .2s ease}
+.week:hover{transform:translateY(-3px);border-color:rgba(8,201,244,.45)}
+.day .mark input{cursor:pointer}
+@media(max-width:420px){.wrap{width:calc(100% - 28px)}.hero{padding:54px 14px 40px}.metric{min-width:calc(33.333% - 8px);padding:9px 7px}.metric b{font-size:18px}.metric small{font-size:7px}.controls{display:grid;grid-template-columns:1fr;width:min(340px,100%);margin-inline:auto}.controls>*{width:100%;text-align:center}.club-side{grid-template-columns:1fr 1fr}.xp-number{font-size:35px}.club-main,.club-side{padding:15px}.week-filter{gap:6px}.filter-btn{font-size:8px;padding:10px 8px}}
 .session-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left;border:0;background:transparent;color:var(--cyan);font:900 9px Montserrat;letter-spacing:.12em;padding:13px 0 0;cursor:pointer}
 .session-toggle span:last-child{font-size:16px;line-height:1}
 .day .details,.day .dose{display:none}
@@ -110,15 +126,15 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
 </head>
 <body>
 <div class="top">AURA XP PRO · 21 DAY PERFORMANCE PROGRAM</div>
-<header><a class="brand" href="training.html">AURA <span>XP</span></a><nav><a href="training.html">Training Systems</a><a href="index.html#drop">Apparel</a><a href="index.html#boots">Custom Boots</a></nav></header>
+<header><a class="brand" href="training.html">AURA <span>XP</span></a><nav><a href="training.html">Elegir sistema</a><a href="#days">Mi entrenamiento</a><a href="index.html">AURA</a></nav></header>
 <main>
 <section class="hero">
-<div class="kicker">LEVEL UP YOUR GAME</div>
+<div class="kicker">AURA XP · PRO PERFORMANCE CLUB</div>
 <h1>21 DÍAS.<br><span>MÁS CONTROL.</span><br>MÁS JUEGO.</h1>
 <p>Un recorrido progresivo para desarrollar coordinación, primer paso, cambios de dirección y técnica con pelota. Tres semanas. Sesiones cortas. Progreso que podés registrar.</p>
 <div class="metrics"><div class="metric"><b>21</b><small>DÍAS</small></div><div class="metric"><b>12</b><small>SESIONES PRINCIPALES</small></div><div class="metric"><b>25–40'</b><small>POR SESIÓN</small></div></div>
 <div class="progress-wrap"><div class="progress-head"><span>TU PROGRESO</span><span id="progressText">0 / 21 DÍAS</span></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div>
-<div class="controls"><button class="btn" onclick="window.print()">IMPRIMIR / GUARDAR PDF</button><button class="btn secondary" id="resetProgress">REINICIAR PROGRESO</button></div>
+<div class="controls"><a class="btn secondary" href="#days">IR A MI ENTRENAMIENTO ↓</a><button class="btn secondary" onclick="window.print()">GUARDAR MI PLAN PDF</button><button class="btn secondary" id="resetProgress">REINICIAR PROGRESO</button></div>
 </section>
 <div class="wrap">
 <section class="section-head"><div class="kicker">EL MAPA DE PROGRESIÓN</div><h2>TRES SEMANAS.<br>TRES OBJETIVOS.</h2><p>La carga sube de forma gradual. Los días de recuperación y descanso son parte del programa: no los saltees para intentar avanzar más rápido.</p></section>
@@ -129,16 +145,16 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
 </div>
 <section class="club-shell" aria-label="Tu panel de rendimiento">
   <div class="club-main">
-    <div class="club-label">YOUR PERFORMANCE SPACE</div>
+    <div class="club-label">TU ZONA DE ENTRENAMIENTO · PRO 21</div>
     <h2>EL PRÓXIMO NIVEL<br>SE ENTRENA.</h2>
-    <p>Elegí tu semana, abrí la sesión y registrá cada avance. Cada jornada completada suma 50 XP a tu progreso local.</p>
+    <p>Tu recorrido queda guardado en este dispositivo. Abrí la próxima jornada, seguí la sesión y registrá el avance: cada día completado suma 50 XP locales.</p>
     <div class="club-actions">
       <button class="btn" id="continueBtn">CONTINUAR MI PLAN ↗</button>
       <button class="btn secondary" id="showAllBtn">VER LAS 3 SEMANAS</button>
     </div>
   </div>
   <aside class="club-side">
-    <div class="xp-block"><div class="club-label">AURA XP POINTS</div><div class="xp-number" id="xpTotal">000</div><div class="xp-caption">XP ACUMULADOS</div><div class="level-track"><span id="xpTrack"></span></div></div>
+    <div class="xp-block"><div class="club-label">TU XP DE ENTRENAMIENTO</div><div class="xp-number" id="xpTotal">000</div><div class="xp-caption">XP ACUMULADOS</div><div class="level-track"><span id="xpTrack"></span></div></div>
     <div><div class="xp-caption">DÍAS COMPLETADOS</div><div class="xp-number" id="completedTotal">0<span style="font-size:18px;color:var(--muted)"> / 21</span></div></div>
     <div><div class="xp-caption">SIGUIENTE MISIÓN</div><div id="nextMission" style="font-size:12px;font-weight:900;margin-top:5px">DÍA 01 · ACTIVÁ TU MOTOR</div></div>
     <div class="stat-row"><span>PROGRESO DEL PLAN</span><b id="percentTotal">0%</b></div>
@@ -239,6 +255,7 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
       const box=card.querySelector('input[type="checkbox"]');
       box.checked=done;
       card.classList.toggle('done',done);
+      card.classList.toggle('next-up',card===next);
       const badge=card.querySelector('.next-tag');
       if(badge) badge.remove();
     });
