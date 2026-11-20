@@ -7578,7 +7578,7 @@ function enhanceSuccessScreen() {
   if (!success || success.dataset.enhanced) return;
   success.dataset.enhanced = '1';
 
-  const code = 'AURA-001-' + Math.floor(1000 + Math.random() * 9000);
+  const code = success.dataset.reservationId || success.querySelector('[data-reservation-id]')?.dataset.reservationId || 'AURA-001-PENDING';
 
   const codeEl = document.createElement('div');
   codeEl.className = 'reservation-code';
@@ -7588,7 +7588,7 @@ function enhanceSuccessScreen() {
   const qr = document.createElement('img');
   qr.className = 'reservation-qr';
   qr.alt = 'QR de reserva';
-  QRCode.toDataURL(`https://auraxp.com/r/${code}`, {
+  QRCode.toDataURL(`${location.origin}${location.pathname}#access`, {
     width: 300,
     margin: 1,
     color: { dark: '#08c9f4', light: '#050b14' }
@@ -7609,7 +7609,8 @@ async function shareAchievement(code) {
   if (navigator.share) {
     try {
       await navigator.share({ title: 'AURA XP', text, url: location.href });
-      awardXP('shareDrop');
+      awardXP('shareDrop', null, 'share_' + code + '_' + todayKey());
+      trackMissionProgress('daily_share', 1);
     } catch {}
   } else {
     try {
@@ -7869,7 +7870,7 @@ async function claimMission(missionId, xp, btn) {
     state.bonusClaimed = true;
     saveMissionsState(state);
     setTimeout(async () => {
-      await awardXPForMission(BONUS_XP);
+      await awardXPForMission(BONUS_XP, 'all_daily');
       showToast({
         icon: '🏆',
         title: 'BONUS DIARIO',
@@ -7957,8 +7958,6 @@ function initMissions() {
 
 </script>
 
-
-</body>
 
 </body>
 </html>
