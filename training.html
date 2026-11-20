@@ -424,6 +424,31 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 }
 @media(prefers-reduced-motion:reduce){.hero-hud .journey-node,.hero-hud .finish-cta{transition:none}}
 
+
+/* AURA COACH — guía contextual del recorrido */
+.aura-coach{width:min(690px,100%);margin:13px auto 0;display:grid;grid-template-columns:76px minmax(0,1fr);gap:15px;align-items:center;padding:15px 17px;text-align:left;border:1px solid rgba(183,255,60,.27);background:linear-gradient(110deg,rgba(183,255,60,.075),rgba(9,17,28,.94) 45%);box-shadow:0 12px 30px rgba(0,0,0,.2);position:relative;overflow:hidden;animation:auraRise .65s ease both}
+.aura-coach:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--lime);box-shadow:0 0 14px rgba(183,255,60,.45)}
+.coach-portrait{width:70px;height:78px;position:relative;display:grid;place-items:center;overflow:hidden;border:1px solid rgba(8,201,244,.55);background:radial-gradient(circle at 50% 34%,rgba(8,201,244,.3),transparent 44%),linear-gradient(145deg,#172d40,#080f19);box-shadow:inset 0 0 20px rgba(8,201,244,.12),0 0 20px rgba(8,201,244,.08)}
+.coach-portrait:before{content:"";position:absolute;width:37px;height:37px;top:11px;border-radius:48% 48% 42% 42%;background:linear-gradient(145deg,#dce8ee 0 22%,#25394a 23% 100%);box-shadow:0 0 0 4px rgba(8,201,244,.08)}
+.coach-portrait:after{content:"";position:absolute;width:58px;height:35px;bottom:-8px;border-radius:50% 50% 0 0;background:linear-gradient(110deg,#0a1521 20%,#1b3c50 50%,#07111b 80%);border-top:2px solid var(--cyan)}
+.coach-portrait span{position:absolute;z-index:2;bottom:5px;right:5px;color:var(--lime);font:900 8px Montserrat,sans-serif;letter-spacing:.05em}
+.coach-portrait i{position:absolute;z-index:2;top:25px;width:28px;height:3px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.coach-content{min-width:0}
+.coach-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;font:900 7px Montserrat,sans-serif;letter-spacing:.13em;color:var(--cyan)}
+.coach-meta b{color:var(--white);font-size:9px}.coach-meta>span:first-child i{color:var(--lime);font-style:normal;padding:0 3px}
+.coach-online{display:flex;align-items:center;gap:5px;color:var(--lime);font-size:6px;white-space:nowrap}
+.coach-online i{width:5px;height:5px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime)}
+.coach-content>p{color:#e1eaf0;font-size:11px;line-height:1.55}
+.coach-tip{margin-top:9px;padding:9px 10px;border-left:2px solid var(--lime);background:rgba(183,255,60,.07);color:#c8d5df;font-size:10px;line-height:1.5;animation:auraRise .22s ease both}
+.coach-tip strong{color:var(--lime)}
+.coach-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+.coach-actions button{border:1px solid rgba(183,255,60,.42);background:rgba(183,255,60,.08);color:var(--lime);padding:7px 9px;font:900 7px Montserrat,sans-serif;letter-spacing:.1em;cursor:pointer;transition:background .2s,border-color .2s}
+.coach-actions button:hover{background:rgba(183,255,60,.16);border-color:var(--lime)}
+.coach-actions button span{font-size:12px;margin-left:5px}
+.coach-actions small{color:#8296a8;font:700 6px Montserrat,sans-serif;letter-spacing:.1em;text-align:right}
+@media(max-width:600px){.aura-coach{grid-template-columns:57px minmax(0,1fr);gap:11px;margin-top:10px;padding:12px 11px}.coach-portrait{width:55px;height:65px}.coach-portrait:before{width:31px;height:31px;top:9px}.coach-portrait:after{width:49px;height:29px}.coach-portrait i{top:21px;width:24px}.coach-content>p{font-size:10px}.coach-meta{font-size:6px}.coach-meta b{font-size:8px}.coach-actions{align-items:flex-start;flex-direction:column;gap:7px}.coach-actions small{text-align:left}.coach-tip{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.aura-coach,.coach-tip{animation:none}}
+
 </style>
 </head>
 <body>
@@ -495,6 +520,16 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     <div class="finish-score"><strong>04/04</strong><span>DESAFÍOS SUPERADOS<br><small>EL PRÓXIMO NIVEL SE CONSTRUYE ENTRENANDO</small></span></div>
     <a class="finish-cta" href="#sistemas">ELEGIR MI SISTEMA <span>↗</span></a>
     <button class="mission-restart" id="mission-restart" type="button">VOLVER A EXPLORAR</button>
+  </div>
+</div>
+
+<div class="aura-coach" id="aura-coach" aria-label="Guía del entrenador AURA">
+  <div class="coach-portrait" aria-hidden="true"><span>K</span><i></i></div>
+  <div class="coach-content">
+    <div class="coach-meta"><span><b>KAI</b> <i>//</i> COACH AURA</span><span class="coach-online"><i></i> EN LÍNEA</span></div>
+    <p id="coach-message" aria-live="polite">Bienvenido al entrenamiento. Vamos a descubrir qué recursos podés desarrollar y cómo llevarlos a la cancha. Un desafío a la vez.</p>
+    <div class="coach-tip" id="coach-tip" hidden></div>
+    <div class="coach-actions"><button type="button" id="coach-tip-toggle" aria-expanded="false" aria-controls="coach-tip">DAME UNA PISTA <span>＋</span></button><small id="coach-context">GUÍA DE INICIO · AURA TRAINING</small></div>
   </div>
 </div>
 <div class="hero-actions">
@@ -596,10 +631,10 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   const root=document.getElementById('aura-player-missions');
   if(!root)return;
   const challenges=[
-    {name:'COORDINACIÓN',desc:'Dominá tu cuerpo y cada apoyo.',benefit:'Conducí y recibí con más precisión. Ganá control sobre tus movimientos y la pelota.',action:'CONTROLAR',mark:'◎',reward:'CONTROL CORPORAL',className:'skill-coordination'},
-    {name:'VELOCIDAD',desc:'Acelerá y reaccioná más rápido.',benefit:'Llegá antes a la pelota, atacá los espacios y ganá ventaja en los primeros metros.',action:'ACELERAR',mark:'↗',reward:'PRIMEROS METROS',className:'skill-speed'},
-    {name:'AGILIDAD',desc:'Frená, girá y cambiá de dirección.',benefit:'Esquivá marcas, cambiá el ritmo y volvé a arrancar sin perder el equilibrio.',action:'DESEQUILIBRAR',mark:'↔',reward:'CAMBIO DE DIRECCIÓN',className:'skill-agility'},
-    {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',benefit:'Controlá, pasá y resolvé con más recursos cuando tenés la pelota.',action:'RESOLVER',mark:'✳',reward:'DOMINIO DE PELOTA',className:'skill-technique'}
+    {name:'COORDINACIÓN',desc:'Dominá tu cuerpo y cada apoyo.',benefit:'Conducí y recibí con más precisión. Ganá control sobre tus movimientos y la pelota.',action:'CONTROLAR',mark:'◎',reward:'CONTROL CORPORAL',className:'skill-coordination',coach:'La coordinación conecta tus pies, tu cuerpo y la pelota. Es la base para moverte con control cuando el juego se acelera.',tip:'En la cancha, buscá que cada apoyo tenga intención. Primero calidad de movimiento; después, velocidad.'},
+    {name:'VELOCIDAD',desc:'Acelerá y reaccioná más rápido.',benefit:'Llegá antes a la pelota, atacá los espacios y ganá ventaja en los primeros metros.',action:'ACELERAR',mark:'↗',reward:'PRIMEROS METROS',className:'skill-speed',coach:'En futsal, muchas ventajas aparecen en los primeros metros. No se trata solo de correr: también importa cuándo reaccionás y cómo arrancás.',tip:'Prestá atención a tu primera reacción y a la postura de salida. Acelerar con control te ayuda a llegar mejor a cada pelota.'},
+    {name:'AGILIDAD',desc:'Frená, girá y cambiá de dirección.',benefit:'Esquivá marcas, cambiá el ritmo y volvé a arrancar sin perder el equilibrio.',action:'DESEQUILIBRAR',mark:'↔',reward:'CAMBIO DE DIRECCIÓN',className:'skill-agility',coach:'La agilidad te permite cambiar de plan en un instante. Frenar, girar y volver a arrancar puede darte el espacio que necesitás para superar una marca.',tip:'No hagas todos los cambios a máxima velocidad. Primero dominá la frenada y el equilibrio; después sumá explosividad.'},
+    {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',benefit:'Controlá, pasá y resolvé con más recursos cuando tenés la pelota.',action:'RESOLVER',mark:'✳',reward:'DOMINIO DE PELOTA',className:'skill-technique',coach:'La técnica transforma lo que pensás en una acción. Un buen control o un pase preciso te dan más opciones para resolver bajo presión.',tip:'Antes de recibir, levantá la mirada y pensá tu próxima acción. El control empieza antes de que la pelota llegue.'}
   ];
   let current=0;
   const stage=root.querySelector('#mission-stage');
@@ -613,6 +648,26 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   const finished=root.querySelector('#mission-finished');
   const journey=root.querySelector('#journey-nodes');
   const journeyStatus=root.querySelector('#journey-status');
+  const coachMessage=root.querySelector('#coach-message');
+  const coachTip=root.querySelector('#coach-tip');
+  const coachToggle=root.querySelector('#coach-tip-toggle');
+  const coachContext=root.querySelector('#coach-context');
+  function updateCoach(){
+    const item=challenges[current];
+    coachMessage.textContent=item.coach;
+    coachContext.textContent='COACH KAI · DESAFÍO '+String(current+1).padStart(2,'0')+' / 04';
+    coachTip.innerHTML='<strong>PISTA DEL COACH //</strong> '+item.tip;
+    coachTip.hidden=true;
+    coachToggle.setAttribute('aria-expanded','false');
+    coachToggle.innerHTML='DAME UNA PISTA <span>＋</span>';
+  }
+  coachToggle.addEventListener('click',function(){
+    const opening=coachTip.hidden;
+    coachTip.hidden=!opening;
+    coachToggle.setAttribute('aria-expanded',String(opening));
+    coachToggle.innerHTML=opening?'OCULTAR PISTA <span>−</span>':'DAME UNA PISTA <span>＋</span>';
+  });
+
   function renderJourney(){
     const nodes=journey.querySelectorAll('.journey-node');
     const links=journey.querySelectorAll('.journey-link');
@@ -640,6 +695,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     }
     next.innerHTML=current===challenges.length-1?'FINALIZAR RECORRIDO <span>✦</span>':'DESAFÍO SUPERADO <span>↗</span>';
     renderJourney();
+    updateCoach();
   }
   next.addEventListener('click',function(){
     const card=stage.querySelector('.mission-card');
@@ -657,12 +713,18 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
         percent.textContent='100%';
         fill.style.width='100%';
         renderJourney();
+        coachMessage.textContent='Recorrido completado. Ya conocés cuatro recursos que podés llevar a la cancha. Ahora elegí un sistema y convertí estos objetivos en entrenamiento.';
+        coachContext.textContent='COACH KAI · ETAPA COMPLETADA';
+        coachTip.hidden=true;
+        coachToggle.disabled=true;
+        coachToggle.textContent='RECORRIDO COMPLETADO';
       }else render();
       next.disabled=false;
     },300);
   });
   root.querySelector('#mission-restart').addEventListener('click',function(){
     current=0;
+    coachToggle.disabled=false;
     finished.hidden=true;
     stage.hidden=false;
     preview.hidden=false;
