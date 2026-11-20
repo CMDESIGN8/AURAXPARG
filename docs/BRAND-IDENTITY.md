@@ -80,3 +80,19 @@ Los nombres de display deben mantenerse consistentes en la web, los formularios,
 ## Dirección de crecimiento
 
 El futsal es el punto de entrada y la primera comunidad. La marca debe poder crecer hacia otras expresiones deportivas y urbanas sin perder su raíz. AURA XP tiene que ser reconocible incluso sin un balón, un escudo o un uniforme de equipo.
+
+## Colecciones
+
+### URBAN DROP
+- FARM TEE: pieza de entrada streetwear.
+- SPORT AURA: capa deportiva urbana.
+- GRIND: pieza premium LEGENDARY.
+
+### FUTSAL KITS
+- STARTER KIT — RARE — +100 XP.
+- MATCHDAY KIT — EPIC — +250 XP.
+- ELITE KIT — LEGENDARY — +500 XP.
+- Composición de cada kit: camiseta de futsal + short + medias.
+
+Los nombres, rarezas y XP describen la experiencia de selección de la colección. Precios, talles, especificaciones técnicas, fotos definitivas y disponibilidad deben confirmarse antes de abrir reservas. Cada componente necesita inventario propio; un kit no debe descontar unidades de las prendas URBAN.
+
