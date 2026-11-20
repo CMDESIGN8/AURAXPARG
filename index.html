@@ -4447,76 +4447,32 @@
   .ms-reset { text-align: left; }
 }
 
-</style>
 
-<style id="aura-xp-epic-polish">
-/* AURA XP — EPIC CAREER FEEDBACK */
-:root{--aura-cyan:#08c9f4;--aura-lime:#b7ff3c;--aura-ice:#eaf8ff}
-.aura-hud{
-  position:fixed;z-index:1200;right:22px;top:124px;width:min(270px,calc(100vw - 32px));
-  padding:16px 18px 14px;color:var(--aura-ice);
-  background:linear-gradient(135deg,rgba(4,18,31,.94),rgba(3,9,18,.88));
-  border:1px solid rgba(8,201,244,.42);
-  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);
-  box-shadow:0 14px 50px rgba(0,0,0,.38),inset 0 0 24px rgba(8,201,244,.06);
-  backdrop-filter:blur(18px);opacity:0;transform:translateX(18px);pointer-events:none;
-  transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1)
+/* --- Drop Pass & Countdown 24hs --- */
+.drop-pass-timer {
+  margin: 14px auto 6px;
+  padding: 10px 14px;
+  background: rgba(183,255,60,.06);
+  border: 1px solid rgba(183,255,60,.35);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
-.aura-hud.show{opacity:1;transform:translateX(0)}
-.aura-hud:before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:linear-gradient(var(--aura-lime),var(--aura-cyan));box-shadow:0 0 18px var(--aura-cyan)}
-.aura-hud-label{font-size:.56rem;font-weight:900;letter-spacing:.2em;color:var(--aura-cyan);margin-bottom:9px}
-.aura-hud-level{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.hud-level-name{font-size:1.08rem;letter-spacing:.08em;color:#fff;text-shadow:0 0 18px rgba(8,201,244,.35)}
-.hud-xp-count{font-size:.72rem;font-weight:900;color:var(--aura-lime);font-variant-numeric:tabular-nums}
-.aura-hud-bar{height:5px;margin:12px 0 8px;background:rgba(255,255,255,.1);overflow:hidden}
-.aura-hud-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--aura-cyan),var(--aura-lime));box-shadow:0 0 14px rgba(8,201,244,.65);transition:width .8s cubic-bezier(.2,.8,.2,1)}
-.aura-hud-xp{font-size:.59rem;color:rgba(234,248,255,.62);letter-spacing:.08em}
-.aura-hud-xp b{float:right;color:#fff}
-#toast-container{
-  position:fixed;z-index:1500;
-  top:calc(env(safe-area-inset-top, 0px) + 118px);
-  left:50%;right:auto;bottom:auto;
-  transform:translateX(-50%);
-  display:grid;gap:10px;
-  width:calc(100vw - 28px);max-width:390px;
-  box-sizing:border-box;pointer-events:none;
+.drop-pass-timer span {
+  font-size: .56rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  color: #b7ff3c;
 }
-#toast-container .achievement-toast{
-  position:relative;left:auto;right:auto;top:auto;bottom:auto;
-  display:flex;align-items:center;gap:14px;
-  width:100%;min-width:0;max-width:100%;
-  box-sizing:border-box;margin:0;
-  padding:15px 18px;
-  background:linear-gradient(115deg,rgba(5,20,34,.97),rgba(5,10,20,.96));
-  border:1px solid var(--toast-color);
-  box-shadow:0 12px 40px rgba(0,0,0,.45),0 0 28px color-mix(in srgb,var(--toast-color) 20%,transparent);
-  opacity:0;transform:translateY(-12px) scale(.97);
-  transition:opacity .3s ease,transform .4s cubic-bezier(.2,.8,.2,1);
+.drop-pass-timer strong {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .08em;
 }
-#toast-container .achievement-toast.show{opacity:1;transform:translateY(0) scale(1)}
-#toast-container .achievement-toast strong{display:block}
-#toast-container .achievement-toast small{display:block;overflow-wrap:anywhere}
-.toast-icon{font-size:1.65rem;filter:drop-shadow(0 0 10px var(--toast-color))}
-.achievement-toast strong{display:block;font-size:.72rem;letter-spacing:.13em;color:#fff}
-.achievement-toast small{display:block;margin-top:4px;font-size:.65rem;color:rgba(234,248,255,.65)}
-#xp-float-container{position:fixed;inset:0;z-index:1600;pointer-events:none}
-.xp-float{position:fixed;color:var(--aura-lime);font-size:1.2rem;font-weight:1000;letter-spacing:.08em;text-shadow:0 0 12px rgba(183,255,60,.9),0 0 30px rgba(8,201,244,.65);animation:auraXpBurst 1.25s cubic-bezier(.15,.75,.25,1) forwards}
-@keyframes auraXpBurst{0%{opacity:0;translate:0 12px;scale:.65}15%{opacity:1;scale:1.18}35%{scale:1}100%{opacity:0;translate:0 -82px;scale:.92}}
-.ms-card{background:linear-gradient(145deg,rgba(10,35,55,.96),rgba(4,12,23,.98));border-color:rgba(8,201,244,.18);box-shadow:inset 0 1px rgba(255,255,255,.04),0 12px 34px rgba(0,0,0,.16)}
-.ms-card.done{box-shadow:inset 0 0 30px rgba(183,255,60,.06),0 0 24px rgba(183,255,60,.08)}
-.ms-claim-btn{background:linear-gradient(110deg,#caff63,#8fe92b);box-shadow:0 0 22px rgba(183,255,60,.18)}
-.reservation-code{font-weight:1000;letter-spacing:.14em;color:var(--aura-cyan);text-shadow:0 0 18px rgba(8,201,244,.4)}
-.reservation-qr{display:block;width:148px;height:148px;object-fit:contain;margin:18px auto;padding:8px;background:#050b14;border:1px solid rgba(8,201,244,.38);box-shadow:0 0 30px rgba(8,201,244,.12)}
-.share-btn{border:1px solid var(--aura-cyan);background:linear-gradient(110deg,rgba(8,201,244,.18),rgba(8,201,244,.04));color:#eaf8ff;padding:13px 18px;font:900 .7rem Montserrat,sans-serif;letter-spacing:.12em;cursor:pointer;transition:.25s}
-.share-btn:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(8,201,244,.25)}
-@media(max-width:700px){
-  .aura-hud{top:auto;bottom:calc(env(safe-area-inset-bottom, 0px) + 14px);right:12px;width:min(245px,calc(100vw - 24px));padding:12px 14px}
-  .aura-hud-label{margin-bottom:5px}
-  #toast-container{top:calc(env(safe-area-inset-top, 0px) + 82px);width:calc(100vw - 24px);max-width:420px}
-  #toast-container .achievement-toast{padding:12px 14px;gap:10px}
-  #toast-container .toast-icon{flex:0 0 auto}
-}
-@media(prefers-reduced-motion:reduce){.aura-hud,.achievement-toast,.aura-hud-bar i,.share-btn{transition:none}.xp-float{animation-duration:.01ms}}
+
 </style>
 
 </head>
@@ -5369,76 +5325,6 @@
             </div>
 
         </section>
-
-        <!-- =========================================================
-     AURA XP — LEADERBOARD
-========================================================= -->
-<section id="leaderboard-section" class="lb-section" aria-labelledby="lb-title">
-  <div class="lb-inner">
-    <div class="lb-header">
-      <div>
-        <div class="lb-kicker">SEASON 01 · RANKING GLOBAL</div>
-        <h2 class="lb-title" id="lb-title">TOP <span>FARMERS</span></h2>
-      </div>
-      <button class="lb-refresh" id="lb-refresh" type="button" aria-label="Refrescar ranking">
-        ↻ REFRESCAR
-      </button>
-    </div>
-
-    <div class="lb-podium" id="lb-podium">
-      <!-- Se llena dinámicamente -->
-      <div class="lb-loading">CARGANDO RANKING...</div>
-    </div>
-
-    <div class="lb-list" id="lb-list">
-      <!-- Se llena dinámicamente -->
-    </div>
-
-    <div class="lb-your-rank" id="lb-your-rank" hidden>
-      <span class="lb-your-label">TU POSICIÓN</span>
-      <div class="lb-your-body">
-        <span class="lb-your-pos" id="lb-your-pos">#—</span>
-        <span class="lb-your-name" id="lb-your-name">—</span>
-        <span class="lb-your-xp" id="lb-your-xp">0 XP</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     AURA XP — DAILY MISSIONS
-========================================================= -->
-<section id="missions-section" class="ms-section" aria-labelledby="ms-title">
-  <div class="ms-inner">
-    <div class="ms-header">
-      <div>
-        <div class="ms-kicker">SEASON 01 · RESET DIARIO</div>
-        <h2 class="ms-title" id="ms-title">MISIONES <span>DIARIAS</span></h2>
-      </div>
-      <div class="ms-reset">
-        <span class="ms-reset-label">RESET EN</span>
-        <span class="ms-reset-time" id="ms-reset-time">00:00:00</span>
-      </div>
-    </div>
-
-    <div class="ms-progress-global">
-      <div class="ms-progress-bar"><i id="ms-global-bar"></i></div>
-      <span class="ms-progress-text" id="ms-global-text">0 / 0 completadas</span>
-    </div>
-
-    <div class="ms-grid" id="ms-grid">
-      <!-- Se llena dinámicamente -->
-    </div>
-
-    <div class="ms-bonus" id="ms-bonus" hidden>
-      <span class="ms-bonus-icon">🎁</span>
-      <div>
-        <strong>BONUS DIARIO COMPLETADO</strong>
-        <small>Todas las misiones del día · +250 XP extra</small>
-      </div>
-    </div>
-  </div>
-</section>
 
 
         <!-- =====================================================
@@ -6441,6 +6327,40 @@ async function saveLead(userData) {
    MOSTRAR SUCCESS
 ======================================================== */
 
+let passTimerInterval = null;
+
+function startPassCountdown(expiresAt) {
+    if (passTimerInterval) clearInterval(passTimerInterval);
+
+    const updateTimer = () => {
+        const el = document.getElementById("pass-countdown-val");
+        if (!el) return;
+
+        const diff = expiresAt - Date.now();
+        if (diff <= 0) {
+            el.textContent = "EXPIRADO";
+            clearInterval(passTimerInterval);
+            return;
+        }
+
+        const h = String(Math.floor(diff / 3600000)).padStart(2, "0");
+        const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, "0");
+        const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, "0");
+        el.textContent = `${h}:${m}:${s}`;
+    };
+
+    updateTimer();
+    passTimerInterval = setInterval(updateTimer, 1000);
+}
+
+function advanceMissionBarToComplete() {
+    const steps = document.querySelectorAll(".mission-progress span");
+    if (steps.length < 3) return;
+    steps[0].className = "done";
+    steps[1].className = "done";
+    steps[2].className = "active done";
+}
+
 function showSuccess(userData) {
 
     successProduct.textContent = selectedProduct.name;
@@ -6455,18 +6375,34 @@ function showSuccess(userData) {
 
         successP.innerHTML =
             `Listo, <strong>${firstName}</strong>.<br>` +
-            `Ya estás dentro del Drop 001.`;
+            `Tu slot en el Drop 001 está bloqueado.`;
 
     }
 
-    registrationForm.style.display = "none";
-    accessSuccess.hidden = false;
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem("auraXP_dropReserved") || "null"); } catch {}
+
+    const now = Date.now();
+    const code = (saved && saved.code) || ("AURA-001-" + Math.floor(1000 + Math.random() * 9000));
+    const expiresAt = (saved && saved.expiresAt) || (now + 24 * 60 * 60 * 1000);
 
     localStorage.setItem("auraXP_dropReserved", JSON.stringify({
         product: selectedProduct.name,
         size: selectedSize,
         xp: selectedProduct.xp,
-        ts: Date.now()
+        code,
+        ts: now,
+        expiresAt
+    }));
+
+    registrationForm.style.display = "none";
+    accessSuccess.hidden = false;
+
+    advanceMissionBarToComplete();
+    startPassCountdown(expiresAt);
+
+    window.dispatchEvent(new CustomEvent("aura:drop-reserved", {
+        detail: { code, product: selectedProduct.name, size: selectedSize, xp: selectedProduct.xp }
     }));
 
     const dropCross = document.getElementById("dropCrossSell");
@@ -6853,8 +6789,13 @@ window.addEventListener("load", initFirebase);
                 if (successSize) successSize.textContent = r.size || selectedSize;
                 registrationForm.style.display = "none";
                 accessSuccess.hidden = false;
+                advanceMissionBarToComplete();
+                if (r.expiresAt) startPassCountdown(r.expiresAt);
                 const dropCross = document.getElementById("dropCrossSell");
                 if (dropCross) dropCross.hidden = !!localStorage.getItem("auraXP_bootReserved");
+                window.dispatchEvent(new CustomEvent("aura:drop-reserved", {
+                    detail: { code: r.code || "AURA-001-PASS", restored: true }
+                }));
             } catch (e) { console.warn("No se pudo restaurar la reserva guardada:", e); }
         })();
 
@@ -6862,8 +6803,15 @@ window.addEventListener("load", initFirebase);
         if (dropResetLink) {
             dropResetLink.addEventListener("click", () => {
                 localStorage.removeItem("auraXP_dropReserved");
+                if (passTimerInterval) clearInterval(passTimerInterval);
                 accessSuccess.hidden = true;
                 registrationForm.style.display = "";
+                const steps = document.querySelectorAll(".mission-progress span");
+                if (steps.length >= 3) {
+                    steps[0].className = "done";
+                    steps[1].className = "active";
+                    steps[2].className = "";
+                }
             });
         }
 
@@ -7143,6 +7091,9 @@ window.addEventListener("load", initFirebase);
         savedAuraId = auraId;
         const bootCross = document.getElementById("bootCrossSell");
         if (bootCross) bootCross.hidden = !!localStorage.getItem("auraXP_dropReserved");
+        window.dispatchEvent(new CustomEvent("aura:boot-reserved", {
+            detail: { auraId, model: st.model || 1 }
+        }));
     }
 
     function restoreBootReservation() {
@@ -7390,16 +7341,17 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 import {
-  getFirestore, doc, getDoc, setDoc, runTransaction,
+  getFirestore, doc, getDoc, setDoc,
   serverTimestamp, increment
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// QR como imagen remota: no dependemos de un CDN de módulos para iniciar el juego.
+import QRCode from "https://cdn.skypack.dev/qrcode";
 
 // ---------- CONSTANTES ----------
 const XP_REWARDS = {
   selectProduct:      25,
   selectSize:         15,
+  googleLogin:        100,
   completeReservation:500,
   completeBootConfig: 300,
   shareDrop:          50,
@@ -7545,36 +7497,30 @@ function renderHUD() {
 }
 
 // ---------- AWARD XP ----------
-async function awardXP(action, originEl = null, eventKey = null) {
+async function awardXP(action, originEl = null) {
   const amount = XP_REWARDS[action];
-  if (!amount) return false;
-  if (!currentUser) {
-    showToast({ icon: '🔒', title: 'INICIÁ SESIÓN', subtitle: 'Tu progreso se guarda en tu cuenta', color: '#08c9f4' });
-    return false;
-  }
-  eventKey = eventKey || (action + '_' + todayKey());
-  const userRef = doc(db, 'users', currentUser.uid);
-  const eventRef = doc(db, 'users', currentUser.uid, 'xpEvents', eventKey);
-  const before = currentXP;
-  try {
-    const result = await runTransaction(db, async (tx) => {
-      const eventSnap = await tx.get(eventRef);
-      if (eventSnap.exists()) return { duplicate: true };
-      const userSnap = await tx.get(userRef);
-      const storedXP = userSnap.exists() ? Number(userSnap.data().xp || 0) : 0;
-      tx.set(userRef, { xp: storedXP + amount, lastAction: action, updatedAt: serverTimestamp() }, { merge: true });
-      tx.set(eventRef, { action, amount, createdAt: serverTimestamp() });
-      return { duplicate: false, xp: storedXP + amount };
-    });
-    if (result.duplicate) return false;
-    currentXP = result.xp;
-  } catch (err) {
-    console.warn('XP award failed:', err);
-    showToast({ icon: '⚠️', title: 'XP NO SINCRONIZADA', subtitle: 'No se modificó tu progreso. Probá de nuevo.', color: '#ffbd4a' });
-    return false;
-  }
+  if (!amount) return;
+
+  // Feedback inmediato, aunque no haya user logueado
   showXPFloat(amount, originEl);
   playSfx('xp');
+
+  if (!currentUser) return;
+
+  const userRef = doc(db, 'users', currentUser.uid);
+  const before = currentXP;
+  currentXP += amount;
+
+  try {
+    await setDoc(userRef, {
+      xp: increment(amount),
+      lastAction: action,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  } catch (err) {
+    console.warn('XP award failed:', err);
+  }
+
   renderHUD();
 
   // ¿Subió de nivel?
@@ -7596,31 +7542,40 @@ async function awardXP(action, originEl = null, eventKey = null) {
 
 // ---------- HOOKS DE UI ----------
 function bindUIHooks() {
+  // Click SFX universal
   document.addEventListener('click', (e) => {
     const t = e.target.closest('button, a, .product-card, .size-option, .kit-card, .boot-model');
     if (t) playSfx('click');
-    const product = e.target.closest('.select-product, .product-card');
-    if (product && !product.dataset.xpHandled) {
-      product.dataset.xpHandled = '1';
-      awardXP('selectProduct', product, 'product_' + todayKey());
-      trackMissionProgress('daily_select', 1);
-    }
-    const size = e.target.closest('.size-option, .bc-size');
-    if (size && !size.dataset.xpHandled) {
-      size.dataset.xpHandled = '1';
-      awardXP('selectSize', size, 'size_' + todayKey());
-      trackMissionProgress('daily_size', 1);
-    }
-    const boot = e.target.closest('.bc-submit');
-    if (boot && !boot.dataset.xpHandled) {
-      boot.dataset.xpHandled = '1';
+  });
+
+  // Select de producto
+  document.querySelectorAll('.select-product, .product-card').forEach(el => {
+    el.addEventListener('click', () => {
+      awardXP('selectProduct', el);
+    });
+  });
+
+  // Select de talle
+  document.querySelectorAll('.size-option, .bc-size').forEach(el => {
+    el.addEventListener('click', () => {
+      awardXP('selectSize', el);
+    });
+  });
+
+  // Botín configurado
+  document.querySelectorAll('.bc-submit').forEach(el => {
+    el.addEventListener('click', () => {
+      setTimeout(() => awardXP('completeBootConfig', el), 600);
+    });
+  });
+
+  // Login con Google
+  document.querySelectorAll('.google-btn').forEach(el => {
+    el.addEventListener('click', () => {
       setTimeout(() => {
-        if (document.querySelector('.access-success')) {
-          awardXP('completeBootConfig', boot, 'boot_' + todayKey());
-          trackMissionProgress('daily_boot', 1);
-        }
-      }, 800);
-    }
+        if (currentUser) awardXP('googleLogin');
+      }, 1500);
+    });
   });
 }
 
@@ -7638,69 +7593,107 @@ function ensureMissionProgress() {
   card.insertBefore(el, card.firstChild);
 }
 
-// ---------- RESERVA: código + QR + share ----------
-function enhanceSuccessScreen() {
+// ---------- RESERVA: Drop Pass (código + timer 24h + QR + share) ----------
+function enhanceSuccessScreen(code = null) {
   const success = document.querySelector('.access-success');
   if (!success || success.dataset.enhanced) return;
   success.dataset.enhanced = '1';
 
-  const code = success.dataset.reservationId || success.querySelector('[data-reservation-id]')?.dataset.reservationId || 'DROP-001';
+  let finalCode = code;
+  if (!finalCode) {
+    try {
+      const saved = JSON.parse(localStorage.getItem('auraXP_dropReserved') || 'null');
+      finalCode = saved?.code;
+    } catch {}
+  }
+  finalCode = finalCode || ('AURA-001-' + Math.floor(1000 + Math.random() * 9000));
+
+  const timerBox = document.createElement('div');
+  timerBox.className = 'drop-pass-timer';
+  timerBox.innerHTML = `
+    <span>VENTANA DE RESERVA ACTIVA</span>
+    <strong id="pass-countdown-val">24:00:00</strong>
+  `;
+  success.appendChild(timerBox);
 
   const codeEl = document.createElement('div');
   codeEl.className = 'reservation-code';
-  codeEl.textContent = '#' + code;
+  codeEl.textContent = '#' + finalCode;
   success.appendChild(codeEl);
 
   const qr = document.createElement('img');
   qr.className = 'reservation-qr';
-  qr.alt = 'Acceso al Drop AURA XP';
-  const qrTarget = `${location.origin}${location.pathname}#access`;
-  qr.src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=1&color=08c9f4&bgcolor=050b14&data=' + encodeURIComponent(qrTarget);
+  qr.alt = 'QR de reserva';
+  QRCode.toDataURL(`https://auraxp.com/r/${finalCode}`, {
+    width: 300,
+    margin: 1,
+    color: { dark: '#08c9f4', light: '#050b14' }
+  }).then(url => qr.src = url).catch(() => {});
   success.appendChild(qr);
 
   const btn = document.createElement('button');
   btn.className = 'share-btn';
   btn.type = 'button';
-  btn.textContent = 'COMPARTIR LOGRO →';
-  btn.addEventListener('click', () => shareAchievement(code));
+  btn.textContent = 'COMPARTIR MI DROP PASS →';
+  btn.addEventListener('click', () => shareAchievement(finalCode));
   success.appendChild(btn);
 }
 
 async function shareAchievement(code) {
   const level = getLevel(currentXP);
-  const text = `Acabo de reservar mi Drop 001 de AURA XP ⚡ Nivel ${level.name} · ${code} · #AURAcrew`;
+  const text = `Acabo de reservar mi Drop 001 de AURA XP ⚡ Nivel ${level.name} · #${code} · #AURAcrew`;
   if (navigator.share) {
     try {
       await navigator.share({ title: 'AURA XP', text, url: location.href });
-      awardXP('shareDrop', null, 'share_' + code + '_' + todayKey());
+      awardXP('shareDrop');
       trackMissionProgress('daily_share', 1);
     } catch {}
   } else {
     try {
       await navigator.clipboard.writeText(text + ' ' + location.href);
-      showToast({ icon: '🔗', title: 'LINK COPIADO', subtitle: 'Compartí tu logro', color: '#08c9f4' });
+      showToast({ icon: '🔗', title: 'LINK COPIADO', subtitle: 'Compartí tu Drop Pass', color: '#08c9f4' });
       awardXP('shareDrop');
+      trackMissionProgress('daily_share', 1);
     } catch {}
   }
 }
 
-// ---------- OBSERVER DE ÉXITO (cuando el form completa) ----------
+// ---------- LISTENER DE ÉXITO (eventos de reserva) ----------
 function observeSuccessScreen() {
-  const target = document.querySelector('.access-card');
-  if (!target) return;
-  const processSuccess = () => {
-    const success = target.querySelector('.access-success');
-    if (!success || success.dataset.xpProcessed === '1') return;
-    success.dataset.xpProcessed = '1';
+  if (localStorage.getItem('auraXP_dropReserved')) {
     enhanceSuccessScreen();
-    const code = success.dataset.reservationId || 'confirmed';
-    awardXP('completeReservation', success, 'reservation_' + code);
-    showToast({ icon: '🏆', title: 'MISIÓN CUMPLIDA', subtitle: 'Reserva registrada · +500 XP', color: '#b7ff3c', duration: 5000 });
+  }
+
+  window.addEventListener('aura:drop-reserved', (e) => {
+    const { code, restored } = e.detail || {};
+    enhanceSuccessScreen(code);
+
+    if (!restored) {
+      awardXP('completeReservation');
+      showToast({
+        icon: '🎯',
+        title: 'DROP PASS DESBLOQUEADO',
+        subtitle: `Código #${code} · +500 XP`,
+        color: '#b7ff3c',
+        duration: 5000
+      });
+      playSfx('unlock');
+    }
+  });
+
+  window.addEventListener('aura:boot-reserved', (e) => {
+    const { auraId } = e.detail || {};
+    awardXP('completeBootConfig');
+    trackMissionProgress('daily_boot', 1);
+    showToast({
+      icon: '👟',
+      title: 'AURA ID GENERADO',
+      subtitle: `${auraId} · +300 XP`,
+      color: '#08c9f4',
+      duration: 5000
+    });
     playSfx('unlock');
-  };
-  const obs = new MutationObserver(processSuccess);
-  obs.observe(target, { childList: true, subtree: true });
-  processSuccess();
+  });
 }
 
 // ---------- AUTH ----------
@@ -7716,8 +7709,12 @@ function watchAuth() {
       const snap = await getDoc(doc(db, 'users', user.uid));
       currentXP = snap.exists() ? (snap.data().xp || 0) : 0;
       if (!snap.exists()) {
-        await setDoc(doc(db, 'users', user.uid), { xp: 0, createdAt: serverTimestamp(), updatedAt: serverTimestamp() }, { merge: true });
-        currentXP = 0;
+        await setDoc(doc(db, 'users', user.uid), {
+          xp: XP_REWARDS.googleLogin,
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp()
+        }, { merge: true });
+        currentXP = XP_REWARDS.googleLogin;
       }
     } catch (err) {
       console.warn('XP load failed:', err);
@@ -7731,6 +7728,34 @@ function watchAuth() {
     });
   });
 }
+
+// ---------- INIT ----------
+function init() {
+  loadSfx();
+  ensureHUD();
+  bindUIHooks();
+  ensureMissionProgress();
+  observeSuccessScreen();
+  watchAuth();
+  initLeaderboard();   // ← NUEVO
+  initMissions();      // ← NUEVO (parte 2)
+  console.log('🎮 AURA XP Game Layer + Missions + Leaderboard ready');
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+// Exponer helpers por si los necesitás
+window.AURA = {
+  awardXP,
+  showToast,
+  showXPFloat,
+  getLevel,
+  getCurrentXP: () => currentXP
+};
 
 /* =========================================================
    DAILY MISSIONS
@@ -7875,23 +7900,15 @@ function renderMissions() {
 
 async function claimMission(missionId, xp, btn) {
   const state = loadMissionsState();
-  const mission = DAILY_MISSIONS.find(m => m.id === missionId);
-  if (!mission || !btn || btn.disabled || state.claimed[missionId]) return;
-  if ((state.progress[missionId] || 0) < mission.target) return;
-  if (!currentUser) { showToast({ icon: '🔒', title: 'INICIÁ SESIÓN', subtitle: 'Necesitás una cuenta para reclamar XP', color: '#08c9f4' }); return; }
-  btn.disabled = true;
+  if (state.claimed[missionId]) return;
+
   state.claimed[missionId] = true;
   saveMissionsState(state);
 
-  btn.textContent = 'SINCRONIZANDO…';
-
-  const credited = await awardXPForMission(xp, missionId);
-  if (!credited) {
-    state.claimed[missionId] = false; saveMissionsState(state);
-    btn.disabled = false; btn.textContent = 'RECLAMAR +' + xp + ' XP';
-    showToast({ icon: '⚠️', title: 'NO SE PUDO RECLAMAR', subtitle: 'Intentá nuevamente.', color: '#ffbd4a' }); return;
-  }
+  btn.disabled = true;
   btn.textContent = 'RECLAMADO ✓';
+
+  await awardXPForMission(xp);
   showToast({
     icon: '🎁',
     title: 'MISIÓN RECLAMADA',
@@ -7907,7 +7924,7 @@ async function claimMission(missionId, xp, btn) {
     state.bonusClaimed = true;
     saveMissionsState(state);
     setTimeout(async () => {
-      await awardXPForMission(BONUS_XP, 'all_daily');
+      await awardXPForMission(BONUS_XP);
       showToast({
         icon: '🏆',
         title: 'BONUS DIARIO',
@@ -7920,23 +7937,20 @@ async function claimMission(missionId, xp, btn) {
 }
 
 // Versión específica para misiones (usa XP_REWARDS genérico + custom)
-async function awardXPForMission(amount, missionId) {
-  if (!currentUser) return false;
-  const eventRef = doc(db, 'users', currentUser.uid, 'xpEvents', 'mission_' + todayKey() + '_' + missionId);
-  const userRef = doc(db, 'users', currentUser.uid);
+async function awardXPForMission(amount) {
+  showXPFloat(amount);
+  playSfx('xp');
+  if (!currentUser) return;
+  currentXP += amount;
   try {
-    const result = await runTransaction(db, async (tx) => {
-      const eventSnap = await tx.get(eventRef);
-      if (eventSnap.exists()) return { duplicate: true };
-      const userSnap = await tx.get(userRef);
-      const xp = Number(userSnap.exists() ? userSnap.data().xp || 0 : 0);
-      tx.set(userRef, { xp: xp + amount, updatedAt: serverTimestamp() }, { merge: true });
-      tx.set(eventRef, { action: 'daily_mission', missionId, amount, createdAt: serverTimestamp() });
-      return { duplicate: false, xp: xp + amount };
-    });
-    if (result.duplicate) return false;
-    currentXP = result.xp; showXPFloat(amount); playSfx('xp'); renderHUD(); return true;
-  } catch (err) { console.warn('Mission XP save failed:', err); return false; }
+    await setDoc(doc(db, 'users', currentUser.uid), {
+      xp: increment(amount),
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  } catch (err) {
+    console.warn('Mission XP save failed:', err);
+  }
+  renderHUD();
 }
 
 /* --- Countdown de reset (medianoche local) --- */
@@ -7970,41 +7984,36 @@ function initMissions() {
   });
 
   // Track: seleccionar prenda
-  // Product, size and boot mission tracking is handled by the delegated game listener.
+  document.querySelectorAll('.select-product').forEach(el => {
+    el.addEventListener('click', () => trackMissionProgress('daily_select', 1));
+  });
+
+  // Track: elegir talle
+  document.querySelectorAll('.size-option').forEach(el => {
+    el.addEventListener('click', () => trackMissionProgress('daily_size', 1));
+  });
+
+  // Track: botín custom
+  document.querySelectorAll('.bc-submit').forEach(el => {
+    el.addEventListener('click', () => {
+      setTimeout(() => trackMissionProgress('daily_boot', 1), 800);
+    });
+  });
 
   // Track: compartir (engancha shareAchievement)
-  // Share tracking is handled inside shareAchievement.
-}
-
-// ---------- INIT (después de declarar DAILY_MISSIONS y missionsState) ----------
-function init() {
-  // Audio opcional desactivado hasta incorporar los archivos MP3 reales.
-  ensureHUD();
-  bindUIHooks();
-  ensureMissionProgress();
-  observeSuccessScreen();
-  watchAuth();
-  initLeaderboard();
-  initMissions();
-  console.log('🎮 AURA XP Game Layer + Missions + Leaderboard ready');
-}
-
-window.AURA = {
-  awardXP,
-  showToast,
-  showXPFloat,
-  getLevel,
-  getCurrentXP: () => currentXP
-};
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init, { once: true });
-} else {
-  init();
+  const originalShare = window.shareAchievement;
+  if (typeof originalShare === 'function') {
+    window.shareAchievement = async function(code) {
+      await originalShare.call(this, code);
+      trackMissionProgress('daily_share', 1);
+    };
+  }
 }
 
 </script>
 
+
+</body>
 
 </body>
 </html>
