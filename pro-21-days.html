@@ -123,25 +123,13 @@ h1 span{text-shadow:0 0 30px rgba(8,201,244,.22)}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
 
 
-
-/* HEADER Y LOGO: MISMAS PROPORCIONES QUE LA LANDING */
-header{height:58px;padding:0 max(4vw,18px);gap:18px}
+/* HEADER COMPACTO + LOGO OFICIAL */
+header{height:56px;padding:0 max(4vw,18px);gap:18px}
 .brand{display:flex;align-items:center;flex:0 0 auto;line-height:0}
-.brand img{display:block;width:105px;height:auto;max-height:42px;object-fit:contain;object-position:left center}
-nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap;align-items:center}
-.nav-home{padding:8px 11px}
-@media(max-width:600px){
- header{height:56px;min-height:56px;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:0 14px}
- .brand img{width:92px;height:auto;max-height:34px}
- nav{width:auto;min-width:0;flex:1;justify-content:flex-end;gap:10px;font-size:7px;letter-spacing:.025em;white-space:nowrap;overflow-x:auto;scrollbar-width:none}
- nav::-webkit-scrollbar{display:none}
- .nav-home{padding:6px 7px}
-}
-@media(max-width:380px){
- header{padding:0 10px;gap:7px}
- .brand img{width:82px;max-height:30px}
- nav{gap:7px;font-size:6.5px}
-}
+.brand img{display:block;width:150px;height:250px;object-fit:contain;object-position:left center}
+nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:nowrap}
+@media(max-width:720px){header{height:56px;min-height:56px;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:0 14px} .brand img{width:110px;height:100px}nav{width:auto;min-width:0;flex:1;justify-content:flex-end;gap:10px;font-size:7px;letter-spacing:.025em;white-space:nowrap;overflow-x:auto;scrollbar-width:none}nav::-webkit-scrollbar{display:none}}
+@media(max-width:380px){header{padding:0 10px;gap:7px}.brand img{width:72px;height:27px}nav{gap:7px;font-size:6.5px}}
 </style>
 </head>
 <body>
