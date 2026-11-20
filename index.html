@@ -7538,7 +7538,7 @@ function renderHUD() {
   const hud = ensureHUD();
   const xp = readGuestXP().xp;
   hud.classList.add('show');
-  hud.querySelector('.aura-hud-label').textContent = 'SHOPPING XP · VISITA';
+  hud.querySelector('.aura-hud-label span').textContent = 'SHOPPING XP · VISITA';
   const level = getLevel(xp);
   const progress = getLevelProgress(xp);
   const idx = LEVELS.indexOf(level);
