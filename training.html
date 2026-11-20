@@ -282,6 +282,52 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 }
 @media(prefers-reduced-motion:reduce){.hero-hud .skill:hover{transform:none}}
 
+
+/* AURA HUD — misión única con progresión */
+.hero-hud .mission-progress{margin:15px 0 13px}
+.hero-hud .mission-progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;color:#a9bdcb;font:900 7px Montserrat,sans-serif;letter-spacing:.13em}
+.hero-hud .mission-progress-meta span:last-child{color:var(--lime)}
+.hero-hud .mission-progress-track{height:4px;background:rgba(255,255,255,.1);overflow:hidden}
+.hero-hud .mission-progress-track span{display:block;width:25%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--lime));box-shadow:0 0 12px rgba(8,201,244,.55);transition:width .35s ease}
+.hero-hud .skill-grid{display:block;margin:0 0 13px}
+.hero-hud .mission-card{display:flex;flex-direction:column;gap:15px;min-height:220px;padding:20px;background:radial-gradient(ellipse at 90% 5%,rgba(8,201,244,.13),transparent 42%),linear-gradient(145deg,rgba(17,48,68,.98),rgba(5,14,25,.98));border:1px solid rgba(8,201,244,.42);box-shadow:inset 0 0 32px rgba(8,201,244,.045);animation:missionEnter .32s ease both}
+.hero-hud .mission-card.is-completing{animation:missionExit .28s ease both}
+.hero-hud .mission-card-top{display:flex;justify-content:space-between;align-items:center}
+.hero-hud .mission-card .skill-icon{width:36px;height:36px;font-size:10px}
+.hero-hud .mission-card .skill-mark{font-size:24px;color:var(--lime)}
+.hero-hud .mission-card .skill-info{gap:9px}
+.hero-hud .mission-card .skill-info b{font-size:clamp(18px,3vw,25px);letter-spacing:.09em}
+.hero-hud .mission-card .skill-info small{font-size:11px;color:#c1d0dc}
+.hero-hud .mission-card .skill-info p{font-size:11px;line-height:1.5;color:#e2edf4}
+.hero-hud .mission-card .skill-info p strong{font-size:8px}
+.hero-hud .mission-card .skill-mission{font-size:7px;padding:6px 8px}
+.hero-hud .mission-controls{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.hero-hud .mission-controls>span{max-width:180px;color:#93a8b8;font:800 7px/1.5 Montserrat,sans-serif;letter-spacing:.1em}
+.hero-hud .mission-complete,.hero-hud .mission-restart{border:1px solid var(--lime);background:var(--lime);color:#07111a;padding:12px 15px;font:900 9px Montserrat,sans-serif;letter-spacing:.08em;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.hero-hud .mission-complete span{margin-left:12px;font-size:14px}
+.hero-hud .mission-complete:hover,.hero-hud .mission-restart:hover{transform:translateY(-2px);box-shadow:0 7px 22px rgba(183,255,60,.2)}
+.hero-hud .mission-complete:focus-visible,.hero-hud .mission-restart:focus-visible{outline:2px solid white;outline-offset:4px}
+.hero-hud .mission-complete-state{padding:24px 15px;text-align:center;border:1px solid rgba(183,255,60,.45);background:linear-gradient(145deg,rgba(183,255,60,.09),rgba(8,201,244,.06));animation:missionEnter .35s ease both}
+.hero-hud .mission-complete-state[hidden]{display:none}
+.hero-hud .finished-mark{display:block;color:var(--lime);font-size:28px;margin-bottom:8px;text-shadow:0 0 18px rgba(183,255,60,.4)}
+.hero-hud .mission-complete-state>b{color:#fff;font:900 14px Montserrat,sans-serif;letter-spacing:.12em}
+.hero-hud .mission-complete-state p{margin:8px auto 16px;max-width:340px;color:#b9c9d5;font-size:10px;line-height:1.5}
+.hero-hud .mission-restart{background:transparent;color:var(--lime)}
+@keyframes missionEnter{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes missionExit{to{opacity:0;transform:translateY(-7px)}}
+@media(max-width:600px){
+ .hero-hud .mission-progress{margin:12px 0}
+ .hero-hud .mission-card{min-height:205px;padding:16px;gap:13px}
+ .hero-hud .mission-card .skill-info b{font-size:20px}
+ .hero-hud .mission-card .skill-info small,.hero-hud .mission-card .skill-info p{font-size:10px}
+ .hero-hud .mission-controls{align-items:stretch;flex-direction:column;gap:10px}
+ .hero-hud .mission-controls>span{max-width:none;font-size:6px}
+ .hero-hud .mission-complete{width:100%;padding:13px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-hud .mission-card,.hero-hud .mission-complete-state{animation:none}
+ .hero-hud .mission-progress-track span,.hero-hud .mission-complete,.hero-hud .mission-restart{transition:none}
+}
 </style>
 </head>
 <body>
@@ -301,65 +347,39 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 
 <h1>FARMEÁ TU JUEGO.<br><span>ENTRENÁ EN SERIO.</span></h1>
 <p class="hero-copy">No desbloqueás habilidades mirando. <strong>Las construís entrenando.</strong> Elegí un desafío, seguí tu programa y llevá tu trabajo a la cancha.</p>
-<div class="hero-hud" aria-label="Panel de habilidades que podés desarrollar con AURA">
+<div class="hero-hud" id="aura-player-missions" aria-label="Misiones para desarrollar tu juego">
   <div class="hud-topline">
     <div>
       <span class="hud-eyebrow">AURA XP // PLAYER DEVELOPMENT</span>
       <strong>DESARROLLÁ TU JUEGO</strong>
-      <small class="hud-subtitle">4 ATRIBUTOS. MÁS RECURSOS PARA LA CANCHA.</small>
+      <small class="hud-subtitle">UNA MISIÓN A LA VEZ. CADA PASO CUENTA.</small>
     </div>
-    <span class="hud-live"><i></i> PANEL DE JUGADOR</span>
+    <span class="hud-live"><i></i> MODO PROGRESO</span>
   </div>
-  <div class="skill-grid">
-    <div class="skill">
-      <span class="skill-icon">01</span>
+  <div class="mission-progress">
+    <div class="mission-progress-meta"><span id="mission-counter">MISIÓN 01 / 04</span><span id="mission-percent">25%</span></div>
+    <div class="mission-progress-track"><span id="mission-progress-fill"></span></div>
+  </div>
+  <div class="skill-grid" id="mission-stage" aria-live="polite">
+    <article class="skill mission-card">
+      <div class="mission-card-top"><span class="skill-icon">01</span><span class="skill-mark">◎</span></div>
       <div class="skill-info">
+        <em class="skill-mission">MISIÓN: CONTROLAR</em>
         <b>COORDINACIÓN</b>
         <small>Dominá tu cuerpo y cada apoyo.</small>
         <p><strong>EN CANCHA</strong> · Conducí y recibí con más precisión.</p>
-        <em class="skill-mission">MISIÓN: CONTROLAR</em>
       </div>
-      <span class="skill-mark">◎</span>
-    </div>
-    <div class="skill">
-      <span class="skill-icon">02</span>
-      <div class="skill-info">
-        <b>VELOCIDAD</b>
-        <small>Acelerá y reaccioná más rápido.</small>
-        <p><strong>EN CANCHA</strong> · Llegá antes y ganá espacios.</p>
-        <em class="skill-mission">MISIÓN: ACELERAR</em>
-      </div>
-      <span class="skill-mark">↗</span>
-    </div>
-    <div class="skill">
-      <span class="skill-icon">03</span>
-      <div class="skill-info">
-        <b>AGILIDAD</b>
-        <small>Frená y cambiá de dirección.</small>
-        <p><strong>EN CANCHA</strong> · Esquivá marcas y volvé a arrancar.</p>
-        <em class="skill-mission">MISIÓN: DESEQUILIBRAR</em>
-      </div>
-      <span class="skill-mark">↔</span>
-    </div>
-    <div class="skill">
-      <span class="skill-icon">04</span>
-      <div class="skill-info">
-        <b>TÉCNICA</b>
-        <small>Mejorá tu dominio de pelota.</small>
-        <p><strong>EN CANCHA</strong> · Controlá, pasá y resolvé mejor.</p>
-        <em class="skill-mission">MISIÓN: RESOLVER</em>
-      </div>
-      <span class="skill-mark">✳</span>
-    </div>
+    </article>
   </div>
-  <div class="hud-foot">
-    <span class="hud-foot-label">ELEGÍ TU RUTA DE ENTRENAMIENTO</span>
-    <div class="hud-path">
-      <span><b>07</b><small>START</small></span><i></i>
-      <span><b>21</b><small>PRO</small></span><i></i>
-      <span><b>30</b><small>ELITE</small></span>
-      <em>DÍAS</em>
-    </div>
+  <div class="mission-controls">
+    <span id="mission-hint">UN PASO MÁS PARA DESARROLLAR TU JUEGO.</span>
+    <button class="mission-complete" id="mission-next" type="button">COMPLETAR MISIÓN <span>↗</span></button>
+  </div>
+  <div class="mission-complete-state" id="mission-finished" hidden>
+    <span class="finished-mark">✦</span>
+    <b>RECORRIDO COMPLETADO</b>
+    <p>Ya conocés las 4 habilidades que podés desarrollar con AURA.</p>
+    <button class="mission-restart" id="mission-restart" type="button">VOLVER A RECORRER</button>
   </div>
 </div>
 <div class="hero-actions">
@@ -455,5 +475,59 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 </section>
 </main>
 <footer>AURA XP · FUTSAL × GAMING × STREETWEAR · FARMEÁ ESTILO. SUBÍ DE NIVEL.</footer>
+
+<script>
+(function(){
+  const root=document.getElementById('aura-player-missions');
+  if(!root)return;
+  const missions=[
+    {name:'COORDINACIÓN',desc:'Dominá tu cuerpo y cada apoyo.',impact:'Conducí y recibí con más precisión.',action:'CONTROLAR',mark:'◎'},
+    {name:'VELOCIDAD',desc:'Acelerá y reaccioná más rápido.',impact:'Llegá antes y ganá espacios.',action:'ACELERAR',mark:'↗'},
+    {name:'AGILIDAD',desc:'Frená y cambiá de dirección.',impact:'Esquivá marcas y volvé a arrancar.',action:'DESEQUILIBRAR',mark:'↔'},
+    {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',impact:'Controlá, pasá y resolvé mejor.',action:'RESOLVER',mark:'✳'}
+  ];
+  let current=0;
+  const stage=root.querySelector('#mission-stage');
+  const counter=root.querySelector('#mission-counter');
+  const percent=root.querySelector('#mission-percent');
+  const fill=root.querySelector('#mission-progress-fill');
+  const next=root.querySelector('#mission-next');
+  const controls=root.querySelector('.mission-controls');
+  const finished=root.querySelector('#mission-finished');
+  function render(){
+    const m=missions[current];
+    stage.innerHTML='<article class="skill mission-card"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+m.mark+'</span></div><div class="skill-info"><em class="skill-mission">MISIÓN: '+m.action+'</em><b>'+m.name+'</b><small>'+m.desc+'</small><p><strong>EN CANCHA</strong> · '+m.impact+'</p></div></article>';
+    counter.textContent='MISIÓN '+String(current+1).padStart(2,'0')+' / 04';
+    percent.textContent=Math.round(((current+1)/missions.length)*100)+'%';
+    fill.style.width=((current+1)/missions.length*100)+'%';
+    next.innerHTML=current===missions.length-1?'COMPLETAR RECORRIDO <span>✦</span>':'COMPLETAR MISIÓN <span>↗</span>';
+  }
+  next.addEventListener('click',function(){
+    const card=stage.querySelector('.mission-card');
+    if(card)card.classList.add('is-completing');
+    next.disabled=true;
+    window.setTimeout(function(){
+      current++;
+      if(current>=missions.length){
+        controls.hidden=true;
+        stage.hidden=true;
+        finished.hidden=false;
+        counter.textContent='4 DE 4 MISIONES';
+        percent.textContent='100%';
+        fill.style.width='100%';
+      }else render();
+      next.disabled=false;
+    },260);
+  });
+  root.querySelector('#mission-restart').addEventListener('click',function(){
+    current=0;
+    finished.hidden=true;
+    stage.hidden=false;
+    controls.hidden=false;
+    render();
+  });
+  render();
+})();
+</script>
 </body>
 </html>
