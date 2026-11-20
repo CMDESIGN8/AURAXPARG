@@ -122,11 +122,19 @@ h1 span{text-shadow:0 0 30px rgba(8,201,244,.22)}
 @media(max-width:720px){.club-shell{grid-template-columns:1fr}.club-main,.club-side{padding:16px}.club-side{display:grid;grid-template-columns:1fr 1fr}.club-side .xp-block{grid-row:span 2}.filter-btn{flex:1;min-width:calc(50% - 7px)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
 
+
+/* HEADER COMPACTO + LOGO OFICIAL */
+header{height:56px;padding:0 max(4vw,18px);gap:18px}
+.brand{display:flex;align-items:center;flex:0 0 auto;line-height:0}
+.brand img{display:block;width:104px;height:36px;object-fit:contain;object-position:left center}
+nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:nowrap}
+@media(max-width:720px){header{height:56px;min-height:56px;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:0 14px} .brand img{width:82px;height:30px}nav{width:auto;min-width:0;flex:1;justify-content:flex-end;gap:10px;font-size:7px;letter-spacing:.025em;white-space:nowrap;overflow-x:auto;scrollbar-width:none}nav::-webkit-scrollbar{display:none}}
+@media(max-width:380px){header{padding:0 10px;gap:7px}.brand img{width:72px;height:27px}nav{gap:7px;font-size:6.5px}}
 </style>
 </head>
 <body>
 <div class="top">AURA XP PRO · 21 DAY PERFORMANCE PROGRAM</div>
-<header><a class="brand" href="training.html">AURA <span>XP</span></a><nav><a href="training.html">Elegir sistema</a><a href="#days">Mi entrenamiento</a><a href="index.html">AURA</a></nav></header>
+<header><a class="brand" href="index.html" aria-label="Volver al universo AURA"><img src="assets/logo2.png" alt="AURA XP"></a><nav><a href="training.html">Elegir sistema</a><a href="#days">Mi entrenamiento</a><a href="index.html">AURA</a></nav></header>
 <main>
 <section class="hero">
 <div class="kicker">AURA XP · PRO PERFORMANCE CLUB</div>
