@@ -195,6 +195,30 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 }
 @media(prefers-reduced-motion:reduce){.skill:hover{transform:none}}
 
+
+/* EXPLICACIÓN DE BENEFICIOS EN CANCHA */
+.skill-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.skill{grid-template-columns:27px minmax(0,1fr) 16px;align-items:start;min-height:112px;padding:12px}
+.skill-info{gap:5px}
+.skill-info small{font-size:9px;line-height:1.4;color:#c1ceda}
+.skill-info p{font-size:9px;line-height:1.4;color:var(--lime);margin-top:3px}
+.skill-mark{padding-top:4px}
+.hud-topline strong{font-size:11px;letter-spacing:.09em}
+.hud-foot-label{max-width:130px;white-space:normal;line-height:1.35}
+@media(max-width:600px){
+ .skill-grid{grid-template-columns:1fr 1fr;gap:7px}
+ .skill{min-height:124px;grid-template-columns:22px minmax(0,1fr) 11px;padding:9px 7px;gap:6px}
+ .skill-info{gap:5px}
+ .skill-info small,.skill-info p{font-size:8px;line-height:1.35}
+ .skill b{font-size:7px}
+ .hud-topline strong{font-size:9px;letter-spacing:.045em}
+ .hud-foot-label{max-width:none}
+}
+@media(max-width:360px){
+ .skill{min-height:132px;padding:8px 6px}
+ .skill-info small,.skill-info p{font-size:7px}
+}
+
 </style>
 </head>
 <body>
@@ -216,33 +240,33 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <p class="hero-copy">No desbloqueás habilidades mirando. <strong>Las construís entrenando.</strong> Elegí un desafío, seguí tu programa y llevá tu trabajo a la cancha.</p>
 <div class="hero-hud" aria-label="Mapa de habilidades trabajadas por los programas AURA">
   <div class="hud-topline">
-    <div><span class="hud-eyebrow">AURA PLAYER DEVELOPMENT</span><strong>MAPA DE HABILIDADES</strong></div>
-    <span class="hud-live"><i></i> 4 ÁREAS DE ENTRENAMIENTO</span>
+    <div><span class="hud-eyebrow">AURA PLAYER DEVELOPMENT</span><strong>¿QUÉ VAS A MEJORAR EN LA CANCHA?</strong></div>
+    <span class="hud-live"><i></i> 4 RECURSOS DE JUEGO</span>
   </div>
   <div class="skill-grid">
     <div class="skill">
       <span class="skill-icon">01</span>
-      <div class="skill-info"><b>COORDINACIÓN</b><small>Controlá cada apoyo.</small></div>
-      <span class="skill-mark">＋</span>
+      <div class="skill-info"><b>COORDINACIÓN</b><small>Controlá mejor tu cuerpo y la pelota.</small><p>En el partido: más precisión al conducir y recibir.</p></div>
+      <span class="skill-mark">◎</span>
     </div>
     <div class="skill">
       <span class="skill-icon">02</span>
-      <div class="skill-info"><b>VELOCIDAD</b><small>Reaccioná y acelerá.</small></div>
+      <div class="skill-info"><b>VELOCIDAD</b><small>Acelerá y reaccioná más rápido.</small><p>En el partido: llegá antes y ganá espacios.</p></div>
       <span class="skill-mark">↗</span>
     </div>
     <div class="skill">
       <span class="skill-icon">03</span>
-      <div class="skill-info"><b>AGILIDAD</b><small>Cambiá de dirección.</small></div>
+      <div class="skill-info"><b>AGILIDAD</b><small>Frená y cambiá de dirección.</small><p>En el partido: esquivá marcas sin perder equilibrio.</p></div>
       <span class="skill-mark">↔</span>
     </div>
     <div class="skill">
       <span class="skill-icon">04</span>
-      <div class="skill-info"><b>TÉCNICA</b><small>Convertí control en juego.</small></div>
-      <span class="skill-mark">◎</span>
+      <div class="skill-info"><b>TÉCNICA</b><small>Mejorá tu dominio de pelota.</small><p>En el partido: controlá, pasá y resolvé mejor.</p></div>
+      <span class="skill-mark">✳</span>
     </div>
   </div>
   <div class="hud-foot">
-    <span class="hud-foot-label">ELEGÍ TU RECORRIDO</span>
+    <span class="hud-foot-label">ELEGÍ CUÁNTO QUERÉS ENTRENAR</span>
     <div class="hud-path">
       <span><b>07</b><small>START</small></span><i></i>
       <span><b>21</b><small>PRO</small></span><i></i>
@@ -272,13 +296,13 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <div class="card-body">
 <div class="level">RUTA 01 · PRIMER DESAFÍO</div>
 <h3>START</h3>
-<p class="promise">Construí una base de coordinación y control del movimiento.</p>
+<p class="promise">Empezá a moverte con más control para dominar mejor cada pelota.</p>
 <span class="objective">OBJETIVO · COORDINACIÓN</span>
 <ul class="items">
 <li>Escalera de coordinación</li>
 <li>Conos de entrenamiento</li>
 </ul>
-<div class="digital"><strong>GUÍA DIGITAL · 7 DÍAS</strong><p>Rutina inicial guiada para incorporar coordinación y control del movimiento.</p></div>
+<div class="digital"><strong>GUÍA DIGITAL · 7 DÍAS</strong><p>Sesiones guiadas para practicar apoyos, ritmo y control corporal. Buscá moverte con más seguridad al conducir y recibir.</p></div>
 <span class="cta is-soon" aria-label="Sistema START en preparación">START · PRÓXIMAMENTE</span>
 </div>
 </article>
@@ -287,7 +311,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <div class="card-body">
 <div class="level">RUTA 02 · EVOLUCIÓN</div>
 <h3>PRO</h3>
-<p class="promise">Trabajá velocidad, agilidad y técnica con un plan progresivo.</p>
+<p class="promise">Acelerá, cambiá de dirección y ganá control en situaciones de juego.</p>
 <span class="objective">OBJETIVO · VELOCIDAD + AGILIDAD</span>
 <ul class="items">
 <li>Escalera de coordinación</li>
@@ -295,7 +319,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <li>Aros de agilidad</li>
 <li>Mini vallas</li>
 </ul>
-<div class="digital"><strong>PROGRAMA DIGITAL · 21 DÍAS</strong><p>Plan progresivo con sesiones organizadas para trabajar velocidad, coordinación y técnica.</p></div>
+<div class="digital"><strong>PROGRAMA DIGITAL · 21 DÍAS</strong><p>Sesiones progresivas para trabajar aceleración, cambios de dirección y dominio de pelota. La idea: llegar mejor perfilado y resolver con más control.</p></div>
 <a class="cta" href="pro-21-days.html">EMPEZAR MI RECORRIDO · 21 DÍAS</a>
 </div>
 </article>
@@ -304,7 +328,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <div class="card-body">
 <div class="level">RUTA 03 · MÁXIMO DESAFÍO</div>
 <h3>ELITE</h3>
-<p class="promise">Sumá variedad y estructura a tu entrenamiento individual.</p>
+<p class="promise">Combiná distintas capacidades para llevar tu entrenamiento un paso más allá.</p>
 <span class="objective">OBJETIVO · TRABAJO INTEGRAL</span>
 <ul class="items">
 <li>Kit de coordinación</li>
@@ -312,7 +336,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <li>Pelota</li>
 <li>Bolsa de transporte</li>
 </ul>
-<div class="digital"><strong>GUÍA DIGITAL · 30 DÍAS</strong><p>Plan integral con objetivos y progresión de entrenamiento durante un mes.</p></div>
+<div class="digital"><strong>GUÍA DIGITAL · 30 DÍAS</strong><p>Un recorrido de 30 días para combinar coordinación, velocidad y técnica en un trabajo más completo.</p></div>
 <span class="cta is-soon" aria-label="Sistema ELITE en preparación">ELITE · PRÓXIMAMENTE</span>
 </div>
 </article>
