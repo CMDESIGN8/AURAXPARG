@@ -187,79 +187,151 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
 <div class="toast" id="toast" role="status" aria-live="polite">+50 XP · MISIÓN COMPLETADA</div><footer>AURA XP · PERFORMANCE CLUB · FARMEÁ ESTILO. SUBÍ DE NIVEL.</footer>
 <script>
 (function(){
- const KEY='auraxp-pro-21day-progress-v1';
- const cards=[...document.querySelectorAll('[data-day]')];
- const boxes=cards.map(card=>card.querySelector('input[type="checkbox"]'));
- const fill=document.getElementById('progressFill');
- const progressText=document.getElementById('progressText');
- const xpTotal=document.getElementById('xpTotal');
- const completedTotal=document.getElementById('completedTotal');
- const percentTotal=document.getElementById('percentTotal');
- const xpTrack=document.getElementById('xpTrack');
- const nextMission=document.getElementById('nextMission');
- const toast=document.getElementById('toast');
- let saved={};
- try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
- function persist(){localStorage.setItem(KEY,JSON.stringify(saved))}
- function update(){
-   const count=boxes.filter((b,i)=>!!saved[i+1]).length;
-   const xp=count*50;
-   const percent=Math.round(count/21*100);
-   fill.style.width=percent+'%';
-   progressText.textContent=count+' / 21 DÍAS';
-   xpTotal.textContent=String(xp).padStart(3,'0');
-   completedTotal.innerHTML=count+'<span style="font-size:18px;color:var(--muted)"> / 21</span>';
-   percentTotal.textContent=percent+'%';
-   xpTrack.style.width=(xp%500/500*100)+'%';
-   const next=cards.find((card,i)=>!saved[i+1]);
-   nextMission.textContent=next?'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase():'PROGRAMA COMPLETADO';
-   cards.forEach((card,i)=>{
-     const done=!!saved[i+1];
-     boxes[i].checked=done;
-     card.classList.toggle('done',done);
-     const badge=card.querySelector('.next-tag');
-     if(badge)badge.remove();
-   });
-   if(next){const tag=document.createElement('span');tag.className='next-tag';tag.textContent='NEXT';next.querySelector('.day-num').append(tag)}
- }
- function expand(card){card.classList.add('expanded');const btn=card.querySelector('.session-toggle');btn.setAttribute('aria-expanded','true');btn.querySelector('span:last-child').textContent='+'}
- function collapse(card){card.classList.remove('expanded');const btn=card.querySelector('.session-toggle');btn.setAttribute('aria-expanded','false');btn.querySelector('span:last-child').textContent='+'}
- cards.forEach((card,i)=>{
-   const details=card.querySelector('.details');
-   const toggle=document.createElement('button');
-   toggle.className='session-toggle';toggle.type='button';toggle.setAttribute('aria-expanded','false');
-   toggle.innerHTML='<span>VER DETALLE DE LA SESIÓN</span><span>+</span>';
-   details.parentNode.insertBefore(toggle,details);
-   toggle.addEventListener('click',()=>{card.classList.contains('expanded')?collapse(card):expand(card)});
-   boxes[i].addEventListener('change',()=>{
-     const wasDone=!!saved[i+1];
-     if(boxes[i].checked)saved[i+1]=true;else delete saved[i+1];
-     persist();update();
-     if(!wasDone&&saved[i+1]){toast.textContent='+50 XP · MISIÓN COMPLETADA';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1900)}
-   });
- }
- document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{
-   document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===btn));
-   const filter=btn.dataset.filter;
-   cards.forEach(card=>{const day=Number(card.dataset.day);const week=Math.ceil(day/7);card.hidden=filter!=='all'&&week!==Number(filter)});
-   document.getElementById('emptyState').style.display='none';
- }));
- document.getElementById('showAllBtn').addEventListener('click',()=>{
-   document.querySelector('[data-filter="all"]').click();
-   document.querySelector('.week-filter').scrollIntoView({behavior:'smooth',block:'center'});
- });
- document.getElementById('continueBtn').addEventListener('click',()=>{
-   const next=cards.find((card,i)=>!saved[i+1]);
-   if(!next){document.querySelector('[data-filter="all"]').click();return}
-   document.querySelector('[data-filter="'+Math.ceil(Number(next.dataset.day)/7)+'"]').click();
-   expand(next);
-   next.scrollIntoView({behavior:'smooth',block:'center'});
- });
- document.getElementById('resetProgress').addEventListener('click',()=>{
-   if(!confirm('¿Reiniciar los XP y el progreso de los 21 días en este dispositivo?'))return;
-   saved={};persist();update();cards.forEach(c=>collapse(c));
- });
- update();
+  const KEY='auraxp-pro-21day-progress-v2';
+  const cards=Array.from(document.querySelectorAll('.day[data-day]'));
+  const boxes=cards.map(card=>card.querySelector('input[type="checkbox"]'));
+  const $=id=>document.getElementById(id);
+  const fill=$('progressFill'), progressText=$('progressText');
+  const xpTotal=$('xpTotal'), completedTotal=$('completedTotal');
+  const percentTotal=$('percentTotal'), xpTrack=$('xpTrack');
+  const nextMission=$('nextMission'), toast=$('toast');
+  if(cards.length!==21 || boxes.some(box=>!box)) {
+    console.error('AURA XP: no se pudieron inicializar las 21 jornadas.');
+    return;
+  }
+
+  let saved={};
+  try {
+    const parsed=JSON.parse(localStorage.getItem(KEY)||'{}');
+    if(parsed && typeof parsed==='object' && !Array.isArray(parsed)) saved=parsed;
+  } catch(error) {
+    console.warn('AURA XP: no se pudo leer el progreso guardado.',error);
+  }
+  let toastTimer;
+
+  function persist(){
+    try {
+      localStorage.setItem(KEY,JSON.stringify(saved));
+      return true;
+    } catch(error) {
+      console.warn('AURA XP: el navegador no permitió guardar el progreso.',error);
+      return false;
+    }
+  }
+
+  function update(){
+    const count=cards.filter(card=>saved[card.dataset.day]===true).length;
+    const xp=count*50, percent=Math.round(count/cards.length*100);
+    fill.style.width=percent+'%';
+    progressText.textContent=count+' / 21 DÍAS';
+    xpTotal.textContent=String(xp).padStart(3,'0');
+    completedTotal.innerHTML=count+'<span style="font-size:18px;color:var(--muted)"> / 21</span>';
+    percentTotal.textContent=percent+'%';
+    xpTrack.style.width=((xp%500)/500*100)+'%';
+
+    const next=cards.find(card=>saved[card.dataset.day]!==true);
+    nextMission.textContent=next
+      ? 'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase()
+      : 'PROGRAMA COMPLETADO';
+
+    cards.forEach(card=>{
+      const done=saved[card.dataset.day]===true;
+      const box=card.querySelector('input[type="checkbox"]');
+      box.checked=done;
+      card.classList.toggle('done',done);
+      const badge=card.querySelector('.next-tag');
+      if(badge) badge.remove();
+    });
+    if(next){
+      const tag=document.createElement('span');
+      tag.className='next-tag';
+      tag.textContent='NEXT';
+      next.querySelector('.day-num').append(tag);
+    }
+  }
+
+  function setExpanded(card,expanded){
+    const button=card.querySelector('.session-toggle');
+    card.classList.toggle('expanded',expanded);
+    button.setAttribute('aria-expanded',String(expanded));
+    button.querySelector('.toggle-icon').textContent=expanded?'−':'+';
+    button.querySelector('.toggle-label').textContent=expanded?'OCULTAR EJERCICIOS':'VER EJERCICIOS Y SERIES';
+  }
+
+  function showToast(message){
+    toast.textContent=message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>toast.classList.remove('show'),2200);
+  }
+
+  cards.forEach(card=>{
+    const details=card.querySelector('.details');
+    const toggle=document.createElement('button');
+    toggle.className='session-toggle';
+    toggle.type='button';
+    toggle.setAttribute('aria-expanded','false');
+    toggle.innerHTML='<span class="toggle-label">VER EJERCICIOS Y SERIES</span><span class="toggle-icon" aria-hidden="true">+</span>';
+    details.parentNode.insertBefore(toggle,details);
+    toggle.addEventListener('click',()=>setExpanded(card,!card.classList.contains('expanded')));
+
+    const box=card.querySelector('input[type="checkbox"]');
+    box.addEventListener('change',()=>{
+      const day=card.dataset.day;
+      const wasDone=saved[day]===true;
+      if(box.checked) saved[day]=true;
+      else delete saved[day];
+      const stored=persist();
+      update();
+      if(!wasDone && box.checked) showToast(stored?'+50 XP · JORNADA COMPLETADA':'+50 XP · PROGRESO ACTUALIZADO EN ESTA SESIÓN');
+      if(wasDone && !box.checked) showToast('JORNADA DESMARCADA · XP ACTUALIZADOS');
+    });
+  });
+
+  const filterButtons=Array.from(document.querySelectorAll('[data-filter]'));
+  function applyFilter(filter){
+    filterButtons.forEach(button=>button.classList.toggle('active',button.dataset.filter===filter));
+    let visible=0;
+    cards.forEach(card=>{
+      const week=Math.ceil(Number(card.dataset.day)/7);
+      const show=filter==='all'||week===Number(filter);
+      card.hidden=!show;
+      if(show) visible++;
+    });
+    $('emptyState').style.display=visible?'none':'block';
+  }
+  filterButtons.forEach(button=>button.addEventListener('click',()=>applyFilter(button.dataset.filter)));
+
+  $('showAllBtn').addEventListener('click',()=>{
+    applyFilter('all');
+    document.querySelector('.week-filter').scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  $('continueBtn').addEventListener('click',()=>{
+    const next=cards.find(card=>saved[card.dataset.day]!==true);
+    if(!next){
+      applyFilter('all');
+      showToast('COMPLETASTE LAS 21 JORNADAS');
+      return;
+    }
+    const week=String(Math.ceil(Number(next.dataset.day)/7));
+    applyFilter(week);
+    setExpanded(next,true);
+    next.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  $('resetProgress').addEventListener('click',()=>{
+    if(!window.confirm('¿Reiniciar los XP y el progreso de los 21 días en este dispositivo?')) return;
+    saved={};
+    persist();
+    update();
+    cards.forEach(card=>setExpanded(card,false));
+    applyFilter('all');
+    showToast('PROGRESO REINICIADO');
+  });
+
+  update();
+  applyFilter('all');
 })();
 </script>
 </body>
