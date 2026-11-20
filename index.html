@@ -3779,6 +3779,11 @@
   .aura-hud-xp { font-size:.62rem; }
 
   /* En móvil, la explicación se convierte en una tarjeta modal centrada. */
+  @keyframes auraHudFocusMobile {
+    0%,100% { transform:translateY(-50%) scale(1); }
+    45% { transform:translateY(-50%) scale(1.025); }
+  }
+  .aura-hud.xp-focus.xp-info-open { animation:auraHudFocusMobile 1.05s ease 2; }
   .aura-hud.xp-info-open {
     position:fixed; top:50%; right:12px; left:12px; bottom:auto;
     width:auto; max-width:440px; min-width:0; max-height:82dvh;
@@ -7614,7 +7619,7 @@ function focusShoppingHUD(openInfo = false) {
   hud.classList.add('xp-focus');
   if (openInfo) {
     hud.classList.add('xp-info-open');
-    button.textContent = '×';
+    button.textContent = 'CERRAR ×';
     button.setAttribute('aria-label', 'Cerrar información de Shopping XP');
   }
   window.setTimeout(() => hud.classList.remove('xp-focus'), 2200);
