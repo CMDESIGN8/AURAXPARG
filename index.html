@@ -3712,9 +3712,9 @@
   letter-spacing: -.02em;
 }
 .aura-hud-level small {
-  font-size: .55rem;
+  font-size: 1rem;
   color: #9aadc0;
-  letter-spacing: .12em;
+  font-weight: 800;
 }
 .aura-hud-bar {
   height: 4px;
@@ -3908,8 +3908,8 @@
   .aura-hud-level { gap: 7px; }
   .aura-hud-level b { font-size: 14px; }
   .aura-hud-level small,
-  .aura-hud-xp { font-size: 10px; }
-  .aura-hud-bar { height: 3px; }
+  .aura-hud-xp { font-size: 15px; font-weight: 900; }
+    .aura-hud-bar { height: 3px; }
 
   /* Abierto: tarjeta modal centrada, con contenido en una sola columna. */
   .aura-hud.xp-info-open {
@@ -7727,7 +7727,7 @@ function ensureHUD() {
   hud.className = 'aura-hud';
   hud.innerHTML = `
     <div class="aura-hud-label">
-      <span>SHOPPING XP · VISITA</span>
+      <span> · </span>
       <button class="aura-hud-info" type="button" aria-label="Cómo ganar Shopping XP" aria-expanded="false">¿CÓMO SUMAR XP?</button>
     </div>
     <div class="aura-hud-level">
@@ -7779,7 +7779,7 @@ function renderHUD() {
   const hud = ensureHUD();
   const xp = readGuestXP().xp;
   hud.classList.add('show');
-  hud.querySelector('.aura-hud-label span').textContent = 'SHOPPING XP · VISITA';
+  hud.querySelector('.aura-hud-label span').textContent = 'AURA';
   const level = getLevel(xp);
   const progress = getLevelProgress(xp);
   const idx = LEVELS.indexOf(level);
