@@ -4472,9 +4472,30 @@
 .aura-hud-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--aura-cyan),var(--aura-lime));box-shadow:0 0 14px rgba(8,201,244,.65);transition:width .8s cubic-bezier(.2,.8,.2,1)}
 .aura-hud-xp{font-size:.59rem;color:rgba(234,248,255,.62);letter-spacing:.08em}
 .aura-hud-xp b{float:right;color:#fff}
-#toast-container{position:fixed;z-index:1500;top:118px;left:50%;transform:translateX(-50%);display:grid;gap:10px;width:min(390px,calc(100vw - 28px));pointer-events:none}
-.achievement-toast{display:flex;align-items:center;gap:14px;padding:15px 18px;background:linear-gradient(115deg,rgba(5,20,34,.97),rgba(5,10,20,.96));border:1px solid var(--toast-color);box-shadow:0 12px 40px rgba(0,0,0,.45),0 0 28px color-mix(in srgb,var(--toast-color) 20%,transparent);opacity:0;transform:translateY(-12px) scale(.97);transition:opacity .3s ease,transform .4s cubic-bezier(.2,.8,.2,1)}
-.achievement-toast.show{opacity:1;transform:translateY(0) scale(1)}
+#toast-container{
+  position:fixed;z-index:1500;
+  top:calc(env(safe-area-inset-top, 0px) + 118px);
+  left:50%;right:auto;bottom:auto;
+  transform:translateX(-50%);
+  display:grid;gap:10px;
+  width:calc(100vw - 28px);max-width:390px;
+  box-sizing:border-box;pointer-events:none;
+}
+#toast-container .achievement-toast{
+  position:relative;left:auto;right:auto;top:auto;bottom:auto;
+  display:flex;align-items:center;gap:14px;
+  width:100%;min-width:0;max-width:100%;
+  box-sizing:border-box;margin:0;
+  padding:15px 18px;
+  background:linear-gradient(115deg,rgba(5,20,34,.97),rgba(5,10,20,.96));
+  border:1px solid var(--toast-color);
+  box-shadow:0 12px 40px rgba(0,0,0,.45),0 0 28px color-mix(in srgb,var(--toast-color) 20%,transparent);
+  opacity:0;transform:translateY(-12px) scale(.97);
+  transition:opacity .3s ease,transform .4s cubic-bezier(.2,.8,.2,1);
+}
+#toast-container .achievement-toast.show{opacity:1;transform:translateY(0) scale(1)}
+#toast-container .achievement-toast strong{display:block}
+#toast-container .achievement-toast small{display:block;overflow-wrap:anywhere}
 .toast-icon{font-size:1.65rem;filter:drop-shadow(0 0 10px var(--toast-color))}
 .achievement-toast strong{display:block;font-size:.72rem;letter-spacing:.13em;color:#fff}
 .achievement-toast small{display:block;margin-top:4px;font-size:.65rem;color:rgba(234,248,255,.65)}
@@ -4488,7 +4509,13 @@
 .reservation-qr{display:block;width:148px;height:148px;object-fit:contain;margin:18px auto;padding:8px;background:#050b14;border:1px solid rgba(8,201,244,.38);box-shadow:0 0 30px rgba(8,201,244,.12)}
 .share-btn{border:1px solid var(--aura-cyan);background:linear-gradient(110deg,rgba(8,201,244,.18),rgba(8,201,244,.04));color:#eaf8ff;padding:13px 18px;font:900 .7rem Montserrat,sans-serif;letter-spacing:.12em;cursor:pointer;transition:.25s}
 .share-btn:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(8,201,244,.25)}
-@media(max-width:700px){.aura-hud{top:auto;bottom:14px;right:12px;width:min(245px,calc(100vw - 24px));padding:12px 14px}.aura-hud-label{margin-bottom:5px}#toast-container{top:116px}.achievement-toast{padding:12px 14px}}
+@media(max-width:700px){
+  .aura-hud{top:auto;bottom:calc(env(safe-area-inset-bottom, 0px) + 14px);right:12px;width:min(245px,calc(100vw - 24px));padding:12px 14px}
+  .aura-hud-label{margin-bottom:5px}
+  #toast-container{top:calc(env(safe-area-inset-top, 0px) + 82px);width:calc(100vw - 24px);max-width:420px}
+  #toast-container .achievement-toast{padding:12px 14px;gap:10px}
+  #toast-container .toast-icon{flex:0 0 auto}
+}
 @media(prefers-reduced-motion:reduce){.aura-hud,.achievement-toast,.aura-hud-bar i,.share-btn{transition:none}.xp-float{animation-duration:.01ms}}
 </style>
 
