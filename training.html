@@ -503,6 +503,123 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 @media(max-width:380px){.coach-tutorial{padding:8px}.coach-tutorial-scene{height:155px}.coach-figure{height:160px;width:160px}.coach-dialog{padding:18px 15px}.coach-dialog h2{font-size:25px}.coach-dialog-actions{gap:7px}.coach-dialog-actions button{padding:0 9px}}
 @media(prefers-reduced-motion:reduce){.coach-figure{animation:none}.coach-tutorial{transition:none}}
 
+
+/* GAME SCREEN PASS — menos formulario, más pantalla de juego */
+.hero-hud{
+ width:min(850px,100%);padding:22px 24px 21px;
+ border:1px solid rgba(8,201,244,.38);
+ background:
+ radial-gradient(ellipse at 50% 0%,rgba(8,201,244,.17),transparent 48%),
+ linear-gradient(160deg,#0b1d2d 0%,#07111d 55%,#050a12 100%);
+ box-shadow:0 28px 80px rgba(0,0,0,.58),inset 0 1px rgba(255,255,255,.07);
+}
+.hero-hud:before{opacity:.22;background:repeating-linear-gradient(135deg,transparent 0 34px,rgba(8,201,244,.2) 35px,transparent 36px 70px)}
+.hero-hud .hud-topline{border:0;padding:0 0 14px;align-items:flex-end}
+.hero-hud .hud-topline strong{font-size:clamp(15px,2vw,20px);letter-spacing:.035em}
+.hero-hud .hud-eyebrow{font-size:8px;color:var(--cyan)}
+.hero-hud .hud-subtitle{font-size:7px;letter-spacing:.1em}
+.hero-hud .mission-progress{margin:5px 0 15px}
+.hero-hud .mission-progress-meta{font-size:8px;letter-spacing:.08em}
+.hero-hud .mission-progress-track{height:7px;border-radius:8px;background:rgba(255,255,255,.1)}
+.hero-hud .mission-progress-track span{border-radius:8px;box-shadow:0 0 18px rgba(8,201,244,.8)}
+.hero-hud .challenge-journey{margin:0 0 16px;padding:11px 14px 9px;border:0;border-top:1px solid rgba(255,255,255,.11);border-bottom:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16)}
+.hero-hud .journey-heading{font-size:7px;letter-spacing:.16em}
+.hero-hud .journey-node i{width:30px;height:30px;font-size:8px;background:#091522}
+.hero-hud .journey-node b{font-size:6px;letter-spacing:.1em}
+.hero-hud .journey-link{top:-8px}
+.hero-hud .mission-stage-wrap{padding:0;border:0;background:transparent}
+.hero-hud .mission-stage-wrap:before,.hero-hud .mission-stage-wrap:after{display:none}
+.hero-hud .stage-side-label{margin:0 0 8px;font-size:7px;color:#9db5c5;letter-spacing:.17em}
+.hero-hud .mission-card{
+ min-height:275px;padding:24px 27px 18px;gap:14px;overflow:hidden;
+ border:1px solid color-mix(in srgb,var(--skill-accent) 48%,transparent);
+ border-radius:3px;
+ background:
+ radial-gradient(ellipse at 83% 44%,var(--skill-glow),transparent 45%),
+ linear-gradient(112deg,rgba(14,42,62,.98),rgba(5,15,26,.98) 72%);
+ box-shadow:inset 0 0 55px rgba(8,201,244,.045),0 14px 35px rgba(0,0,0,.28);
+}
+.hero-hud .mission-card:after{
+ content:attr(data-level);right:20px;top:28px;color:color-mix(in srgb,var(--skill-accent) 13%,transparent);
+ font:900 clamp(110px,19vw,190px)/.8 Montserrat,sans-serif;letter-spacing:-.12em;
+}
+.hero-hud .mission-card-top{align-items:flex-start}
+.hero-hud .mission-card .skill-icon{width:44px;height:44px;font-size:12px;border-radius:2px}
+.hero-hud .mission-card .skill-mark{font-size:42px;opacity:.9}
+.hero-hud .mission-card .skill-info{gap:9px;max-width:590px}
+.hero-hud .mission-card .skill-mission{font-size:8px;letter-spacing:.16em;padding:6px 10px}
+.hero-hud .mission-card .skill-info b{font-size:clamp(29px,5vw,43px);letter-spacing:-.045em;line-height:.98}
+.hero-hud .mission-card .skill-info>small{font-size:13px;color:#d0e0e9}
+.hero-hud .mission-benefit{margin-top:4px;padding:11px 14px;max-width:560px;background:rgba(0,0,0,.23);border-left-width:3px}
+.hero-hud .mission-benefit>span{font-size:7px;letter-spacing:.16em}
+.hero-hud .mission-benefit p{font-size:11px;line-height:1.55}
+.hero-hud .mission-reward{margin-top:auto;padding-top:12px;font-size:8px;letter-spacing:.12em}
+.hero-hud .mission-reward i{width:26px;height:26px;font-size:14px}
+.hero-hud .mission-next-preview{margin-top:11px;padding:10px 13px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(90deg,rgba(255,255,255,.045),rgba(255,255,255,.012))}
+.hero-hud .preview-lock{width:31px;height:31px;font-size:8px;background:rgba(183,255,60,.06)}
+.hero-hud .mission-next-preview small{font-size:7px}
+.hero-hud .mission-next-preview b{font-size:10px}
+.hero-hud .mission-controls{margin-top:14px;gap:12px}
+.hero-hud .mission-controls>span{font-size:7px;letter-spacing:.06em}
+.hero-hud .mission-complete{
+ min-height:51px;padding:0 23px;font-size:9px;letter-spacing:.12em;
+ clip-path:polygon(0 0,calc(100% - 13px) 0,100% 13px,100% 100%,13px 100%,0 calc(100% - 13px));
+ box-shadow:0 5px 22px rgba(183,255,60,.14);
+}
+.hero-hud .mission-complete:hover{transform:translateY(-3px) scale(1.015);box-shadow:0 9px 30px rgba(183,255,60,.28)}
+.hero-hud .mission-complete span{font-size:16px}
+.hero-hud .mission-complete-state{border-radius:3px}
+@media(max-width:600px){
+ .hero-hud{padding:16px 13px 15px;margin-top:20px}
+ .hero-hud .hud-topline{align-items:flex-start;padding-bottom:11px}
+ .hero-hud .hud-topline strong{font-size:13px;letter-spacing:.015em}
+ .hero-hud .hud-eyebrow{font-size:6px}
+ .hero-hud .hud-subtitle{font-size:5.5px}
+ .hero-hud .hud-live{font-size:5px;padding:6px 7px}
+ .hero-hud .mission-progress{margin:3px 0 12px}
+ .hero-hud .mission-progress-meta{font-size:6px}
+ .hero-hud .challenge-journey{padding:9px 7px 8px;margin-bottom:12px}
+ .hero-hud .journey-heading{font-size:5.5px;letter-spacing:.09em}
+ .hero-hud .journey-nodes{gap:3px;margin-top:8px}
+ .hero-hud .journey-node i{width:26px;height:26px;font-size:7px}
+ .hero-hud .journey-node b{font-size:4.8px;letter-spacing:.04em}
+ .hero-hud .stage-side-label{font-size:6px;margin-bottom:7px}
+ .hero-hud .mission-card{min-height:250px;padding:16px 15px 14px;gap:11px}
+ .hero-hud .mission-card:after{right:8px;top:34px;font-size:118px}
+ .hero-hud .mission-card .skill-icon{width:36px;height:36px}
+ .hero-hud .mission-card .skill-mark{font-size:33px}
+ .hero-hud .mission-card .skill-info{gap:7px}
+ .hero-hud .mission-card .skill-mission{font-size:6px;padding:5px 7px}
+ .hero-hud .mission-card .skill-info b{font-size:29px}
+ .hero-hud .mission-card .skill-info>small{font-size:10px}
+ .hero-hud .mission-benefit{padding:9px 10px}
+ .hero-hud .mission-benefit>span{font-size:6px}
+ .hero-hud .mission-benefit p{font-size:9px;line-height:1.5}
+ .hero-hud .mission-reward{font-size:6px;letter-spacing:.07em;padding-top:9px}
+ .hero-hud .mission-reward i{width:23px;height:23px}
+ .hero-hud .mission-next-preview{margin-top:9px;padding:8px}
+ .hero-hud .preview-lock{width:27px;height:27px}
+ .hero-hud .mission-next-preview small{font-size:5.5px}
+ .hero-hud .mission-next-preview b{font-size:8px}
+ .hero-hud .mission-controls{gap:8px;margin-top:11px}
+ .hero-hud .mission-controls>span{font-size:5.5px;text-align:center}
+ .hero-hud .mission-complete{width:100%;min-height:49px;font-size:8px}
+}
+@media(max-width:360px){
+ .hero-hud{padding:14px 10px}
+ .hero-hud .hud-topline strong{font-size:11px}
+ .hero-hud .journey-node b{font-size:4.3px}
+ .hero-hud .mission-card{min-height:255px;padding:14px 12px}
+ .hero-hud .mission-card .skill-info b{font-size:26px}
+}
+@media(hover:hover){
+ .hero-hud .journey-node.is-current i{animation:levelPulse 1.8s ease-in-out infinite}
+ .hero-hud .mission-card{transition:filter .25s,transform .25s}
+ .hero-hud .mission-card:hover{filter:brightness(1.08);transform:translateY(-2px)}
+}
+@keyframes levelPulse{0%,100%{box-shadow:0 0 0 rgba(8,201,244,0)}50%{box-shadow:0 0 17px rgba(8,201,244,.45)}}
+@media(prefers-reduced-motion:reduce){.hero-hud .journey-node.is-current i{animation:none}}
+
 </style>
 </head>
 <body>
@@ -525,18 +642,18 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <div class="hero-hud" id="aura-player-missions" aria-label="Desafíos para desarrollar tu juego">
   <div class="hud-topline">
     <div>
-      <span class="hud-eyebrow">AURA XP <i>//</i> PLAYER DEVELOPMENT</span>
-      <strong>SUBÍ TU NIVEL DE JUEGO</strong>
-      <small class="hud-subtitle">4 DESAFÍOS · 4 RECURSOS PARA LA CANCHA</small>
+      <span class="hud-eyebrow">AURA XP <i>//</i> MODO CARRERA</span>
+      <strong>ELEGÍ TU PRÓXIMO MOVIMIENTO</strong>
+      <small class="hud-subtitle">4 ETAPAS PARA DESARROLLAR TU JUEGO</small>
     </div>
-    <span class="hud-live"><i></i> PLAYER MODE</span>
+    <span class="hud-live"><i></i> EN PARTIDA</span>
   </div>
   <div class="mission-progress">
     <div class="mission-progress-meta"><span id="mission-counter">DESAFÍO 01 <b>/ 04</b></span><span><strong id="mission-percent">0%</strong> COMPLETADO</span></div>
     <div class="mission-progress-track"><span id="mission-progress-fill"></span></div>
   </div>
   <div class="challenge-journey" id="challenge-journey" aria-label="Tu recorrido de desafíos">
-    <div class="journey-heading"><span>RECORRIDO DEL JUGADOR</span><span id="journey-status">0 DE 4 SUPERADOS</span></div>
+    <div class="journey-heading"><span>TU RUTA</span><span id="journey-status">0 DE 4 SUPERADOS</span></div>
     <div class="journey-nodes" id="journey-nodes" aria-live="polite">
       <span class="journey-node is-current"><i>01</i><b>COORD.</b></span><span class="journey-link"></span>
       <span class="journey-node"><i>02</i><b>VELOC.</b></span><span class="journey-link"></span>
@@ -545,7 +662,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     </div>
   </div>
   <div class="mission-stage-wrap">
-    <div class="stage-side-label"><span>PLAYER SKILL TREE</span><span id="mission-stage-index">01 — 04</span></div>
+    <div class="stage-side-label"><span>DESAFÍO ACTIVO</span><span id="mission-stage-index">01 — 04</span></div>
     <div class="skill-grid" id="mission-stage" aria-live="polite">
       <article class="skill mission-card">
         <div class="mission-card-top"><span class="skill-icon">01</span><span class="skill-mark">◎</span></div>
@@ -560,8 +677,8 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     <div class="mission-next-preview" id="mission-preview"><span class="preview-lock">NEXT</span><span><small>PRÓXIMO DESAFÍO</small><b>VELOCIDAD</b></span><span class="preview-arrow">↗</span></div>
   </div>
   <div class="mission-controls">
-    <span id="mission-hint">COMPLETÁ ESTE PASO PARA AVANZAR AL SIGUIENTE DESAFÍO.</span>
-    <button class="mission-complete" id="mission-next" type="button">MARCAR COMO COMPLETADO <span>↗</span></button>
+    <span id="mission-hint">SUPERÁ EL RETO Y DESBLOQUEÁ LA SIGUIENTE ETAPA.</span>
+    <button class="mission-complete" id="mission-next" type="button">COMPLETAR DESAFÍO <span>↗</span></button>
   </div>
   <div class="mission-complete-state" id="mission-finished" hidden>
     <span class="finished-mark">✦</span>
@@ -719,7 +836,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
       preview.classList.add('is-final');
       preview.innerHTML='<span class="preview-lock">END</span><span><small>ÚLTIMA ETAPA</small><b>COMPLETÁ TU RECORRIDO</b></span><span class="preview-arrow">✦</span>';
     }
-    next.innerHTML=current===challenges.length-1?'FINALIZAR RECORRIDO <span>✦</span>':'DESAFÍO SUPERADO <span>↗</span>';
+    next.innerHTML=current===challenges.length-1?'TERMINAR RECORRIDO <span>✦</span>':'COMPLETAR DESAFÍO <span>↗</span>';
     renderJourney();
   }
   next.addEventListener('click',function(){
