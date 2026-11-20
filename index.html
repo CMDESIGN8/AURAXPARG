@@ -545,6 +545,38 @@
             transform: translate(3px, -2px);
         }
 
+        .hero-training-cta {
+            position: relative;
+            min-width: 230px;
+            min-height: 56px;
+            padding: 0 28px;
+            overflow: hidden;
+            border-color: rgba(8,201,244,.55);
+            background: linear-gradient(115deg, rgba(8,201,244,.10), rgba(8,201,244,.025));
+            box-shadow: inset 0 0 22px rgba(8,201,244,.045);
+            letter-spacing: .9px;
+        }
+
+        .hero-training-cta::after {
+            content: "↗";
+            margin-left: 11px;
+            color: var(--logo-green);
+            font-size: 1rem;
+            transition: transform .25s ease;
+        }
+
+        .hero-training-cta:hover {
+            border-color: var(--logo-green);
+            background: rgba(183,255,60,.09);
+            color: var(--logo-green);
+            box-shadow: 0 8px 26px rgba(183,255,60,.10), inset 0 0 18px rgba(183,255,60,.045);
+            transform: translateY(-3px);
+        }
+
+        .hero-training-cta:hover::after {
+            transform: translate(3px, -2px);
+        }
+
         .btn-primary:hover {
             transform: translateY(-3px);
 
@@ -5134,7 +5166,7 @@
                         VER COLECCIÓN
                     </button>
 
-                    <a class="btn-secondary" href="training.html">DESCUBRÍ TRAINING SYSTEMS →</a>
+                    <a class="btn-secondary hero-training-cta" href="training.html">DESBLOQUEÁ TU PRÓXIMO NIVEL</a>
 
                 </div>
 
