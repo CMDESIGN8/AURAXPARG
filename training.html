@@ -373,6 +373,57 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  .hero-hud .mission-card,.hero-hud .mission-complete-state{animation:none}
  .hero-hud .mission-progress-track span,.hero-hud .mission-complete,.hero-hud .mission-restart{transition:none}
 }
+
+/* PLAYER JOURNEY — avance visible y recompensa de cada etapa */
+.hero-hud .challenge-journey{margin:15px 0 13px;padding:11px 12px 10px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(90deg,rgba(8,201,244,.055),rgba(255,255,255,.018))}
+.hero-hud .journey-heading{display:flex;justify-content:space-between;gap:8px;color:#8ea5b6;font:900 7px Montserrat,sans-serif;letter-spacing:.13em}
+.hero-hud .journey-heading span:last-child{color:var(--lime)}
+.hero-hud .journey-nodes{display:flex;align-items:center;gap:5px;margin-top:10px}
+.hero-hud .journey-node{display:grid;justify-items:center;gap:4px;min-width:0;color:#667d8e;transition:color .25s}
+.hero-hud .journey-node i{display:grid;place-items:center;width:25px;height:25px;border:1px solid rgba(255,255,255,.18);border-radius:50%;font:900 7px Montserrat,sans-serif;font-style:normal}
+.hero-hud .journey-node b{font:900 5.5px Montserrat,sans-serif;letter-spacing:.06em;white-space:nowrap}
+.hero-hud .journey-node.is-current{color:var(--cyan)}
+.hero-hud .journey-node.is-current i{border-color:var(--cyan);box-shadow:0 0 13px rgba(8,201,244,.2);color:#fff}
+.hero-hud .journey-node.is-done{color:var(--lime)}
+.hero-hud .journey-node.is-done i{border-color:var(--lime);background:rgba(183,255,60,.13);color:var(--lime);box-shadow:0 0 12px rgba(183,255,60,.15)}
+.hero-hud .journey-link{height:1px;flex:1;min-width:5px;background:rgba(255,255,255,.12);position:relative;top:-7px}
+.hero-hud .journey-link.is-done{background:linear-gradient(90deg,var(--lime),rgba(183,255,60,.35));box-shadow:0 0 7px rgba(183,255,60,.25)}
+.hero-hud .mission-card{--skill-accent:var(--cyan);--skill-glow:rgba(8,201,244,.18)}
+.hero-hud .mission-card.skill-speed{--skill-accent:#b7ff3c;--skill-glow:rgba(183,255,60,.16)}
+.hero-hud .mission-card.skill-agility{--skill-accent:#a78bfa;--skill-glow:rgba(167,139,250,.18)}
+.hero-hud .mission-card.skill-technique{--skill-accent:#ffb454;--skill-glow:rgba(255,180,84,.17)}
+.hero-hud .mission-card{background:radial-gradient(ellipse at 90% 5%,var(--skill-glow),transparent 48%),linear-gradient(120deg,rgba(14,44,64,.98),rgba(6,17,29,.98) 70%);border-color:color-mix(in srgb,var(--skill-accent) 45%,transparent)}
+.hero-hud .mission-card .skill-icon{border-color:var(--skill-accent);color:var(--skill-accent);background:color-mix(in srgb,var(--skill-accent) 12%,transparent);box-shadow:0 0 20px var(--skill-glow)}
+.hero-hud .mission-card .skill-mark{color:var(--skill-accent);text-shadow:0 0 18px var(--skill-glow)}
+.hero-hud .mission-card .skill-mission{border-color:var(--skill-accent);color:var(--skill-accent);background:color-mix(in srgb,var(--skill-accent) 9%,transparent)}
+.hero-hud .mission-benefit{border-color:var(--skill-accent);background:linear-gradient(90deg,var(--skill-glow),rgba(8,201,244,.01))}
+.hero-hud .mission-benefit>span{color:var(--skill-accent)}
+.hero-hud .mission-reward{display:flex;align-items:center;gap:8px;margin-top:2px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);color:#9fb4c3;font:900 7px Montserrat,sans-serif;letter-spacing:.1em;position:relative;z-index:1}
+.hero-hud .mission-reward i{display:grid;place-items:center;width:21px;height:21px;border:1px solid var(--skill-accent);color:var(--skill-accent);font-style:normal;font-size:11px}
+.hero-hud .mission-reward strong{color:#fff}
+.hero-hud .mission-complete-state{padding:25px 15px 18px}
+.hero-hud .finish-kicker{display:block;margin-bottom:7px;color:var(--cyan);font:900 7px Montserrat,sans-serif;letter-spacing:.2em}
+.hero-hud .finish-skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;max-width:390px;margin:17px auto}
+.hero-hud .finish-skills span{display:flex;align-items:center;gap:8px;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(183,255,60,.2);color:#dce8ee;font:900 7px Montserrat,sans-serif;letter-spacing:.06em;text-align:left}
+.hero-hud .finish-skills i{color:var(--lime);font-size:13px;font-style:normal}
+.hero-hud .finish-score{display:flex;justify-content:center;align-items:center;gap:12px;margin:16px auto;padding:12px;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);text-align:left}
+.hero-hud .finish-score>strong{color:var(--lime);font:900 30px Montserrat,sans-serif;letter-spacing:-.08em}
+.hero-hud .finish-score>span{color:#e5eef4;font:900 7px/1.6 Montserrat,sans-serif;letter-spacing:.1em}
+.hero-hud .finish-score small{color:#8ca2b2;font-size:6px}
+.hero-hud .finish-cta{display:flex;justify-content:center;align-items:center;gap:12px;max-width:270px;margin:0 auto 12px;padding:13px;background:var(--lime);color:#07111a;font:900 8px Montserrat,sans-serif;letter-spacing:.1em;transition:transform .2s,filter .2s}
+.hero-hud .finish-cta:hover{transform:translateY(-2px);filter:brightness(1.08)}
+@media(max-width:600px){
+ .hero-hud .challenge-journey{padding:10px 8px}
+ .hero-hud .journey-heading{font-size:6px;letter-spacing:.08em}
+ .hero-hud .journey-node i{width:23px;height:23px}
+ .hero-hud .journey-node b{font-size:5px}
+ .hero-hud .mission-reward{font-size:6px;letter-spacing:.06em}
+ .hero-hud .finish-skills{gap:6px}
+ .hero-hud .finish-skills span{font-size:6px;padding:7px}
+ .hero-hud .finish-score>strong{font-size:27px}
+}
+@media(prefers-reduced-motion:reduce){.hero-hud .journey-node,.hero-hud .finish-cta{transition:none}}
+
 </style>
 </head>
 <body>
@@ -405,6 +456,15 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     <div class="mission-progress-meta"><span id="mission-counter">DESAFÍO 01 <b>/ 04</b></span><span><strong id="mission-percent">0%</strong> COMPLETADO</span></div>
     <div class="mission-progress-track"><span id="mission-progress-fill"></span></div>
   </div>
+  <div class="challenge-journey" id="challenge-journey" aria-label="Tu recorrido de desafíos">
+    <div class="journey-heading"><span>RECORRIDO DEL JUGADOR</span><span id="journey-status">0 DE 4 SUPERADOS</span></div>
+    <div class="journey-nodes" id="journey-nodes" aria-live="polite">
+      <span class="journey-node is-current"><i>01</i><b>COORD.</b></span><span class="journey-link"></span>
+      <span class="journey-node"><i>02</i><b>VELOC.</b></span><span class="journey-link"></span>
+      <span class="journey-node"><i>03</i><b>AGIL.</b></span><span class="journey-link"></span>
+      <span class="journey-node"><i>04</i><b>TÉCNICA</b></span>
+    </div>
+  </div>
   <div class="mission-stage-wrap">
     <div class="stage-side-label"><span>PLAYER SKILL TREE</span><span id="mission-stage-index">01 — 04</span></div>
     <div class="skill-grid" id="mission-stage" aria-live="polite">
@@ -426,8 +486,14 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   </div>
   <div class="mission-complete-state" id="mission-finished" hidden>
     <span class="finished-mark">✦</span>
-    <b>LOS 4 DESAFÍOS COMPLETADOS</b>
-    <p>Ya conocés los recursos que podés entrenar para llevar tu juego un paso más allá. El cambio se construye en la cancha.</p>
+    <span class="finish-kicker">PLAYER DEVELOPMENT · ETAPA 01</span>
+    <b>RECORRIDO COMPLETADO</b>
+    <p>Ya identificaste cuatro recursos clave para trabajar en tu juego. Ahora elegí un sistema y llevá estos objetivos a tus entrenamientos.</p>
+    <div class="finish-skills" aria-label="Los cuatro recursos del recorrido">
+      <span><i>◎</i> COORDINACIÓN</span><span><i>↗</i> VELOCIDAD</span><span><i>↔</i> AGILIDAD</span><span><i>✳</i> TÉCNICA</span>
+    </div>
+    <div class="finish-score"><strong>04/04</strong><span>DESAFÍOS SUPERADOS<br><small>EL PRÓXIMO NIVEL SE CONSTRUYE ENTRENANDO</small></span></div>
+    <a class="finish-cta" href="#sistemas">ELEGIR MI SISTEMA <span>↗</span></a>
     <button class="mission-restart" id="mission-restart" type="button">VOLVER A EXPLORAR</button>
   </div>
 </div>
@@ -530,10 +596,10 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   const root=document.getElementById('aura-player-missions');
   if(!root)return;
   const challenges=[
-    {name:'COORDINACIÓN',desc:'Dominá tu cuerpo y cada apoyo.',benefit:'Conducí y recibí con más precisión. Ganá control sobre tus movimientos y la pelota.',action:'CONTROLAR',mark:'◎'},
-    {name:'VELOCIDAD',desc:'Acelerá y reaccioná más rápido.',benefit:'Llegá antes a la pelota, atacá los espacios y ganá ventaja en los primeros metros.',action:'ACELERAR',mark:'↗'},
-    {name:'AGILIDAD',desc:'Frená, girá y cambiá de dirección.',benefit:'Esquivá marcas, cambiá el ritmo y volvé a arrancar sin perder el equilibrio.',action:'DESEQUILIBRAR',mark:'↔'},
-    {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',benefit:'Controlá, pasá y resolvé con más recursos cuando tenés la pelota.',action:'RESOLVER',mark:'✳'}
+    {name:'COORDINACIÓN',desc:'Dominá tu cuerpo y cada apoyo.',benefit:'Conducí y recibí con más precisión. Ganá control sobre tus movimientos y la pelota.',action:'CONTROLAR',mark:'◎',reward:'CONTROL CORPORAL',className:'skill-coordination'},
+    {name:'VELOCIDAD',desc:'Acelerá y reaccioná más rápido.',benefit:'Llegá antes a la pelota, atacá los espacios y ganá ventaja en los primeros metros.',action:'ACELERAR',mark:'↗',reward:'PRIMEROS METROS',className:'skill-speed'},
+    {name:'AGILIDAD',desc:'Frená, girá y cambiá de dirección.',benefit:'Esquivá marcas, cambiá el ritmo y volvé a arrancar sin perder el equilibrio.',action:'DESEQUILIBRAR',mark:'↔',reward:'CAMBIO DE DIRECCIÓN',className:'skill-agility'},
+    {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',benefit:'Controlá, pasá y resolvé con más recursos cuando tenés la pelota.',action:'RESOLVER',mark:'✳',reward:'DOMINIO DE PELOTA',className:'skill-technique'}
   ];
   let current=0;
   const stage=root.querySelector('#mission-stage');
@@ -545,21 +611,35 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   const next=root.querySelector('#mission-next');
   const controls=root.querySelector('.mission-controls');
   const finished=root.querySelector('#mission-finished');
+  const journey=root.querySelector('#journey-nodes');
+  const journeyStatus=root.querySelector('#journey-status');
+  function renderJourney(){
+    const nodes=journey.querySelectorAll('.journey-node');
+    const links=journey.querySelectorAll('.journey-link');
+    nodes.forEach((node,i)=>{
+      node.classList.toggle('is-done',i<current);
+      node.classList.toggle('is-current',i===current);
+      node.setAttribute('aria-label',challenges[i].name+(i<current?' · superado':i===current?' · actual':' · pendiente'));
+    });
+    links.forEach((link,i)=>link.classList.toggle('is-done',i<current));
+    journeyStatus.textContent=current+' DE 4 SUPERADOS';
+  }
   function render(){
     const item=challenges[current];
-    stage.innerHTML='<article class="skill mission-card"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+item.mark+'</span></div><div class="skill-info"><em class="skill-mission">DESAFÍO '+String(current+1).padStart(2,'0')+' · '+item.action+'</em><b>'+item.name+'</b><small>'+item.desc+'</small><div class="mission-benefit"><span>¿QUÉ CAMBIA EN TU JUEGO?</span><p>'+item.benefit+'</p></div></div></article>';
+    stage.innerHTML='<article class="skill mission-card '+item.className+'"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+item.mark+'</span></div><div class="skill-info"><em class="skill-mission">DESAFÍO '+String(current+1).padStart(2,'0')+' · '+item.action+'</em><b>'+item.name+'</b><small>'+item.desc+'</small><div class="mission-benefit"><span>¿QUÉ CAMBIA EN TU JUEGO?</span><p>'+item.benefit+'</p></div></div><div class="mission-reward"><i>✦</i><span>RECURSO QUE SUMÁS AL RECORRIDO<br><strong>'+item.reward+'</strong></span></div></article>';
     counter.innerHTML='DESAFÍO '+String(current+1).padStart(2,'0')+' <b>/ 04</b>';
     index.textContent=String(current+1).padStart(2,'0')+' — 04';
     percent.textContent=Math.round(current/challenges.length*100)+'%';
     fill.style.width=(current/challenges.length*100)+'%';
     if(current<challenges.length-1){
       preview.classList.remove('is-final');
-      preview.innerHTML='<span class="preview-lock">NEXT</span><span><small>PRÓXIMO DESAFÍO</small><b>'+challenges[current+1].name+'</b></span><span class="preview-arrow">↗</span>';
+      preview.innerHTML='<span class="preview-lock">NEXT</span><span><small>DESPUÉS DE ESTE: '+challenges[current+1].action+'</small><b>'+challenges[current+1].name+'</b></span><span class="preview-arrow">↗</span>';
     }else{
       preview.classList.add('is-final');
-      preview.innerHTML='<span class="preview-lock">END</span><span><small>ÚLTIMO DESAFÍO</small><b>FINALIZÁ TU RECORRIDO</b></span><span class="preview-arrow">✦</span>';
+      preview.innerHTML='<span class="preview-lock">END</span><span><small>ÚLTIMA ETAPA</small><b>COMPLETÁ TU RECORRIDO</b></span><span class="preview-arrow">✦</span>';
     }
-    next.innerHTML=current===challenges.length-1?'FINALIZAR RECORRIDO <span>✦</span>':'MARCAR COMO COMPLETADO <span>↗</span>';
+    next.innerHTML=current===challenges.length-1?'FINALIZAR RECORRIDO <span>✦</span>':'DESAFÍO SUPERADO <span>↗</span>';
+    renderJourney();
   }
   next.addEventListener('click',function(){
     const card=stage.querySelector('.mission-card');
@@ -576,6 +656,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
         index.textContent='100%';
         percent.textContent='100%';
         fill.style.width='100%';
+        renderJourney();
       }else render();
       next.disabled=false;
     },300);
@@ -589,7 +670,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     render();
   });
   render();
-})();
+})();;
 </script>
 </body>
 </html>
