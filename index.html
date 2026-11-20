@@ -3091,6 +3091,74 @@
 
 
         /* =========================================================
+           AURA MOTION SYSTEM
+        ========================================================= */
+        @keyframes aura-rise-in {
+            from { opacity: 0; transform: translate3d(0, 22px, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+        @keyframes aura-soft-glow {
+            0%, 100% { box-shadow: 0 8px 26px rgba(8,201,244,.18); }
+            50% { box-shadow: 0 10px 34px rgba(8,201,244,.34), 0 0 22px rgba(8,201,244,.12); }
+        }
+        @keyframes aura-sheen {
+            0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; }
+            18% { opacity: .65; }
+            55%, 100% { transform: translateX(220%) skewX(-18deg); opacity: 0; }
+        }
+        .hero-content .eyebrow { animation: aura-rise-in .65s .08s both cubic-bezier(.2,.7,.2,1); }
+        .hero-content h1 { animation: aura-rise-in .8s .18s both cubic-bezier(.2,.7,.2,1); }
+        .hero-content .hero-sub { animation: aura-rise-in .75s .32s both cubic-bezier(.2,.7,.2,1); }
+        .hero-content .countdown { animation: aura-rise-in .7s .44s both cubic-bezier(.2,.7,.2,1); }
+        .hero-content .hero-buttons { animation: aura-rise-in .75s .55s both cubic-bezier(.2,.7,.2,1); }
+
+        .hero-collection-cta {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            animation: aura-soft-glow 4s 1.5s ease-in-out infinite;
+            transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease,
+                        background .28s ease, border-color .28s ease, color .28s ease;
+        }
+        .hero-collection-cta::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: -30% auto -30% -35%;
+            width: 34%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.58), transparent);
+            transform: translateX(-150%) skewX(-18deg);
+            pointer-events: none;
+        }
+        .hero-collection-cta:hover::before { animation: aura-sheen .85s ease-out; }
+        .hero-collection-cta:active { transform: translateY(0) scale(.97); }
+        .hero-buttons .btn-secondary { transition: transform .28s ease, border-color .28s ease, color .28s ease, background .28s ease; }
+        .hero-buttons .btn-secondary:hover { background: rgba(8,201,244,.07); }
+
+        .product-card {
+            transform: translateY(0);
+            transition: transform .42s cubic-bezier(.2,.8,.2,1), border-color .32s ease, box-shadow .32s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-9px);
+            border-color: rgba(8,201,244,.55);
+            box-shadow: 0 18px 42px rgba(0,0,0,.3), 0 0 24px rgba(8,201,244,.08);
+        }
+        .product-image img { will-change: transform; }
+        .product-card:hover .product-image img { transform: scale(1.045); }
+        .product-card .select-product { transition: transform .22s ease, filter .22s ease, box-shadow .22s ease; }
+        .product-card .select-product:hover { transform: translateY(-2px); filter: brightness(1.08); }
+
+        .motion-reveal {
+            opacity: 0;
+            transform: translate3d(0, 24px, 0);
+            transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
+        }
+        .motion-reveal.is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
+        .products .product-card:nth-child(2) { transition-delay: .1s; }
+        .products .product-card:nth-child(3) { transition-delay: .2s; }
+
+        /* =========================================================
            ACCESSIBILITY
         ========================================================= */
 
@@ -8488,6 +8556,31 @@ function initMissions() {
 
 
 
+
+<script>
+/* AURA — animaciones de entrada al recorrer la página */
+(function () {
+    const initAuraMotion = () => {
+        const targets = document.querySelectorAll('.section-header, .product-card, .boots-copy, .boots-visual');
+        if (!targets.length || !('IntersectionObserver' in window)) return;
+        targets.forEach(el => el.classList.add('motion-reveal'));
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+        targets.forEach(el => observer.observe(el));
+    };
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAuraMotion, { once: true });
+    } else {
+        initAuraMotion();
+    }
+})();
+</script>
 
 </body>
 </html>
