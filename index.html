@@ -3756,9 +3756,34 @@
 .aura-xp-rule b { min-width:55px; color:#b7ff3c; font-size:12px; }
 .aura-xp-rule span { color:#dce8f4; font-size:10px; }
 .aura-hud-info-panel > small { display:block; margin-top:9px; color:#91a4b8; font-size:9px; line-height:1.5; }
+.aura-hud.xp-focus { animation:auraHudFocus 1.05s cubic-bezier(.2,.8,.2,1) 2; border-color:#b7ff3c; box-shadow:0 0 0 3px rgba(183,255,60,.14),0 0 34px rgba(8,201,244,.42); }
+.aura-hud.xp-info-open .aura-hud-info { background:#b7ff3c; color:#07111c; border-color:#b7ff3c; }
+.aura-hud.xp-info-open .aura-hud-label span { color:#b7ff3c; }
+@keyframes auraHudFocus {
+  0%,100% { transform:translateX(0) scale(1); }
+  45% { transform:translateX(0) scale(1.09); }
+}
 @media (max-width:600px) {
-  .aura-hud { right:10px; top:108px; min-width:145px; padding:10px 12px; }
-  .aura-hud-info-panel { right:0; }
+  .aura-hud { right:10px; top:108px; width:176px; min-width:0; padding:11px 12px; transform-origin:top right; }
+  .aura-hud-label { font-size:8px; letter-spacing:.12em; }
+  .aura-hud-info { width:24px; height:24px; flex:0 0 24px; font-size:13px; }
+  .aura-hud-level b { font-size:1rem; }
+  .aura-hud-level small { font-size:.62rem; }
+  .aura-hud-xp { font-size:.62rem; }
+  .aura-hud-info-panel {
+    position:fixed; top:174px; left:12px; right:12px; width:auto; max-width:none;
+    max-height:calc(100dvh - 194px); overflow-y:auto; padding:18px;
+    border-width:1px; box-shadow:0 16px 46px rgba(0,0,0,.78),0 0 24px rgba(8,201,244,.18);
+  }
+  .aura-hud-info-panel > strong { font-size:12px; }
+  .aura-hud-info-panel p { font-size:13px; line-height:1.55; }
+  .aura-xp-rule { gap:12px; padding:9px 0; }
+  .aura-xp-rule b { min-width:64px; font-size:14px; }
+  .aura-xp-rule span { font-size:12px; line-height:1.4; }
+  .aura-hud-info-panel > small { font-size:11px; line-height:1.55; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .aura-hud.xp-focus { animation:none; }
 }
 
 /* --- Toast de achievement --- */
@@ -7550,6 +7575,24 @@ function renderHUD() {
   hud.querySelector('.hud-next').textContent = next ? remaining + ' XP' : 'MAX';
 }
 
+function focusShoppingHUD(openInfo = false) {
+  const hud = ensureHUD();
+  const panel = hud.querySelector('.aura-hud-info-panel');
+  const button = hud.querySelector('.aura-hud-info');
+  if (openInfo && panel && button) {
+    panel.hidden = false;
+    button.setAttribute('aria-expanded', 'true');
+  }
+  hud.classList.remove('xp-focus');
+  void hud.offsetWidth;
+  hud.classList.add('xp-focus');
+  if (openInfo) {
+    hud.classList.add('xp-info-open');
+    button.textContent = '×';
+    button.setAttribute('aria-label', 'Cerrar información de Shopping XP');
+  }
+  window.setTimeout(() => hud.classList.remove('xp-focus'), 2200);
+}
 function awardGuestXP(action, originEl = null) {
   const amount = XP_REWARDS[action];
   if (!amount) return;
@@ -7567,6 +7610,7 @@ function awardGuestXP(action, originEl = null) {
   showXPFloat(amount, originEl);
   playSfx('xp');
   renderHUD();
+  focusShoppingHUD(false);
 }
 // ---------- AWARD XP ----------
 async function awardXP(action, originEl = null) {
@@ -7803,7 +7847,8 @@ function init() {
     localStorage.setItem(GUEST_ENTRY_KEY, entryDay);
     setTimeout(() => {
       renderHUD();
-      showToast({ icon: '⚡', title: '¡BIENVENIDO A AURA!', subtitle: '+50 SHOPPING XP POR TU VISITA', color: '#b7ff3c' });
+      focusShoppingHUD(true);
+      showToast({ icon: '⚡', title: '¡GANASTE 50 SHOPPING XP!', subtitle: 'Tocá el recuadro destacado para descubrir cómo sumar más.', color: '#b7ff3c', duration: 5000 });
       showXPFloat(50);
     }, 350);
   }
