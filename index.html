@@ -3589,6 +3589,86 @@
     console.log("🔥 Firebase listo — Auth + Firestore");
 
 </script>
+<style id="aura-gamer-hero">
+/* AURA XP — GAME INTRO / CAREER MODE */
+.hero{
+  min-height:min(920px,100svh);
+  padding:clamp(132px,16vh,180px) 22px 90px;
+  isolation:isolate;
+  background:#050b14;
+}
+.hero-media img{
+  opacity:.62;
+  filter:blur(.6px) brightness(.48) saturate(1.18);
+  transform:scale(1.035);
+  object-position:center 44%;
+}
+.hero-overlay{
+  background:
+    linear-gradient(90deg,rgba(3,9,17,.82),rgba(3,9,17,.22) 48%,rgba(3,9,17,.78)),
+    linear-gradient(180deg,rgba(3,9,17,.28),rgba(3,9,17,.2) 48%,#050b14 100%);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(rgba(8,201,244,.075) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(8,201,244,.075) 1px,transparent 1px);
+  background-size:54px 54px;
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.7),transparent 92%);
+  opacity:.45;
+}
+.hero::after{
+  content:"";position:absolute;z-index:1;pointer-events:none;inset:0;
+  background:linear-gradient(115deg,transparent 0 42%,rgba(8,201,244,.075) 42.1%,transparent 42.5% 72%,rgba(8,201,244,.045) 72.1%,transparent 72.4%);
+}
+.hero-game-hud{position:absolute;inset:0;z-index:2;pointer-events:none;color:rgba(225,245,255,.72);font:800 9px/1.2 "Montserrat",sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.hud-topline,.hud-bottomline{position:absolute;left:clamp(22px,5vw,76px);right:clamp(22px,5vw,76px);display:flex;justify-content:space-between;gap:20px}
+.hud-topline{top:112px;padding-bottom:13px;border-bottom:1px solid rgba(8,201,244,.3)}
+.hud-bottomline{bottom:28px;padding-top:13px;border-top:1px solid rgba(8,201,244,.24);color:rgba(225,245,255,.48)}
+.hud-topline span:first-child,.hud-bottomline span:first-child{color:#08c9f4}
+.hud-topline i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#b7ff3c;box-shadow:0 0 12px #b7ff3c;margin:0 5px 1px}
+.hud-side{position:absolute;top:46%;display:flex;flex-direction:column;gap:8px;writing-mode:vertical-rl}
+.hud-side-left{left:clamp(18px,3vw,44px);transform:rotate(180deg)}
+.hud-side-right{right:clamp(18px,3vw,44px)}
+.hud-side b{font-size:19px;color:#08c9f4;letter-spacing:.08em}
+.hud-side small{font-size:7px;color:rgba(225,245,255,.42)}
+.hud-crosshair{position:absolute;left:50%;top:48%;width:42px;height:42px;transform:translate(-50%,-50%);opacity:.55}
+.hud-crosshair::before,.hud-crosshair::after{content:"";position:absolute;background:#08c9f4;box-shadow:0 0 12px rgba(8,201,244,.8)}
+.hud-crosshair::before{width:1px;height:100%;left:50%}
+.hud-crosshair::after{height:1px;width:100%;top:50%}
+.hero-content{max-width:980px;text-shadow:0 2px 22px rgba(0,0,0,.65)}
+.hero .eyebrow{padding:10px 14px;border:1px solid rgba(8,201,244,.42);background:rgba(3,13,24,.58);box-shadow:0 0 28px rgba(8,201,244,.1);backdrop-filter:blur(12px);margin-bottom:26px}
+.hero h1{font-size:clamp(46px,8.4vw,104px);letter-spacing:-.075em;text-shadow:0 8px 40px rgba(0,0,0,.5)}
+.hero h1 .accent{color:#08c9f4;text-shadow:0 0 18px rgba(8,201,244,.55),0 0 52px rgba(8,201,244,.25)}
+.hero-sub{max-width:620px;font-size:clamp(.88rem,1.25vw,1.02rem);color:#e3f3fb}
+.countdown{gap:8px;margin-top:28px}
+.countdown>div{min-width:82px;padding:13px 16px;border:1px solid rgba(8,201,244,.35);border-radius:2px;background:linear-gradient(145deg,rgba(7,24,40,.9),rgba(4,11,20,.8));box-shadow:inset 0 0 18px rgba(8,201,244,.07),0 8px 30px rgba(0,0,0,.24)}
+.countdown strong{color:#b7ff3c;text-shadow:0 0 16px rgba(183,255,60,.28);font-variant-numeric:tabular-nums}
+.social-proof{border-radius:2px;background:rgba(4,17,29,.76);border-color:rgba(8,201,244,.32);backdrop-filter:blur(8px)}
+.hero-buttons{gap:10px}
+.hero-buttons .btn-primary,.hero-buttons .btn-secondary{min-height:52px;display:inline-flex;align-items:center;justify-content:center;border-radius:2px;letter-spacing:.1em;font-weight:900}
+.hero-buttons .btn-primary{background:linear-gradient(115deg,#08c9f4,#087da9);box-shadow:0 0 24px rgba(8,201,244,.2),inset 0 1px rgba(255,255,255,.3)}
+.hero-buttons .btn-secondary{border:1px solid rgba(8,201,244,.55);background:rgba(3,13,24,.65);backdrop-filter:blur(8px)}
+@media(max-width:700px){
+ .hero{min-height:100svh;padding:145px 18px 78px}
+ .hero-media img{object-position:center}
+ .hud-topline{top:104px;font-size:7px;letter-spacing:.1em}
+ .hud-bottomline{bottom:17px;font-size:7px;letter-spacing:.1em}
+ .hud-side{display:none}
+ .hud-crosshair{top:39%;width:28px;height:28px;opacity:.3}
+ .hero h1{font-size:clamp(43px,12vw,68px);letter-spacing:-.07em}
+ .hero .eyebrow{font-size:.58rem;letter-spacing:1.4px;margin-bottom:21px}
+ .countdown>div{min-width:58px;padding:10px 7px}
+}
+@media(prefers-reduced-motion:no-preference){
+ .hero-media img{animation:heroReveal 1.2s ease-out both}
+ .hero-game-hud .hud-crosshair{animation:crossPulse 4s ease-in-out infinite}
+}
+@keyframes heroReveal{from{transform:scale(1.08);filter:blur(4px) brightness(.35)}to{transform:scale(1.035);filter:blur(.6px) brightness(.48)}}
+@keyframes crossPulse{0%,100%{opacity:.25}50%{opacity:.75}}
+@media(prefers-reduced-motion:reduce){.hero-media img{animation:none}}
+</style>
+
 </head>
 
 
@@ -3664,6 +3744,14 @@
                     alt="AURA XP Drop 001"
                 >
                 <div class="hero-overlay"></div>
+            </div>
+
+            <div class="hero-game-hud" aria-hidden="true">
+                <div class="hud-topline"><span>AURA XP // CAREER MODE</span><span>SEASON 01 <i></i> ONLINE</span></div>
+                <div class="hud-side hud-side-left"><span>PLAYER 001</span><b>LEVEL UP</b><small>FUTSAL DIVISION</small></div>
+                <div class="hud-side hud-side-right"><span>DROP STATUS</span><b>001</b><small>THE GRIND STARTS</small></div>
+                <div class="hud-bottomline"><span>TRAIN · PLAY · REPEAT</span><span>EST. 2026</span></div>
+                <div class="hud-crosshair"></div>
             </div>
 
             <div class="hero-content">
