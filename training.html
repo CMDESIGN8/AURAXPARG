@@ -982,6 +982,28 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   #aura-player-missions .drill-art{grid-row:1 / 6 !important}
   #aura-player-missions .drill[role="checkbox"]:after{top:6px;right:6px;width:17px;height:17px;font-size:12px}
 }
+
+
+/* KAI QUICK GUIDE — instrucciones visuales, lectura mínima */
+.coach-dialog p#coach-tutorial-copy{max-width:480px;margin-bottom:0;font-size:clamp(17px,2.2vw,22px);font-weight:800;line-height:1.2;letter-spacing:-.035em;color:#fff}
+.coach-visual-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:clamp(5px,1.2vw,14px);margin-top:24px;padding:15px 12px;border:1px solid rgba(8,201,244,.24);background:linear-gradient(110deg,rgba(8,201,244,.08),rgba(255,255,255,.025))}
+.coach-visual-step{display:grid;justify-items:center;gap:4px;text-align:center;min-width:0}
+.coach-visual-step span{display:grid;place-items:center;width:30px;height:30px;border:1px solid rgba(8,201,244,.65);border-radius:50%;color:var(--cyan);font:900 10px Montserrat,sans-serif;box-shadow:0 0 15px rgba(8,201,244,.1)}
+.coach-visual-step b{color:#fff;font:900 10px Montserrat,sans-serif;letter-spacing:.08em}
+.coach-visual-step small{color:#a9bac8;font:600 9px Montserrat,sans-serif}
+.coach-visual-steps>i{color:var(--lime);font:900 23px Montserrat,sans-serif;font-style:normal}
+.coach-finish-mark{grid-column:1/-1;color:var(--lime);font-size:42px;line-height:1;text-align:center;text-shadow:0 0 22px rgba(183,255,60,.3)}
+.coach-finish-line{grid-column:1/-1;color:#fff;text-align:center;font:900 10px Montserrat,sans-serif;letter-spacing:.1em}
+.coach-dialog-progress{margin-top:20px}
+@media(max-width:700px){
+ .coach-dialog p#coach-tutorial-copy{font-size:18px;line-height:1.15}
+ .coach-visual-steps{margin-top:17px;padding:12px 7px;gap:4px}
+ .coach-visual-step span{width:27px;height:27px;font-size:9px}
+ .coach-visual-step b{font-size:8px}
+ .coach-visual-step small{font-size:7px}
+ .coach-visual-steps>i{font-size:18px}
+ .coach-finish-mark{font-size:34px}
+}
 </style>
 </head>
 <body>
@@ -1297,7 +1319,14 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     <section class="coach-dialog">
       <div class="coach-dialog-meta"><span>KAI <b>//</b> TU ENTRENADOR</span><span id="coach-step-count">INICIO · 01/06</span></div>
       <h2 id="coach-tutorial-title">BIENVENIDO A AURA</h2>
-      <p id="coach-tutorial-copy">Vamos a recorrer tu entrenamiento juntos. Te voy a explicar qué significa cada etapa y cómo puede ayudarte a jugar mejor.</p>
+      <p id="coach-tutorial-copy">Entrená. Marcá. Avanzá.</p>
+      <div class="coach-visual-steps" id="coach-visual-steps" aria-label="Cómo completar cada desafío">
+        <div class="coach-visual-step"><span>01</span><b>HACÉ</b><small>el ejercicio</small></div>
+        <i>›</i>
+        <div class="coach-visual-step"><span>02</span><b>TOCÁ</b><small>para marcarlo</small></div>
+        <i>›</i>
+        <div class="coach-visual-step"><span>03</span><b>AVANZÁ</b><small>con 3/3</small></div>
+      </div>
       <div class="coach-dialog-progress" id="coach-dialog-progress" aria-hidden="true"></div>
       <div class="coach-dialog-actions">
         <button type="button" class="coach-skip" id="coach-tutorial-skip">SALTAR GUÍA</button>
@@ -1321,25 +1350,29 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  const skip=document.getElementById('coach-tutorial-skip');
  const names=['COORDINACIÓN','VELOCIDAD','AGILIDAD','TÉCNICA'];
  const descriptions=[
-  'Vamos a trabajar el control de tu cuerpo y tus apoyos. Esto te ayuda a conducir y recibir con más precisión.',
-  'Ahora toca la velocidad. Reaccionar y ganar los primeros metros puede darte ventaja para llegar antes y atacar los espacios.',
-  'Es momento de trabajar la agilidad: frenar, girar y volver a arrancar sin perder el equilibrio para superar marcas.',
-  'Llegamos a la técnica. Mejorá tu dominio de pelota para controlar, pasar y resolver con más recursos cuando la jugada te exige decidir rápido.'
+  'Más control en cada apoyo.',
+  'Reaccioná. Arrancá. Llegá primero.',
+  'Frená, girá y dejá atrás la marca.',
+  'Dominá la pelota. Jugá con ventaja.'
  ];
  let activeIndex=0;let isFinished=false;
  function close(){modal.hidden=true;launcher.hidden=false;document.body.classList.remove('coach-tutorial-open')}
  function show(index,finished){
   activeIndex=index;isFinished=finished;
+  const steps=modal.querySelector('#coach-visual-steps');
   if(finished){
-   title.textContent='RECORRIDO COMPLETADO';
-   copy.textContent='¡Buen trabajo! Ya recorriste las cuatro habilidades. Ahora podés elegir un sistema AURA y convertir estos objetivos en un plan de entrenamiento.';
-   count.textContent='ETAPA FINAL · 04/04';progress.innerHTML='<i class="is-active"></i>'.repeat(4);
+   title.textContent='¡LO LOGRASTE!';
+   copy.textContent='4 habilidades. Un jugador más completo.';
+   steps.innerHTML='<div class="coach-finish-mark">✦</div><b class="coach-finish-line">TU PRÓXIMO NIVEL SE ENTRENA.</b>';
+   count.textContent='RECORRIDO · 04/04';progress.innerHTML='<i class="is-active"></i>'.repeat(4);
    next.innerHTML='ELEGIR MI SISTEMA <span>↗</span>';skip.textContent='CERRAR';
   }else{
-   title.textContent='DESAFÍO '+String(index+1).padStart(2,'0')+' · '+names[index];
-   copy.textContent=descriptions[index]+' Primero realizá el ejercicio. Cuando termines, tocá su tarjeta para marcarlo como completado. Repetí con los 3: el botón para continuar se habilita recién cuando estén todos listos.';count.textContent='COACH EN CANCHA · '+String(index+1).padStart(2,'0')+'/04';
+   title.textContent=names[index];
+   copy.textContent=descriptions[index];
+   steps.innerHTML='<div class="coach-visual-step"><span>01</span><b>HACÉ</b><small>el ejercicio</small></div><i>›</i><div class="coach-visual-step"><span>02</span><b>TOCÁ</b><small>para marcarlo</small></div><i>›</i><div class="coach-visual-step"><span>03</span><b>AVANZÁ</b><small>con 3/3</small></div>';
+   count.textContent='ETAPA '+String(index+1).padStart(2,'0')+'/04';
    progress.innerHTML=names.map((_,i)=>'<i class="'+(i<=index?'is-active':'')+'"></i>').join('');
-   next.innerHTML='ENTENDIDO, VOY A ENTRENAR <span>↗</span>';skip.textContent='AHORA NO';
+   next.innerHTML='¡VAMOS! <span>↗</span>';skip.textContent='SALTAR';
   }
   modal.hidden=false;launcher.hidden=true;document.body.classList.add('coach-tutorial-open');
  }
