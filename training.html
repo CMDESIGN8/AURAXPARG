@@ -921,6 +921,67 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 }
 @media(max-width:360px){#aura-player-missions .drill-payoff{font-size:6.5px !important}}
 
+
+
+/* INTERACCIÓN DE EJERCICIOS — marcar cada ejercicio antes de desbloquear */
+#aura-player-missions .drill[role="checkbox"]{
+  position:relative;
+  cursor:pointer;
+  outline:none;
+  transition:border-color .2s ease,background .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+#aura-player-missions .drill[role="checkbox"]:focus-visible{
+  outline:2px solid var(--cyan);
+  outline-offset:3px;
+}
+#aura-player-missions .drill[role="checkbox"]:after{
+  content:"+";
+  position:absolute;
+  top:7px;
+  right:8px;
+  display:grid;
+  place-items:center;
+  width:19px;
+  height:19px;
+  border:1px solid rgba(8,201,244,.55);
+  border-radius:50%;
+  color:var(--cyan);
+  font:800 13px/1 Montserrat,sans-serif;
+  background:rgba(4,12,20,.8);
+}
+#aura-player-missions .drill[role="checkbox"].is-done{
+  border-color:rgba(183,255,60,.8) !important;
+  background:linear-gradient(110deg,rgba(183,255,60,.13),rgba(8,201,244,.055)) !important;
+  box-shadow:inset 0 0 0 1px rgba(183,255,60,.12),0 0 16px rgba(183,255,60,.08);
+}
+#aura-player-missions .drill.is-done:after{
+  content:"✓";
+  color:#07111a;
+  border-color:var(--lime);
+  background:var(--lime);
+}
+#aura-player-missions .drill-status{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  margin-top:6px;
+  color:#91a8b8;
+  font:900 6px/1.2 Montserrat,sans-serif;
+  letter-spacing:.1em;
+}
+#aura-player-missions .drill.is-done .drill-status{color:var(--lime)}
+#aura-player-missions .mission-complete:disabled{
+  opacity:.38 !important;
+  cursor:not-allowed !important;
+  filter:saturate(.35);
+  box-shadow:none !important;
+  transform:none !important;
+}
+@media(max-width:600px){
+  #aura-player-missions .drill-status{grid-column:2 !important;grid-row:5 !important;margin-top:3px !important;font-size:6px !important}
+  #aura-player-missions .drill-art{grid-row:1 / 6 !important}
+  #aura-player-missions .drill[role="checkbox"]:after{top:6px;right:6px;width:17px;height:17px;font-size:12px}
+}
 </style>
 </head>
 <body>
@@ -1114,6 +1175,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     return art[Math.min(3,challengeIndex)];
   }
   let current=0;
+  let completedExercises=new Set();
   const stage=root.querySelector('#mission-stage');
   const counter=root.querySelector('#mission-counter');
   const percent=root.querySelector('#mission-percent');
@@ -1121,6 +1183,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   const index=root.querySelector('#mission-stage-index');
   const preview=root.querySelector('#mission-preview');
   const next=root.querySelector('#mission-next');
+  const hint=root.querySelector('#mission-hint');
   const controls=root.querySelector('.mission-controls');
   function callCoach(index,finished=false){window.dispatchEvent(new CustomEvent('aura:coach',{detail:{index:index,finished:finished}}));}
   const finished=root.querySelector('#mission-finished');
@@ -1137,9 +1200,28 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     links.forEach((link,i)=>link.classList.toggle('is-done',i<current));
     journeyStatus.textContent=current+' DE 4 SUPERADOS';
   }
+  function updateExerciseProgress(){
+    const total=challenges[current].exercises.length;
+    stage.querySelectorAll('.drill').forEach((drill,i)=>{
+      const done=completedExercises.has(i);
+      drill.classList.toggle('is-done',done);
+      drill.setAttribute('aria-checked',String(done));
+      const status=drill.querySelector('.drill-status');
+      if(status)status.textContent=done?'COMPLETADO ✓':'TOCÁ AL TERMINAR';
+    });
+    const count=completedExercises.size;
+    next.disabled=count!==total;
+    hint.textContent=count===total
+      ?'LOS 3 EJERCICIOS ESTÁN LISTOS. YA PODÉS AVANZAR.'
+      :'REALIZÁ CADA EJERCICIO Y TOCÁ SU TARJETA AL TERMINAR · '+count+'/'+total;
+    next.innerHTML=count===total
+      ?(current===challenges.length-1?'TERMINAR RECORRIDO <span>✦</span>':'CONTINUAR AL SIGUIENTE DESAFÍO <span>↗</span>')
+      :'COMPLETÁ LOS 3 EJERCICIOS <span>↗</span>';
+  }
   function render(){
     const item=challenges[current];
-    stage.innerHTML='<article class="skill mission-card '+item.className+'"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+item.mark+'</span></div><div class="skill-info"><em class="skill-mission">DESAFÍO '+String(current+1).padStart(2,'0')+' · '+item.action+'</em><b>'+item.name+'</b><small>'+item.desc+'</small><div class="mission-benefit"><span>¿QUÉ CAMBIA EN TU JUEGO?</span><p>'+item.benefit+'</p><div class="quick-drills"><div class="drills-title"><b>ENTRENALO YA</b><small>3 EJERCICIOS · '+item.exercises.length+'<\/small><\/div><div class="drill-list">'+item.exercises.map((drill,i)=>'<div class="drill"><span class="drill-num">0'+(i+1)+'</span><div class="drill-content"><div class="drill-art">'+exerciseArt(current,i)+'</div><b>'+drill[0]+'</b><small>'+drill[1]+'</small><p>'+drill[2]+'</p><em class="drill-payoff"><i>EN CANCHA</i> · '+drill[3]+'</em></div></div>').join('')+'<\/div><\/div></div><div class="mission-reward"><i>✦</i><span>RECURSO QUE SUMÁS AL RECORRIDO<br><strong>'+item.reward+'</strong></span></div></article>';
+    completedExercises=new Set();
+    stage.innerHTML='<article class="skill mission-card '+item.className+'"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+item.mark+'</span></div><div class="skill-info"><em class="skill-mission">DESAFÍO '+String(current+1).padStart(2,'0')+' · '+item.action+'</em><b>'+item.name+'</b><small>'+item.desc+'</small><div class="mission-benefit"><span>¿QUÉ CAMBIA EN TU JUEGO?</span><p>'+item.benefit+'</p><div class="quick-drills"><div class="drills-title"><b>ENTRENALO YA</b><small>3 EJERCICIOS · '+item.exercises.length+'<\/small></div><div class="drill-list">'+item.exercises.map((drill,i)=>'<div class="drill" role="checkbox" tabindex="0" aria-checked="false" aria-label="'+drill[0]+' · tocá para marcar como completado"><span class="drill-num">0'+(i+1)+'</span><div class="drill-content"><div class="drill-art">'+exerciseArt(current,i)+'</div><b>'+drill[0]+'</b><small>'+drill[1]+'</small><p>'+drill[2]+'</p><em class="drill-payoff"><i>EN CANCHA</i> · '+drill[3]+'</em><span class="drill-status">TOCÁ AL TERMINAR</span></div></div>').join('')+'<\/div></div></div><div class="mission-reward"><i>✦</i><span>RECURSO QUE SUMÁS AL RECORRIDO<br><strong>'+item.reward+'</strong></span></div></article>';
     counter.innerHTML='DESAFÍO '+String(current+1).padStart(2,'0')+' <b>/ 04</b>';
     index.textContent=String(current+1).padStart(2,'0')+' — 04';
     percent.textContent=Math.round(current/challenges.length*100)+'%';
@@ -1151,10 +1233,26 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
       preview.classList.add('is-final');
       preview.innerHTML='<span class="preview-lock">END</span><span><small>ÚLTIMA ETAPA</small><b>COMPLETÁ TU RECORRIDO</b></span><span class="preview-arrow">✦</span>';
     }
-    next.innerHTML=current===challenges.length-1?'TERMINAR RECORRIDO <span>✦</span>':'COMPLETAR DESAFÍO <span>↗</span>';
+    updateExerciseProgress();
     renderJourney();
   }
+  function toggleExercise(drill){
+    const i=Array.from(stage.querySelectorAll('.drill')).indexOf(drill);
+    if(i<0)return;
+    if(completedExercises.has(i))completedExercises.delete(i);
+    else completedExercises.add(i);
+    updateExerciseProgress();
+  }
+  stage.addEventListener('click',function(e){
+    const drill=e.target.closest('.drill');
+    if(drill)toggleExercise(drill);
+  });
+  stage.addEventListener('keydown',function(e){
+    const drill=e.target.closest('.drill');
+    if(drill&&(e.key==='Enter'||e.key===' ')){e.preventDefault();toggleExercise(drill);}
+  });
   next.addEventListener('click',function(){
+    if(completedExercises.size!==challenges[current].exercises.length)return;
     const card=stage.querySelector('.mission-card');
     if(card)card.classList.add('is-completing');
     next.disabled=true;
@@ -1223,9 +1321,9 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  const skip=document.getElementById('coach-tutorial-skip');
  const names=['COORDINACIÓN','VELOCIDAD','AGILIDAD','TÉCNICA'];
  const descriptions=[
-  'Vamos a trabajar el control de tu cuerpo y tus apoyos. Esto te ayuda a conducir y recibir con más precisión. Mirá el desafío destacado: ese es tu primer objetivo.',
-  'Ahora toca la velocidad. En futsal, reaccionar y ganar los primeros metros puede darte ventaja para llegar antes y atacar los espacios.',
-  'Es momento de trabajar la agilidad: frenar, girar y volver a arrancar sin perder el equilibrio. Es una herramienta clave para superar marcas.',
+  'Vamos a trabajar el control de tu cuerpo y tus apoyos. Esto te ayuda a conducir y recibir con más precisión.',
+  'Ahora toca la velocidad. Reaccionar y ganar los primeros metros puede darte ventaja para llegar antes y atacar los espacios.',
+  'Es momento de trabajar la agilidad: frenar, girar y volver a arrancar sin perder el equilibrio para superar marcas.',
   'Llegamos a la técnica. Mejorá tu dominio de pelota para controlar, pasar y resolver con más recursos cuando la jugada te exige decidir rápido.'
  ];
  let activeIndex=0;let isFinished=false;
@@ -1239,9 +1337,9 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
    next.innerHTML='ELEGIR MI SISTEMA <span>↗</span>';skip.textContent='CERRAR';
   }else{
    title.textContent='DESAFÍO '+String(index+1).padStart(2,'0')+' · '+names[index];
-   copy.textContent=descriptions[index];count.textContent='COACH EN CANCHA · '+String(index+1).padStart(2,'0')+'/04';
+   copy.textContent=descriptions[index]+' Primero realizá el ejercicio. Cuando termines, tocá su tarjeta para marcarlo como completado. Repetí con los 3: el botón para continuar se habilita recién cuando estén todos listos.';count.textContent='COACH EN CANCHA · '+String(index+1).padStart(2,'0')+'/04';
    progress.innerHTML=names.map((_,i)=>'<i class="'+(i<=index?'is-active':'')+'"></i>').join('');
-   next.innerHTML='ENTENDIDO, VAMOS <span>↗</span>';skip.textContent='AHORA NO';
+   next.innerHTML='ENTENDIDO, VOY A ENTRENAR <span>↗</span>';skip.textContent='AHORA NO';
   }
   modal.hidden=false;launcher.hidden=true;document.body.classList.add('coach-tutorial-open');
  }
