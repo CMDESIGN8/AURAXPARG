@@ -1206,6 +1206,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
       const done=completedExercises.has(i);
       drill.classList.toggle('is-done',done);
       drill.setAttribute('aria-checked',String(done));
+      drill.setAttribute('aria-label',drill.querySelector('.drill-content > b').textContent+(done?' · completado, tocá para desmarcar':' · tocá al terminar para marcar como completado'));
       const status=drill.querySelector('.drill-status');
       if(status)status.textContent=done?'COMPLETADO ✓':'TOCÁ AL TERMINAR';
     });
@@ -1273,7 +1274,6 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
         render();
         callCoach(current);
       }
-      next.disabled=false;
     },300);
   });
   root.querySelector('#mission-restart').addEventListener('click',function(){
