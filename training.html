@@ -1143,23 +1143,23 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 #aura-player-missions .drill-list{display:block!important}
 #aura-player-missions .drill{display:grid!important;grid-template-columns:minmax(145px,32%) minmax(0,1fr);align-items:center;gap:16px;padding:15px!important;min-height:170px;background:linear-gradient(110deg,rgba(8,201,244,.08),rgba(255,255,255,.025) 55%,rgba(255,255,255,.018))!important;border:1px solid color-mix(in srgb,var(--skill-accent) 38%,transparent)!important;border-left:3px solid var(--skill-accent)!important;border-radius:4px!important;animation:challengeEnter .28s ease both}
 #aura-player-missions .drill-num{position:absolute;top:7px;left:7px;z-index:2;margin:0!important}
-#aura-player-missions .drill-content{display:grid;gap:7px;min-width:0}
-#aura-player-missions .drill-art{grid-column:1;grid-row:1;width:100%;height:125px!important;margin:0!important}
+#aura-player-missions .drill-content{display:contents!important}
+#aura-player-missions .drill-art{grid-column:1;grid-row:1 / 6;width:100%;height:125px!important;margin:0!important;align-self:center}
 #aura-player-missions .drill-art svg{max-width:190px!important}
-#aura-player-missions .drill-content>b{font:900 clamp(13px,1.8vw,17px)/1.2 Montserrat,sans-serif!important;letter-spacing:.015em!important;color:#fff!important}
-#aura-player-missions .drill-content>small{font:900 9px/1.2 Montserrat,sans-serif!important;letter-spacing:.08em!important}
-#aura-player-missions .drill-content>p{font:500 11px/1.5 Montserrat,sans-serif!important;color:#bdcbd6!important}
-#aura-player-missions .drill-payoff{display:block;margin-top:2px;color:#e1edf3;font:600 9px/1.4 Montserrat,sans-serif;font-style:normal}
+#aura-player-missions .drill-content>b{grid-column:2;grid-row:1;align-self:end;font:900 clamp(13px,1.8vw,17px)/1.2 Montserrat,sans-serif!important;letter-spacing:.015em!important;color:#fff!important}
+#aura-player-missions .drill-content>small{grid-column:2;grid-row:2;font:900 9px/1.2 Montserrat,sans-serif!important;letter-spacing:.08em!important}
+#aura-player-missions .drill-content>p{grid-column:2;grid-row:3;font:500 11px/1.5 Montserrat,sans-serif!important;color:#bdcbd6!important}
+#aura-player-missions .drill-payoff{grid-column:2;grid-row:4;display:block;margin-top:2px;color:#e1edf3;font:600 9px/1.4 Montserrat,sans-serif;font-style:normal}
 #aura-player-missions .drill-payoff i{color:var(--lime);font:900 7px Montserrat,sans-serif;font-style:normal;letter-spacing:.1em}
-#aura-player-missions .drill-status{font-size:7px!important;margin-top:3px!important}
+#aura-player-missions .drill-status{grid-column:2;grid-row:5;font-size:7px!important;margin-top:3px!important}
 #aura-player-missions .drill[role="checkbox"]:after{top:9px;right:9px}
 @media(max-width:600px){
 #aura-player-missions .exercise-track{gap:6px;margin-bottom:8px}
 #aura-player-missions .exercise-step{width:22px;height:22px}
 #aura-player-missions .exercise-track>i{width:22px}
 #aura-player-missions .drill{grid-template-columns:minmax(94px,34%) minmax(0,1fr)!important;gap:11px!important;padding:11px!important;min-height:145px!important}
-#aura-player-missions .drill-art{grid-column:1!important;grid-row:1!important;height:100px!important}
-#aura-player-missions .drill-content{display:grid!important;gap:6px!important}
+#aura-player-missions .drill-art{grid-column:1!important;grid-row:1 / 6!important;height:100px!important}
+#aura-player-missions .drill-content{display:contents!important}
 #aura-player-missions .drill-content>b{font-size:11px!important;line-height:1.2!important}
 #aura-player-missions .drill-content>small{font-size:8px!important}
 #aura-player-missions .drill-content>p{font-size:9px!important;line-height:1.4!important}
