@@ -321,13 +321,13 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 .hero-hud .mission-benefit{max-width:520px;margin-top:4px;padding:10px 12px;border-left:2px solid var(--cyan);background:linear-gradient(90deg,rgba(8,201,244,.1),rgba(8,201,244,.015));}
 .hero-hud .mission-benefit>span{color:#68dff7;font:900 7px Montserrat,sans-serif;letter-spacing:.14em}
 .hero-hud .mission-benefit p{margin:5px 0 0;color:#e0ebf1;font-size:10px;line-height:1.5}
-.hero-hud .mission-next-preview{display:flex;align-items:center;gap:10px;margin-top:10px;padding:9px 11px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);transition:opacity .2s}
-.hero-hud .mission-next-preview.is-final{opacity:.55}
-.hero-hud .preview-lock{display:grid;place-items:center;width:25px;height:25px;border:1px solid rgba(183,255,60,.35);color:var(--lime);font:900 7px Montserrat,sans-serif}
-.hero-hud .mission-next-preview>span:nth-child(2){display:grid;gap:3px}
-.hero-hud .mission-next-preview small{font:800 6px Montserrat,sans-serif;letter-spacing:.14em;color:#819aaa}
-.hero-hud .mission-next-preview b{font:900 9px Montserrat,sans-serif;letter-spacing:.1em;color:#d9e7ef}
-.hero-hud .preview-arrow{margin-left:auto;color:var(--cyan);font-size:16px}
+
+
+
+
+
+
+
 .hero-hud .mission-controls{display:flex;justify-content:space-between;align-items:center;gap:13px;margin-top:13px}
 .hero-hud .mission-controls>span{max-width:205px;color:#91a8b8;font:800 7px/1.5 Montserrat,sans-serif;letter-spacing:.1em}
 .hero-hud .mission-complete,.hero-hud .mission-restart{border:1px solid var(--lime);background:linear-gradient(110deg,#b7ff3c,#d4ff7b);color:#07111a;padding:13px 16px;font:900 8px Montserrat,sans-serif;letter-spacing:.09em;cursor:pointer;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:transform .2s,box-shadow .2s,filter .2s}
@@ -367,7 +367,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  .hero-hud .mission-card{min-height:230px;padding:13px}
  .hero-hud .mission-card .skill-info b{font-size:19px}
  .hero-hud .mission-benefit p{font-size:8px}
- .hero-hud .mission-next-preview{padding:8px}
+
 }
 @media(prefers-reduced-motion:reduce){
  .hero-hud .mission-card,.hero-hud .mission-complete-state{animation:none}
@@ -555,10 +555,10 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 .hero-hud .mission-benefit p{font-size:11px;line-height:1.55}
 .hero-hud .mission-reward{margin-top:auto;padding-top:12px;font-size:8px;letter-spacing:.12em}
 .hero-hud .mission-reward i{width:26px;height:26px;font-size:14px}
-.hero-hud .mission-next-preview{margin-top:11px;padding:10px 13px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(90deg,rgba(255,255,255,.045),rgba(255,255,255,.012))}
-.hero-hud .preview-lock{width:31px;height:31px;font-size:8px;background:rgba(183,255,60,.06)}
-.hero-hud .mission-next-preview small{font-size:7px}
-.hero-hud .mission-next-preview b{font-size:10px}
+
+
+
+
 .hero-hud .mission-controls{margin-top:14px;gap:12px}
 .hero-hud .mission-controls>span{font-size:7px;letter-spacing:.06em}
 .hero-hud .mission-complete{
@@ -597,10 +597,10 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  .hero-hud .mission-benefit p{font-size:9px;line-height:1.5}
  .hero-hud .mission-reward{font-size:6px;letter-spacing:.07em;padding-top:9px}
  .hero-hud .mission-reward i{width:23px;height:23px}
- .hero-hud .mission-next-preview{margin-top:9px;padding:8px}
- .hero-hud .preview-lock{width:27px;height:27px}
- .hero-hud .mission-next-preview small{font-size:5.5px}
- .hero-hud .mission-next-preview b{font-size:8px}
+
+
+
+
  .hero-hud .mission-controls{gap:8px;margin-top:11px}
  .hero-hud .mission-controls>span{font-size:5.5px;text-align:center}
  .hero-hud .mission-complete{width:100%;min-height:49px;font-size:8px}
@@ -1187,7 +1187,6 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
         </div>
       </article>
     </div>
-    <div class="mission-next-preview" id="mission-preview"><span class="preview-lock">NEXT</span><span><small>PRÓXIMO DESAFÍO</small><b>VELOCIDAD</b></span><span class="preview-arrow">↗</span></div>
   </div>
   <div class="mission-controls">
     <span id="mission-hint">SUPERÁ EL RETO Y DESBLOQUEÁ LA SIGUIENTE ETAPA.</span>
@@ -1332,7 +1331,6 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   const percent=root.querySelector('#mission-percent');
   const fill=root.querySelector('#mission-progress-fill');
   const index=root.querySelector('#mission-stage-index');
-  const preview=root.querySelector('#mission-preview');
   const next=root.querySelector('#mission-next');
   const hint=root.querySelector('#mission-hint');
   const controls=root.querySelector('.mission-controls');
@@ -1387,13 +1385,6 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     index.textContent=String(current+1).padStart(2,'0')+' — 04';
     percent.textContent=Math.round(current/challenges.length*100)+'%';
     fill.style.width=(current/challenges.length*100)+'%';
-    if(current<challenges.length-1){
-      preview.classList.remove('is-final');
-      preview.innerHTML='<span class="preview-lock">NEXT</span><span><small>DESPUÉS DE ESTE: '+challenges[current+1].action+'</small><b>'+challenges[current+1].name+'</b></span><span class="preview-arrow">↗</span>';
-    }else{
-      preview.classList.add('is-final');
-      preview.innerHTML='<span class="preview-lock">END</span><span><small>ÚLTIMA ETAPA</small><b>COMPLETÁ TU RECORRIDO</b></span><span class="preview-arrow">✦</span>';
-    }
     updateExerciseProgress();
     renderJourney();
   }
