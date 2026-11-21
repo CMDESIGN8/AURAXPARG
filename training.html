@@ -1133,6 +1133,42 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   .hero-hud .mission-stage-wrap .journey-node b{font-size:6px}
 }
 
+
+/* ONE EXERCISE AT A TIME — foco, lectura y avance secuencial */
+#aura-player-missions .exercise-track{display:flex;align-items:center;gap:7px;margin:0 0 9px}
+#aura-player-missions .exercise-step{display:grid;place-items:center;width:23px;height:23px;border:1px solid rgba(255,255,255,.18);border-radius:50%;color:#8498a9;font:900 7px Montserrat,sans-serif;transition:all .25s ease}
+#aura-player-missions .exercise-step.is-current{border-color:var(--skill-accent);background:color-mix(in srgb,var(--skill-accent) 14%,transparent);color:#fff;box-shadow:0 0 12px color-mix(in srgb,var(--skill-accent) 25%,transparent)}
+#aura-player-missions .exercise-step.is-done{border-color:var(--lime);background:var(--lime);color:#07111a}
+#aura-player-missions .exercise-track>i{width:28px;height:1px;background:rgba(255,255,255,.17)}
+#aura-player-missions .drill-list{display:block!important}
+#aura-player-missions .drill{display:grid!important;grid-template-columns:minmax(145px,32%) minmax(0,1fr);align-items:center;gap:16px;padding:15px!important;min-height:170px;background:linear-gradient(110deg,rgba(8,201,244,.08),rgba(255,255,255,.025) 55%,rgba(255,255,255,.018))!important;border:1px solid color-mix(in srgb,var(--skill-accent) 38%,transparent)!important;border-left:3px solid var(--skill-accent)!important;border-radius:4px!important;animation:challengeEnter .28s ease both}
+#aura-player-missions .drill-num{position:absolute;top:7px;left:7px;z-index:2;margin:0!important}
+#aura-player-missions .drill-content{display:grid;gap:7px;min-width:0}
+#aura-player-missions .drill-art{grid-column:1;grid-row:1;width:100%;height:125px!important;margin:0!important}
+#aura-player-missions .drill-art svg{max-width:190px!important}
+#aura-player-missions .drill-content>b{font:900 clamp(13px,1.8vw,17px)/1.2 Montserrat,sans-serif!important;letter-spacing:.015em!important;color:#fff!important}
+#aura-player-missions .drill-content>small{font:900 9px/1.2 Montserrat,sans-serif!important;letter-spacing:.08em!important}
+#aura-player-missions .drill-content>p{font:500 11px/1.5 Montserrat,sans-serif!important;color:#bdcbd6!important}
+#aura-player-missions .drill-payoff{display:block;margin-top:2px;color:#e1edf3;font:600 9px/1.4 Montserrat,sans-serif;font-style:normal}
+#aura-player-missions .drill-payoff i{color:var(--lime);font:900 7px Montserrat,sans-serif;font-style:normal;letter-spacing:.1em}
+#aura-player-missions .drill-status{font-size:7px!important;margin-top:3px!important}
+#aura-player-missions .drill[role="checkbox"]:after{top:9px;right:9px}
+@media(max-width:600px){
+#aura-player-missions .exercise-track{gap:6px;margin-bottom:8px}
+#aura-player-missions .exercise-step{width:22px;height:22px}
+#aura-player-missions .exercise-track>i{width:22px}
+#aura-player-missions .drill{grid-template-columns:minmax(94px,34%) minmax(0,1fr)!important;gap:11px!important;padding:11px!important;min-height:145px!important}
+#aura-player-missions .drill-art{grid-column:1!important;grid-row:1!important;height:100px!important}
+#aura-player-missions .drill-content{display:grid!important;gap:6px!important}
+#aura-player-missions .drill-content>b{font-size:11px!important;line-height:1.2!important}
+#aura-player-missions .drill-content>small{font-size:8px!important}
+#aura-player-missions .drill-content>p{font-size:9px!important;line-height:1.4!important}
+#aura-player-missions .drill-payoff{font-size:8px!important}
+#aura-player-missions .drill-payoff i{font-size:6px!important}
+#aura-player-missions .drill-status{font-size:6px!important}
+}
+@media(max-width:360px){#aura-player-missions .drill{grid-template-columns:minmax(82px,32%) minmax(0,1fr)!important;gap:8px!important;padding:9px!important}#aura-player-missions .drill-art{height:88px!important}#aura-player-missions .drill-content>b{font-size:10px!important}}
+
 </style>
 </head>
 <body>
@@ -1324,114 +1360,31 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     ];
     return art[Math.min(3,challengeIndex)];
   }
-  let current=0;
-  let completedExercises=new Set();
-  const stage=root.querySelector('#mission-stage');
-  const counter=root.querySelector('#mission-counter');
-  const percent=root.querySelector('#mission-percent');
-  const fill=root.querySelector('#mission-progress-fill');
-  const index=root.querySelector('#mission-stage-index');
-  const next=root.querySelector('#mission-next');
-  const hint=root.querySelector('#mission-hint');
-  const controls=root.querySelector('.mission-controls');
+  let current=0,currentExercise=0,completedExercises=new Set();
+  const stage=root.querySelector('#mission-stage'),counter=root.querySelector('#mission-counter'),percent=root.querySelector('#mission-percent'),fill=root.querySelector('#mission-progress-fill'),index=root.querySelector('#mission-stage-index'),next=root.querySelector('#mission-next'),hint=root.querySelector('#mission-hint'),controls=root.querySelector('.mission-controls'),finished=root.querySelector('#mission-finished'),journey=root.querySelector('#journey-nodes'),journeyStatus=root.querySelector('#journey-status');
   function callCoach(index,finished=false){window.dispatchEvent(new CustomEvent('aura:coach',{detail:{index:index,finished:finished}}));}
-  const finished=root.querySelector('#mission-finished');
-  const journey=root.querySelector('#journey-nodes');
-  const journeyStatus=root.querySelector('#journey-status');
-  function renderJourney(){
-    const nodes=journey.querySelectorAll('.journey-node');
-    const links=journey.querySelectorAll('.journey-link');
-    nodes.forEach((node,i)=>{
-      node.classList.toggle('is-done',i<current);
-      node.classList.toggle('is-current',i===current);
-      node.setAttribute('aria-label',challenges[i].name+(i<current?' · superado':i===current?' · actual':' · pendiente'));
-    });
-    links.forEach((link,i)=>link.classList.toggle('is-done',i<current));
-    journeyStatus.textContent=current+' DE 4 SUPERADOS';
-  }
-  function updateExerciseProgress(){
-    const total=challenges[current].exercises.length;
-    stage.querySelectorAll('.drill').forEach((drill,i)=>{
-      const done=completedExercises.has(i);
-      drill.classList.toggle('is-done',done);
-      drill.setAttribute('aria-checked',String(done));
-      drill.setAttribute('aria-label',drill.querySelector('.drill-content > b').textContent+(done?' · completado, tocá para desmarcar':' · tocá al terminar para marcar como completado'));
-      const status=drill.querySelector('.drill-status');
-      if(status)status.textContent=done?'COMPLETADO ✓':'TOCÁ AL TERMINAR';
-    });
-    const count=completedExercises.size;
-    const reward=stage.querySelector('.mission-reward');
-    if(reward){
-      const earned=count===total;
-      reward.classList.toggle('is-earned',earned);
-      reward.querySelector('.reward-state').textContent=earned?'✦ RECURSO DESBLOQUEADO':'RECOMPENSA DEL DESAFÍO';
-      reward.querySelector('.reward-hint').textContent=earned?'YA ES PARTE DE TU RECORRIDO':'COMPLETÁ LOS 3 EJERCICIOS PARA GANARLA';
-      reward.querySelector('.reward-art i').textContent=earned?'✦':'◇';
-      reward.querySelector('.reward-lock').textContent=earned?'✓':'⌑';
-    }
-    next.disabled=count!==total;
-    hint.textContent=count===total
-      ?'LOS 3 EJERCICIOS ESTÁN LISTOS. YA PODÉS AVANZAR.'
-      :'REALIZÁ CADA EJERCICIO Y TOCÁ SU TARJETA AL TERMINAR · '+count+'/'+total;
-    next.innerHTML=count===total
-      ?(current===challenges.length-1?'TERMINAR RECORRIDO <span>✦</span>':'CONTINUAR AL SIGUIENTE DESAFÍO <span>↗</span>')
-      :'COMPLETÁ LOS 3 EJERCICIOS <span>↗</span>';
-  }
-  function render(){
-    const item=challenges[current];
-    completedExercises=new Set();
-    stage.innerHTML='<article class="skill mission-card '+item.className+'"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+item.mark+'</span></div><div class="skill-info"><em class="skill-mission">DESAFÍO '+String(current+1).padStart(2,'0')+' · '+item.action+'</em><b>'+item.name+'</b><small>'+item.desc+'</small><div class="mission-benefit"><span>¿QUÉ CAMBIA EN TU JUEGO?</span><p>'+item.benefit+'</p><div class="quick-drills"><div class="drills-title"><b>ENTRENALO YA</b><small>3 EJERCICIOS · '+item.exercises.length+'<\/small></div><div class="drill-list">'+item.exercises.map((drill,i)=>'<div class="drill" role="checkbox" tabindex="0" aria-checked="false" aria-label="'+drill[0]+' · tocá para marcar como completado"><span class="drill-num">0'+(i+1)+'</span><div class="drill-content"><div class="drill-art">'+exerciseArt(current,i)+'</div><b>'+drill[0]+'</b><small>'+drill[1]+'</small><p>'+drill[2]+'</p><em class="drill-payoff"><i>EN CANCHA</i> · '+drill[3]+'</em><span class="drill-status">TOCÁ AL TERMINAR</span></div></div>').join('')+'<\/div></div></div><div class="mission-reward" aria-live="polite"><div class="reward-art"><i>✦</i><span>+01</span></div><div class="reward-copy"><small class="reward-state">RECOMPENSA DEL DESAFÍO</small><strong>'+item.reward+'</strong><em class="reward-hint">COMPLETÁ LOS 3 EJERCICIOS PARA GANARLA</em></div><b class="reward-lock" aria-hidden="true">⌑</b></div></article>';
-    counter.innerHTML='DESAFÍO '+String(current+1).padStart(2,'0')+' <b>/ 04</b>';
-    index.textContent=String(current+1).padStart(2,'0')+' — 04';
-    percent.textContent=Math.round(current/challenges.length*100)+'%';
-    fill.style.width=(current/challenges.length*100)+'%';
-    updateExerciseProgress();
-    renderJourney();
-  }
-  function toggleExercise(drill){
-    const i=Array.from(stage.querySelectorAll('.drill')).indexOf(drill);
-    if(i<0)return;
-    if(completedExercises.has(i))completedExercises.delete(i);
-    else completedExercises.add(i);
-    updateExerciseProgress();
-  }
-  stage.addEventListener('click',function(e){
-    const drill=e.target.closest('.drill');
-    if(drill)toggleExercise(drill);
-  });
-  stage.addEventListener('keydown',function(e){
-    const drill=e.target.closest('.drill');
-    if(drill&&(e.key==='Enter'||e.key===' ')){e.preventDefault();toggleExercise(drill);}
-  });
+  function renderJourney(){const nodes=journey.querySelectorAll('.journey-node'),links=journey.querySelectorAll('.journey-link');nodes.forEach((node,i)=>{node.classList.toggle('is-done',i<current);node.classList.toggle('is-current',i===current);node.setAttribute('aria-label',challenges[i].name+(i<current?' · superado':i===current?' · actual':' · pendiente'));});links.forEach((link,i)=>link.classList.toggle('is-done',i<current));journeyStatus.textContent=current+' DE 4 SUPERADOS';}
+  function exerciseMarkup(item,i){const d=item.exercises[i];return '<div class="drill" role="checkbox" tabindex="0" aria-checked="false" aria-label="'+d[0]+' · tocá al terminar para marcar como completado"><span class="drill-num">0'+(i+1)+'</span><div class="drill-content"><div class="drill-art">'+exerciseArt(current,i)+'</div><b>'+d[0]+'</b><small>'+d[1]+'</small><p>'+d[2]+'</p><em class="drill-payoff"><i>EN CANCHA</i> · '+d[3]+'</em><span class="drill-status">TOCÁ AL TERMINAR</span></div></div>';}
+  function renderCurrentExercise(){const item=challenges[current],list=stage.querySelector('.drill-list');if(list)list.innerHTML=exerciseMarkup(item,currentExercise);const title=stage.querySelector('.drills-title small');if(title)title.textContent='EJERCICIO '+String(currentExercise+1).padStart(2,'0')+' / 03';stage.querySelectorAll('.exercise-step').forEach((step,i)=>{step.classList.toggle('is-done',completedExercises.has(i));step.classList.toggle('is-current',i===currentExercise);step.setAttribute('aria-label','Ejercicio '+(i+1)+(completedExercises.has(i)?' completado':i===currentExercise?' actual':' pendiente'));});}
+  function updateExerciseProgress(){const total=challenges[current].exercises.length,done=completedExercises.has(currentExercise),drill=stage.querySelector('.drill');if(drill){drill.classList.toggle('is-done',done);drill.setAttribute('aria-checked',String(done));drill.setAttribute('aria-label',challenges[current].exercises[currentExercise][0]+(done?' · completado':' · tocá para marcar como completado'));const status=drill.querySelector('.drill-status');if(status)status.textContent=done?'COMPLETADO ✓':'TOCÁ AL TERMINAR';}
+    const count=completedExercises.size,reward=stage.querySelector('.mission-reward');if(reward){const earned=count===total;reward.classList.toggle('is-earned',earned);reward.querySelector('.reward-state').textContent=earned?'✦ RECURSO DESBLOQUEADO':'RECOMPENSA DEL DESAFÍO';reward.querySelector('.reward-hint').textContent=earned?'YA ES PARTE DE TU RECORRIDO':'COMPLETÁ LOS 3 EJERCICIOS PARA GANARLA';reward.querySelector('.reward-art i').textContent=earned?'✦':'◇';reward.querySelector('.reward-lock').textContent=earned?'✓':'⌑';}
+    next.disabled=!done;hint.textContent=done?(currentExercise<total-1?'EJERCICIO LISTO. SEGUÍ CON EL SIGUIENTE.':'¡LOS 3 EJERCICIOS COMPLETADOS! YA PODÉS AVANZAR.'):'HACÉ EL EJERCICIO Y TOCÁ SU TARJETA CUANDO TERMINES · '+count+'/'+total;
+    next.innerHTML=done?(currentExercise<total-1?'SIGUIENTE EJERCICIO <span>↗</span>':(current===challenges.length-1?'TERMINAR RECORRIDO <span>✦</span>':'COMPLETAR DESAFÍO <span>↗</span>')):'MARCAR EJERCICIO AL TERMINAR <span>↗</span>';
+    const overall=current*total+count;percent.textContent=Math.round(overall/(challenges.length*total)*100)+'%';fill.style.width=(overall/(challenges.length*total)*100)+'%';renderCurrentExercise();}
+  function render(){const item=challenges[current];currentExercise=0;completedExercises=new Set();stage.innerHTML='<article class="skill mission-card '+item.className+'"><div class="mission-card-top"><span class="skill-icon">'+String(current+1).padStart(2,'0')+'</span><span class="skill-mark">'+item.mark+'</span></div><div class="skill-info"><em class="skill-mission">DESAFÍO '+String(current+1).padStart(2,'0')+' · '+item.action+'</em><b>'+item.name+'</b><small>'+item.desc+'</small><div class="mission-benefit"><span>¿QUÉ CAMBIA EN TU JUEGO?</span><p>'+item.benefit+'</p><div class="quick-drills"><div class="drills-title"><b>ENTRENALO YA</b><small>EJERCICIO 01 / 03</small></div><div class="exercise-track" aria-label="Progreso de los tres ejercicios"><span class="exercise-step is-current">01</span><i></i><span class="exercise-step">02</span><i></i><span class="exercise-step">03</span></div><div class="drill-list"></div></div></div></div><div class="mission-reward" aria-live="polite"><div class="reward-art"><i>◇</i><span>+01</span></div><div class="reward-copy"><small class="reward-state">RECOMPENSA DEL DESAFÍO</small><strong>'+item.reward+'</strong><em class="reward-hint">COMPLETÁ LOS 3 EJERCICIOS PARA GANARLA</em></div><b class="reward-lock" aria-hidden="true">⌑</b></div></article>';counter.innerHTML='DESAFÍO '+String(current+1).padStart(2,'0')+' <b>/ 04</b>';index.textContent=String(current+1).padStart(2,'0')+' — 04';renderJourney();updateExerciseProgress();}
+  function toggleExercise(drill){if(!drill||!drill.classList.contains('drill'))return;if(completedExercises.has(currentExercise))completedExercises.delete(currentExercise);else completedExercises.add(currentExercise);updateExerciseProgress();}
+  stage.addEventListener('click',e=>{const drill=e.target.closest('.drill');if(drill)toggleExercise(drill);});
+  stage.addEventListener('keydown',e=>{const drill=e.target.closest('.drill');if(drill&&(e.key==='Enter'||e.key===' ')){e.preventDefault();toggleExercise(drill);}});
   next.addEventListener('click',function(){
-    if(completedExercises.size!==challenges[current].exercises.length)return;
-    const card=stage.querySelector('.mission-card');
-    if(card)card.classList.add('is-completing');
-    next.disabled=true;
-    window.setTimeout(function(){
-      current++;
-      if(current>=challenges.length){
-        controls.hidden=true;
-        stage.hidden=true;
-        preview.hidden=true;
-        finished.hidden=false;
-        counter.innerHTML='04 DE 04 <b>· COMPLETADO</b>';
-        index.textContent='100%';
-        percent.textContent='100%';
-        fill.style.width='100%';
-        renderJourney();
-        callCoach(current-1,true);
-      }else{
-        render();
-        callCoach(current);
-      }
-    },300);
+    if(!completedExercises.has(currentExercise))return;
+    if(currentExercise<challenges[current].exercises.length-1){currentExercise++;updateExerciseProgress();callCoach(current);return;}
+    const card=stage.querySelector('.mission-card');if(card)card.classList.add('is-completing');next.disabled=true;
+    window.setTimeout(function(){current++;if(current>=challenges.length){controls.hidden=true;stage.hidden=true;finished.hidden=false;counter.innerHTML='04 DE 04 <b>· COMPLETADO</b>';index.textContent='100%';percent.textContent='100%';fill.style.width='100%';renderJourney();callCoach(current-1,true);}else{render();callCoach(current);}},300);
   });
   root.querySelector('#mission-restart').addEventListener('click',function(){
     current=0;
     finished.hidden=true;
     stage.hidden=false;
-    preview.hidden=false;
     controls.hidden=false;
     render();
   });
