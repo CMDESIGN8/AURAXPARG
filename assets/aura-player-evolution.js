@@ -1,4 +1,7 @@
-/* AURA XP — perfil de evolución compartido entre programas */
+/* AURA XP — perfil de evolución compartido entre programas.
+   Contrato START/PRO/ELITE: localStorage con {"1":true,"2":true,...}.
+   Tras guardar desde otra página, emitir: window.dispatchEvent(new Event('aura:progress-updated')).
+   Cada jornada marcada suma 50 XP locales; los atributos solo usan el mapa real de PRO. */
 (function(){
   'use strict';
   const PROGRAMS={
@@ -60,6 +63,7 @@
   }
   window.AuraPlayerEvolution={refresh};
   window.addEventListener('storage',refresh);
+  window.addEventListener('aura:progress-updated',refresh);
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});
   else refresh();
 })();
