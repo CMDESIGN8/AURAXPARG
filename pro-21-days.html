@@ -262,6 +262,9 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   function persist(){
     try {
       localStorage.setItem(KEY,JSON.stringify(saved));
+      // Avisar al perfil de evolución en esta misma pestaña.
+      // El evento "storage" no se dispara en la pestaña que escribe.
+      window.dispatchEvent(new Event('aura:progress-updated'));
       return true;
     } catch(error) {
       console.warn('AURA XP: el navegador no permitió guardar el progreso.',error);
