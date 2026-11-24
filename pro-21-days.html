@@ -291,6 +291,28 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
       tag.textContent='NEXT';
       next.querySelector('.day-num').append(tag);
     }
+    // Actualizar el panel PRO directamente: no depender del script externo.
+    const totalXp=count*50;
+    const level=1+Math.floor(totalXp/250);
+    const rank=level>=9?'ELITE':level>=3?'PROSPECT':'ROOKIE';
+    const evolution=document.querySelector('[data-aura-evolution]');
+    if(evolution){
+      const set=(selector,value)=>{const el=evolution.querySelector(selector);if(el)el.textContent=value;};
+      set('[data-aura-rank]',rank);
+      set('[data-aura-level]','NIVEL '+String(level).padStart(2,'0'));
+      set('[data-aura-xp]',String(totalXp).padStart(3,'0'));
+      set('[data-aura-days]',count+' / 21');
+      set('[data-aura-pro-percent]',percent+'%');
+      const overall=evolution.querySelector('[data-aura-overall]');
+      if(overall)overall.style.width=percent+'%';
+      const skillDays={coordination:[1,2,3,7,10,11],speed:[4,8,12,18],agility:[5,9,15,19],technique:[2,3,12,16,19,21]};
+      Object.entries(skillDays).forEach(([skill,days])=>{
+        const value=Math.round(days.filter(day=>saved[String(day)]===true).length/days.length*100);
+        set('[data-aura-skill="'+skill+'"]',value+'%');
+        const bar=evolution.querySelector('[data-aura-bar="'+skill+'"]');
+        if(bar)bar.style.width=value+'%';
+      });
+    }
     window.AuraPlayerEvolution?.refresh();
   }
 
