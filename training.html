@@ -1643,6 +1643,67 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  #aura-player-missions .collection-badge .aura-badge-image{max-width:75px}
 }
 
+
+/* AURA DROP — presentación de logro desbloqueable */
+#aura-player-missions .mission-card .reward-art{
+ position:relative!important;
+ isolation:isolate;
+ display:grid!important;
+ place-items:center!important;
+ overflow:visible!important;
+ background:radial-gradient(ellipse at 50% 52%,rgba(5,199,255,.24) 0%,rgba(5,199,255,.10) 34%,transparent 70%)!important;
+}
+#aura-player-missions .mission-card .reward-art:before{
+ content:"";position:absolute;z-index:-1;inset:8%;
+ border:1px solid color-mix(in srgb,var(--skill-accent,#08c9f4) 75%,transparent);
+ clip-path:polygon(50% 0,88% 18%,100% 50%,82% 88%,50% 100%,12% 82%,0 50%,18% 12%);
+ box-shadow:0 0 12px var(--skill-glow,rgba(8,201,244,.5)),inset 0 0 18px var(--skill-glow,rgba(8,201,244,.3));
+ animation:auraBadgePulse 3.2s ease-in-out infinite;
+}
+#aura-player-missions .mission-card .reward-art:after{
+ content:"";position:absolute;z-index:0;inset:-3%;
+ pointer-events:none;
+ background:
+  radial-gradient(circle at 16% 24%,#fff 0 1px,transparent 2px),
+  radial-gradient(circle at 82% 18%,var(--skill-accent,#08c9f4) 0 1.5px,transparent 2.5px),
+  radial-gradient(circle at 88% 68%,#fff 0 1px,transparent 2px),
+  radial-gradient(circle at 12% 75%,var(--skill-accent,#08c9f4) 0 1.5px,transparent 2.5px),
+  radial-gradient(circle at 65% 91%,#fff 0 1px,transparent 2px),
+  radial-gradient(circle at 35% 8%,var(--skill-accent,#08c9f4) 0 1px,transparent 2px);
+ filter:drop-shadow(0 0 5px var(--skill-accent,#08c9f4));
+ animation:auraBadgeParticles 4.8s linear infinite;
+}
+#aura-player-missions .mission-card .reward-art .aura-badge-image{
+ position:relative;z-index:1;
+ transform-origin:50% 55%;
+ filter:drop-shadow(0 0 5px #fff)
+        drop-shadow(0 0 12px var(--skill-accent,#08c9f4))
+        drop-shadow(0 0 25px var(--skill-glow,rgba(8,201,244,.7)))!important;
+ animation:auraBadgeFloat 3.6s ease-in-out infinite,auraBadgeShine 5s ease-in-out infinite;
+}
+@keyframes auraBadgePulse{
+ 0%,100%{opacity:.45;transform:scale(.94) rotate(0deg)}
+ 50%{opacity:1;transform:scale(1.04) rotate(4deg)}
+}
+@keyframes auraBadgeParticles{
+ 0%{opacity:.25;transform:rotate(0deg) scale(.92)}
+ 50%{opacity:1;transform:rotate(180deg) scale(1.06)}
+ 100%{opacity:.25;transform:rotate(360deg) scale(.92)}
+}
+@keyframes auraBadgeFloat{
+ 0%,100%{transform:translateY(2px) scale(1)}
+ 50%{transform:translateY(-5px) scale(1.025)}
+}
+@keyframes auraBadgeShine{
+ 0%,72%,100%{filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 12px var(--skill-accent,#08c9f4)) drop-shadow(0 0 25px var(--skill-glow,rgba(8,201,244,.7)))}
+ 84%{filter:drop-shadow(0 0 9px #fff) drop-shadow(0 0 20px var(--skill-accent,#08c9f4)) drop-shadow(0 0 36px var(--skill-glow,rgba(8,201,244,.9)))}
+}
+@media(prefers-reduced-motion:reduce){
+ #aura-player-missions .mission-card .reward-art:before,
+ #aura-player-missions .mission-card .reward-art:after,
+ #aura-player-missions .mission-card .reward-art .aura-badge-image{animation:none!important}
+}
+
 </style>
 </head>
 <body>
