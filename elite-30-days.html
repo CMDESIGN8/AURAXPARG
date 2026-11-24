@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AURA XP PRO · PERFORMANCE CLUB</title>
+<meta name="description" content="AURA XP PRO Performance Club: tu experiencia interactiva de entrenamiento de futsal de 21 días.">
+<meta name="theme-color" content="#060b12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b12;--panel:#0d1724;--panel2:#111f30;--cyan:#08c9f4;--lime:#b7ff3c;--white:#f4f8fc;--muted:#9aadc0;--line:rgba(255,255,255,.11)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:Montserrat,Arial,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.top{padding:9px 16px;text-align:center;background:var(--cyan);color:#041019;font-size:10px;font-weight:900;letter-spacing:.16em}
+header{height:68px;padding:0 max(5vw,20px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;background:rgba(6,11,18,.94);backdrop-filter:blur(12px)}
+.brand{font-weight:900;font-size:22px;letter-spacing:-.06em}.brand span{color:var(--cyan)}
+nav{display:flex;gap:22px;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+nav a:hover{color:var(--cyan)}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}
+.hero{padding:76px 18px 55px;background:radial-gradient(ellipse at 50% 0,rgba(8,201,244,.2),transparent 62%),linear-gradient(180deg,#0b1928,#060b12);text-align:center}
+.kicker{color:var(--cyan);font-size:10px;font-weight:900;letter-spacing:.2em}
+h1{font-size:clamp(43px,8vw,82px);line-height:.9;letter-spacing:-.075em;margin:17px auto;max-width:900px}
+h1 span{color:var(--cyan)}
+.hero p{max-width:650px;margin:auto;color:var(--muted);font-size:13px}
+.metrics{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:28px auto 0}
+.metric{border:1px solid var(--line);background:rgba(0,0,0,.22);padding:10px 16px;min-width:112px}
+.metric b{display:block;font-size:20px;color:var(--lime);line-height:1.1}.metric small{font-size:8px;letter-spacing:.13em;color:var(--muted);font-weight:800}
+.progress-wrap{margin:30px auto 0;max-width:520px;text-align:left}
+.progress-head{display:flex;justify-content:space-between;font-size:10px;font-weight:900;letter-spacing:.08em;margin-bottom:8px}
+.progress-track{height:7px;background:#1b2937;border-radius:20px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--lime));transition:width .25s}
+.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+.btn{border:1px solid var(--cyan);background:var(--cyan);color:#031018;padding:11px 16px;font:900 10px Montserrat;letter-spacing:.1em;cursor:pointer}
+.btn.secondary{background:transparent;color:var(--white);border-color:var(--line)}
+.section-head{padding:54px 0 18px}
+.section-head h2{font-size:clamp(25px,4vw,38px);letter-spacing:-.055em;line-height:1}
+.section-head p{color:var(--muted);font-size:12px;max-width:700px;margin-top:10px}
+.weeks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.week{border:1px solid var(--line);background:var(--panel);padding:15px}
+.week b{font-size:11px;color:var(--cyan);letter-spacing:.1em}.week strong{display:block;margin-top:4px;font-size:15px}.week p{color:var(--muted);font-size:10px;margin-top:5px}
+.days{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding-bottom:70px}
+.day{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);padding:19px;position:relative;min-width:0}
+.day.done{border-color:rgba(183,255,60,.55);background:linear-gradient(145deg,rgba(183,255,60,.09),var(--panel))}
+.day-top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.day-num{font-size:9px;font-weight:900;letter-spacing:.15em;color:var(--cyan)}
+.pill{font-size:8px;font-weight:900;letter-spacing:.1em;padding:5px 8px;border:1px solid var(--line);color:var(--muted)}
+.pill.training{border-color:rgba(8,201,244,.5);color:var(--cyan)}
+.pill.recovery{border-color:rgba(183,255,60,.4);color:var(--lime)}
+.day h3{font-size:20px;letter-spacing:-.04em;margin:10px 0 5px}
+.day .focus{font-size:11px;color:var(--muted);margin-bottom:13px}
+.details{border-top:1px solid var(--line);padding-top:12px}
+.details b{font-size:9px;letter-spacing:.1em;color:var(--lime);text-transform:uppercase}
+.details ul{list-style:none;margin-top:7px;display:grid;gap:6px}
+.details li{font-size:11px;color:#dbe5ee;padding-left:13px;position:relative}
+.details li:before{content:"›";position:absolute;left:0;color:var(--cyan);font-weight:900}
+.dose{margin-top:12px;padding:9px;background:rgba(0,0,0,.2);font-size:10px;color:var(--muted)}
+.mark{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:9px;font-weight:900;letter-spacing:.08em;cursor:pointer}
+.mark input{accent-color:var(--lime);width:16px;height:16px}
+.guidance{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 60px}
+.guide{padding:18px;border:1px solid var(--line);background:#0b1420}
+.guide h3{font-size:12px;color:var(--cyan);letter-spacing:.1em;margin-bottom:7px}
+.guide p,.guide li{font-size:10px;color:var(--muted)}
+.guide ul{padding-left:16px;display:grid;gap:5px}
+.disclaimer{border-left:3px solid var(--lime);padding:14px 16px;background:rgba(183,255,60,.055);font-size:10px;color:#c6d2dd;margin-bottom:55px}
+footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var(--muted);font-size:9px;letter-spacing:.12em}
+@media(max-width:720px){.days{grid-template-columns:1fr}.weeks{grid-template-columns:1fr}.guidance{grid-template-columns:1fr}header{height:auto;min-height:66px;align-items:flex-start;flex-direction:column;justify-content:center;gap:7px;padding:10px 18px}nav{width:100%;justify-content:space-between;gap:8px;font-size:8px}.hero{padding:60px 16px 44px}}
+@media print{header,.top,.controls,.mark input{display:none!important}body{background:#fff;color:#111}.hero{background:#fff;color:#111;padding:20px}.hero p,.section-head p,.week p,.day .focus,.details li,.dose,.guide p,.guide li,.disclaimer{color:#333}.day,.week,.guide{break-inside:avoid;background:#fff;border:1px solid #bbb}.days{grid-template-columns:1fr 1fr}.day h3{color:#111}}
+
+/* PERFORMANCE CLUB EXPERIENCE */
+.club-shell{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin:24px 0 18px}
+.club-main,.club-side{border:1px solid var(--line);background:linear-gradient(145deg,#102338,#0a1420);padding:20px;position:relative;overflow:hidden}
+.club-main:after{content:"XP";position:absolute;right:15px;bottom:-38px;font-size:140px;font-weight:900;color:rgba(8,201,244,.055);letter-spacing:-.1em;pointer-events:none}
+.club-label{font-size:9px;font-weight:900;letter-spacing:.18em;color:var(--cyan)}
+.club-main h2{font-size:clamp(24px,4vw,38px);letter-spacing:-.06em;line-height:1;margin:9px 0}
+.club-main p{font-size:11px;color:var(--muted);max-width:500px}
+.club-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.club-side{display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.club-side:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--cyan,#08c9f4),var(--lime,#b7ff3c))}
+
+.xp-number{font-size:42px;font-weight:900;letter-spacing:-.07em;color:var(--lime);line-height:1}
+.xp-caption{font-size:9px;color:var(--muted);letter-spacing:.14em;font-weight:900}
+.stat-row{display:flex;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}
+.stat-row b{color:var(--white);font-size:12px}
+.week-filter{display:flex;gap:7px;flex-wrap:wrap;margin:20px 0 12px}
+.filter-btn{padding:10px 13px;border:1px solid var(--line);background:#0b1420;color:var(--muted);font:900 9px Montserrat;letter-spacing:.1em;cursor:pointer}
+.filter-btn.active{background:var(--cyan);border-color:var(--cyan);color:#031018}
+.day{transition:border-color .2s,transform .2s}
+.day:hover{border-color:rgba(8,201,244,.48);transform:translateY(-2px)}
+.day[hidden]{display:none}
+.day.next-up{border-color:rgba(183,255,60,.72);box-shadow:0 0 0 1px rgba(183,255,60,.12),0 12px 30px rgba(0,0,0,.22)}
+.day.next-up .day-num{color:var(--lime)}
+.day:focus-within{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(8,201,244,.12)}
+.btn,.filter-btn,.session-toggle{transition:transform .2s ease,background .2s ease,border-color .2s ease,color .2s ease}
+.btn:hover,.filter-btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,.filter-btn:focus-visible,.session-toggle:focus-visible,a:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+.hero{position:relative;overflow:hidden}
+.hero:before{content:"AURA";position:absolute;left:-25px;top:22px;font:clamp(90px,19vw,220px)/1 "Permanent Marker",cursive;color:rgba(8,201,244,.035);transform:rotate(-9deg);pointer-events:none}
+.hero .kicker{font-family:"Permanent Marker",cursive;font-size:13px;letter-spacing:.08em;color:var(--lime);transform:rotate(-2deg)}
+h1 span{text-shadow:0 0 30px rgba(8,201,244,.22)}
+.club-main{border-color:rgba(8,201,244,.36);box-shadow:inset 0 0 34px rgba(8,201,244,.035)}
+.club-main:before{content:"";position:absolute;left:20px;top:0;width:90px;height:3px;background:var(--lime);box-shadow:0 0 16px rgba(183,255,60,.4)}
+.week{transition:transform .2s ease,border-color .2s ease}
+.week:hover{transform:translateY(-3px);border-color:rgba(8,201,244,.45)}
+.day .mark input{cursor:pointer}
+@media(max-width:420px){.wrap{width:calc(100% - 28px)}.hero{padding:54px 14px 40px}.metric{min-width:calc(33.333% - 8px);padding:9px 7px}.metric b{font-size:18px}.metric small{font-size:7px}.controls{display:grid;grid-template-columns:1fr;width:min(340px,100%);margin-inline:auto}.controls>*{width:100%;text-align:center}.club-side{grid-template-columns:1fr 1fr}.xp-number{font-size:35px}.club-main,.club-side{padding:15px}.week-filter{gap:6px}.filter-btn{font-size:8px;padding:10px 8px}}
+.session-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left;border:0;background:transparent;color:var(--cyan);font:900 9px Montserrat;letter-spacing:.12em;padding:13px 0 0;cursor:pointer}
+.session-toggle span:last-child{font-size:16px;line-height:1}
+.day .details,.day .dose{display:none}
+.day.expanded .details,.day.expanded .dose{display:block}
+.day.expanded .session-toggle span:last-child{transform:none}
+.day .mark{padding-top:10px;border-top:1px solid var(--line)}
+.day.done .mark{color:var(--lime)}
+.day.done .mark:after{content:" +50 XP";color:var(--lime);margin-left:auto}
+.next-tag{display:inline-block;font-size:8px;font-weight:900;letter-spacing:.1em;color:#061018;background:var(--lime);padding:5px 7px;margin-left:7px;vertical-align:middle}
+.level-track{height:5px;background:#263647;margin-top:9px;overflow:hidden}
+.level-track span{display:block;height:100%;width:0;background:var(--lime);transition:width .25s}
+.empty-state{display:none;border:1px dashed var(--line);padding:25px;text-align:center;color:var(--muted);font-size:11px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--lime);color:#061018;padding:12px 18px;font-size:10px;font-weight:900;letter-spacing:.1em;z-index:20;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:720px){.club-shell{grid-template-columns:1fr}.club-main,.club-side{padding:16px}.club-side{display:grid;grid-template-columns:1fr 1fr}.club-side .xp-block{grid-row:span 2}.filter-btn{flex:1;min-width:calc(50% - 7px)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* HEADER COMPACTO + LOGO OFICIAL */
+header{height:56px;padding:0 max(4vw,18px);gap:18px}
+.brand{display:flex;align-items:center;flex:0 0 auto;line-height:0}
+.brand img{display:block;width:150px;height:250px;object-fit:contain;object-position:left center}
+nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:nowrap}
+@media(max-width:720px){header{height:56px;min-height:56px;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:0 14px} .brand img{width:110px;height:100px}nav{width:auto;min-width:0;flex:1;justify-content:flex-end;gap:10px;font-size:7px;letter-spacing:.025em;white-space:nowrap;overflow-x:auto;scrollbar-width:none}nav::-webkit-scrollbar{display:none}}
+@media(max-width:380px){header{padding:0 10px;gap:7px}.brand img{width:72px;height:27px}nav{gap:7px;font-size:6.5px}}
+
+/* AURA PLAYER EVOLUTION — progreso compartido de programas reales */
+.aura-evolution{position:relative;z-index:2;width:min(100%,1040px);margin:26px auto;padding:clamp(16px,2.5vw,24px);border:1px solid rgba(8,201,244,.32);background:linear-gradient(135deg,rgba(8,201,244,.075),rgba(5,12,22,.96) 42%,rgba(183,255,60,.035));color:#f3f8fc;text-align:left;overflow:hidden}
+.aura-evolution:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--cyan,#08c9f4),var(--lime,#b7ff3c))}
+.aura-evolution-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:17px}
+.aura-evolution-kicker{display:block;color:var(--cyan,#08c9f4);font-size:9px;font-weight:900;letter-spacing:.17em}
+.aura-evolution-title{display:block;margin-top:5px;font-size:clamp(18px,2.5vw,25px);font-weight:950;letter-spacing:-.045em;line-height:1}
+.aura-evolution-rank{text-align:right;white-space:nowrap}
+.aura-evolution-rank b{display:block;color:var(--lime,#b7ff3c);font-size:11px;letter-spacing:.12em}
+.aura-evolution-rank small{display:block;margin-top:4px;color:#91a4b6;font-size:8px;letter-spacing:.12em}
+.aura-evolution-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:18px}
+.aura-evolution-stat{padding:10px 12px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.08)}
+.aura-evolution-stat b{display:block;color:#fff;font-size:clamp(18px,3vw,25px);font-weight:950;line-height:1}
+.aura-evolution-stat span{display:block;margin-top:6px;color:#8fa2b4;font-size:8px;font-weight:800;letter-spacing:.12em}
+.aura-evolution-skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
+.aura-evolution-skill{min-width:0}
+.aura-evolution-skill-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;color:#dbe8f2;font-size:9px;font-weight:900;letter-spacing:.08em}
+.aura-evolution-skill-head b{color:var(--cyan,#08c9f4);font-variant-numeric:tabular-nums}
+.aura-evolution-track{height:5px;background:#1a2a38;overflow:hidden}
+.aura-evolution-track i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--cyan,#08c9f4),var(--lime,#b7ff3c));transition:width .35s ease}
+.aura-evolution-foot{margin-top:15px;padding-top:11px;border-top:1px solid rgba(255,255,255,.09);color:#8094a7;font-size:8px;line-height:1.5;letter-spacing:.07em}
+.aura-evolution-programs{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.aura-evolution-program{padding:6px 9px;border:1px solid rgba(255,255,255,.1);color:#91a4b6;font-size:8px;font-weight:900;letter-spacing:.09em}
+.aura-evolution-program strong{color:#e8f4fb}
+.aura-evolution-program.is-active{border-color:rgba(8,201,244,.42);color:var(--cyan,#08c9f4)}
+@media(max-width:600px){
+ .aura-evolution{margin:18px auto;padding:15px 13px}
+ .aura-evolution-head{margin-bottom:13px}
+ .aura-evolution-stats{gap:6px}
+ .aura-evolution-stat{padding:9px 8px}
+ .aura-evolution-stat span{font-size:7px;letter-spacing:.07em}
+ .aura-evolution-skills{gap:11px 12px}
+ .aura-evolution-skill-head{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){.aura-evolution-track i{transition:none}}
+
+
+/* SINGLE PLAYER HUB — XP, next session, progress and skills */
+.aura-player-hub .aura-hub-main{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:20px 0 10px}.aura-player-hub .aura-hub-xp{display:grid;grid-template-columns:auto auto;align-items:baseline;gap:5px}.aura-player-hub .aura-hub-xp b{font-size:clamp(32px,5vw,46px);line-height:1;font-weight:950}.aura-player-hub .aura-hub-xp span{color:var(--cyan);font-size:11px;font-weight:900}.aura-player-hub .aura-hub-xp small{grid-column:1/-1;color:var(--muted);font-size:8px;font-weight:900;letter-spacing:.1em}.aura-player-hub .aura-hub-days{text-align:right}.aura-player-hub .aura-hub-days b{display:block;font-size:clamp(20px,3vw,28px);font-weight:950}.aura-player-hub .aura-hub-days small{font-size:8px;color:var(--muted);letter-spacing:.1em;font-weight:900}.aura-player-hub .aura-hub-progress{display:grid;gap:6px}.aura-player-hub .aura-hub-progress span{color:var(--cyan);font-size:8px;font-weight:900;letter-spacing:.1em;text-align:right}.aura-player-hub .aura-evolution-track{height:7px}.aura-player-hub .aura-hub-next{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:15px;padding:13px;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.09)}.aura-player-hub .aura-hub-next b{display:block;margin-top:3px;font-size:12px;letter-spacing:.04em}.aura-player-hub .aura-hub-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--cyan);color:var(--ink);padding:11px 14px;font-size:8px;font-weight:900;letter-spacing:.08em;text-align:center}.aura-player-hub .aura-evolution-skills{margin-top:12px}.aura-player-hub .aura-hub-programs{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.aura-player-hub .aura-hub-programs span{border:1px solid rgba(255,255,255,.1);padding:6px 8px;color:#8fa2b4;font-size:8px;font-weight:900;letter-spacing:.08em}.aura-player-hub .aura-hub-programs .is-active{border-color:rgba(8,201,244,.5);color:var(--cyan)}@media(max-width:600px){.aura-player-hub .aura-hub-main{gap:10px}.aura-player-hub .aura-hub-next{align-items:stretch;flex-direction:column}.aura-player-hub .aura-hub-cta{width:100%}.aura-player-hub .aura-hub-days small{font-size:7px}.aura-player-hub .aura-hub-xp small{font-size:7px}}
+
+/* PRO 21 — single consolidated player-progress panel */
+.aura-pro-unified{width:min(100%,1040px);margin:24px auto 30px;padding:clamp(16px,3vw,26px);border:1px solid rgba(8,201,244,.35);background:linear-gradient(140deg,rgba(8,201,244,.08),rgba(5,12,22,.97) 45%,rgba(183,255,60,.025));position:relative;overflow:hidden;color:var(--white);text-align:left}.aura-pro-unified:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--cyan),var(--lime))}.apu-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.apu-kicker{font-size:8px;letter-spacing:.16em;color:var(--cyan);font-weight:900}.apu-head h2{font-size:clamp(22px,4vw,34px);line-height:.98;letter-spacing:-.05em;margin:7px 0 0;font-weight:950}.apu-head h2 em{font-style:normal;color:var(--cyan)}.apu-rank{text-align:right;white-space:nowrap}.apu-rank b{display:block;color:var(--lime);font-size:10px;letter-spacing:.1em}.apu-rank small{display:block;color:var(--muted);font-size:7px;margin-top:4px;letter-spacing:.1em}.apu-desc{font-size:11px;color:var(--muted);max-width:700px;margin:12px 0 18px}.apu-stats{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:15px}.apu-stats>div:last-child{text-align:right}.apu-stats small,.apu-next small{display:block;color:var(--muted);font-size:7px;letter-spacing:.12em;font-weight:900}.apu-stats strong{display:block;font-size:clamp(23px,4vw,36px);line-height:1.1;font-weight:950}.apu-stats i{font-style:normal;color:var(--cyan);font-size:9px}.apu-progress-label{display:flex;justify-content:space-between;align-items:center;font-size:8px;font-weight:900;letter-spacing:.1em;margin-bottom:6px}.apu-progress-label b{color:var(--cyan)}.apu-progress-track{height:7px;background:#1b2937;border-radius:20px;overflow:hidden}.apu-progress-track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--lime));transition:width .3s}.apu-next{margin-top:16px;padding:13px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.09)}.apu-next>strong{display:block;font-size:12px;margin:4px 0 12px}.apu-actions{display:flex;flex-wrap:wrap;gap:8px}.apu-actions .btn{font-size:8px;padding:10px 12px}.apu-weeks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.apu-weeks>div{border-left:2px solid rgba(8,201,244,.5);padding:3px 9px}.apu-weeks b{display:block;color:var(--cyan);font-size:8px;letter-spacing:.1em}.apu-weeks strong{display:block;font-size:10px;margin-top:3px}.apu-weeks p{font-size:8px;color:var(--muted);margin:4px 0 0}.apu-skills{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:14px}.apu-skills span{padding:8px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);font-size:7px;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;gap:4px}.apu-skills b{color:var(--cyan)}.apu-foot{font-size:7px;color:var(--muted);line-height:1.5;margin-top:12px}@media(max-width:600px){.apu-head h2{font-size:25px}.apu-desc{font-size:10px}.apu-stats strong{font-size:24px}.apu-weeks{gap:6px}.apu-weeks>div{padding:3px 6px}.apu-weeks strong{font-size:8px}.apu-weeks p{font-size:7px}.apu-skills{grid-template-columns:repeat(2,1fr)}.apu-actions{display:grid;grid-template-columns:1fr 1fr}.apu-actions .btn{min-height:42px}}
+
+/* PRO 21 — unified game mission HUD */
+.pro-game-hud{position:relative;isolation:isolate;max-width:690px;margin:27px auto 0;padding:17px 18px 16px;text-align:left;border:1px solid rgba(8,201,244,.34);background:linear-gradient(145deg,rgba(11,29,45,.96),rgba(5,12,22,.97));box-shadow:0 14px 38px rgba(0,0,0,.32),0 0 28px rgba(8,201,244,.08);overflow:hidden}
+.pro-game-hud:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(180deg,var(--cyan),var(--lime));z-index:-1}
+.pro-hud-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.09)}
+.pro-hud-tag,.pro-hud-status{font-size:8px;font-weight:900;letter-spacing:.14em}
+.pro-hud-tag{color:var(--cyan);display:flex;align-items:center;gap:8px}
+.pro-hud-tag i{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+.pro-hud-status{color:var(--lime);border:1px solid rgba(183,255,60,.25);padding:4px 7px;background:rgba(183,255,60,.06)}
+.pro-hud-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:14px 0 13px}
+.pro-hud-stat{display:flex;flex-direction:column;gap:2px;padding:0 13px;border-right:1px solid rgba(255,255,255,.1)}
+.pro-hud-stat:first-child{padding-left:0}.pro-hud-stat:last-child{border:0}
+.pro-hud-stat strong{font-size:clamp(19px,3vw,25px);font-weight:950;line-height:1.1;letter-spacing:-.05em;color:var(--white)}
+.pro-hud-stat span{font-size:7px;font-weight:900;letter-spacing:.1em;color:var(--muted)}
+.pro-hud-progress{padding:11px 12px 12px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.07)}
+.pro-hud-progress-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+.pro-hud-progress-head span{font-size:8px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.pro-hud-progress-head strong{font-size:9px;font-weight:950;letter-spacing:.06em;color:var(--lime)}
+.pro-hud-progress .progress-track{height:8px;background:#1b2937;border-radius:2px;overflow:hidden}
+.pro-hud-progress .progress-fill{background:linear-gradient(90deg,var(--cyan),var(--lime));box-shadow:0 0 12px rgba(8,201,244,.4);position:relative}
+.pro-hud-actions{display:flex;align-items:center;gap:8px;margin-top:12px}
+.pro-hud-actions .btn{min-height:39px;display:inline-flex;align-items:center;justify-content:center}
+.pro-hud-play{flex:1;background:var(--cyan)!important;border-color:var(--cyan)!important;color:#031018!important;gap:9px;box-shadow:0 0 18px rgba(8,201,244,.16);font-size:9px!important}
+.pro-hud-play span{font-size:10px}
+.pro-hud-utility{font-size:8px!important;padding:10px 11px!important}
+.pro-hud-reset{width:40px;padding:8px!important;font-size:16px!important;color:var(--muted)!important}
+@media(max-width:600px){
+ .pro-game-hud{margin:21px 0 0;padding:14px 12px 12px}
+ .pro-hud-top{padding-bottom:10px}
+ .pro-hud-tag,.pro-hud-status{font-size:7px}
+ .pro-hud-stats{padding:12px 0 11px}
+ .pro-hud-stat{padding:0 8px}
+ .pro-hud-stat span{font-size:6px;letter-spacing:.07em}
+ .pro-hud-progress{padding:10px 9px}
+ .pro-hud-progress-head span{font-size:7px}
+ .pro-hud-actions{gap:6px}
+ .pro-hud-actions .btn{min-height:42px}
+ .pro-hud-play{font-size:8px!important;padding:10px 8px!important}
+ .pro-hud-utility{font-size:7px!important;padding:9px 7px!important}
+ .pro-hud-reset{width:38px;min-width:38px}
+}
+
+/* KAI — INTRO GUIADA PRO 21 */
+.kai-intro{width:min(100% - 36px,1040px);margin:22px auto 12px;display:grid;grid-template-columns:230px 1fr;min-height:220px;position:relative;overflow:hidden;border:1px solid rgba(8,201,244,.38);background:radial-gradient(ellipse at 8% 50%,rgba(8,201,244,.17),transparent 42%),linear-gradient(120deg,#10263a,#08121e 68%);box-shadow:0 18px 48px rgba(0,0,0,.3)}
+.kai-intro:after{content:"AURA XP";position:absolute;right:18px;bottom:-30px;font-size:clamp(55px,10vw,110px);font-weight:950;letter-spacing:-.09em;color:rgba(8,201,244,.045);pointer-events:none}
+.kai-portrait{position:relative;align-self:stretch;min-height:220px;display:flex;align-items:end;justify-content:center;overflow:hidden;background:linear-gradient(180deg,rgba(8,201,244,.08),rgba(8,201,244,.015))}
+.kai-portrait:before{content:"";position:absolute;width:170px;height:170px;bottom:4px;border-radius:50%;background:rgba(8,201,244,.12);filter:blur(24px)}
+.kai-portrait img{position:relative;z-index:1;display:block;width:100%;height:235px;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 0 18px rgba(8,201,244,.2))}
+.kai-content{position:relative;z-index:1;padding:22px 25px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.kai-meta{display:flex;align-items:center;gap:8px;color:#91a9bb;font-size:8px;font-weight:900;letter-spacing:.16em}.kai-meta span:first-child{color:var(--lime);font-size:11px}.kai-meta b{margin-left:auto;color:var(--cyan);font-variant-numeric:tabular-nums}
+.kai-progress{height:3px;background:#26394a;margin:11px 0 15px;max-width:170px}.kai-progress i{display:block;width:33.333%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--lime));transition:width .25s}
+.kai-content h2{font-size:clamp(20px,3vw,29px);line-height:1.05;letter-spacing:-.045em;margin-bottom:8px}.kai-content p{max-width:650px;color:#b2c2d0;font-size:11px;line-height:1.7;min-height:38px}
+.kai-step-dots{display:flex;gap:6px;margin-top:15px}.kai-step-dots i{width:18px;height:3px;background:#33495b}.kai-step-dots i.active{background:var(--lime);box-shadow:0 0 9px rgba(183,255,60,.35)}
+.kai-actions{display:flex;gap:8px;margin-top:14px}.kai-actions .btn{min-width:116px}.kai-actions .btn:disabled{opacity:.35;cursor:not-allowed}.kai-replay-wrap{width:min(100% - 36px,1040px);margin:0 auto 12px;text-align:right}.kai-replay{display:none;border:0;background:none;color:var(--cyan);font:900 8px Montserrat;letter-spacing:.12em;cursor:pointer;padding:8px 0}.kai-intro.is-complete{display:none}.kai-replay.is-visible{display:inline-block}
+@media(max-width:600px){.kai-intro{width:calc(100% - 28px);grid-template-columns:108px minmax(0,1fr);min-height:205px;margin-top:16px}.kai-portrait{min-height:205px}.kai-portrait img{height:195px;width:125px;max-width:none;object-position:center bottom}.kai-content{padding:15px 12px 14px}.kai-meta{font-size:7px;gap:5px;letter-spacing:.1em}.kai-meta span:first-child{font-size:10px}.kai-progress{margin:9px 0 12px}.kai-content h2{font-size:19px}.kai-content p{font-size:9px;line-height:1.55;min-height:68px}.kai-step-dots{margin-top:10px}.kai-actions{gap:6px;margin-top:10px}.kai-actions .btn{min-width:0;flex:1;padding:10px 7px;font-size:7px}.kai-replay-wrap{width:calc(100% - 28px)}}
+@media(max-width:360px){.kai-intro{grid-template-columns:88px minmax(0,1fr)}.kai-portrait img{width:108px;height:180px}.kai-content{padding-inline:9px}.kai-content h2{font-size:17px}}
+
+
+/* PRO 21 — mensaje hero con identidad graffiti AURA */
+.hero .aura-graffiti{
+  position:relative;
+  display:table;
+  max-width:min(760px,100%);
+  margin:24px auto 0;
+  padding:7px 16px 9px;
+  color:var(--white);
+  font-family:"Permanent Marker",cursive;
+  font-size:clamp(17px,2.5vw,25px);
+  line-height:1.35;
+  letter-spacing:.015em;
+  text-transform:uppercase;
+  text-shadow:2px 2px 0 rgba(8,201,244,.5),-1px -1px 0 rgba(183,255,60,.3),0 0 22px rgba(8,201,244,.22);
+  transform:rotate(-1.2deg);
+}
+.hero .aura-graffiti:after{
+  content:"";
+  position:absolute;
+  left:12%;right:5%;bottom:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--cyan),var(--lime),transparent);
+  transform:skewX(-24deg);
+  box-shadow:0 0 12px rgba(8,201,244,.35);
+}
+@media(max-width:600px){
+  .hero .aura-graffiti{max-width:340px;padding:5px 8px 9px;font-size:17px;line-height:1.45}
+}
+
+</style>
+</head>
+<body>
+
+<header><a class="brand" href="index.html" aria-label="Volver al universo AURA"><img src="assets/logo2.png" alt="AURA XP"></a><nav><a href="training.html">Elegir sistema</a><a href="#days">Mi entrenamiento</a><a href="index.html">AURA</a></nav></header>
+<main>
+<section class="hero">
+<div class="kicker">AURA XP · ELITE PERFORMANCE MODE</div>
+<h1>30 DÍAS.<br><span>SUBÍ TU NIVEL.</span><br>DOMINÁ EL JUEGO.</h1>
+<p class="aura-graffiti">Un mes para conectar velocidad, agilidad y técnica con pelota en movimientos cada vez más completos.</p>
+</section>
+
+<section class="kai-intro" id="kaiIntro" aria-label="Guía de inicio de Kai">
+  <div class="kai-portrait"><img src="assets/kai.png" alt="Kai, tu guía de entrenamiento"></div>
+  <div class="kai-content">
+    <div class="kai-meta"><span>KAI</span><i>·</i><span>GUÍA DE ENTRENAMIENTO</span><b id="kaiStepCount">01 / 03</b></div>
+    <div class="kai-progress"><i id="kaiProgress"></i></div>
+    <h2 id="kaiTitle">¡Vamos a trabajar tu juego!</h2>
+    <p id="kaiMessage">Durante 30 días vamos a conectar coordinación, aceleración, agilidad y técnica con pelota. Cada etapa suma una herramienta para resolver mejor los movimientos de juego.</p>
+    <div class="kai-step-dots" aria-label="Paso 1 de 3"><i class="active"></i><i></i><i></i></div>
+    <div class="kai-actions">
+      <button class="btn secondary" id="kaiBack" type="button" disabled>VOLVER</button>
+      <button class="btn" id="kaiNext" type="button">SIGUIENTE ↗</button>
+      <button class="btn" id="kaiStart" type="button" hidden>EMPEZAR ELITE 30 ↗</button>
+    </div>
+  </div>
+</section>
+<div class="kai-replay-wrap"><button class="kai-replay" id="kaiReplay" type="button">ⓘ VER GUÍA DE KAI</button></div>
+
+<div class="wrap">
+<section class="aura-pro-unified" id="playerProgress" data-aura-evolution data-aura-program="elite" aria-label="Progreso ELITE 30">
+<div class="apu-head"><div><span class="apu-kicker">AURA XP // PLAYER DEVELOPMENT</span><h2>EL PRÓXIMO NIVEL<br><em>SE ENTRENA.</em></h2></div><div class="apu-rank"><b data-aura-rank>ROOKIE</b><small data-aura-level>NIVEL 01</small></div></div>
+<p class="apu-desc">Tu recorrido queda guardado en este dispositivo. Abrí la próxima jornada, seguí la sesión y registrá el avance: cada día completado suma 50 XP locales.</p>
+<div class="apu-stats"><div><small>XP DE ENTRENAMIENTO</small><strong><span data-aura-xp>000</span> <i>XP</i></strong></div><div><small>DÍAS COMPLETADOS</small><strong data-aura-days>0 / 31</strong></div></div>
+<div class="apu-progress-label"><span>PROGRESO DEL PLAN</span><b data-aura-program-percent>0%</b></div><div class="apu-progress-track"><i data-aura-overall></i></div>
+<div class="apu-next"><small>SIGUIENTE MISIÓN</small><strong id="nextMission" data-aura-next-mission>DÍA 01 · ACTIVÁ TU MOTOR</strong><div class="apu-actions"><button class="btn" id="continueBtn">CONTINUAR MI PLAN ↗</button><button class="btn secondary" id="showAllBtn">VER 5 SEMANAS</button><button class="btn secondary" id="resetProgress" type="button">↻ REINICIAR PLAN</button></div></div>
+<div class="apu-weeks"><div><b>WEEK 01</b><strong>BASE & CONTROL</strong><p>Estabilidad, coordinación y control inicial.</p></div><div><b>WEEK 02</b><strong>SPEED & REACTION</strong><p>Primer paso, aceleración y respuesta a señales.</p></div><div><b>WEEK 03</b><strong>AGILITY & BALL</strong><p>Giros, cambios de dirección y conducción.</p></div><div><b>WEEK 04</b><strong>GAME APPLICATION</strong><p>Técnica bajo movimiento y secuencias de juego.</p></div><div><b>WEEK 05</b><strong>FINAL EVOLUTION</strong><p>Integración, descarga y checkpoint final.</p></div></div><div class="apu-skills"><span>COORDINACIÓN <b data-aura-skill="coordination">0%</b></span><span>VELOCIDAD <b data-aura-skill="speed">0%</b></span><span>AGILIDAD <b data-aura-skill="agility">0%</b></span><span>TÉCNICA <b data-aura-skill="technique">0%</b></span></div>
+<div class="apu-foot">Las jornadas completadas quedan guardadas en este dispositivo. Las habilidades reflejan el trabajo registrado en ELITE 30, no una evaluación física.</div>
+</section><div class="week-filter" role="group" aria-label="Filtrar por semana"><button class="filter-btn active" data-filter="all">TODAS LAS SEMANAS</button><button class="filter-btn" data-filter="1">WEEK 01 · BASE</button><button class="filter-btn" data-filter="2">WEEK 02 · SPEED</button><button class="filter-btn" data-filter="3">WEEK 03 · AGILITY</button><button class="filter-btn" data-filter="4">WEEK 04 · GAME</button><button class="filter-btn" data-filter="5">WEEK 05 · FINAL</button></div>
+<div class="empty-state" id="emptyState">No hay jornadas en esta selección.</div>
+<section class="days" id="days"><article class="day" data-day="1"><div class="day-top"><span class="day-num">DAY 01 · BASELINE</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Medí tu punto de partida</h3><p class="focus">Objetivo: Registrar coordinación, control y calidad de movimiento.</p><div class="details"><b>Bloque suave</b><ul><li>Entrada en calor progresiva: 6 min</li><li>Escalera: 2 patrones × 2 pasadas</li><li>Slalom con pelota: 2 recorridos cómodos</li><li>Salidas progresivas de 5 m: 3 repeticiones</li><li>Anotá control, equilibrio y confianza del 1 al 5</li></ul></div><div class="dose">No busques marcas máximas. Usá el mismo espacio para repetir el checkpoint final.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="2"><div class="day-top"><span class="day-num">DAY 02 · FOUNDATION</span><span class="pill training">SESIÓN · 28'</span></div><h3>Base atlética</h3><p class="focus">Objetivo: Consolidar postura, movilidad y estabilidad.</p><div class="details"><b>Bloque principal</b><ul><li>Movilidad dinámica: 6 min</li><li>Marcha atlética + skipping bajo: 3 × 15 m</li><li>Equilibrio a una pierna: 3 × 20 s por lado</li><li>Escalera: 4 pasadas con patrón simple</li><li>Con pelota: conducción suave en cuadrado, 3 × 40 s</li></ul></div><div class="dose">Pausa 40–50 s. Tronco estable y apoyos silenciosos.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="3"><div class="day-top"><span class="day-num">DAY 03 · BALL CONTROL</span><span class="pill training">SESIÓN · 30'</span></div><h3>Primer toque orientado</h3><p class="focus">Objetivo: Recibir y orientar la pelota hacia un espacio libre.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 6 min</li><li>Pase contra pared + control perfilado: 4 × 6 por pie</li><li>Control con interior y salida lateral: 3 × 5 por lado</li><li>Conducción con cambio de pie: 4 × 25 s</li></ul></div><div class="dose">Pausa 45 s. Orientá el primer toque, no detengas la pelota debajo del cuerpo.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="4"><div class="day-top"><span class="day-num">DAY 04 · RESET</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Movilidad y descarga</h3><p class="focus">Objetivo: Recuperar rango de movimiento sin sumar fatiga.</p><div class="details"><b>Bloque suave</b><ul><li>Caminata suave: 6 min</li><li>Movilidad de tobillo y cadera: 2 × 6 por lado</li><li>Respiración y vuelta a la calma: 3 min</li></ul></div><div class="dose">Es una sesión liviana. Si hay fatiga acumulada, descanso completo.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="5"><div class="day-top"><span class="day-num">DAY 05 · ACCELERATION</span><span class="pill training">SESIÓN · 30'</span></div><h3>Primer paso explosivo</h3><p class="focus">Objetivo: Mejorar la salida corta manteniendo una postura segura.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Salidas de 5 m: 5 repeticiones al 70–80%</li><li>Marcha potente con brazos: 3 × 10 m</li><li>Salida + frenada en zona amplia: 4 repeticiones</li></ul></div><div class="dose">Pausa 60–75 s. Aumentá ritmo solo si las frenadas siguen siendo estables.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="6"><div class="day-top"><span class="day-num">DAY 06 · DIRECTION</span><span class="pill training">SESIÓN · 30'</span></div><h3>Giros con control</h3><p class="focus">Objetivo: Frenar, orientar el cuerpo y salir hacia otro ángulo.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Conos en L: 4 recorridos a ritmo medio</li><li>Zigzag amplio: 3 × 3 conos</li><li>Con pelota: slalom + salida lateral, 4 recorridos</li></ul></div><div class="dose">Pausa 60 s. Bajá el centro de gravedad antes del giro; no fuerces cambios bruscos.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="7"><div class="day-top"><span class="day-num">DAY 07 · CHECKPOINT 01</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Chequeá tu base</h3><p class="focus">Objetivo: Repetir referencias iniciales con mejor organización.</p><div class="details"><b>Bloque suave</b><ul><li>Entrada en calor: 5 min</li><li>Escalera: repetí los patrones del día 1</li><li>Slalom con pelota: 2 recorridos</li><li>Salidas de 5 m: 3 repeticiones progresivas</li><li>Compará control, equilibrio y confianza</li></ul></div><div class="dose">No hace falta cronometrar. Registrá si el movimiento se siente más limpio.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="8"><div class="day-top"><span class="day-num">DAY 08 · REACTION</span><span class="pill training">SESIÓN · 30'</span></div><h3>Reaccioná a la señal</h3><p class="focus">Objetivo: Responder a estímulos visuales o verbales.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Cuatro marcas de colores: 5 × 15 s según señal</li><li>Salida hacia el cono indicado: 4 × 3 repeticiones</li><li>Con pelota: cambio de dirección al escuchar señal, 4 × 20 s</li></ul></div><div class="dose">Pausa 45–60 s. La señal puede variar; el movimiento debe seguir siendo controlado.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="9"><div class="day-top"><span class="day-num">DAY 09 · QUICK FEET</span><span class="pill training">SESIÓN · 28'</span></div><h3>Pies rápidos</h3><p class="focus">Objetivo: Aumentar ritmo de apoyos sin perder estabilidad.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 6 min</li><li>Escalera: 4 patrones × 2 pasadas</li><li>Pasos laterales entre marcas: 4 × 15 s</li><li>Aros o marcas: adelante-lateral, 3 × 3 rondas</li></ul></div><div class="dose">Pausa 45 s. Evitá saltos altos; priorizá apoyos cortos y coordinados.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="10"><div class="day-top"><span class="day-num">DAY 10 · RECOVERY</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Recuperación activa</h3><p class="focus">Objetivo: Bajar la carga y preparar el siguiente bloque.</p><div class="details"><b>Bloque suave</b><ul><li>Caminata o bici suave: 8 min</li><li>Movilidad general: 5 min</li><li>Respiración tranquila: 2 min</li></ul></div><div class="dose">Sin sprints ni saltos. Si estás cansado, descansá por completo.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="11"><div class="day-top"><span class="day-num">DAY 11 · BALL SPEED</span><span class="pill training">SESIÓN · 32'</span></div><h3>Conducción y aceleración</h3><p class="focus">Objetivo: Acelerar con pelota sin perder dominio.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Conducción recta 5 m + frenada: 5 repeticiones</li><li>Cambio de pie en movimiento: 4 × 20 s</li><li>Slalom + salida controlada de 3 m: 4 rondas</li></ul></div><div class="dose">Pausa 60 s. La pelota debe quedar a distancia de juego, no escaparse varios metros.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="12"><div class="day-top"><span class="day-num">DAY 12 · PASS & MOVE</span><span class="pill training">SESIÓN · 30'</span></div><h3>Pasá y movete</h3><p class="focus">Objetivo: Conectar pase, recepción y nuevo desplazamiento.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 6 min</li><li>Pase a pared/objetivo + desplazamiento lateral: 4 × 5 por lado</li><li>Control orientado + pase: 3 × 6 por perfil</li><li>Conducción corta + pase a objetivo: 4 × 3</li></ul></div><div class="dose">Pausa 45–60 s. Perfilá antes de recibir y buscá precisión en ambos pies.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="13"><div class="day-top"><span class="day-num">DAY 13 · RESET</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Soltá y recuperá</h3><p class="focus">Objetivo: Asimilar el trabajo de velocidad y técnica.</p><div class="details"><b>Bloque suave</b><ul><li>Caminata cómoda: 6 min</li><li>Movilidad de tobillo y cadera: 4 min</li><li>Chequeo de sensaciones: 2 min</li></ul></div><div class="dose">No sumes carga por tu cuenta. Llegá fresco al siguiente bloque.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="14"><div class="day-top"><span class="day-num">DAY 14 · AGILITY</span><span class="pill training">SESIÓN · 32'</span></div><h3>Agilidad en varios ángulos</h3><p class="focus">Objetivo: Combinar desplazamientos frontales y laterales.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Conos en T: 4 recorridos controlados</li><li>Desplazamiento lateral + salida frontal: 4 × 2 por lado</li><li>Con pelota: giro amplio y conducción hacia objetivo, 4 rondas</li></ul></div><div class="dose">Pausa 60 s. Frená antes de cambiar de dirección y mantené rodillas alineadas.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="15"><div class="day-top"><span class="day-num">DAY 15 · DUAL TASK</span><span class="pill training">SESIÓN · 30'</span></div><h3>Coordiná y decidí</h3><p class="focus">Objetivo: Combinar coordinación de pies con una decisión simple.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 6 min</li><li>Escalera + salida a color indicado: 4 rondas</li><li>Conducción en cuadrado + señal de giro: 4 × 25 s</li><li>Pase a uno de dos objetivos según señal: 3 × 5</li></ul></div><div class="dose">Pausa 45–60 s. Si la decisión te desordena, bajá el ritmo y repetí.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="16"><div class="day-top"><span class="day-num">DAY 16 · RECOVERY</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Descarga y movilidad</h3><p class="focus">Objetivo: Recuperar antes del bloque de técnica aplicada.</p><div class="details"><b>Bloque suave</b><ul><li>Caminata suave: 7 min</li><li>Movilidad de cadera, tobillo y columna: 6 min</li><li>Respiración: 2 min</li></ul></div><div class="dose">Terminá con sensación de energía, no de cansancio.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="17"><div class="day-top"><span class="day-num">DAY 17 · TECHNIQUE</span><span class="pill training">SESIÓN · 32'</span></div><h3>Técnica bajo movimiento</h3><p class="focus">Objetivo: Mantener precisión después de desplazarte.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Desplazamiento lateral + recepción: 4 × 4 por lado</li><li>Control orientado + conducción de 3 m: 4 × 4</li><li>Pase a objetivo después de giro: 3 × 5 por pie</li></ul></div><div class="dose">Pausa 60 s. Descansá si la precisión cae.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="18"><div class="day-top"><span class="day-num">DAY 18 · CHANGE PACE</span><span class="pill training">SESIÓN · 30'</span></div><h3>Cambio de ritmo</h3><p class="focus">Objetivo: Alternar conducción lenta y aceleración controlada.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Conducción suave 5 m + aceleración 3 m: 5 rondas</li><li>Cambio de dirección con interior/exterior: 4 × 20 s</li><li>Finalización a objetivo tras conducción: 3 × 4</li></ul></div><div class="dose">Pausa 60–75 s. No conviertas cada repetición en un sprint máximo.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="19"><div class="day-top"><span class="day-num">DAY 19 · REST</span><span class="pill recovery">DESCANSO</span></div><h3>Descanso completo</h3><p class="focus">Objetivo: Permitir la recuperación del cuerpo.</p><div class="details"><b>Bloque suave</b><ul><li>Descanso de entrenamiento</li><li>Hidratación y alimentación habituales</li><li>Sueño suficiente</li></ul></div><div class="dose">No hace falta completar ejercicios. Marcá el día cuando hayas respetado el descanso.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="20"><div class="day-top"><span class="day-num">DAY 20 · CHECKPOINT 02</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Medí tu progreso</h3><p class="focus">Objetivo: Repetir pruebas técnicas de referencia.</p><div class="details"><b>Bloque suave</b><ul><li>Entrada en calor: 5 min</li><li>Escalera: repetí el patrón del día 1</li><li>Slalom con pelota: 2 recorridos</li><li>Salidas de 5 m: 3 repeticiones progresivas</li><li>Compará los registros de los días 1 y 7</li></ul></div><div class="dose">Buscá calidad y control. No fuerces una marca personal.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="21"><div class="day-top"><span class="day-num">DAY 21 · COMBINATION</span><span class="pill training">SESIÓN · 35'</span></div><h3>Conectá tus recursos</h3><p class="focus">Objetivo: Unir coordinación, giro, conducción y pase.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Escalera + salida hacia cono: 4 rondas</li><li>Zigzag + conducción + pase: 4 rondas</li><li>Circuito completo: 3 vueltas con pausa de 60 s</li></ul></div><div class="dose">La secuencia vale más que hacerla rápido y desordenado.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="22"><div class="day-top"><span class="day-num">DAY 22 · REACTION BALL</span><span class="pill training">SESIÓN · 32'</span></div><h3>Reacción con pelota</h3><p class="focus">Objetivo: Responder a una señal mientras conducís.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Conducción libre en cuadrado: 3 × 30 s</li><li>A señal, cambiar de pie o dirección: 5 × 20 s</li><li>Salida hacia objetivo + pase: 4 × 3</li></ul></div><div class="dose">Pausa 60 s. Usá señales claras y espacio libre alrededor.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="23"><div class="day-top"><span class="day-num">DAY 23 · RESET</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Recuperación completa</h3><p class="focus">Objetivo: Bajar la carga para asimilar el bloque integrado.</p><div class="details"><b>Bloque suave</b><ul><li>Caminata cómoda: 6 min</li><li>Movilidad suave: 4 min</li><li>Respiración: 2 min</li></ul></div><div class="dose">Descanso completo si sentís fatiga o molestias.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="24"><div class="day-top"><span class="day-num">DAY 24 · FIRST TOUCH</span><span class="pill training">SESIÓN · 32'</span></div><h3>Recibí y salí</h3><p class="focus">Objetivo: Orientar el control para ganar espacio en el primer toque.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Pase a pared + control hacia derecha: 4 × 5</li><li>Pase a pared + control hacia izquierda: 4 × 5</li><li>Control orientado + conducción + pase: 4 rondas</li></ul></div><div class="dose">Pausa 45–60 s. Alterná perfiles y mantené la cabeza levantada.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="25"><div class="day-top"><span class="day-num">DAY 25 · AGILITY BALL</span><span class="pill training">SESIÓN · 34'</span></div><h3>Giro y salida</h3><p class="focus">Objetivo: Aplicar cambios de dirección con pelota en espacios cortos.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Slalom amplio: 3 recorridos</li><li>Finta simple entre 2 conos: 4 × 3 por lado</li><li>Giro + salida de 3 m + pase: 4 rondas</li></ul></div><div class="dose">Pausa 60–75 s. Elegí una finta simple y ejecutala con control.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="26"><div class="day-top"><span class="day-num">DAY 26 · GAME SEQUENCE</span><span class="pill training">SESIÓN · 35'</span></div><h3>Secuencia de juego</h3><p class="focus">Objetivo: Resolver una secuencia técnica completa.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Recepción orientada: 4 repeticiones por perfil</li><li>Conducción con cambio de dirección: 4 recorridos</li><li>Pase o remate a objetivo: 3 × 4</li><li>Repetí la secuencia completa: 3 rondas</li></ul></div><div class="dose">Pausa 60–75 s. Priorizá decisión y precisión, no potencia máxima.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="27"><div class="day-top"><span class="day-num">DAY 27 · RESET</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Prepará el cierre</h3><p class="focus">Objetivo: Recuperar y revisar los registros de entrenamiento.</p><div class="details"><b>Bloque suave</b><ul><li>Caminata suave: 8 min</li><li>Movilidad general: 5 min</li><li>Revisá tus notas de los checkpoints</li></ul></div><div class="dose">No agregues carga extra. Prepará el mismo espacio para la última etapa.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="28"><div class="day-top"><span class="day-num">DAY 28 · CONTROLLED SPEED</span><span class="pill training">SESIÓN · 32'</span></div><h3>Velocidad con control</h3><p class="focus">Objetivo: Repetir esfuerzos cortos manteniendo técnica.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Salidas progresivas de 5 m: 5 repeticiones</li><li>Frenada en zona amplia: 4 × 2</li><li>Conducción + pase después de salida: 4 rondas</li></ul></div><div class="dose">Pausa 75 s. Terminá el bloque si perdés estabilidad o precisión.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="29"><div class="day-top"><span class="day-num">DAY 29 · PLAYER CIRCUIT</span><span class="pill training">SESIÓN · 35'</span></div><h3>Circuito de jugador</h3><p class="focus">Objetivo: Integrar coordinación, agilidad y técnica en una sesión.</p><div class="details"><b>Bloque principal</b><ul><li>Entrada en calor: 7 min</li><li>Escalera + salida lateral: 3 rondas</li><li>Slalom con pelota + pase: 3 rondas</li><li>Recepción orientada + cambio de dirección: 3 rondas</li></ul></div><div class="dose">Pausa 60–75 s entre rondas. Mantené ritmo sostenible.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="30"><div class="day-top"><span class="day-num">DAY 30 · TAPER</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Bajá un cambio</h3><p class="focus">Objetivo: Llegar descansado al checkpoint final.</p><div class="details"><b>Bloque suave</b><ul><li>Caminata cómoda: 6 min</li><li>Movilidad suave: 4 min</li><li>Visualizá 2 recursos que mejoraste</li></ul></div><div class="dose">Sin sprints, saltos ni series exigentes. Priorizá descanso.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article>
+<article class="day" data-day="31"><div class="day-top"><span class="day-num">DAY 31 · FINAL CHECKPOINT</span><span class="pill recovery">RECUPERACIÓN</span></div><h3>Desbloqueá tu evolución</h3><p class="focus">Objetivo: Comparar la ejecución final con el punto de partida.</p><div class="details"><b>Bloque suave</b><ul><li>Entrada en calor completa: 6 min</li><li>Escalera: repetí el patrón del día 1, 2 pasadas</li><li>Slalom con pelota: 2 recorridos controlados</li><li>Salidas progresivas de 5 m: 3 intentos</li><li>Registrá control, equilibrio y confianza del 1 al 5</li></ul></div><div class="dose">Compará con los días 1, 7 y 20. Cerrá con movilidad suave de 5 min.</div><label class="mark"><input type="checkbox"> MARCAR DÍA COMPLETADO</label></article></section>
+<section class="section-head"><div class="kicker">PLAY SMART</div><h2>REGLAS DEL PROGRAMA.</h2><p>La progresión funciona cuando entrenás con técnica, descansás y adaptás la carga a tu nivel.</p></section>
+<div class="guidance">
+<div class="guide"><h3>ANTES DE CADA SESIÓN</h3><ul><li>Usá una superficie plana, seca y sin obstáculos.</li><li>Dejá espacio suficiente entre conos, aros y vallas.</li><li>Hacé 6–8 minutos de entrada en calor progresiva.</li><li>Usá calzado adecuado y agua disponible.</li></ul></div>
+<div class="guide"><h3>INTENSIDAD Y DESCANSO</h3><ul><li>Trabajá la mayor parte del tiempo a esfuerzo moderado (5–7/10).</li><li>Respetá las pausas indicadas y los días de recuperación.</li><li>No entrenes al máximo ni busques terminar exhausto.</li><li>Reducí repeticiones si perdés técnica o coordinación.</li></ul></div>
+<div class="guide"><h3>ADAPTÁ A TU NIVEL</h3><ul><li>Principiante: hacé una serie menos y caminá los patrones nuevos.</li><li>Con experiencia: mantené la técnica antes de aumentar ritmo.</li><li>En menores, las sesiones deben ser supervisadas por un adulto responsable y adaptadas por un entrenador a edad y experiencia.</li><li>Si ya tenés práctica de equipo, coordiná este plan con las cargas del club.</li></ul></div>
+<div class="guide"><h3>CUÁNDO FRENAR</h3><ul><li>Detené la sesión ante dolor, mareo, falta de aire inusual o malestar.</li><li>No entrenes lesionado ni intentes compensar sesiones perdidas.</li><li>Ante dudas de salud o retorno tras una lesión, consultá a un profesional.</li><li>La calidad del movimiento siempre está por encima de la cantidad.</li></ul></div>
+</div>
+<div class="disclaimer"><strong>NOTA DE USO:</strong> Este es un programa general de entrenamiento recreativo y una primera versión editorial de AURA XP PRO. No es una evaluación individual ni reemplaza la planificación de un entrenador. Antes de comercializarlo como producto digital, el contenido debe ser revisado y validado por un profesional de educación física con experiencia en futsal, y adaptado por edad, experiencia y carga semanal de cada deportista. El progreso marcado se guarda únicamente en este navegador y dispositivo.</div>
+</div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite">+50 XP · MISIÓN COMPLETADA</div><footer>AURA XP · PERFORMANCE CLUB · FARMEÁ ESTILO. SUBÍ DE NIVEL.</footer>
+<script>
+(function(){
+  const KEY='auraxp-pro-21day-progress-v2';
+  const cards=Array.from(document.querySelectorAll('.day[data-day]'));
+  const boxes=cards.map(card=>card.querySelector('input[type="checkbox"]'));
+  const $=id=>document.getElementById(id);
+  const fill=$('progressFill'), progressText=$('progressText');
+  const nextMission=$('nextMission'), toast=$('toast');
+  if(cards.length!==21 || boxes.some(box=>!box)) {
+    console.error('AURA XP: no se pudieron inicializar las 21 jornadas.');
+    return;
+  }
+
+  let saved={};
+  try {
+    const parsed=JSON.parse(localStorage.getItem(KEY)||'{}');
+    if(parsed && typeof parsed==='object' && !Array.isArray(parsed)) saved=parsed;
+  } catch(error) {
+    console.warn('AURA XP: no se pudo leer el progreso guardado.',error);
+  }
+
+  // Normalizar las jornadas guardadas antes de pintar la interfaz.
+  // Solo los días confirmados como true cuentan como completados.
+  for(let day=1;day<=21;day++){
+    const key=String(day);
+    if(saved[key]===true || saved[key]===1 || saved[key]==='true') saved[key]=true;
+    else delete saved[key];
+  }
+  let toastTimer;
+
+  function persist(){
+    try {
+      localStorage.setItem(KEY,JSON.stringify(saved));
+      // Avisar al perfil de evolución en esta misma pestaña.
+      // El evento "storage" no se dispara en la pestaña que escribe.
+      window.dispatchEvent(new Event('aura:progress-updated'));
+      return true;
+    } catch(error) {
+      console.warn('AURA XP: el navegador no permitió guardar el progreso.',error);
+      return false;
+    }
+  }
+
+  function update(){
+    const count=cards.filter(card=>saved[card.dataset.day]===true).length;
+    const percent=Math.round(count/cards.length*100);
+    if(fill) fill.style.width=percent+'%';
+    if(progressText) progressText.textContent=count+' / 21 DÍAS';
+
+    const next=cards.find(card=>saved[card.dataset.day]!==true);
+    if(nextMission) nextMission.textContent=next ? 'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase() : 'PROGRAMA COMPLETADO';
+    if(nextMission) nextMission.textContent=next ? 'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase() : 'PROGRAMA COMPLETADO';
+    cards.forEach(card=>{
+      const done=saved[card.dataset.day]===true;
+      const box=card.querySelector('input[type="checkbox"]');
+      box.checked=done;
+      // Una jornada ya recompensada queda bloqueada para evitar repetirla.
+      box.disabled=done;
+      box.setAttribute('aria-label',done?'Jornada '+card.dataset.day+' completada':'Marcar jornada '+card.dataset.day+' como completada');
+      card.classList.toggle('done',done);
+      card.classList.toggle('next-up',card===next);
+      const badge=card.querySelector('.next-tag');
+      if(badge) badge.remove();
+    });
+    if(next){
+      const tag=document.createElement('span');
+      tag.className='next-tag';
+      tag.textContent='NEXT';
+      next.querySelector('.day-num').append(tag);
+    }
+    // Actualizar el panel PRO directamente: no depender del script externo.
+    const totalXp=count*50;
+    const level=1+Math.floor(totalXp/250);
+    const rank=level>=9?'ELITE':level>=3?'PROSPECT':'ROOKIE';
+    const evolution=document.querySelector('[data-aura-evolution]');
+    if(evolution){
+      const set=(selector,value)=>{const el=evolution.querySelector(selector);if(el)el.textContent=value;};
+      set('[data-aura-rank]',rank);
+      set('[data-aura-level]','NIVEL '+String(level).padStart(2,'0'));
+      set('[data-aura-xp]',String(totalXp).padStart(3,'0'));
+      set('[data-aura-days]',count+' / 31');
+      set('[data-aura-pro-percent]',percent+'%');
+      const overall=evolution.querySelector('[data-aura-overall]');
+      if(overall)overall.style.width=percent+'%';
+      const skillDays={coordination:[1,2,3,7,10,11],speed:[4,8,12,18],agility:[5,9,15,19],technique:[2,3,12,16,19,21]};
+      Object.entries(skillDays).forEach(([skill,days])=>{
+        const value=Math.round(days.filter(day=>saved[String(day)]===true).length/days.length*100);
+        set('[data-aura-skill="'+skill+'"]',value+'%');
+        const bar=evolution.querySelector('[data-aura-bar="'+skill+'"]');
+        if(bar)bar.style.width=value+'%';
+      });
+    }
+    window.AuraPlayerEvolution?.refresh();
+  }
+
+  function setExpanded(card,expanded){
+    const button=card.querySelector('.session-toggle');
+    card.classList.toggle('expanded',expanded);
+    button.setAttribute('aria-expanded',String(expanded));
+    button.querySelector('.toggle-icon').textContent=expanded?'−':'+';
+    button.querySelector('.toggle-label').textContent=expanded?'OCULTAR EJERCICIOS':'VER EJERCICIOS Y SERIES';
+  }
+
+  function showToast(message){
+    if(!toast){ console.info('AURA XP:',message); return; }
+    toast.textContent=message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>toast.classList.remove('show'),2200);
+  }
+
+  cards.forEach(card=>{
+    const details=card.querySelector('.details');
+    const toggle=document.createElement('button');
+    toggle.className='session-toggle';
+    toggle.type='button';
+    toggle.setAttribute('aria-expanded','false');
+    toggle.innerHTML='<span class="toggle-label">VER EJERCICIOS Y SERIES</span><span class="toggle-icon" aria-hidden="true">+</span>';
+    details.parentNode.insertBefore(toggle,details);
+    toggle.addEventListener('click',()=>setExpanded(card,!card.classList.contains('expanded')));
+    card.addEventListener('click',event=>{
+      if(!event.target.closest('.day-top,h3,.focus')) return;
+      setExpanded(card,!card.classList.contains('expanded'));
+    });
+
+    const box=card.querySelector('input[type="checkbox"]');
+    box.addEventListener('change',()=>{
+      const day=card.dataset.day;
+      const wasDone=saved[day]===true;
+      // Protección adicional: nunca volver a acreditar una jornada completada.
+      if(wasDone){
+        box.checked=true;
+        box.disabled=true;
+        return;
+      }
+      if(box.checked) saved[day]=true;
+      else delete saved[day];
+      const stored=persist();
+      update();
+      if(!wasDone && box.checked) showToast(stored?'+50 XP · JORNADA COMPLETADA':'+50 XP · PROGRESO ACTUALIZADO EN ESTA SESIÓN');
+      if(wasDone && !box.checked) showToast('JORNADA DESMARCADA · XP ACTUALIZADOS');
+    });
+  });
+
+  const filterButtons=Array.from(document.querySelectorAll('[data-filter]'));
+  function applyFilter(filter){
+    filterButtons.forEach(button=>button.classList.toggle('active',button.dataset.filter===filter));
+    let visible=0;
+    cards.forEach(card=>{
+      const week=Math.ceil(Number(card.dataset.day)/7);
+      const show=filter==='all'||week===Number(filter);
+      card.hidden=!show;
+      if(show) visible++;
+    });
+    $('emptyState').style.display=visible?'none':'block';
+  }
+  filterButtons.forEach(button=>button.addEventListener('click',()=>applyFilter(button.dataset.filter)));
+
+  $('showAllBtn').addEventListener('click',()=>{
+    applyFilter('all');
+    document.querySelector('.week-filter').scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  $('continueBtn').addEventListener('click',()=>{
+    const next=cards.find(card=>saved[card.dataset.day]!==true);
+    if(!next){
+      applyFilter('all');
+      showToast('COMPLETASTE LAS 21 JORNADAS');
+      return;
+    }
+    const week=String(Math.ceil(Number(next.dataset.day)/7));
+    applyFilter(week);
+    setExpanded(next,true);
+    next.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  $('resetProgress').addEventListener('click',()=>{
+    const confirmed=window.confirm('¿Querés empezar PRO 21 desde cero? Se borrarán las 21 jornadas completadas y los XP obtenidos en este programa. El progreso de START 7 y ELITE 30 no se modifica.');
+    if(!confirmed) return;
+    saved={};
+    const stored=persist();
+    update();
+    cards.forEach(card=>setExpanded(card,false));
+    applyFilter('all');
+    showToast(stored?'PRO 21 REINICIADO · 0 / 21 DÍAS':'NO SE PUDO GUARDAR EL REINICIO');
+  });
+
+  update();
+  applyFilter('all');
+})();
+</script>
+
+<script>
+(function(){
+  const panel=document.getElementById('kaiIntro');
+  if(!panel)return;
+  const replay=document.getElementById('kaiReplay');
+  const title=document.getElementById('kaiTitle');
+  const message=document.getElementById('kaiMessage');
+  const count=document.getElementById('kaiStepCount');
+  const progress=document.getElementById('kaiProgress');
+  const back=document.getElementById('kaiBack');
+  const next=document.getElementById('kaiNext');
+  const start=document.getElementById('kaiStart');
+  const dots=Array.from(panel.querySelectorAll('.kai-step-dots i'));
+  const steps=[
+    {title:'¡Vamos a trabajar tu juego!',message:'Durante 21 días vamos a desarrollar coordinación, primer paso, cambios de dirección y técnica con pelota. No se trata de hacer todo rápido: se trata de moverte cada vez mejor.'},
+    {title:'Tres semanas. Tres etapas.',message:'Primero construimos una base de control. Después trabajamos reacción, velocidad y agilidad. En la última etapa conectamos esos movimientos con la pelota y situaciones de juego.'},
+    {title:'Cada sesión suma a tu evolución.',message:'Completá las jornadas a tu ritmo, respetá los descansos y registrá tu avance. Cada día completado suma 50 XP a tu progreso PRO 21. ¿Listo para empezar?'}
+  ];
+  let step=0;
+  try{if(localStorage.getItem('auraxp-pro-21day-intro-v1')==='seen'){panel.classList.add('is-complete');replay.classList.add('is-visible');}}catch(e){}
+  function render(){
+    const data=steps[step];title.textContent=data.title;message.textContent=data.message;
+    count.textContent=String(step+1).padStart(2,'0')+' / 03';progress.style.width=((step+1)/3*100)+'%';
+    dots.forEach((dot,i)=>dot.classList.toggle('active',i===step));
+    back.disabled=step===0;next.hidden=step===2;start.hidden=step!==2;
+    panel.querySelector('.kai-step-dots').setAttribute('aria-label','Paso '+(step+1)+' de 3');
+  }
+  function open(){step=0;render();panel.classList.remove('is-complete');replay.classList.remove('is-visible');panel.scrollIntoView({behavior:'smooth',block:'center'});}
+  function finish(){panel.classList.add('is-complete');replay.classList.add('is-visible');try{localStorage.setItem('auraxp-pro-21day-intro-v1','seen');}catch(e){}document.getElementById('playerProgress')?.scrollIntoView({behavior:'smooth',block:'center'});}
+  back.addEventListener('click',()=>{if(step>0){step--;render();}});
+  next.addEventListener('click',()=>{if(step<2){step++;render();}});
+  start.addEventListener('click',finish);
+  replay.addEventListener('click',open);
+  render();
+})();
+</script>
+<script src="assets/aura-player-evolution.js" defer></script>
+</body>
+</html>
