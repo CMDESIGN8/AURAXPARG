@@ -2002,6 +2002,48 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 #aura-player-missions .hero-hud .mission-card .mission-reward.is-earned .reward-art{
   animation:none!important;
 }
+
+/* AURA DROP — partículas limpias, sin iluminación */
+#aura-player-missions .hero-hud .mission-card .mission-reward:after{
+  content:""!important;
+  position:absolute!important;inset:0!important;z-index:0!important;
+  pointer-events:none!important;
+  opacity:.72!important;
+  background:
+    radial-gradient(circle at 7% 22%,var(--skill-accent,#08c9f4) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 18% 78%,rgba(220,245,255,.8) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 34% 14%,var(--skill-accent,#08c9f4) 0 1.2px,transparent 2px),
+    radial-gradient(circle at 48% 88%,rgba(220,245,255,.7) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 67% 24%,var(--skill-accent,#08c9f4) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 79% 72%,rgba(220,245,255,.75) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 94% 36%,var(--skill-accent,#08c9f4) 0 1.2px,transparent 2px);
+  background-size:100% 100%;
+  filter:none!important;
+  animation:auraCleanParticles 7s ease-in-out infinite alternate!important;
+}
+#aura-player-missions .hero-hud .mission-card .reward-art:after{
+  content:""!important;
+  position:absolute!important;inset:-5%!important;
+  pointer-events:none!important;z-index:2!important;
+  opacity:.8!important;
+  background:
+    radial-gradient(circle at 12% 24%,var(--skill-accent,#08c9f4) 0 1px,transparent 2px),
+    radial-gradient(circle at 84% 18%,rgba(230,248,255,.8) 0 1px,transparent 2px),
+    radial-gradient(circle at 88% 76%,var(--skill-accent,#08c9f4) 0 1.2px,transparent 2px),
+    radial-gradient(circle at 18% 82%,rgba(230,248,255,.7) 0 1px,transparent 2px),
+    radial-gradient(circle at 54% 6%,var(--skill-accent,#08c9f4) 0 1px,transparent 2px),
+    radial-gradient(circle at 70% 94%,rgba(230,248,255,.7) 0 1px,transparent 2px);
+  filter:none!important;text-shadow:none!important;
+  animation:auraCleanParticles 5s ease-in-out infinite alternate!important;
+}
+@keyframes auraCleanParticles{
+  0%{opacity:.28;transform:translate3d(-2px,3px,0)}
+  100%{opacity:.82;transform:translate3d(2px,-3px,0)}
+}
+@media(prefers-reduced-motion:reduce){
+  #aura-player-missions .hero-hud .mission-card .mission-reward:after,
+  #aura-player-missions .hero-hud .mission-card .reward-art:after{animation:none!important}
+}
 </style>
 </head>
 <body>
