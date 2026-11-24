@@ -1495,6 +1495,60 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  .kai-inline-portrait{width:82px}
 }
 
+
+/* AJUSTE DE JERARQUÍA: ejercicio primero, avance y colección después */
+#aura-player-missions .mission-card{
+ display:block!important;
+ padding:clamp(14px,2vw,22px)!important;
+ border:1px solid rgba(8,201,244,.78)!important;
+ background:radial-gradient(ellipse at 20% 0%,rgba(8,201,244,.12),transparent 50%),linear-gradient(120deg,#071725,#030c17 78%)!important;
+ overflow:visible!important;
+}
+#aura-player-missions .mission-card .mission-card-top{display:none!important}
+#aura-player-missions .mission-card .skill-info{
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:9px!important;
+ width:100%;min-width:0;
+}
+#aura-player-missions .mission-card .skill-info>b{
+ order:1;font-size:clamp(25px,3.6vw,42px)!important;line-height:1!important;
+}
+#aura-player-missions .mission-card .skill-mission{order:0;align-self:flex-start}
+#aura-player-missions .mission-card .skill-info>small{order:2}
+#aura-player-missions .mission-card .mission-benefit{
+ order:3;width:100%;margin:5px 0 0!important;padding:0!important;border:0!important;background:none!important;clip-path:none!important;
+}
+#aura-player-missions .mission-card .mission-benefit>p{font-size:clamp(12px,1.2vw,14px)!important}
+#aura-player-missions .mission-card .quick-drills{
+ width:100%;margin-top:12px!important;padding:14px!important;
+ border:1px solid rgba(8,201,244,.48);background:linear-gradient(110deg,rgba(8,201,244,.07),rgba(2,10,18,.72));
+}
+#aura-player-missions .mission-card .drill-list{width:100%;margin-top:10px}
+#aura-player-missions .mission-card .drill{
+ grid-template-columns:minmax(125px,24%) minmax(0,1fr)!important;
+ min-height:150px!important;
+}
+#aura-player-missions .mission-card .reward-art,
+#aura-player-missions .mission-card .reward-copy,
+#aura-player-missions .mission-card .reward-lock{display:none!important}
+#aura-player-missions .mission-card .mission-reward{display:none!important}
+#aura-player-missions .mission-controls{
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:9px!important;
+ margin:10px 0 0!important;padding:0 2px!important;
+}
+#aura-player-missions .mission-controls #mission-hint{order:0;font-size:9px!important;line-height:1.4}
+#aura-player-missions .mission-controls #mission-next{
+ order:1;width:100%!important;min-height:48px!important;margin:0!important;
+ font-size:clamp(11px,1.1vw,14px)!important;letter-spacing:.06em;
+}
+#aura-player-missions .aura-collection{margin-top:15px!important}
+#aura-player-missions .kai-inline{margin-top:12px!important}
+@media(max-width:700px){
+ #aura-player-missions .mission-card{padding:12px 10px!important}
+ #aura-player-missions .mission-card .drill{grid-template-columns:88px minmax(0,1fr)!important;min-height:116px!important;gap:9px!important}
+ #aura-player-missions .mission-card .drill-art{height:82px!important}
+ #aura-player-missions .mission-controls #mission-next{min-height:46px!important}
+}
+
 </style>
 </head>
 <body>
@@ -1551,6 +1605,10 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     </div>
   </div>
 
+  <div class="mission-controls">
+    <span id="mission-hint">SUPERÁ EL RETO Y DESBLOQUEÁ LA SIGUIENTE ETAPA.</span>
+    <button class="mission-complete" id="mission-next" type="button">COMPLETAR DESAFÍO <span>↗</span></button>
+  </div>
   <section class="aura-collection" aria-label="Colección de recompensas AURA">
     <div class="collection-heading"><span>TU COLECCIÓN AURA</span><small>4 DROPS · UN SOLO RECORRIDO</small></div>
     <div class="collection-body">
@@ -1563,10 +1621,6 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     <button type="button" class="kai-inline-button" id="kai-inline-button"><strong>K</strong> HABLAR CON KAI</button>
     <div class="kai-inline-portrait" aria-hidden="true"><span></span></div>
   </section>
-  <div class="mission-controls">
-    <span id="mission-hint">SUPERÁ EL RETO Y DESBLOQUEÁ LA SIGUIENTE ETAPA.</span>
-    <button class="mission-complete" id="mission-next" type="button">COMPLETAR DESAFÍO <span>↗</span></button>
-  </div>
   <div class="mission-complete-state" id="mission-finished" hidden>
     <span class="finished-mark">✦</span>
     <span class="finish-kicker">PLAYER DEVELOPMENT · ETAPA 01</span>
