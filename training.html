@@ -2119,6 +2119,33 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 }
 
 
+/* AURA TRAINING — slogan con la misma identidad del cierre */
+.hero .hero-inner>.hero-slogan{
+  display:block!important;
+  max-width:900px;
+  margin:13px auto 15px!important;
+  font-size:clamp(30px,5vw,52px);
+  line-height:.98;
+  letter-spacing:-.06em;
+  font-weight:900;
+  text-transform:uppercase;
+  color:var(--white);
+  text-align:center;
+}
+.hero .hero-inner>.hero-slogan span{
+  color:var(--lime);
+  font-family:"Permanent Marker",cursive;
+  font-weight:400;
+  text-shadow:none;
+}
+@media(max-width:600px){
+  .hero .hero-inner>.hero-slogan{
+    font-size:clamp(30px,8vw,42px);
+    line-height:.98;
+    margin:10px auto 12px!important;
+  }
+}
+ 
 /* AURA TRAINING — encabezado centrado */
 .hero .hero-inner>.hero-stamp{
   margin-left:auto!important;margin-right:auto!important;
@@ -2146,7 +2173,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <div class="hero-inner">
 <div class="hero-stamp">AURA TRAINING MODE · TEMPORADA 01</div>
 
-<h1>FARMEÁ TU JUEGO.<br><span>ENTRENÁ EN SERIO.</span></h1>
+<h2 class="hero-slogan">NO ESPERES EL CAMBIO.<br><span>ENTRENALO.</span></h2>
 <p class="hero-copy">No desbloqueás habilidades mirando. <strong>Las construís entrenando.</strong> Aceptá un desafío, seguí tu programa y llevá tu trabajo a la cancha.</p>
 <div class="hero-hud" id="aura-player-missions" aria-label="Desafíos para desarrollar tu juego">
   <div class="mission-stage-wrap mission-overview-wrap">
