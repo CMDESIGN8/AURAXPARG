@@ -1361,6 +1361,140 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  .hero-hud .mission-card .reward-lock{width:21px!important;height:21px!important;min-width:21px!important;font-size:6px!important}
 }
 
+
+/* AURA CAREER SCREEN — composición basada en la referencia visual */
+.hero{padding:24px 18px 34px;text-align:left;background:radial-gradient(ellipse at 52% 0%,rgba(0,168,220,.13),transparent 55%),linear-gradient(180deg,#050a13 0%,#07111d 100%)}
+.hero:before{left:-260px;top:120px;opacity:.45}.hero:after{right:-270px;bottom:10px;opacity:.35}
+.hero-inner{width:min(1000px,100%);animation:none}
+.hero-stamp,.hero-inner>h1,.hero-inner>.hero-copy,.hero-actions{display:none!important}
+.hero-hud{width:min(1000px,100%);margin:0 auto;padding:22px 24px 18px;border:1px solid rgba(8,201,244,.82);background:linear-gradient(130deg,rgba(3,17,30,.98),rgba(3,10,20,.98) 70%);box-shadow:0 0 0 5px rgba(8,201,244,.035),0 18px 55px rgba(0,0,0,.5);position:relative}
+.hero-hud:before{left:-1px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--cyan),transparent 45%,var(--lime));box-shadow:0 0 16px rgba(8,201,244,.4)}
+.hero-hud:after{content:"";position:absolute;inset:8px;z-index:0;pointer-events:none;border:1px solid rgba(8,201,244,.11);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
+.hero-hud>*{position:relative;z-index:1}
+.hero-hud .mission-stage-wrap.mission-overview-wrap{padding:0;border:0;background:none;box-shadow:none}
+.hero-hud .hud-topline{align-items:flex-start;padding:0 4px 13px;border:0}
+.hero-hud .hud-eyebrow{font-size:clamp(10px,1.2vw,14px);color:var(--cyan);letter-spacing:.1em}
+.hero-hud .hud-topline strong{display:block;margin-top:4px;font-size:clamp(24px,3vw,36px);line-height:1.03;letter-spacing:-.045em;color:#f5f8fc}
+.hero-hud .hud-subtitle{display:block;margin-top:6px;color:#aab8d0;font-size:clamp(11px,1.35vw,16px);font-weight:800;letter-spacing:.035em}
+.hero-hud .hud-live{margin-top:4px;padding:10px 15px;border:1px solid var(--lime);color:var(--lime);font-size:clamp(9px,1vw,12px);background:rgba(183,255,60,.07)}
+.hero-hud .hud-live i{width:8px;height:8px}
+.hero-hud .mission-progress{margin:0 4px 13px}
+.hero-hud .mission-progress-meta{font-size:clamp(9px,1vw,12px);color:#d5deed}
+.hero-hud .mission-progress-meta>span:last-child strong{font-size:clamp(20px,2.2vw,27px);color:var(--lime)}
+.hero-hud .mission-progress-track{height:9px;border-radius:10px;background:#142b3b;overflow:hidden}
+.hero-hud .mission-progress-track span{background:linear-gradient(90deg,#00d7f4 0%,#31f4d5 65%,#b7ff3c 100%);box-shadow:0 0 15px rgba(8,201,244,.4)}
+.hero-hud .challenge-journey{margin:0 0 13px;padding:12px 16px 13px;border:1px solid rgba(8,201,244,.65);background:linear-gradient(110deg,rgba(8,201,244,.045),rgba(3,12,22,.85));clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.hero-hud .journey-heading{font-size:clamp(9px,1vw,12px);color:#d3deed}
+.hero-hud .journey-nodes{margin-top:13px;gap:8px}
+.hero-hud .journey-node i{width:clamp(40px,5vw,54px);height:clamp(40px,5vw,54px);font-size:clamp(13px,1.5vw,18px);border-width:2px}
+.hero-hud .journey-node b{font-size:clamp(8px,.95vw,11px);letter-spacing:.04em}
+.hero-hud .journey-link{top:-10px}
+.hero-hud .stage-side-label{display:flex;align-items:center;justify-content:space-between;margin:0;padding:10px 18px;border:1px solid rgba(8,201,244,.8);border-bottom:0;color:#e8f2ff;font-size:clamp(10px,1.1vw,13px);font-weight:900;letter-spacing:.1em;background:linear-gradient(90deg,rgba(8,201,244,.13),rgba(4,12,22,.92));clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)}
+.hero-hud .stage-side-label span:last-child{color:var(--cyan)}
+.hero-hud .skill-grid{display:block;margin:0}
+.hero-hud .mission-card{display:grid;grid-template-columns:minmax(190px,34%) minmax(0,1fr);grid-template-areas:"reward artcopy" "exercise exercise";gap:12px 20px;padding:18px!important;border:1px solid rgba(8,201,244,.8)!important;background:radial-gradient(ellipse at 18% 48%,rgba(0,181,255,.16),transparent 48%),linear-gradient(120deg,#071725,#030c17 76%)!important;box-shadow:inset 0 0 30px rgba(8,201,244,.035);border-radius:0!important;overflow:hidden}
+.hero-hud .mission-card-top{display:none}
+.hero-hud .mission-card .skill-info{grid-area:artcopy;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
+.hero-hud .mission-card .skill-mission{order:0;margin:0;padding:5px 10px;border:0!important;background:var(--cyan)!important;color:#03111b!important;font-size:clamp(9px,1vw,12px);font-style:italic;letter-spacing:.04em}
+.hero-hud .mission-card .skill-info>b{order:1;font-size:clamp(27px,4.2vw,48px);line-height:.98;letter-spacing:-.04em;color:#fff;text-shadow:0 0 18px rgba(8,201,244,.12)}
+.hero-hud .mission-card .skill-info>small{order:2;font-size:clamp(13px,1.55vw,18px);line-height:1.35;color:#c9d8e8}
+.hero-hud .mission-benefit{order:3;margin:8px 0 0;padding:12px 14px;border:1px solid rgba(8,201,244,.55)!important;background:rgba(8,201,244,.035)!important;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.hero-hud .mission-benefit>span{display:none}
+.hero-hud .mission-benefit>p{font-size:12px;line-height:1.5;color:#d7e4ef}
+.hero-hud .mission-reward{grid-area:reward;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;margin:0!important;padding:0!important;border:0!important;min-width:0}
+.hero-hud .mission-card .reward-art{width:min(100%,230px);height:auto;min-width:0;aspect-ratio:1/1;display:grid;place-items:center;overflow:visible;background:radial-gradient(circle,rgba(8,201,244,.16),transparent 68%)}
+.hero-hud .mission-card .reward-art .aura-badge-svg{display:block;width:100%;height:auto;max-width:220px;max-height:none;overflow:visible;filter:drop-shadow(0 0 18px var(--skill-glow))}
+.hero-hud .mission-card .reward-copy{display:none}
+.hero-hud .mission-card .reward-lock{position:absolute;bottom:0;right:0;width:auto;height:auto;min-width:0;padding:5px 8px;border:1px solid var(--skill-accent);background:#06121d;color:var(--skill-accent);font-size:8px}
+.hero-hud .mission-card .mission-benefit .quick-drills{width:100%;margin-top:13px}
+.hero-hud .mission-card .drills-title{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hero-hud .mission-card .drills-title>b{font-size:clamp(12px,1.3vw,16px);color:var(--lime);letter-spacing:.05em}
+.hero-hud .mission-card .drills-title>small{font-size:9px;color:#b9c9d8}
+.hero-hud .mission-card .drill{grid-template-columns:minmax(110px,30%) minmax(0,1fr)!important;min-height:140px!important;padding:12px!important;background:rgba(8,201,244,.035)!important;border-left:2px solid var(--skill-accent)!important}
+.hero-hud .mission-card .drill-art{height:100px!important}
+.hero-hud .mission-card .drill-content>b{font-size:clamp(12px,1.5vw,17px)!important}
+.hero-hud .mission-card .drill-content>p{font-size:11px!important;line-height:1.4!important}
+.hero-hud .mission-card .drill-payoff{font-size:9px!important}
+.hero-hud .mission-card .drill-status{font-size:8px!important}
+.aura-collection{margin:13px 0 0;padding:12px 14px;border:1px solid var(--lime);background:linear-gradient(110deg,rgba(183,255,60,.045),rgba(3,12,20,.94));clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.collection-heading{display:flex;justify-content:space-between;gap:8px;color:var(--lime);font-size:clamp(10px,1.1vw,13px);font-weight:900;font-style:italic;letter-spacing:.06em}
+.collection-heading small{color:#8296a8;font-size:8px;font-style:normal}
+.collection-body{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:15px;align-items:center;margin-top:10px}
+.collection-badges{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.collection-badge{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5px 4px 7px;border:1px solid color-mix(in srgb,var(--badge-color) 70%,transparent);background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--badge-color) 15%,transparent),transparent 70%);box-shadow:inset 0 0 16px color-mix(in srgb,var(--badge-color) 8%,transparent);text-align:center}
+.collection-badge .aura-badge-svg{width:100%;max-width:105px;height:auto;aspect-ratio:96/108;filter:drop-shadow(0 0 8px color-mix(in srgb,var(--badge-color) 45%,transparent))}
+.collection-badge b{margin-top:3px;color:#f4f7fb;font-size:clamp(8px,.9vw,11px);line-height:1.15;letter-spacing:.02em}
+.collection-badge small{margin-top:3px;color:var(--badge-color);font-size:7px;font-weight:900;letter-spacing:.08em}
+.collection-badge.is-locked{filter:saturate(.7);opacity:.78}
+.collection-promo{min-height:112px;padding-left:17px;border-left:3px solid var(--lime);display:flex;flex-direction:column;justify-content:center;gap:7px}
+.collection-promo p{font-size:12px;line-height:1.45;color:#d1dbea}
+.collection-promo strong{font:italic 900 30px/1 Montserrat,sans-serif;letter-spacing:-.09em;color:#fff}
+.collection-promo strong i{color:var(--lime);font-style:italic}
+.collection-promo span{font:italic 900 8px Montserrat,sans-serif;color:var(--lime);letter-spacing:.1em}
+.kai-inline{position:relative;display:flex;align-items:center;min-height:100px;margin:13px 0 0;padding:14px 210px 14px 20px;border:1px solid rgba(8,201,244,.55);background:radial-gradient(ellipse at 93% 50%,rgba(8,201,244,.2),transparent 25%),linear-gradient(100deg,#06121e,#071522);overflow:hidden}
+.kai-inline-copy b{color:var(--cyan);font-size:clamp(11px,1.2vw,14px);font-style:italic;letter-spacing:.06em}
+.kai-inline-copy p{margin-top:5px;color:#d2deeb;font-size:clamp(11px,1.2vw,14px);line-height:1.4}
+.kai-inline-button{position:absolute;z-index:2;right:135px;top:12px;display:flex;align-items:center;gap:9px;padding:10px 13px;border:1px solid var(--cyan);background:#04111c;color:#fff;font:900 10px Montserrat,sans-serif;letter-spacing:.04em;cursor:pointer;clip-path:polygon(0 0,100% 0,94% 100%,0 100%)}
+.kai-inline-button strong{display:grid;place-items:center;width:28px;height:28px;background:var(--cyan);color:#03111b;font-size:18px}
+.kai-inline-portrait{position:absolute;right:0;bottom:0;width:150px;height:116px;background:radial-gradient(ellipse at 55% 60%,rgba(8,201,244,.3),transparent 66%);border-bottom:2px solid var(--cyan)}
+.kai-inline-portrait:before{content:"";position:absolute;right:35px;bottom:-10px;width:80px;height:110px;border-radius:45% 45% 0 0;background:linear-gradient(130deg,#08131e 20%,#24465b 52%,#08131e 80%);clip-path:polygon(28% 0,72% 0,100% 100%,0 100%)}
+.kai-inline-portrait:after{content:"";position:absolute;right:53px;bottom:49px;width:43px;height:49px;border-radius:45% 45% 40% 40%;background:linear-gradient(90deg,#182c3c,#d3e0e9 48%,#172a39);box-shadow:0 -12px 0 -2px #111e2c}
+.kai-inline-portrait span{position:absolute;z-index:2;right:66px;bottom:73px;width:18px;height:3px;background:var(--cyan);box-shadow:0 0 9px var(--cyan)}
+#kai-inline-button:hover{background:rgba(8,201,244,.16)}
+@media(max-width:700px){
+ .hero{padding:12px 8px 22px}
+ .hero-hud{padding:15px 11px 12px}
+ .hero-hud .hud-topline{gap:8px;padding:0 2px 10px}
+ .hero-hud .hud-topline strong{font-size:clamp(19px,5vw,25px)}
+ .hero-hud .hud-subtitle{font-size:9px}
+ .hero-hud .hud-live{font-size:7px;padding:7px 8px;white-space:nowrap}
+ .hero-hud .challenge-journey{padding:10px 8px}
+ .hero-hud .journey-heading{font-size:7px}
+ .hero-hud .journey-node i{width:32px;height:32px;font-size:10px}
+ .hero-hud .journey-node b{font-size:6px}
+ .hero-hud .mission-card{grid-template-columns:90px minmax(0,1fr);gap:8px 10px;padding:12px 9px!important}
+ .hero-hud .mission-card .reward-art{width:90px;max-width:90px}
+ .hero-hud .mission-card .reward-lock{font-size:6px;padding:4px}
+ .hero-hud .mission-card .skill-info>b{font-size:clamp(19px,5vw,27px)}
+ .hero-hud .mission-card .skill-info>small{font-size:11px}
+ .hero-hud .mission-benefit{padding:9px 10px;margin-top:2px}
+ .hero-hud .mission-benefit>p{font-size:10px}
+ .hero-hud .mission-card .drill{grid-template-columns:90px minmax(0,1fr)!important;gap:9px!important;min-height:120px!important;padding:9px!important}
+ .hero-hud .mission-card .drill-art{height:82px!important}
+ .hero-hud .mission-card .drill-content>p{font-size:9px!important}
+ .hero-hud .mission-card .drill-payoff{font-size:8px!important}
+ .collection-body{grid-template-columns:minmax(0,1fr);gap:9px}
+ .collection-badges{gap:5px}
+ .collection-badge{padding:4px 2px}
+ .collection-badge .aura-badge-svg{max-width:75px}
+ .collection-badge b{font-size:7px}
+ .collection-badge small{font-size:6px}
+ .collection-promo{min-height:0;padding:8px 0 0;border-left:0;border-top:1px solid rgba(183,255,60,.5);display:grid;grid-template-columns:1fr auto;align-items:center}
+ .collection-promo p{font-size:10px}
+ .collection-promo strong{font-size:23px;grid-column:2;grid-row:1}
+ .collection-promo span{display:none}
+ .kai-inline{min-height:105px;padding:13px 115px 13px 12px}
+ .kai-inline-copy b{font-size:9px}
+ .kai-inline-copy p{font-size:10px;max-width:250px}
+ .kai-inline-button{right:85px;top:8px;padding:6px 7px;gap:5px;font-size:7px}
+ .kai-inline-button strong{width:21px;height:21px;font-size:13px}
+ .kai-inline-portrait{width:98px;height:100px}
+ .kai-inline-portrait:before{right:15px;width:68px;height:92px}
+ .kai-inline-portrait:after{right:31px;bottom:43px;width:36px;height:43px}
+ .kai-inline-portrait span{right:42px;bottom:64px}
+ .mission-controls{display:grid;gap:9px}
+ .mission-controls #mission-hint{font-size:8px}
+ .mission-controls #mission-next{width:100%}
+}
+@media(max-width:380px){
+ .hero-hud .mission-card{grid-template-columns:74px minmax(0,1fr);gap:7px}
+ .hero-hud .mission-card .reward-art{width:74px}
+ .collection-badge b{font-size:6px}
+ .kai-inline{padding-right:96px}
+ .kai-inline-button{right:70px;font-size:6px}
+ .kai-inline-portrait{width:82px}
+}
+
 </style>
 </head>
 <body>
@@ -1416,6 +1550,19 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
       </article>
     </div>
   </div>
+
+  <section class="aura-collection" aria-label="Colección de recompensas AURA">
+    <div class="collection-heading"><span>TU COLECCIÓN AURA</span><small>4 DROPS · UN SOLO RECORRIDO</small></div>
+    <div class="collection-body">
+      <div class="collection-badges" id="aura-collection-badges"></div>
+      <div class="collection-promo"><p>Desbloqueá los 4 drops y completá tu colección.</p><strong>AURA <i>XP</i></strong><span>FARMEÁ TU ESTILO</span></div>
+    </div>
+  </section>
+  <section class="kai-inline" aria-label="Coach AURA KAI">
+    <div class="kai-inline-copy"><b>KAI · COACH AURA</b><p>Completá los ejercicios y desbloqueá tu primer drop. ¡Vos podés!</p></div>
+    <button type="button" class="kai-inline-button" id="kai-inline-button"><strong>K</strong> HABLAR CON KAI</button>
+    <div class="kai-inline-portrait" aria-hidden="true"><span></span></div>
+  </section>
   <div class="mission-controls">
     <span id="mission-hint">SUPERÁ EL RETO Y DESBLOQUEÁ LA SIGUIENTE ETAPA.</span>
     <button class="mission-complete" id="mission-next" type="button">COMPLETAR DESAFÍO <span>↗</span></button>
@@ -1543,6 +1690,13 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',exercises:[['CONTROL ORIENTADO','10 por perfil','Recibí y llevá el primer toque hacia el espacio libre.','Salir de la presión con el primer toque.'],['PASE CONTRA PARED','20 pases','Alterná pie derecho e izquierdo. Prepará el cuerpo antes de recibir.','Dar pases más precisos con ambos perfiles.'],['CONDUCCIÓN + CAMBIO','5 recorridos','Conducí, cambiá de dirección y salí con un toque más largo.','Cambiar el ritmo para dejar atrás al rival.']],benefit:'Controlá, pasá y resolvé con más recursos cuando tenés la pelota.',action:'RESOLVER',mark:'✳',reward:'DOMINIO DE PELOTA',drop:'TOUCH MASTER',className:'skill-technique',coach:'La técnica transforma lo que pensás en una acción. Un buen control o un pase preciso te dan más opciones para resolver bajo presión.',tip:'Antes de recibir, levantá la mirada y pensá tu próxima acción. El control empieza antes de que la pelota llegue.'}
   ];
 
+  const completedDrops=new Set();
+  function renderCollection(){
+    const target=root.querySelector('#aura-collection-badges');if(!target)return;
+    const names=['CONTROL CORE','FIRST STRIKE','BREAKPOINT','TOUCH MASTER'];
+    const colors=['#08c9f4','#b7ff3c','#c58aff','#ff9b3d'];
+    target.innerHTML=names.map((name,i)=>'<div class="collection-badge '+(completedDrops.has(i)?'is-earned':'is-locked')+'" style="--badge-color:'+colors[i]+'">'+badgeSvg(i,completedDrops.has(i))+'<b>'+name+'</b><small>'+(completedDrops.has(i)?'DESBLOQUEADO':'POR DESBLOQUEAR')+'</small></div>').join('');
+  }
   function badgeSvg(i,earned){
     const names=['CONTROL CORE','FIRST STRIKE','BREAKPOINT','TOUCH MASTER'];
     const colors=['#08c9f4','#b7ff3c','#c58aff','#ff9b3d'];
@@ -1583,7 +1737,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   next.addEventListener('click',function(){
     if(!completedExercises.has(currentExercise))return;
     if(currentExercise<challenges[current].exercises.length-1){currentExercise++;updateExerciseProgress();return;}
-    const card=stage.querySelector('.mission-card');if(card)card.classList.add('is-completing');next.disabled=true;
+    completedDrops.add(current);renderCollection();const card=stage.querySelector('.mission-card');if(card)card.classList.add('is-completing');next.disabled=true;
     window.setTimeout(function(){current++;if(current>=challenges.length){controls.hidden=true;stage.hidden=true;finished.hidden=false;counter.innerHTML='04 DE 04 <b>· COMPLETADO</b>';index.textContent='100%';percent.textContent='100%';fill.style.width='100%';renderJourney();callCoach(current-1,true);}else{render();callCoach(current);}},300);
   });
   root.querySelector('#mission-restart').addEventListener('click',function(){
@@ -1628,6 +1782,8 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 (function(){
  const modal=document.getElementById('coach-tutorial');
  const launcher=document.getElementById('coach-launcher');
+ const inlineCoach=document.getElementById('kai-inline-button');
+ if(inlineCoach)inlineCoach.addEventListener('click',function(){launcher.click()});
  if(!modal||!launcher)return;
  const title=document.getElementById('coach-tutorial-title');
  const copy=document.getElementById('coach-tutorial-copy');
