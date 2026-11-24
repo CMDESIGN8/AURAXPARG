@@ -2223,6 +2223,30 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 
 <h2 class="hero-slogan">NO ESPERES EL CAMBIO.<br><span>ENTRENALO.</span></h2>
 <p class="hero-copy">No desbloqueás habilidades mirando. <strong>Las construís entrenando.</strong> Aceptá un desafío, seguí tu programa y llevá tu trabajo a la cancha.</p>
+
+<section class="aura-evolution" data-aura-evolution aria-label="Perfil de evolución AURA XP">
+  <div class="aura-evolution-head">
+    <div><span class="aura-evolution-kicker">AURA XP // PLAYER DEVELOPMENT</span><strong class="aura-evolution-title">PLAYER EVOLUTION</strong></div>
+    <div class="aura-evolution-rank"><b data-aura-rank>ROOKIE</b><small data-aura-level>NIVEL 01</small></div>
+  </div>
+  <div class="aura-evolution-stats">
+    <div class="aura-evolution-stat"><b data-aura-xp>000</b><span>XP DE ENTRENAMIENTO</span></div>
+    <div class="aura-evolution-stat"><b data-aura-days>0 / 58</b><span>JORNADAS REGISTRADAS</span></div>
+    <div class="aura-evolution-stat"><b data-aura-programs>0 / 3</b><span>PROGRAMAS INICIADOS</span></div>
+  </div>
+  <div class="aura-evolution-skills">
+    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>COORDINACIÓN</span><b data-aura-skill="coordination">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="coordination"></i></div></div>
+    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>VELOCIDAD</span><b data-aura-skill="speed">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="speed"></i></div></div>
+    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>AGILIDAD</span><b data-aura-skill="agility">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="agility"></i></div></div>
+    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>TÉCNICA</span><b data-aura-skill="technique">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="technique"></i></div></div>
+  </div>
+  <div class="aura-evolution-programs">
+    <span class="aura-evolution-program" data-aura-program-status="start"><strong>START</strong> · 7 DÍAS</span>
+    <span class="aura-evolution-program" data-aura-program-status="pro"><strong>PRO</strong> · 21 DÍAS</span>
+    <span class="aura-evolution-program" data-aura-program-status="elite"><strong>ELITE</strong> · 30 DÍAS</span>
+  </div>
+  <div class="aura-evolution-foot">EL PROGRESO SE CALCULA CON JORNADAS MARCADAS EN LOS PROGRAMAS Y SE GUARDA EN ESTE DISPOSITIVO. LAS HABILIDADES REFLEJAN EL TRABAJO REGISTRADO, NO UNA EVALUACIÓN FÍSICA.</div>
+</section>
 <div class="hero-hud" id="aura-player-missions" aria-label="Desafíos para desarrollar tu juego">
   <div class="mission-stage-wrap mission-overview-wrap">
   <div class="hud-topline">
@@ -2573,5 +2597,6 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  document.addEventListener('keydown',function(e){if(!modal.hidden&&e.key==='Escape')close()});
 })();
 </script>
+<script src="assets/aura-player-evolution.js" defer></script>
 </body>
 </html>

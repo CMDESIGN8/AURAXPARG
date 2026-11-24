@@ -79,6 +79,8 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
 .club-main p{font-size:11px;color:var(--muted);max-width:500px}
 .club-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
 .club-side{display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.club-side:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--cyan,#08c9f4),var(--lime,#b7ff3c))}
+
 .xp-number{font-size:42px;font-weight:900;letter-spacing:-.07em;color:var(--lime);line-height:1}
 .xp-caption{font-size:9px;color:var(--muted);letter-spacing:.14em;font-weight:900}
 .stat-row{display:flex;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}
@@ -130,10 +132,46 @@ header{height:56px;padding:0 max(4vw,18px);gap:18px}
 nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:nowrap}
 @media(max-width:720px){header{height:56px;min-height:56px;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:0 14px} .brand img{width:110px;height:100px}nav{width:auto;min-width:0;flex:1;justify-content:flex-end;gap:10px;font-size:7px;letter-spacing:.025em;white-space:nowrap;overflow-x:auto;scrollbar-width:none}nav::-webkit-scrollbar{display:none}}
 @media(max-width:380px){header{padding:0 10px;gap:7px}.brand img{width:72px;height:27px}nav{gap:7px;font-size:6.5px}}
+
+/* AURA PLAYER EVOLUTION — progreso compartido de programas reales */
+.aura-evolution{position:relative;z-index:2;width:min(100%,1040px);margin:26px auto;padding:clamp(16px,2.5vw,24px);border:1px solid rgba(8,201,244,.32);background:linear-gradient(135deg,rgba(8,201,244,.075),rgba(5,12,22,.96) 42%,rgba(183,255,60,.035));color:#f3f8fc;text-align:left;overflow:hidden}
+.aura-evolution:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--cyan,#08c9f4),var(--lime,#b7ff3c))}
+.aura-evolution-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:17px}
+.aura-evolution-kicker{display:block;color:var(--cyan,#08c9f4);font-size:9px;font-weight:900;letter-spacing:.17em}
+.aura-evolution-title{display:block;margin-top:5px;font-size:clamp(18px,2.5vw,25px);font-weight:950;letter-spacing:-.045em;line-height:1}
+.aura-evolution-rank{text-align:right;white-space:nowrap}
+.aura-evolution-rank b{display:block;color:var(--lime,#b7ff3c);font-size:11px;letter-spacing:.12em}
+.aura-evolution-rank small{display:block;margin-top:4px;color:#91a4b6;font-size:8px;letter-spacing:.12em}
+.aura-evolution-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:18px}
+.aura-evolution-stat{padding:10px 12px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.08)}
+.aura-evolution-stat b{display:block;color:#fff;font-size:clamp(18px,3vw,25px);font-weight:950;line-height:1}
+.aura-evolution-stat span{display:block;margin-top:6px;color:#8fa2b4;font-size:8px;font-weight:800;letter-spacing:.12em}
+.aura-evolution-skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
+.aura-evolution-skill{min-width:0}
+.aura-evolution-skill-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;color:#dbe8f2;font-size:9px;font-weight:900;letter-spacing:.08em}
+.aura-evolution-skill-head b{color:var(--cyan,#08c9f4);font-variant-numeric:tabular-nums}
+.aura-evolution-track{height:5px;background:#1a2a38;overflow:hidden}
+.aura-evolution-track i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--cyan,#08c9f4),var(--lime,#b7ff3c));transition:width .35s ease}
+.aura-evolution-foot{margin-top:15px;padding-top:11px;border-top:1px solid rgba(255,255,255,.09);color:#8094a7;font-size:8px;line-height:1.5;letter-spacing:.07em}
+.aura-evolution-programs{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.aura-evolution-program{padding:6px 9px;border:1px solid rgba(255,255,255,.1);color:#91a4b6;font-size:8px;font-weight:900;letter-spacing:.09em}
+.aura-evolution-program strong{color:#e8f4fb}
+.aura-evolution-program.is-active{border-color:rgba(8,201,244,.42);color:var(--cyan,#08c9f4)}
+@media(max-width:600px){
+ .aura-evolution{margin:18px auto;padding:15px 13px}
+ .aura-evolution-head{margin-bottom:13px}
+ .aura-evolution-stats{gap:6px}
+ .aura-evolution-stat{padding:9px 8px}
+ .aura-evolution-stat span{font-size:7px;letter-spacing:.07em}
+ .aura-evolution-skills{gap:11px 12px}
+ .aura-evolution-skill-head{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){.aura-evolution-track i{transition:none}}
+
 </style>
 </head>
 <body>
-<div class="top">AURA XP PRO · 21 DAY PERFORMANCE PROGRAM</div>
+
 <header><a class="brand" href="index.html" aria-label="Volver al universo AURA"><img src="assets/logo2.png" alt="AURA XP"></a><nav><a href="training.html">Elegir sistema</a><a href="#days">Mi entrenamiento</a><a href="index.html">AURA</a></nav></header>
 <main>
 <section class="hero">
@@ -161,13 +199,31 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
       <button class="btn secondary" id="showAllBtn">VER LAS 3 SEMANAS</button>
     </div>
   </div>
-  <aside class="club-side">
-    <div class="xp-block"><div class="club-label">TU XP DE ENTRENAMIENTO</div><div class="xp-number" id="xpTotal">000</div><div class="xp-caption">XP ACUMULADOS</div><div class="level-track"><span id="xpTrack"></span></div></div>
-    <div><div class="xp-caption">DÍAS COMPLETADOS</div><div class="xp-number" id="completedTotal">0<span style="font-size:18px;color:var(--muted)"> / 21</span></div></div>
-    <div><div class="xp-caption">SIGUIENTE MISIÓN</div><div id="nextMission" style="font-size:12px;font-weight:900;margin-top:5px">DÍA 01 · ACTIVÁ TU MOTOR</div></div>
-    <div class="stat-row"><span>PROGRESO DEL PLAN</span><b id="percentTotal">0%</b></div>
-  </aside>
+  <aside class="club-side" data-aura-evolution aria-label="Perfil de evolución AURA XP">
+  <div class="aura-evolution-head">
+    <div><span class="aura-evolution-kicker">AURA XP // PLAYER DEVELOPMENT</span><strong class="aura-evolution-title">PLAYER EVOLUTION</strong></div>
+    <div class="aura-evolution-rank"><b data-aura-rank>ROOKIE</b><small data-aura-level>NIVEL 01</small></div>
+  </div>
+  <div class="aura-evolution-stats">
+    <div class="aura-evolution-stat"><b data-aura-xp>000</b><span>XP DE ENTRENAMIENTO</span></div>
+    <div class="aura-evolution-stat"><b data-aura-days>0 / 58</b><span>JORNADAS REGISTRADAS</span></div>
+    <div class="aura-evolution-stat"><b data-aura-programs>0 / 3</b><span>PROGRAMAS INICIADOS</span></div>
+  </div>
+  <div class="aura-evolution-skills">
+    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>COORDINACIÓN</span><b data-aura-skill="coordination">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="coordination"></i></div></div>
+    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>VELOCIDAD</span><b data-aura-skill="speed">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="speed"></i></div></div>
+    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>AGILIDAD</span><b data-aura-skill="agility">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="agility"></i></div></div>
+    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>TÉCNICA</span><b data-aura-skill="technique">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="technique"></i></div></div>
+  </div>
+  <div class="aura-evolution-programs">
+    <span class="aura-evolution-program" data-aura-program-status="start"><strong>START</strong> · 7 DÍAS</span>
+    <span class="aura-evolution-program" data-aura-program-status="pro"><strong>PRO</strong> · 21 DÍAS</span>
+    <span class="aura-evolution-program" data-aura-program-status="elite"><strong>ELITE</strong> · 30 DÍAS</span>
+  </div>
+  <div class="aura-evolution-foot">EL PROGRESO SE CALCULA CON JORNADAS MARCADAS EN LOS PROGRAMAS Y SE GUARDA EN ESTE DISPOSITIVO. LAS HABILIDADES REFLEJAN EL TRABAJO REGISTRADO, NO UNA EVALUACIÓN FÍSICA.</div>
 </section>
+
+
 <div class="week-filter" role="group" aria-label="Filtrar por semana">
   <button class="filter-btn active" data-filter="all">TODAS LAS SEMANAS</button>
   <button class="filter-btn" data-filter="1">WEEK 01 · BASE</button>
@@ -267,6 +323,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
       const badge=card.querySelector('.next-tag');
       if(badge) badge.remove();
     });
+    window.AuraPlayerEvolution?.refresh();
     if(next){
       const tag=document.createElement('span');
       tag.className='next-tag';
@@ -363,5 +420,6 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   applyFilter('all');
 })();
 </script>
+<script src="assets/aura-player-evolution.js" defer></script>
 </body>
 </html>
