@@ -47,7 +47,7 @@
       set('[data-aura-rank]',rank);
       set('[data-aura-level]','NIVEL '+String(level).padStart(2,'0'));
       set('[data-aura-xp]',String(totalXp).padStart(3,'0'));
-      set('[data-aura-days]',progress.pro.completed+' / 21');
+      set('[data-aura-days]',progress.pro.completed+' / 21');\n      set('[data-aura-pro-percent]',Math.round(progress.pro.completed/21*100)+'% DEL PROGRAMA');
       const overall=root.querySelector('[data-aura-overall]');
       if(overall)overall.style.width=Math.min(100,progress.pro.completed/21*100)+'%';
       Object.entries(skillValues).forEach(([skill,value])=>{
