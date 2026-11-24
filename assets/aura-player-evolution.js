@@ -35,21 +35,21 @@
     });
     const level=1+Math.floor(totalXp/250);
     const rank=level>=9?'ELITE':level>=3?'PROSPECT':'ROOKIE';
-    const skillValues={};
-    Object.entries(SKILLS).forEach(([skill,days])=>{
-      const saved=progress.pro.saved;
-      const done=days.filter(day=>saved[String(day)]===true).length;
-      skillValues[skill]=Math.round(done/days.length*100);
-    });
     document.querySelectorAll('[data-aura-evolution]').forEach(root=>{
       const set=(selector,value)=>{const el=root.querySelector(selector);if(el)el.textContent=value;};
       set('[data-aura-rank]',rank);
       set('[data-aura-level]','NIVEL '+String(level).padStart(2,'0'));
       set('[data-aura-xp]',String(totalXp).padStart(3,'0'));
-      set('[data-aura-days]',progress.pro.completed+' / 21');
-      set('[data-aura-pro-percent]',Math.round(progress.pro.completed/21*100)+'% DEL PROGRAMA');
+      const currentId=root.dataset.auraProgram||'pro';
+      const current=progress[currentId]||progress.pro;
+      set('[data-aura-days]',current.completed+' / '+current.total);
+      set('[data-aura-program-percent]',Math.round(current.completed/current.total*100)+'%');
       const overall=root.querySelector('[data-aura-overall]');
-      if(overall)overall.style.width=Math.min(100,progress.pro.completed/21*100)+'%';
+      if(overall)overall.style.width=Math.min(100,current.completed/current.total*100)+'%';
+      const skillValues={};
+      Object.entries(SKILLS[currentId]||SKILLS.pro).forEach(([skill,days])=>{
+        skillValues[skill]=Math.round(days.filter(day=>current.saved[String(day)]===true).length/days.length*100);
+      });
       Object.entries(skillValues).forEach(([skill,value])=>{
         set('[data-aura-skill="'+skill+'"]',value+'%');
         const bar=root.querySelector('[data-aura-bar="'+skill+'"]');
