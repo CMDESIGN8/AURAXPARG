@@ -2156,6 +2156,32 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   margin-left:auto!important;margin-right:auto!important;
 }
 
+
+/* KAI — imagen oficial preparada en assets/kai.png */
+.kai-inline-portrait{
+  display:flex;align-items:flex-end;justify-content:center;
+  background:linear-gradient(90deg,transparent,rgba(8,201,244,.07));
+  border-bottom:2px solid var(--cyan);
+}
+.kai-inline-portrait:before,.kai-inline-portrait:after{content:none!important;display:none!important}
+.kai-inline-portrait img{
+  position:relative;z-index:1;display:block;
+  width:100%;height:100%;object-fit:contain;object-position:center bottom;
+}
+.kai-inline-portrait span{display:none!important}
+.coach-figure{
+  align-items:flex-end;justify-content:center;
+  filter:none;
+}
+.coach-figure:before,.coach-figure:after{content:none!important;display:none!important}
+.coach-figure>img{
+  display:block;position:relative;z-index:1;
+  width:100%;height:100%;object-fit:contain;object-position:center bottom;
+}
+@media(max-width:900px){
+  .kai-inline-portrait img{width:100%;height:100%}
+}
+
 </style>
 </head>
 <body>
@@ -2226,7 +2252,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   <section class="kai-inline" aria-label="Coach AURA KAI">
     <div class="kai-inline-copy"><b>KAI · COACH AURA</b><p>Completá los ejercicios y desbloqueá tu primer drop. ¡Vos podés!</p></div>
     <button type="button" class="kai-inline-button" id="kai-inline-button"><strong>K</strong> HABLAR CON KAI</button>
-    <div class="kai-inline-portrait" aria-hidden="true"><span></span></div>
+    <div class="kai-inline-portrait" aria-hidden="true"><img src="assets/kai.png" alt="" loading="lazy" decoding="async"></div>
   </section>
   <div class="mission-complete-state" id="mission-finished" hidden>
     <span class="finished-mark">✦</span>
@@ -2426,7 +2452,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <div class="coach-tutorial" id="coach-tutorial" hidden role="dialog" aria-modal="true" aria-labelledby="coach-tutorial-title">
   <div class="coach-tutorial-inner">
     <div class="coach-tutorial-scene" aria-hidden="true">
-      <div class="coach-figure"><span class="coach-figure-face"></span><span class="coach-figure-tag">COACH AURA · KAI</span></div>
+      <div class="coach-figure"><img src="assets/kai.png" alt="KAI, coach de AURA XP" loading="eager" decoding="async"><span class="coach-figure-tag">COACH AURA · KAI</span></div>
     </div>
     <section class="coach-dialog">
       <div class="coach-dialog-meta"><span>KAI <b>//</b> TU ENTRENADOR</span><span id="coach-step-count">INICIO · 01/06</span></div>
