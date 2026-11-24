@@ -30,7 +30,7 @@
     }catch(error){return {};}
   }
   let awards=readAwards();
-  let modal,collection,hasShown=false;
+  let modal,collection,emblemMount,hasShown=false;
   function saveAwards(){
     try{localStorage.setItem(STORAGE_KEY,JSON.stringify(awards));return true;}
     catch(error){console.warn('AURA XP: no se pudo guardar la colección de logros.',error);return false;}
@@ -68,22 +68,40 @@
     document.body.classList.add('aura-award-open');
     hasShown=true;
   }
+
+  function renderEmblem(){
+    if(!emblemMount)return;
+    awards=readAwards();
+    const id=ORDER.includes(awards.equipped)&&awards[awards.equipped]?awards.equipped:null;
+    if(!id){emblemMount.innerHTML='<div class="aura-equipped-empty"><span>PLAYER EMBLEM</span><b>SIN EMBLEMA</b><small>DESBLOQUEÁ UNA INSIGNIA Y EQUIPALA ACÁ</small></div>';return;}
+    const p=PROGRAMS[id];
+    emblemMount.innerHTML='<div class="aura-equipped-card"><div class="aura-equipped-art">'+svg(id,p.tone)+'</div><div class="aura-equipped-copy"><span>✦ EMBLEMA EQUIPADO</span><b>'+p.badge+'</b><small>'+p.name+' · '+p.subtitle+'</small></div></div>';
+  }
+  function equip(id){
+    awards=readAwards();
+    if(!ORDER.includes(id)||!awards[id])return;
+    awards.equipped=id;
+    if(saveAwards()){renderCollection();renderEmblem();}
+  }
   function renderCollection(){
     if(!collection)return;
     awards=readAwards();
     collection.innerHTML='<div class="aura-achievements-head"><div><span class="aura-achievements-kicker">AURA XP // TROPHY ROOM</span><h2>MI COLECCIÓN <em>DE LOGROS.</em></h2><p>Los hitos que desbloqueás entrenando quedan guardados. Reiniciar un plan no borra tus insignias.</p></div><strong class="aura-achievements-count">'+ORDER.filter(id=>awards[id]).length+' / 3 <small>UNLOCKED</small></strong></div><div class="aura-achievements-grid">'+ORDER.map(id=>{
       const p=PROGRAMS[id],won=!!awards[id];
-      return '<article class="aura-achievement-card '+(won?'is-unlocked':'is-locked')+'"><div class="aura-achievement-visual">'+svg(id,p.tone,!won)+'</div><div class="aura-achievement-info"><span>'+(won?'✦ DESBLOQUEADA':'🔒 BLOQUEADA')+'</span><b>'+p.badge+'</b><small>'+p.name+' · '+p.subtitle+'</small></div></article>';
+      const equipped=awards.equipped===id;
+      return '<article class="aura-achievement-card '+(won?'is-unlocked':'is-locked')+(equipped?' is-equipped':'')+'"><div class="aura-achievement-visual">'+svg(id,p.tone,!won)+'</div><div class="aura-achievement-info"><span>'+(equipped?'✦ EN TU PERFIL':won?'✦ DESBLOQUEADA':'🔒 BLOQUEADA')+'</span><b>'+p.badge+'</b><small>'+p.name+' · '+p.subtitle+'</small>'+(won?'<button type="button" class="aura-equip-button" data-equip-badge="'+id+'" '+(equipped?'disabled':'')+'>'+(equipped?'EQUIPADA':'EQUIPAR INSIGNIA')+'</button>':'')+'</div></article>';
     }).join('')+'</div>';
   }
   function mount(){
     const progress=document.querySelector('[data-aura-evolution]');
+    emblemMount=document.querySelector('[data-aura-equipped-badge]');
     const target=document.querySelector('[data-aura-achievements-mount]')||progress;
     if(!target)return;
     const style=document.createElement('style');
     style.textContent=`
       .aura-achievements{width:min(100%,1040px);margin:0 auto 30px;padding:clamp(16px,3vw,25px);border:1px solid rgba(8,201,244,.22);background:linear-gradient(145deg,rgba(8,201,244,.045),rgba(5,12,22,.96) 48%,rgba(183,255,60,.025));color:#f4f8fc}
       .aura-achievements-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}.aura-achievements-kicker{font-size:8px;letter-spacing:.18em;font-weight:900;color:#08c9f4}.aura-achievements-head h2{font-size:clamp(20px,3vw,29px);line-height:1;letter-spacing:-.05em;margin:7px 0}.aura-achievements-head h2 em{font-style:normal;color:#08c9f4}.aura-achievements-head p{font-size:10px;color:#91a4b6;max-width:560px}.aura-achievements-count{text-align:right;white-space:nowrap;font-size:23px;line-height:1;color:#b7ff3c}.aura-achievements-count small{display:block;margin-top:5px;font-size:7px;letter-spacing:.14em;color:#91a4b6}
+      .aura-equipped-emblem{margin:12px 0 0;min-width:0}.aura-equipped-card{display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid rgba(8,201,244,.3);background:linear-gradient(120deg,rgba(8,201,244,.09),rgba(8,16,27,.82));min-width:190px}.aura-equipped-art{width:48px;flex:0 0 48px;filter:drop-shadow(0 0 10px rgba(8,201,244,.25))}.aura-equipped-copy span,.aura-equipped-empty span{display:block;font-size:7px;font-weight:900;letter-spacing:.14em;color:#b7ff3c}.aura-equipped-copy b,.aura-equipped-empty b{display:block;font-size:10px;line-height:1.2}.aura-equipped-copy small,.aura-equipped-empty small{display:block;margin-top:3px;font-size:7px;color:#91a4b6;letter-spacing:.06em}.aura-equipped-empty{padding:9px 12px;border:1px dashed rgba(255,255,255,.17);min-width:190px}.aura-equip-button{display:block;margin-top:8px;padding:7px 9px;border:1px solid rgba(8,201,244,.45);background:rgba(8,201,244,.08);color:#08c9f4;font:900 7px Montserrat,Arial,sans-serif;letter-spacing:.1em;cursor:pointer}.aura-equip-button:disabled{border-color:rgba(183,255,60,.3);color:#b7ff3c;cursor:default}.aura-achievement-card.is-equipped{border-color:rgba(183,255,60,.6);box-shadow:inset 0 0 24px rgba(183,255,60,.06)}
       .aura-achievements-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.aura-achievement-card{min-width:0;display:flex;align-items:center;gap:10px;padding:11px;background:linear-gradient(145deg,#102338,#09131f);border:1px solid rgba(255,255,255,.09)}.aura-achievement-card.is-unlocked{border-color:rgba(8,201,244,.4);box-shadow:inset 0 0 22px rgba(8,201,244,.045)}.aura-achievement-visual{width:76px;flex:0 0 76px}.aura-badge-art{display:block;width:100%;height:auto;filter:drop-shadow(0 0 12px rgba(8,201,244,.18))}.aura-badge-art.is-locked{filter:grayscale(1);opacity:.3}.aura-achievement-info{min-width:0}.aura-achievement-info span{display:block;font-size:7px;letter-spacing:.1em;font-weight:900;color:#b7ff3c;margin-bottom:5px}.aura-achievement-card.is-locked .aura-achievement-info span{color:#8292a2}.aura-achievement-info b{display:block;font-size:10px;line-height:1.2;letter-spacing:.03em}.aura-achievement-info small{display:block;margin-top:5px;color:#91a4b6;font-size:7px;line-height:1.4;letter-spacing:.05em}
       .aura-award-modal{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:18px;background:rgba(1,5,11,.88);backdrop-filter:blur(12px);opacity:0;visibility:hidden;transition:opacity .28s,visibility .28s}.aura-award-modal.is-open{opacity:1;visibility:visible}.aura-award-dialog{position:relative;width:min(100%,490px);padding:27px 24px 24px;text-align:center;overflow:hidden;border:1px solid rgba(8,201,244,.55);background:radial-gradient(ellipse at 50% 0,rgba(8,201,244,.2),transparent 58%),linear-gradient(145deg,#102338,#050b13 72%);box-shadow:0 0 70px rgba(8,201,244,.16),0 24px 90px rgba(0,0,0,.6);transform:translateY(18px) scale(.96);transition:transform .35s cubic-bezier(.2,.8,.2,1)}.is-open .aura-award-dialog{transform:translateY(0) scale(1)}.aura-award-dialog:before,.aura-award-dialog:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(8,201,244,.14);border-radius:50%;left:50%;top:75px;transform:translateX(-50%);box-shadow:0 0 0 18px rgba(8,201,244,.025),0 0 0 38px rgba(8,201,244,.018);pointer-events:none}.aura-award-dialog:after{width:190px;height:190px;top:100px;border-color:rgba(183,255,60,.16);box-shadow:none}.aura-award-close{position:absolute;right:12px;top:10px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.25);color:#fff;width:32px;height:32px;cursor:pointer;font-size:18px;z-index:2}.aura-award-kicker{font-size:9px;font-weight:900;letter-spacing:.22em;color:#b7ff3c}.aura-award-art{position:relative;z-index:1;width:min(62%,230px);margin:5px auto -2px;filter:drop-shadow(0 0 20px rgba(8,201,244,.38));animation:auraBadgeReveal .85s cubic-bezier(.2,.8,.2,1) both}.aura-award-art .aura-badge-art{width:100%}.aura-award-program{position:relative;z-index:1;font-size:8px;font-weight:900;letter-spacing:.2em;color:#08c9f4}.aura-award-title{position:relative;z-index:1;font-size:clamp(27px,7vw,39px);font-weight:950;letter-spacing:-.055em;line-height:1.02;margin:7px 0}.aura-award-subtitle{font-size:9px;font-weight:900;letter-spacing:.16em;color:#b7ff3c}.aura-award-message{max-width:360px;margin:13px auto 20px;font-size:11px;line-height:1.6;color:#b9c8d6}.aura-award-cta{position:relative;z-index:1;width:100%;padding:14px;border:0;background:linear-gradient(90deg,#08c9f4,#b7ff3c);color:#06111a;font:900 10px Montserrat,Arial,sans-serif;letter-spacing:.12em;cursor:pointer}.aura-award-foot{margin-top:12px;color:#72869a;font-size:7px;letter-spacing:.1em}
       body.aura-award-open{overflow:hidden}@keyframes auraBadgeReveal{0%{opacity:0;transform:translateY(22px) scale(.55) rotate(-9deg);filter:drop-shadow(0 0 0 transparent)}65%{opacity:1;transform:translateY(-5px) scale(1.06) rotate(2deg)}100%{transform:translateY(0) scale(1) rotate(0);filter:drop-shadow(0 0 20px rgba(8,201,244,.38)}}@media(max-width:650px){.aura-achievements-head{gap:8px}.aura-achievements-grid{grid-template-columns:1fr}.aura-achievement-card{padding:8px 12px}.aura-achievement-visual{width:66px;flex-basis:66px}.aura-award-dialog{padding:24px 18px 19px}.aura-award-art{width:min(58%,205px)}}@media(prefers-reduced-motion:reduce){.aura-award-art,.aura-award-dialog{animation:none;transition:none}}
@@ -103,12 +121,17 @@
     modal.addEventListener('click',event=>{if(event.target===modal)closeModal();});
     document.addEventListener('keydown',event=>{if(event.key==='Escape')closeModal();});
     renderCollection();
+    renderEmblem();
+    collection.addEventListener('click',event=>{
+      const button=event.target.closest('[data-equip-badge]');
+      if(button&&!button.disabled)equip(button.getAttribute('data-equip-badge'));
+    });
   }
   function init(){
     mount();
     check(true);
     window.addEventListener('aura:progress-updated',()=>check(true));
-    window.addEventListener('storage',()=>{check(false);renderCollection();});
+    window.addEventListener('storage',()=>{check(false);renderCollection();renderEmblem();});
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
   else init();
