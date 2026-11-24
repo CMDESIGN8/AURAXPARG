@@ -321,14 +321,14 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 <div class="toast" id="toast" role="status" aria-live="polite">+50 XP · MISIÓN COMPLETADA</div><footer>AURA XP · PERFORMANCE CLUB · FARMEÁ ESTILO. SUBÍ DE NIVEL.</footer>
 <script>
 (function(){
-  const KEY='auraxp-pro-21day-progress-v2';
+  const KEY='auraxp-start-7day-progress-v1';
   const cards=Array.from(document.querySelectorAll('.day[data-day]'));
   const boxes=cards.map(card=>card.querySelector('input[type="checkbox"]'));
   const $=id=>document.getElementById(id);
   const fill=$('progressFill'), progressText=$('progressText');
   const nextMission=$('nextMission'), toast=$('toast');
-  if(cards.length!==21 || boxes.some(box=>!box)) {
-    console.error('AURA XP: no se pudieron inicializar las 21 jornadas.');
+  if(cards.length!==7 || boxes.some(box=>!box)) {
+    console.error('AURA XP: no se pudieron inicializar las 7 jornadas.');
     return;
   }
 
@@ -342,7 +342,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 
   // Normalizar las jornadas guardadas antes de pintar la interfaz.
   // Solo los días confirmados como true cuentan como completados.
-  for(let day=1;day<=21;day++){
+  for(let day=1;day<=7;day++){
     const key=String(day);
     if(saved[key]===true || saved[key]===1 || saved[key]==='true') saved[key]=true;
     else delete saved[key];
@@ -366,7 +366,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
     const count=cards.filter(card=>saved[card.dataset.day]===true).length;
     const percent=Math.round(count/cards.length*100);
     if(fill) fill.style.width=percent+'%';
-    if(progressText) progressText.textContent=count+' / 21 DÍAS';
+    if(progressText) progressText.textContent=count+' / 7 DÍAS';
 
     const next=cards.find(card=>saved[card.dataset.day]!==true);
     if(nextMission) nextMission.textContent=next ? 'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase() : 'PROGRAMA COMPLETADO';
@@ -400,10 +400,10 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
       set('[data-aura-level]','NIVEL '+String(level).padStart(2,'0'));
       set('[data-aura-xp]',String(totalXp).padStart(3,'0'));
       set('[data-aura-days]',count+' / 7');
-      set('[data-aura-pro-percent]',percent+'%');
+      set('[data-aura-program-percent]',percent+'%');
       const overall=evolution.querySelector('[data-aura-overall]');
       if(overall)overall.style.width=percent+'%';
-      const skillDays={coordination:[1,2,3,7,10,11],speed:[4,8,12,18],agility:[5,9,15,19],technique:[2,3,12,16,19,21]};
+      const skillDays={"coordination":[1,4,7],"speed":[5],"agility":[4,5],"technique":[2,7]};
       Object.entries(skillDays).forEach(([skill,days])=>{
         const value=Math.round(days.filter(day=>saved[String(day)]===true).length/days.length*100);
         set('[data-aura-skill="'+skill+'"]',value+'%');
@@ -486,7 +486,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
     const next=cards.find(card=>saved[card.dataset.day]!==true);
     if(!next){
       applyFilter('all');
-      showToast('COMPLETASTE LAS 21 JORNADAS');
+      showToast('COMPLETASTE LAS 7 JORNADAS');
       return;
     }
     const week=String(Math.ceil(Number(next.dataset.day)/7));
@@ -496,14 +496,14 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   });
 
   $('resetProgress').addEventListener('click',()=>{
-    const confirmed=window.confirm('¿Querés empezar PRO 21 desde cero? Se borrarán las 21 jornadas completadas y los XP obtenidos en este programa. El progreso de START 7 y ELITE 30 no se modifica.');
+    const confirmed=window.confirm('¿Querés empezar START 7 desde cero? Se borrarán las 7 jornadas completadas y los XP obtenidos en este programa. El progreso de los otros planes no se modifica.');
     if(!confirmed) return;
     saved={};
     const stored=persist();
     update();
     cards.forEach(card=>setExpanded(card,false));
     applyFilter('all');
-    showToast(stored?'PRO 21 REINICIADO · 0 / 21 DÍAS':'NO SE PUDO GUARDAR EL REINICIO');
+    showToast(stored?'PRO 21 REINICIADO · 0 / 7 DÍAS':'NO SE PUDO GUARDAR EL REINICIO');
   });
 
   update();
@@ -525,12 +525,12 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   const start=document.getElementById('kaiStart');
   const dots=Array.from(panel.querySelectorAll('.kai-step-dots i'));
   const steps=[
-    {title:'¡Vamos a trabajar tu juego!',message:'Durante 21 días vamos a desarrollar coordinación, primer paso, cambios de dirección y técnica con pelota. No se trata de hacer todo rápido: se trata de moverte cada vez mejor.'},
-    {title:'Tres semanas. Tres etapas.',message:'Primero construimos una base de control. Después trabajamos reacción, velocidad y agilidad. En la última etapa conectamos esos movimientos con la pelota y situaciones de juego.'},
-    {title:'Cada sesión suma a tu evolución.',message:'Completá las jornadas a tu ritmo, respetá los descansos y registrá tu avance. Cada día completado suma 50 XP a tu progreso PRO 21. ¿Listo para empezar?'}
+    {title:"Una base para empezar",message:"Durante 7 días vas a trabajar postura, coordinación y control inicial de pelota. Empezamos con movimientos simples y progresamos paso a paso."},
+    {title:"Pies, cuerpo y pelota",message:"Primero activás el cuerpo, después conectás pies y pelota, y al final registrás lo que mejoró. No necesitás hacerlo rápido: necesitás hacerlo con control."},
+    {title:"Cada día suma",message:"Completá las jornadas a tu ritmo y respetá la recuperación. Cada día registrado suma 50 XP a tu progreso START 7."}
   ];
   let step=0;
-  try{if(localStorage.getItem('auraxp-pro-21day-intro-v1')==='seen'){panel.classList.add('is-complete');replay.classList.add('is-visible');}}catch(e){}
+  try{if(localStorage.getItem('auraxp-start-7day-intro-v1')==='seen'){panel.classList.add('is-complete');replay.classList.add('is-visible');}}catch(e){}
   function render(){
     const data=steps[step];title.textContent=data.title;message.textContent=data.message;
     count.textContent=String(step+1).padStart(2,'0')+' / 03';progress.style.width=((step+1)/3*100)+'%';
@@ -539,7 +539,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
     panel.querySelector('.kai-step-dots').setAttribute('aria-label','Paso '+(step+1)+' de 3');
   }
   function open(){step=0;render();panel.classList.remove('is-complete');replay.classList.remove('is-visible');panel.scrollIntoView({behavior:'smooth',block:'center'});}
-  function finish(){panel.classList.add('is-complete');replay.classList.add('is-visible');try{localStorage.setItem('auraxp-pro-21day-intro-v1','seen');}catch(e){}document.getElementById('playerProgress')?.scrollIntoView({behavior:'smooth',block:'center'});}
+  function finish(){panel.classList.add('is-complete');replay.classList.add('is-visible');try{localStorage.setItem('auraxp-start-7day-intro-v1','seen');}catch(e){}document.getElementById('playerProgress')?.scrollIntoView({behavior:'smooth',block:'center'});}
   back.addEventListener('click',()=>{if(step>0){step--;render();}});
   next.addEventListener('click',()=>{if(step<2){step++;render();}});
   start.addEventListener('click',finish);
