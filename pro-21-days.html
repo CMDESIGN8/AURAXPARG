@@ -257,6 +257,14 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   } catch(error) {
     console.warn('AURA XP: no se pudo leer el progreso guardado.',error);
   }
+
+  // Normalizar las jornadas guardadas antes de pintar la interfaz.
+  // Solo los días confirmados como true cuentan como completados.
+  for(let day=1;day<=21;day++){
+    const key=String(day);
+    if(saved[key]===true || saved[key]===1 || saved[key]==='true') saved[key]=true;
+    else delete saved[key];
+  }
   let toastTimer;
 
   function persist(){
@@ -283,6 +291,9 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
       const done=saved[card.dataset.day]===true;
       const box=card.querySelector('input[type="checkbox"]');
       box.checked=done;
+      // Una jornada ya recompensada queda bloqueada para evitar repetirla.
+      box.disabled=done;
+      box.setAttribute('aria-label',done?'Jornada '+card.dataset.day+' completada':'Marcar jornada '+card.dataset.day+' como completada');
       card.classList.toggle('done',done);
       card.classList.toggle('next-up',card===next);
       const badge=card.querySelector('.next-tag');
@@ -353,6 +364,12 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
     box.addEventListener('change',()=>{
       const day=card.dataset.day;
       const wasDone=saved[day]===true;
+      // Protección adicional: nunca volver a acreditar una jornada completada.
+      if(wasDone){
+        box.checked=true;
+        box.disabled=true;
+        return;
+      }
       if(box.checked) saved[day]=true;
       else delete saved[day];
       const stored=persist();
