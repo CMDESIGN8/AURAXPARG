@@ -232,7 +232,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 <p class="apu-desc">Tu recorrido queda guardado en este dispositivo. Abrí la próxima jornada, seguí la sesión y registrá el avance: cada día completado suma 50 XP locales.</p>
 <div class="apu-stats"><div><small>XP DE ENTRENAMIENTO</small><strong><span data-aura-xp>000</span> <i>XP</i></strong></div><div><small>DÍAS COMPLETADOS</small><strong data-aura-days>0 / 21</strong></div></div>
 <div class="apu-progress-label"><span>PROGRESO DEL PLAN</span><b data-aura-pro-percent>0%</b></div><div class="apu-progress-track"><i data-aura-overall></i></div>
-<div class="apu-next"><small>SIGUIENTE MISIÓN</small><strong id="nextMission" data-aura-next-mission>DÍA 01 · ACTIVÁ TU MOTOR</strong><div class="apu-actions"><button class="btn" id="continueBtn">CONTINUAR MI PLAN ↗</button><button class="btn secondary" id="showAllBtn">VER LAS 3 SEMANAS</button></div></div>
+<div class="apu-next"><small>SIGUIENTE MISIÓN</small><strong id="nextMission" data-aura-next-mission>DÍA 01 · ACTIVÁ TU MOTOR</strong><div class="apu-actions"><button class="btn" id="continueBtn">CONTINUAR MI PLAN ↗</button><button class="btn secondary" id="showAllBtn">VER LAS 3 SEMANAS</button><button class="btn secondary" id="resetProgress" type="button">↻ REINICIAR PLAN</button></div></div>
 <div class="apu-weeks"><div><b>WEEK 01</b><strong>BASE & CONTROL</strong><p>Dominá patrones y control.</p></div><div><b>WEEK 02</b><strong>AGILITY & SPEED</strong><p>Reacción, aceleración y cambios de dirección.</p></div><div><b>WEEK 03</b><strong>GAME APPLICATION</strong><p>Coordinación y pelota en juego.</p></div></div>
 <div class="apu-skills"><span>COORDINACIÓN <b data-aura-skill="coordination">0%</b></span><span>VELOCIDAD <b data-aura-skill="speed">0%</b></span><span>AGILIDAD <b data-aura-skill="agility">0%</b></span><span>TÉCNICA <b data-aura-skill="technique">0%</b></span></div>
 <div class="apu-foot">Las jornadas completadas quedan guardadas en este dispositivo. Las habilidades reflejan el trabajo registrado, no una evaluación física.</div>
@@ -451,6 +451,17 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
     applyFilter(week);
     setExpanded(next,true);
     next.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  $('resetProgress').addEventListener('click',()=>{
+    const confirmed=window.confirm('¿Querés empezar PRO 21 desde cero? Se borrarán las 21 jornadas completadas y los XP obtenidos en este programa. El progreso de START 7 y ELITE 30 no se modifica.');
+    if(!confirmed) return;
+    saved={};
+    const stored=persist();
+    update();
+    cards.forEach(card=>setExpanded(card,false));
+    applyFilter('all');
+    showToast(stored?'PRO 21 REINICIADO · 0 / 21 DÍAS':'NO SE PUDO GUARDAR EL REINICIO');
   });
 
   update();
