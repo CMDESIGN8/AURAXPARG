@@ -1169,6 +1169,94 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 }
 @media(max-width:360px){#aura-player-missions .drill{grid-template-columns:minmax(82px,32%) minmax(0,1fr)!important;gap:8px!important;padding:9px!important}#aura-player-missions .drill-art{height:88px!important}#aura-player-missions .drill-content>b{font-size:10px!important}}
 
+
+/* RECOMPENSA — panel compacto, legible y conectado al progreso */
+.hero-hud .mission-reward{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:12px;margin-top:12px;padding:12px;border:1px solid color-mix(in srgb,var(--skill-accent) 38%,transparent);border-left:3px solid var(--skill-accent);border-radius:4px;background:linear-gradient(115deg,color-mix(in srgb,var(--skill-accent) 9%,#09121c),rgba(5,11,18,.94) 68%);box-shadow:inset 0 1px rgba(255,255,255,.04);letter-spacing:normal;transition:background .3s,border-color .3s,box-shadow .3s,transform .3s}
+.hero-hud .reward-art{width:48px;height:48px;transform:none;border-radius:3px;border-color:color-mix(in srgb,var(--skill-accent) 55%,transparent);background:linear-gradient(145deg,color-mix(in srgb,var(--skill-accent) 18%,#0c1724),#09111a);box-shadow:inset 0 0 18px color-mix(in srgb,var(--skill-accent) 8%,transparent)}
+.hero-hud .reward-art:before{width:22px;height:22px;border:1px solid var(--skill-accent);background:transparent;opacity:.5;transform:rotate(45deg)}
+.hero-hud .reward-art:after{display:none}
+.hero-hud .reward-art i{width:28px;height:28px;border:0;background:transparent;color:var(--skill-accent);font-size:18px;text-shadow:0 0 12px color-mix(in srgb,var(--skill-accent) 45%,transparent)}
+.hero-hud .reward-art span{right:-5px;bottom:-5px;padding:3px 4px;border:1px solid #0b1721;background:var(--skill-accent);color:#08121a;font-size:7px}
+.hero-hud .reward-copy{gap:4px;align-content:center}
+.hero-hud .reward-copy .reward-state{color:var(--skill-accent);font-size:7px;letter-spacing:.12em}
+.hero-hud .reward-copy>strong{font-size:clamp(12px,1.7vw,15px);line-height:1.15;letter-spacing:.01em;overflow-wrap:anywhere}
+.hero-hud .reward-copy .reward-hint{font-size:7px;line-height:1.35;letter-spacing:.035em;color:#a8bac7}
+.hero-hud .reward-lock{width:auto;height:auto;min-height:23px;padding:5px 7px;border-radius:2px;border-color:color-mix(in srgb,var(--skill-accent) 30%,transparent);background:rgba(255,255,255,.025);color:#93a5b4;font-size:6px;letter-spacing:.08em;white-space:nowrap}
+.hero-hud .mission-reward.is-earned{border-color:var(--skill-accent);background:linear-gradient(110deg,color-mix(in srgb,var(--skill-accent) 17%,#09121c),rgba(5,11,18,.92));box-shadow:0 0 22px color-mix(in srgb,var(--skill-accent) 13%,transparent),inset 0 0 18px color-mix(in srgb,var(--skill-accent) 5%,transparent);transform:none}
+.hero-hud .mission-reward.is-earned .reward-art{border-color:var(--skill-accent);animation:rewardArtifact .5s cubic-bezier(.2,.8,.2,1) both}
+.hero-hud .mission-reward.is-earned .reward-art i{background:transparent;color:var(--skill-accent);text-shadow:0 0 12px color-mix(in srgb,var(--skill-accent) 45%,transparent)}
+.hero-hud .mission-reward.is-earned .reward-lock{border-color:var(--skill-accent);background:var(--skill-accent);color:#071019}
+.hero-hud .mission-reward.is-earned .reward-copy .reward-state{color:var(--skill-accent);text-shadow:none}
+@media(max-width:600px){.hero-hud .mission-reward{grid-template-columns:42px minmax(0,1fr) auto;gap:9px;padding:9px}.hero-hud .reward-art{width:40px;height:40px}.hero-hud .reward-art i{width:25px;height:25px;font-size:16px}.hero-hud .reward-copy .reward-state{font-size:6px}.hero-hud .reward-copy>strong{font-size:11px}.hero-hud .reward-copy .reward-hint{font-size:6px}.hero-hud .reward-lock{font-size:5px;padding:4px 5px;min-height:20px}}
+@media(max-width:360px){.hero-hud .mission-reward{grid-template-columns:36px minmax(0,1fr);gap:8px}.hero-hud .reward-lock{grid-column:2;justify-self:start}.hero-hud .reward-art{width:36px;height:36px}}
+@media(prefers-reduced-motion:reduce){.hero-hud .mission-reward,.hero-hud .reward-art{transition:none;animation:none!important}}
+
+/* KAI MOBILE FIX — modal compacta, sin scroll interno */
+@media(max-width:700px){
+ #coach-tutorial.coach-tutorial{padding:clamp(8px,2.5vw,14px);overflow:hidden;min-height:100dvh;min-height:100svh;box-sizing:border-box}
+ #coach-tutorial .coach-tutorial-inner{width:100%;max-width:520px;max-height:calc(100dvh - 16px);max-height:calc(100svh - 16px);min-height:0;height:auto;display:flex;flex-direction:column;justify-content:center;gap:0;padding:0;overflow:hidden}
+ #coach-tutorial .coach-tutorial-scene{height:clamp(92px,16svh,142px);flex:0 0 auto;min-height:0;overflow:hidden}
+ #coach-tutorial .coach-tutorial-scene:after{font-size:clamp(44px,12vw,72px);top:2px}
+ #coach-tutorial .coach-figure{height:clamp(100px,18svh,160px);width:clamp(100px,42vw,170px);max-width:100%}
+ #coach-tutorial .coach-figure:before{height:57%;width:88%}
+ #coach-tutorial .coach-figure:after{height:45%;width:38%;bottom:42%}
+ #coach-tutorial .coach-figure-face{bottom:64%;height:5px}
+ #coach-tutorial .coach-figure-tag{bottom:3%;font-size:6px}
+ #coach-tutorial .coach-dialog{padding:clamp(13px,3.5vw,20px);flex:0 1 auto;min-height:0}
+ #coach-tutorial .coach-dialog-meta{margin:0 0 8px;font-size:7px;letter-spacing:.12em}
+ #coach-tutorial .coach-dialog-meta span:last-child{font-size:6px}
+ #coach-tutorial .coach-dialog h2{font-size:clamp(21px,6vw,29px);line-height:1;margin:0 0 8px}
+ #coach-tutorial .coach-dialog p{font-size:12px;line-height:1.45;margin:0}
+ #coach-tutorial .coach-visual-steps{margin-top:12px;gap:5px}
+ #coach-tutorial .coach-visual-step{padding:7px 5px;min-width:0}
+ #coach-tutorial .coach-visual-step span{font-size:8px}
+ #coach-tutorial .coach-visual-step b{font-size:7px}
+ #coach-tutorial .coach-visual-step small{font-size:6px}
+ #coach-tutorial .coach-dialog-progress{margin-top:12px;gap:4px}
+ #coach-tutorial .coach-dialog-actions{margin-top:12px;gap:8px}
+ #coach-tutorial .coach-dialog-actions button{min-height:40px;padding:0 10px;font-size:7px;letter-spacing:.08em}
+ #coach-launcher.coach-launcher{right:10px;bottom:calc(10px + env(safe-area-inset-bottom));padding:7px 10px;gap:7px;font-size:8px;letter-spacing:.07em}
+ #coach-launcher.coach-launcher b{width:24px;height:24px;font-size:11px}
+}
+@media(max-width:380px){
+ #coach-tutorial .coach-tutorial-scene{height:86px}
+ #coach-tutorial .coach-figure{height:100px;width:110px}
+ #coach-tutorial .coach-dialog{padding:12px}
+ #coach-tutorial .coach-dialog h2{font-size:21px}
+ #coach-tutorial .coach-dialog p{font-size:11px}
+ #coach-tutorial .coach-visual-steps{margin-top:9px}
+ #coach-tutorial .coach-dialog-progress{margin-top:9px}
+ #coach-tutorial .coach-dialog-actions{margin-top:9px}
+}
+@media(max-height:650px) and (max-width:700px){
+ #coach-tutorial .coach-tutorial-scene{height:76px}
+ #coach-tutorial .coach-figure{height:90px;width:100px}
+ #coach-tutorial .coach-dialog{padding:11px}
+ #coach-tutorial .coach-dialog h2{font-size:20px}
+ #coach-tutorial .coach-dialog p{font-size:11px}
+ #coach-tutorial .coach-visual-steps{margin-top:8px}
+ #coach-tutorial .coach-dialog-progress{margin-top:8px}
+ #coach-tutorial .coach-dialog-actions{margin-top:8px}
+}
+
+/* AURA DROP — recompensa real del recorrido, objeto coleccionable */
+.hero-hud .mission-reward{grid-template-columns:54px minmax(0,1fr) auto;gap:10px;border:1px solid color-mix(in srgb,var(--skill-accent) 36%,transparent);border-left:3px solid var(--skill-accent);border-radius:4px;background:linear-gradient(110deg,color-mix(in srgb,var(--skill-accent) 10%,#08121d),#08111b 72%);padding:10px;align-items:center}
+.hero-hud .reward-art{width:50px;height:50px;transform:none;border:1px solid color-mix(in srgb,var(--skill-accent) 60%,transparent);background:radial-gradient(circle,color-mix(in srgb,var(--skill-accent) 20%,transparent),#0b1722 72%);box-shadow:inset 0 0 16px color-mix(in srgb,var(--skill-accent) 10%,transparent)}
+.hero-hud .reward-art:before{width:24px;height:24px;background:transparent;border:1px solid var(--skill-accent);transform:rotate(45deg);opacity:.65}
+.hero-hud .reward-art:after{display:none}
+.hero-hud .reward-art i{width:auto;height:auto;border:0;background:transparent;color:var(--skill-accent);font-size:21px;text-shadow:0 0 14px color-mix(in srgb,var(--skill-accent) 45%,transparent)}
+.hero-hud .reward-art span{right:-4px;bottom:-4px;padding:3px 4px;font-size:6px;background:var(--skill-accent);color:#07121b;border:1px solid #07121b}
+.hero-hud .reward-copy .reward-state{color:var(--skill-accent);font-size:7px;letter-spacing:.12em}
+.hero-hud .reward-copy>strong{font-size:clamp(12px,1.7vw,15px);letter-spacing:.04em;line-height:1.15}
+.hero-hud .reward-copy .reward-hint{font-size:7px;letter-spacing:.035em;line-height:1.4;color:#a5b8c6}
+.hero-hud .reward-lock{width:auto;height:auto;min-height:22px;padding:4px 6px;font-size:6px;letter-spacing:.08em;border-radius:2px;white-space:nowrap;background:rgba(255,255,255,.025)}
+.hero-hud .mission-reward.is-earned{border-color:var(--skill-accent);background:linear-gradient(110deg,color-mix(in srgb,var(--skill-accent) 18%,#08121d),#08111b 72%);box-shadow:0 0 24px color-mix(in srgb,var(--skill-accent) 13%,transparent),inset 0 0 18px color-mix(in srgb,var(--skill-accent) 5%,transparent);transform:none}
+.hero-hud .mission-reward.is-earned .reward-art{animation:auraDropReveal .65s cubic-bezier(.16,.84,.25,1) both;border-color:var(--skill-accent)}
+.hero-hud .mission-reward.is-earned .reward-lock{background:var(--skill-accent);color:#07121b;border-color:var(--skill-accent)}
+@keyframes auraDropReveal{0%{transform:scale(.7) rotate(-12deg);filter:brightness(2.2);opacity:.4}65%{transform:scale(1.08) rotate(3deg)}100%{transform:scale(1) rotate(0);opacity:1;filter:none}}
+@media(max-width:600px){.hero-hud .mission-reward{grid-template-columns:42px minmax(0,1fr) auto;gap:8px;padding:9px}.hero-hud .reward-art{width:40px;height:40px}.hero-hud .reward-art i{font-size:18px}.hero-hud .reward-copy .reward-state{font-size:6px}.hero-hud .reward-copy>strong{font-size:11px}.hero-hud .reward-copy .reward-hint{font-size:6px}.hero-hud .reward-lock{font-size:5px;padding:4px 5px}}
+@media(max-width:360px){.hero-hud .mission-reward{grid-template-columns:36px minmax(0,1fr)}.hero-hud .reward-art{width:36px;height:36px}.hero-hud .reward-lock{grid-column:2;justify-self:start}}
+@media(prefers-reduced-motion:reduce){.hero-hud .mission-reward.is-earned .reward-art{animation:none}}
 </style>
 </head>
 <body>
@@ -1367,7 +1455,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   function exerciseMarkup(item,i){const d=item.exercises[i];return '<div class="drill" role="checkbox" tabindex="0" aria-checked="false" aria-label="'+d[0]+' · tocá al terminar para marcar como completado"><span class="drill-num">0'+(i+1)+'</span><div class="drill-content"><div class="drill-art">'+exerciseArt(current,i)+'</div><b>'+d[0]+'</b><small>'+d[1]+'</small><p>'+d[2]+'</p><em class="drill-payoff"><i>EN CANCHA</i> · '+d[3]+'</em><span class="drill-status">TOCÁ AL TERMINAR</span></div></div>';}
   function renderCurrentExercise(){const item=challenges[current],list=stage.querySelector('.drill-list');if(list)list.innerHTML=exerciseMarkup(item,currentExercise);const activeDrill=stage.querySelector('.drill');if(activeDrill){const isDone=completedExercises.has(currentExercise);activeDrill.classList.toggle('is-done',isDone);activeDrill.setAttribute('aria-checked',String(isDone));activeDrill.setAttribute('aria-label',item.exercises[currentExercise][0]+(isDone?' · completado':' · tocá para marcar como completado'));const status=activeDrill.querySelector('.drill-status');if(status)status.textContent=isDone?'COMPLETADO ✓':'TOCÁ AL TERMINAR';}const title=stage.querySelector('.drills-title small');if(title)title.textContent='EJERCICIO '+String(currentExercise+1).padStart(2,'0')+' / 03';stage.querySelectorAll('.exercise-step').forEach((step,i)=>{step.classList.toggle('is-done',completedExercises.has(i));step.classList.toggle('is-current',i===currentExercise);step.setAttribute('aria-label','Ejercicio '+(i+1)+(completedExercises.has(i)?' completado':i===currentExercise?' actual':' pendiente'));});}
   function updateExerciseProgress(){const total=challenges[current].exercises.length,done=completedExercises.has(currentExercise),drill=stage.querySelector('.drill');if(drill){drill.classList.toggle('is-done',done);drill.setAttribute('aria-checked',String(done));drill.setAttribute('aria-label',challenges[current].exercises[currentExercise][0]+(done?' · completado':' · tocá para marcar como completado'));const status=drill.querySelector('.drill-status');if(status)status.textContent=done?'COMPLETADO ✓':'TOCÁ AL TERMINAR';}
-    const count=completedExercises.size,reward=stage.querySelector('.mission-reward');if(reward){const earned=count===total;reward.classList.toggle('is-earned',earned);reward.querySelector('.reward-state').textContent=earned?'DROP DESBLOQUEADO · AURA XP':'AURA DROP · DESBLOQUEABLE';reward.querySelector('.reward-hint').textContent=earned?'YA ES TUYO · '+challenges[current].reward+' · 03/03':'COMPLETÁ LOS 3 EJERCICIOS Y SUMALO A TU COLECCIÓN';reward.querySelector('.reward-art i').textContent=earned?'✦':item.mark;reward.querySelector('.reward-art span').textContent=earned?'✓':'DROP';reward.querySelector('.reward-lock').textContent=earned?'✓ OBTENIDO':'LOCKED';}
+    const count=completedExercises.size,reward=stage.querySelector('.mission-reward');if(reward){const earned=count===total;reward.classList.toggle('is-earned',earned);reward.querySelector('.reward-state').textContent=earned?'DROP DESBLOQUEADO · AURA XP':'AURA DROP · DESBLOQUEABLE';reward.querySelector('.reward-hint').textContent=earned?'YA ES TUYO · '+challenges[current].reward+' · 03/03':'COMPLETÁ LOS 3 EJERCICIOS Y SUMALO A TU COLECCIÓN';reward.querySelector('.reward-art i').textContent=earned?'✦':challenges[current].mark;reward.querySelector('.reward-art span').textContent=earned?'✓':'DROP';reward.querySelector('.reward-lock').textContent=earned?'✓ OBTENIDO':'LOCKED';}
     next.disabled=!done;hint.textContent=done?(currentExercise<total-1?'EJERCICIO LISTO. SEGUÍ CON EL SIGUIENTE.':'¡LOS 3 EJERCICIOS COMPLETADOS! YA PODÉS AVANZAR.'):'HACÉ EL EJERCICIO Y TOCÁ SU TARJETA CUANDO TERMINES · '+count+'/'+total;
     next.innerHTML=done?(currentExercise<total-1?'SIGUIENTE EJERCICIO <span>↗</span>':(current===challenges.length-1?'TERMINAR RECORRIDO <span>✦</span>':'COMPLETAR DESAFÍO <span>↗</span>')):'MARCAR EJERCICIO AL TERMINAR <span>↗</span>';
     const overall=current*total+count;percent.textContent=Math.round(overall/(challenges.length*total)*100)+'%';fill.style.width=(overall/(challenges.length*total)*100)+'%';renderCurrentExercise();}
@@ -1467,90 +1555,3 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 </script>
 </body>
 </html>
-/* RECOMPENSA — panel compacto, legible y conectado al progreso */
-.hero-hud .mission-reward{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:12px;margin-top:12px;padding:12px;border:1px solid color-mix(in srgb,var(--skill-accent) 38%,transparent);border-left:3px solid var(--skill-accent);border-radius:4px;background:linear-gradient(115deg,color-mix(in srgb,var(--skill-accent) 9%,#09121c),rgba(5,11,18,.94) 68%);box-shadow:inset 0 1px rgba(255,255,255,.04);letter-spacing:normal;transition:background .3s,border-color .3s,box-shadow .3s,transform .3s}
-.hero-hud .reward-art{width:48px;height:48px;transform:none;border-radius:3px;border-color:color-mix(in srgb,var(--skill-accent) 55%,transparent);background:linear-gradient(145deg,color-mix(in srgb,var(--skill-accent) 18%,#0c1724),#09111a);box-shadow:inset 0 0 18px color-mix(in srgb,var(--skill-accent) 8%,transparent)}
-.hero-hud .reward-art:before{width:22px;height:22px;border:1px solid var(--skill-accent);background:transparent;opacity:.5;transform:rotate(45deg)}
-.hero-hud .reward-art:after{display:none}
-.hero-hud .reward-art i{width:28px;height:28px;border:0;background:transparent;color:var(--skill-accent);font-size:18px;text-shadow:0 0 12px color-mix(in srgb,var(--skill-accent) 45%,transparent)}
-.hero-hud .reward-art span{right:-5px;bottom:-5px;padding:3px 4px;border:1px solid #0b1721;background:var(--skill-accent);color:#08121a;font-size:7px}
-.hero-hud .reward-copy{gap:4px;align-content:center}
-.hero-hud .reward-copy .reward-state{color:var(--skill-accent);font-size:7px;letter-spacing:.12em}
-.hero-hud .reward-copy>strong{font-size:clamp(12px,1.7vw,15px);line-height:1.15;letter-spacing:.01em;overflow-wrap:anywhere}
-.hero-hud .reward-copy .reward-hint{font-size:7px;line-height:1.35;letter-spacing:.035em;color:#a8bac7}
-.hero-hud .reward-lock{width:auto;height:auto;min-height:23px;padding:5px 7px;border-radius:2px;border-color:color-mix(in srgb,var(--skill-accent) 30%,transparent);background:rgba(255,255,255,.025);color:#93a5b4;font-size:6px;letter-spacing:.08em;white-space:nowrap}
-.hero-hud .mission-reward.is-earned{border-color:var(--skill-accent);background:linear-gradient(110deg,color-mix(in srgb,var(--skill-accent) 17%,#09121c),rgba(5,11,18,.92));box-shadow:0 0 22px color-mix(in srgb,var(--skill-accent) 13%,transparent),inset 0 0 18px color-mix(in srgb,var(--skill-accent) 5%,transparent);transform:none}
-.hero-hud .mission-reward.is-earned .reward-art{border-color:var(--skill-accent);animation:rewardArtifact .5s cubic-bezier(.2,.8,.2,1) both}
-.hero-hud .mission-reward.is-earned .reward-art i{background:transparent;color:var(--skill-accent);text-shadow:0 0 12px color-mix(in srgb,var(--skill-accent) 45%,transparent)}
-.hero-hud .mission-reward.is-earned .reward-lock{border-color:var(--skill-accent);background:var(--skill-accent);color:#071019}
-.hero-hud .mission-reward.is-earned .reward-copy .reward-state{color:var(--skill-accent);text-shadow:none}
-@media(max-width:600px){.hero-hud .mission-reward{grid-template-columns:42px minmax(0,1fr) auto;gap:9px;padding:9px}.hero-hud .reward-art{width:40px;height:40px}.hero-hud .reward-art i{width:25px;height:25px;font-size:16px}.hero-hud .reward-copy .reward-state{font-size:6px}.hero-hud .reward-copy>strong{font-size:11px}.hero-hud .reward-copy .reward-hint{font-size:6px}.hero-hud .reward-lock{font-size:5px;padding:4px 5px;min-height:20px}}
-@media(max-width:360px){.hero-hud .mission-reward{grid-template-columns:36px minmax(0,1fr);gap:8px}.hero-hud .reward-lock{grid-column:2;justify-self:start}.hero-hud .reward-art{width:36px;height:36px}}
-@media(prefers-reduced-motion:reduce){.hero-hud .mission-reward,.hero-hud .reward-art{transition:none;animation:none!important}}
-
-/* KAI MOBILE FIX — modal compacta, sin scroll interno */
-@media(max-width:700px){
- #coach-tutorial.coach-tutorial{padding:clamp(8px,2.5vw,14px);overflow:hidden;min-height:100dvh;min-height:100svh;box-sizing:border-box}
- #coach-tutorial .coach-tutorial-inner{width:100%;max-width:520px;max-height:calc(100dvh - 16px);max-height:calc(100svh - 16px);min-height:0;height:auto;display:flex;flex-direction:column;justify-content:center;gap:0;padding:0;overflow:hidden}
- #coach-tutorial .coach-tutorial-scene{height:clamp(92px,16svh,142px);flex:0 0 auto;min-height:0;overflow:hidden}
- #coach-tutorial .coach-tutorial-scene:after{font-size:clamp(44px,12vw,72px);top:2px}
- #coach-tutorial .coach-figure{height:clamp(100px,18svh,160px);width:clamp(100px,42vw,170px);max-width:100%}
- #coach-tutorial .coach-figure:before{height:57%;width:88%}
- #coach-tutorial .coach-figure:after{height:45%;width:38%;bottom:42%}
- #coach-tutorial .coach-figure-face{bottom:64%;height:5px}
- #coach-tutorial .coach-figure-tag{bottom:3%;font-size:6px}
- #coach-tutorial .coach-dialog{padding:clamp(13px,3.5vw,20px);flex:0 1 auto;min-height:0}
- #coach-tutorial .coach-dialog-meta{margin:0 0 8px;font-size:7px;letter-spacing:.12em}
- #coach-tutorial .coach-dialog-meta span:last-child{font-size:6px}
- #coach-tutorial .coach-dialog h2{font-size:clamp(21px,6vw,29px);line-height:1;margin:0 0 8px}
- #coach-tutorial .coach-dialog p{font-size:12px;line-height:1.45;margin:0}
- #coach-tutorial .coach-visual-steps{margin-top:12px;gap:5px}
- #coach-tutorial .coach-visual-step{padding:7px 5px;min-width:0}
- #coach-tutorial .coach-visual-step span{font-size:8px}
- #coach-tutorial .coach-visual-step b{font-size:7px}
- #coach-tutorial .coach-visual-step small{font-size:6px}
- #coach-tutorial .coach-dialog-progress{margin-top:12px;gap:4px}
- #coach-tutorial .coach-dialog-actions{margin-top:12px;gap:8px}
- #coach-tutorial .coach-dialog-actions button{min-height:40px;padding:0 10px;font-size:7px;letter-spacing:.08em}
- #coach-launcher.coach-launcher{right:10px;bottom:calc(10px + env(safe-area-inset-bottom));padding:7px 10px;gap:7px;font-size:8px;letter-spacing:.07em}
- #coach-launcher.coach-launcher b{width:24px;height:24px;font-size:11px}
-}
-@media(max-width:380px){
- #coach-tutorial .coach-tutorial-scene{height:86px}
- #coach-tutorial .coach-figure{height:100px;width:110px}
- #coach-tutorial .coach-dialog{padding:12px}
- #coach-tutorial .coach-dialog h2{font-size:21px}
- #coach-tutorial .coach-dialog p{font-size:11px}
- #coach-tutorial .coach-visual-steps{margin-top:9px}
- #coach-tutorial .coach-dialog-progress{margin-top:9px}
- #coach-tutorial .coach-dialog-actions{margin-top:9px}
-}
-@media(max-height:650px) and (max-width:700px){
- #coach-tutorial .coach-tutorial-scene{height:76px}
- #coach-tutorial .coach-figure{height:90px;width:100px}
- #coach-tutorial .coach-dialog{padding:11px}
- #coach-tutorial .coach-dialog h2{font-size:20px}
- #coach-tutorial .coach-dialog p{font-size:11px}
- #coach-tutorial .coach-visual-steps{margin-top:8px}
- #coach-tutorial .coach-dialog-progress{margin-top:8px}
- #coach-tutorial .coach-dialog-actions{margin-top:8px}
-}
-
-/* AURA DROP — recompensa real del recorrido, objeto coleccionable */
-.hero-hud .mission-reward{grid-template-columns:54px minmax(0,1fr) auto;gap:10px;border:1px solid color-mix(in srgb,var(--skill-accent) 36%,transparent);border-left:3px solid var(--skill-accent);border-radius:4px;background:linear-gradient(110deg,color-mix(in srgb,var(--skill-accent) 10%,#08121d),#08111b 72%);padding:10px;align-items:center}
-.hero-hud .reward-art{width:50px;height:50px;transform:none;border:1px solid color-mix(in srgb,var(--skill-accent) 60%,transparent);background:radial-gradient(circle,color-mix(in srgb,var(--skill-accent) 20%,transparent),#0b1722 72%);box-shadow:inset 0 0 16px color-mix(in srgb,var(--skill-accent) 10%,transparent)}
-.hero-hud .reward-art:before{width:24px;height:24px;background:transparent;border:1px solid var(--skill-accent);transform:rotate(45deg);opacity:.65}
-.hero-hud .reward-art:after{display:none}
-.hero-hud .reward-art i{width:auto;height:auto;border:0;background:transparent;color:var(--skill-accent);font-size:21px;text-shadow:0 0 14px color-mix(in srgb,var(--skill-accent) 45%,transparent)}
-.hero-hud .reward-art span{right:-4px;bottom:-4px;padding:3px 4px;font-size:6px;background:var(--skill-accent);color:#07121b;border:1px solid #07121b}
-.hero-hud .reward-copy .reward-state{color:var(--skill-accent);font-size:7px;letter-spacing:.12em}
-.hero-hud .reward-copy>strong{font-size:clamp(12px,1.7vw,15px);letter-spacing:.04em;line-height:1.15}
-.hero-hud .reward-copy .reward-hint{font-size:7px;letter-spacing:.035em;line-height:1.4;color:#a5b8c6}
-.hero-hud .reward-lock{width:auto;height:auto;min-height:22px;padding:4px 6px;font-size:6px;letter-spacing:.08em;border-radius:2px;white-space:nowrap;background:rgba(255,255,255,.025)}
-.hero-hud .mission-reward.is-earned{border-color:var(--skill-accent);background:linear-gradient(110deg,color-mix(in srgb,var(--skill-accent) 18%,#08121d),#08111b 72%);box-shadow:0 0 24px color-mix(in srgb,var(--skill-accent) 13%,transparent),inset 0 0 18px color-mix(in srgb,var(--skill-accent) 5%,transparent);transform:none}
-.hero-hud .mission-reward.is-earned .reward-art{animation:auraDropReveal .65s cubic-bezier(.16,.84,.25,1) both;border-color:var(--skill-accent)}
-.hero-hud .mission-reward.is-earned .reward-lock{background:var(--skill-accent);color:#07121b;border-color:var(--skill-accent)}
-@keyframes auraDropReveal{0%{transform:scale(.7) rotate(-12deg);filter:brightness(2.2);opacity:.4}65%{transform:scale(1.08) rotate(3deg)}100%{transform:scale(1) rotate(0);opacity:1;filter:none}}
-@media(max-width:600px){.hero-hud .mission-reward{grid-template-columns:42px minmax(0,1fr) auto;gap:8px;padding:9px}.hero-hud .reward-art{width:40px;height:40px}.hero-hud .reward-art i{font-size:18px}.hero-hud .reward-copy .reward-state{font-size:6px}.hero-hud .reward-copy>strong{font-size:11px}.hero-hud .reward-copy .reward-hint{font-size:6px}.hero-hud .reward-lock{font-size:5px;padding:4px 5px}}
-@media(max-width:360px){.hero-hud .mission-reward{grid-template-columns:36px minmax(0,1fr)}.hero-hud .reward-art{width:36px;height:36px}.hero-hud .reward-lock{grid-column:2;justify-self:start}}
-@media(prefers-reduced-motion:reduce){.hero-hud .mission-reward.is-earned .reward-art{animation:none}}
