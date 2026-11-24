@@ -1527,10 +1527,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  grid-template-columns:minmax(125px,24%) minmax(0,1fr)!important;
  min-height:150px!important;
 }
-#aura-player-missions .mission-card .reward-art,
-#aura-player-missions .mission-card .reward-copy,
-#aura-player-missions .mission-card .reward-lock{display:none!important}
-#aura-player-missions .mission-card .mission-reward{display:none!important}
+
 #aura-player-missions .mission-controls{
  display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:9px!important;
  margin:10px 0 0!important;padding:0 2px!important;
@@ -1547,6 +1544,85 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  #aura-player-missions .mission-card .drill{grid-template-columns:88px minmax(0,1fr)!important;min-height:116px!important;gap:9px!important}
  #aura-player-missions .mission-card .drill-art{height:82px!important}
  #aura-player-missions .mission-controls #mission-next{min-height:46px!important}
+}
+
+
+/* DESAFÍO ACTIVO: drop visible a la izquierda del ejercicio */
+#aura-player-missions .mission-card{
+ display:grid!important;
+ grid-template-columns:minmax(155px,30%) minmax(0,1fr)!important;
+ grid-template-areas:"drop info"!important;
+ align-items:center!important;
+ gap:clamp(12px,2vw,22px)!important;
+}
+#aura-player-missions .mission-card .mission-reward{
+ grid-area:drop!important;
+ display:flex!important;
+ position:relative!important;
+ flex-direction:column!important;
+ align-items:center!important;
+ justify-content:center!important;
+ align-self:stretch!important;
+ gap:8px!important;
+ min-width:0!important;
+ margin:0!important;
+ padding:12px 8px!important;
+ border:1px solid rgba(8,201,244,.45)!important;
+ background:radial-gradient(circle at 50% 42%,rgba(8,201,244,.17),rgba(4,14,25,.8) 72%)!important;
+}
+#aura-player-missions .mission-card .reward-art{
+ display:grid!important;
+ place-items:center!important;
+ width:100%!important;
+ max-width:220px!important;
+ aspect-ratio:1/1!important;
+ height:auto!important;
+ overflow:visible!important;
+ background:transparent!important;
+}
+#aura-player-missions .mission-card .reward-art .aura-badge-svg{
+ display:block!important;width:100%!important;height:auto!important;max-height:none!important;
+ filter:drop-shadow(0 0 14px var(--skill-glow))!important;
+}
+#aura-player-missions .mission-card .reward-copy{
+ display:flex!important;flex-direction:column!important;align-items:center!important;
+ gap:5px!important;text-align:center!important;min-width:0!important;
+}
+#aura-player-missions .mission-card .reward-state{
+ color:var(--cyan)!important;font-size:8px!important;font-weight:900!important;letter-spacing:.08em!important;
+}
+#aura-player-missions .mission-card .reward-copy strong{
+ color:#fff!important;font-size:clamp(12px,1.35vw,17px)!important;line-height:1.1!important;
+}
+#aura-player-missions .mission-card .reward-hint{
+ color:#b9c9d8!important;font-size:9px!important;line-height:1.35!important;font-style:normal!important;
+}
+#aura-player-missions .mission-card .reward-lock{
+ display:block!important;position:static!important;width:auto!important;height:auto!important;
+ padding:4px 8px!important;border:1px solid var(--skill-accent)!important;
+ color:var(--skill-accent)!important;background:#06121d!important;font-size:8px!important;
+}
+#aura-player-missions .mission-card .skill-info{grid-area:info!important;min-width:0!important}
+@media(max-width:700px){
+ #aura-player-missions .mission-card{
+  grid-template-columns:minmax(88px,27%) minmax(0,1fr)!important;
+  gap:9px!important;padding:10px 8px!important;
+ }
+ #aura-player-missions .mission-card .mission-reward{padding:8px 4px!important;gap:5px!important}
+ #aura-player-missions .mission-card .reward-state{font-size:6px!important}
+ #aura-player-missions .mission-card .reward-copy strong{font-size:10px!important}
+ #aura-player-missions .mission-card .reward-hint{font-size:7px!important}
+ #aura-player-missions .mission-card .reward-lock{font-size:6px!important;padding:3px 5px!important}
+ #aura-player-missions .mission-card .skill-info>b{font-size:clamp(17px,4.7vw,24px)!important}
+ #aura-player-missions .mission-card .skill-info>small{font-size:9px!important}
+ #aura-player-missions .mission-card .mission-benefit>p{font-size:9px!important}
+ #aura-player-missions .mission-card .quick-drills{padding:8px!important}
+ #aura-player-missions .mission-card .drill{grid-template-columns:1fr!important}
+ #aura-player-missions .mission-card .drill-art{display:none!important}
+}
+@media(max-width:360px){
+ #aura-player-missions .mission-card{grid-template-columns:76px minmax(0,1fr)!important;gap:7px!important}
+ #aura-player-missions .mission-card .reward-hint{display:none!important}
 }
 
 </style>
