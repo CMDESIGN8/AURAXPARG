@@ -231,6 +231,36 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 @media(max-width:600px){.kai-intro{width:calc(100% - 28px);grid-template-columns:108px minmax(0,1fr);min-height:205px;margin-top:16px}.kai-portrait{min-height:205px}.kai-portrait img{height:195px;width:125px;max-width:none;object-position:center bottom}.kai-content{padding:15px 12px 14px}.kai-meta{font-size:7px;gap:5px;letter-spacing:.1em}.kai-meta span:first-child{font-size:10px}.kai-progress{margin:9px 0 12px}.kai-content h2{font-size:19px}.kai-content p{font-size:9px;line-height:1.55;min-height:68px}.kai-step-dots{margin-top:10px}.kai-actions{gap:6px;margin-top:10px}.kai-actions .btn{min-width:0;flex:1;padding:10px 7px;font-size:7px}.kai-replay-wrap{width:calc(100% - 28px)}}
 @media(max-width:360px){.kai-intro{grid-template-columns:88px minmax(0,1fr)}.kai-portrait img{width:108px;height:180px}.kai-content{padding-inline:9px}.kai-content h2{font-size:17px}}
 
+
+/* PRO 21 — mensaje hero con identidad graffiti AURA */
+.hero .aura-graffiti{
+  position:relative;
+  display:table;
+  max-width:min(760px,100%);
+  margin:24px auto 0;
+  padding:7px 16px 9px;
+  color:var(--white);
+  font-family:"Permanent Marker",cursive;
+  font-size:clamp(17px,2.5vw,25px);
+  line-height:1.35;
+  letter-spacing:.015em;
+  text-transform:uppercase;
+  text-shadow:2px 2px 0 rgba(8,201,244,.5),-1px -1px 0 rgba(183,255,60,.3),0 0 22px rgba(8,201,244,.22);
+  transform:rotate(-1.2deg);
+}
+.hero .aura-graffiti:after{
+  content:"";
+  position:absolute;
+  left:12%;right:5%;bottom:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--cyan),var(--lime),transparent);
+  transform:skewX(-24deg);
+  box-shadow:0 0 12px rgba(8,201,244,.35);
+}
+@media(max-width:600px){
+  .hero .aura-graffiti{max-width:340px;padding:5px 8px 9px;font-size:17px;line-height:1.45}
+}
+
 </style>
 </head>
 <body>
@@ -240,7 +270,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 <section class="hero">
 <div class="kicker">AURA XP · PRO PERFORMANCE CLUB</div>
 <h1>21 DÍAS.<br><span>MÁS CONTROL.</span><br>MÁS JUEGO.</h1>
-<p>Tres semanas para desafiar tus límites y llevar tus habilidades más lejos.</p>
+<p class="aura-graffiti">Tres semanas para desafiar tus límites y llevar tus habilidades más lejos.</p>
 </section>
 
 <section class="kai-intro" id="kaiIntro" aria-label="Guía de inicio de Kai">
