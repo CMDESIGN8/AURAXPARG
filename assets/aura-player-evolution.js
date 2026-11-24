@@ -43,7 +43,9 @@
       const currentId=root.dataset.auraProgram||'pro';
       const current=progress[currentId]||progress.pro;
       set('[data-aura-days]',current.completed+' / '+current.total);
-      set('[data-aura-program-percent]',Math.round(current.completed/current.total*100)+'%');
+      const currentPercent=Math.round(current.completed/current.total*100)+'%';
+      set('[data-aura-program-percent]',currentPercent);
+      set('[data-aura-pro-percent]',currentPercent+' DEL PROGRAMA');
       const overall=root.querySelector('[data-aura-overall]');
       if(overall)overall.style.width=Math.min(100,current.completed/current.total*100)+'%';
       const skillValues={};
@@ -57,7 +59,7 @@
       });
 
     });
-    return {progress,totalDays,totalXp,level,rank,skills:skillValues};
+    return {progress,totalDays,totalXp,level,rank};
   }
   window.AuraPlayerEvolution={refresh};
   window.addEventListener('storage',refresh);
