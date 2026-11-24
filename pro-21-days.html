@@ -289,6 +289,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
     if(progressText) progressText.textContent=count+' / 21 DÍAS';
 
     const next=cards.find(card=>saved[card.dataset.day]!==true);
+    if(nextMission) nextMission.textContent=next ? 'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase() : 'PROGRAMA COMPLETADO';
     cards.forEach(card=>{
       const done=saved[card.dataset.day]===true;
       const box=card.querySelector('input[type="checkbox"]');
