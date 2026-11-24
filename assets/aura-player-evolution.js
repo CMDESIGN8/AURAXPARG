@@ -10,10 +10,9 @@
     elite:{key:'auraxp-elite-30day-progress-v1',days:30}
   };
   const SKILLS={
-    coordination:[1,2,3,7,10,11],
-    speed:[4,8,12,18],
-    agility:[5,9,15,19],
-    technique:[2,3,12,16,19,21]
+    start:{coordination:[1,4,7],speed:[5],agility:[4,5],technique:[2,7]},
+    pro:{coordination:[1,2,3,7,10,11],speed:[4,8,12,18],agility:[5,9,15,19],technique:[2,3,12,16,19,21]},
+    elite:{coordination:[1,2,7,9,15,21,30],speed:[5,8,11,18,27],agility:[6,14,15,22,25,28],technique:[3,11,12,17,21,24,25,26,30]}
   };
   function read(key){
     try{
