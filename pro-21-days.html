@@ -244,8 +244,6 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   const boxes=cards.map(card=>card.querySelector('input[type="checkbox"]'));
   const $=id=>document.getElementById(id);
   const fill=$('progressFill'), progressText=$('progressText');
-  const xpTotal=$('xpTotal'), completedTotal=$('completedTotal');
-  const percentTotal=$('percentTotal'), xpTrack=$('xpTrack');
   const nextMission=$('nextMission'), toast=$('toast');
   if(cards.length!==21 || boxes.some(box=>!box)) {
     console.error('AURA XP: no se pudieron inicializar las 21 jornadas.');
@@ -273,19 +271,11 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 
   function update(){
     const count=cards.filter(card=>saved[card.dataset.day]===true).length;
-    const xp=count*50, percent=Math.round(count/cards.length*100);
-    fill.style.width=percent+'%';
-    progressText.textContent=count+' / 21 DÍAS';
-    xpTotal.textContent=String(xp).padStart(3,'0');
-    completedTotal.innerHTML=count+'<span style="font-size:18px;color:var(--muted)"> / 21</span>';
-    percentTotal.textContent=percent+'%';
-    xpTrack.style.width=((xp%500)/500*100)+'%';
+    const percent=Math.round(count/cards.length*100);
+    if(fill) fill.style.width=percent+'%';
+    if(progressText) progressText.textContent=count+' / 21 DÍAS';
 
     const next=cards.find(card=>saved[card.dataset.day]!==true);
-    nextMission.textContent=next
-      ? 'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase()
-      : 'PROGRAMA COMPLETADO';
-
     cards.forEach(card=>{
       const done=saved[card.dataset.day]===true;
       const box=card.querySelector('input[type="checkbox"]');
@@ -295,13 +285,13 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
       const badge=card.querySelector('.next-tag');
       if(badge) badge.remove();
     });
-    window.AuraPlayerEvolution?.refresh();
     if(next){
       const tag=document.createElement('span');
       tag.className='next-tag';
       tag.textContent='NEXT';
       next.querySelector('.day-num').append(tag);
     }
+    window.AuraPlayerEvolution?.refresh();
   }
 
   function setExpanded(card,expanded){
@@ -313,6 +303,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   }
 
   function showToast(message){
+    if(!toast){ console.info('AURA XP:',message); return; }
     toast.textContent=message;
     toast.classList.add('show');
     clearTimeout(toastTimer);
