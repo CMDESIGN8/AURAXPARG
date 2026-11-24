@@ -168,6 +168,12 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 }
 @media(prefers-reduced-motion:reduce){.aura-evolution-track i{transition:none}}
 
+
+/* SINGLE PLAYER HUB — XP, next session, progress and skills */
+.aura-player-hub .aura-hub-main{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:20px 0 10px}.aura-player-hub .aura-hub-xp{display:grid;grid-template-columns:auto auto;align-items:baseline;gap:5px}.aura-player-hub .aura-hub-xp b{font-size:clamp(32px,5vw,46px);line-height:1;font-weight:950}.aura-player-hub .aura-hub-xp span{color:var(--cyan);font-size:11px;font-weight:900}.aura-player-hub .aura-hub-xp small{grid-column:1/-1;color:var(--muted);font-size:8px;font-weight:900;letter-spacing:.1em}.aura-player-hub .aura-hub-days{text-align:right}.aura-player-hub .aura-hub-days b{display:block;font-size:clamp(20px,3vw,28px);font-weight:950}.aura-player-hub .aura-hub-days small{font-size:8px;color:var(--muted);letter-spacing:.1em;font-weight:900}.aura-player-hub .aura-hub-progress{display:grid;gap:6px}.aura-player-hub .aura-hub-progress span{color:var(--cyan);font-size:8px;font-weight:900;letter-spacing:.1em;text-align:right}.aura-player-hub .aura-evolution-track{height:7px}.aura-player-hub .aura-hub-next{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:15px;padding:13px;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.09)}.aura-player-hub .aura-hub-next b{display:block;margin-top:3px;font-size:12px;letter-spacing:.04em}.aura-player-hub .aura-hub-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--cyan);color:var(--ink);padding:11px 14px;font-size:8px;font-weight:900;letter-spacing:.08em;text-align:center}.aura-player-hub .aura-evolution-skills{margin-top:12px}.aura-player-hub .aura-hub-programs{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.aura-player-hub .aura-hub-programs span{border:1px solid rgba(255,255,255,.1);padding:6px 8px;color:#8fa2b4;font-size:8px;font-weight:900;letter-spacing:.08em}.aura-player-hub .aura-hub-programs .is-active{border-color:rgba(8,201,244,.5);color:var(--cyan)}@media(max-width:600px){.aura-player-hub .aura-hub-main{gap:10px}.aura-player-hub .aura-hub-next{align-items:stretch;flex-direction:column}.aura-player-hub .aura-hub-cta{width:100%}.aura-player-hub .aura-hub-days small{font-size:7px}.aura-player-hub .aura-hub-xp small{font-size:7px}}
+
+/* PRO 21 — single consolidated player-progress panel */
+.aura-pro-unified{width:min(100%,1040px);margin:24px auto 30px;padding:clamp(16px,3vw,26px);border:1px solid rgba(8,201,244,.35);background:linear-gradient(140deg,rgba(8,201,244,.08),rgba(5,12,22,.97) 45%,rgba(183,255,60,.025));position:relative;overflow:hidden;color:var(--white);text-align:left}.aura-pro-unified:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--cyan),var(--lime))}.apu-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.apu-kicker{font-size:8px;letter-spacing:.16em;color:var(--cyan);font-weight:900}.apu-head h2{font-size:clamp(22px,4vw,34px);line-height:.98;letter-spacing:-.05em;margin:7px 0 0;font-weight:950}.apu-head h2 em{font-style:normal;color:var(--cyan)}.apu-rank{text-align:right;white-space:nowrap}.apu-rank b{display:block;color:var(--lime);font-size:10px;letter-spacing:.1em}.apu-rank small{display:block;color:var(--muted);font-size:7px;margin-top:4px;letter-spacing:.1em}.apu-desc{font-size:11px;color:var(--muted);max-width:700px;margin:12px 0 18px}.apu-stats{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:15px}.apu-stats>div:last-child{text-align:right}.apu-stats small,.apu-next small{display:block;color:var(--muted);font-size:7px;letter-spacing:.12em;font-weight:900}.apu-stats strong{display:block;font-size:clamp(23px,4vw,36px);line-height:1.1;font-weight:950}.apu-stats i{font-style:normal;color:var(--cyan);font-size:9px}.apu-progress-label{display:flex;justify-content:space-between;align-items:center;font-size:8px;font-weight:900;letter-spacing:.1em;margin-bottom:6px}.apu-progress-label b{color:var(--cyan)}.apu-progress-track{height:7px;background:#1b2937;border-radius:20px;overflow:hidden}.apu-progress-track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--lime));transition:width .3s}.apu-next{margin-top:16px;padding:13px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.09)}.apu-next>strong{display:block;font-size:12px;margin:4px 0 12px}.apu-actions{display:flex;flex-wrap:wrap;gap:8px}.apu-actions .btn{font-size:8px;padding:10px 12px}.apu-weeks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.apu-weeks>div{border-left:2px solid rgba(8,201,244,.5);padding:3px 9px}.apu-weeks b{display:block;color:var(--cyan);font-size:8px;letter-spacing:.1em}.apu-weeks strong{display:block;font-size:10px;margin-top:3px}.apu-weeks p{font-size:8px;color:var(--muted);margin:4px 0 0}.apu-skills{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:14px}.apu-skills span{padding:8px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);font-size:7px;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;gap:4px}.apu-skills b{color:var(--cyan)}.apu-foot{font-size:7px;color:var(--muted);line-height:1.5;margin-top:12px}@media(max-width:600px){.apu-head h2{font-size:25px}.apu-desc{font-size:10px}.apu-stats strong{font-size:24px}.apu-weeks{gap:6px}.apu-weeks>div{padding:3px 6px}.apu-weeks strong{font-size:8px}.apu-weeks p{font-size:7px}.apu-skills{grid-template-columns:repeat(2,1fr)}.apu-actions{display:grid;grid-template-columns:1fr 1fr}.apu-actions .btn{min-height:42px}}
 </style>
 </head>
 <body>
@@ -179,52 +185,20 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 <h1>21 DÍAS.<br><span>MÁS CONTROL.</span><br>MÁS JUEGO.</h1>
 <p>Un recorrido progresivo para desarrollar coordinación, primer paso, cambios de dirección y técnica con pelota. Tres semanas. Sesiones cortas. Progreso que podés registrar.</p>
 <div class="metrics"><div class="metric"><b>21</b><small>DÍAS</small></div><div class="metric"><b>12</b><small>SESIONES PRINCIPALES</small></div><div class="metric"><b>25–40'</b><small>POR SESIÓN</small></div></div>
-<div class="progress-wrap"><div class="progress-head"><span>TU PROGRESO</span><span id="progressText">0 / 21 DÍAS</span></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div>
+
 <div class="controls"><a class="btn secondary" href="#days">IR A MI ENTRENAMIENTO ↓</a><button class="btn secondary" onclick="window.print()">GUARDAR MI PLAN PDF</button><button class="btn secondary" id="resetProgress">REINICIAR PROGRESO</button></div>
 </section>
 <div class="wrap">
-<section class="section-head"><div class="kicker">EL MAPA DE PROGRESIÓN</div><h2>TRES SEMANAS.<br>TRES OBJETIVOS.</h2><p>La carga sube de forma gradual. Los días de recuperación y descanso son parte del programa: no los saltees para intentar avanzar más rápido.</p></section>
-<div class="weeks">
-<div class="week"><b>WEEK 01</b><strong>BASE & CONTROL</strong><p>Aprendé los patrones, registrá tu punto de partida y priorizá la calidad del movimiento.</p></div>
-<div class="week"><b>WEEK 02</b><strong>AGILITY & SPEED</strong><p>Sumá reacción, aceleración corta y cambios de dirección con control.</p></div>
-<div class="week"><b>WEEK 03</b><strong>GAME APPLICATION</strong><p>Combiná coordinación y pelota en secuencias específicas de futsal.</p></div>
-</div>
-<section class="club-shell" aria-label="Tu panel de rendimiento">
-  <div class="club-main">
-    <div class="club-label">TU ZONA DE ENTRENAMIENTO · PRO 21</div>
-    <h2>EL PRÓXIMO NIVEL<br>SE ENTRENA.</h2>
-    <p>Tu recorrido queda guardado en este dispositivo. Abrí la próxima jornada, seguí la sesión y registrá el avance: cada día completado suma 50 XP locales.</p>
-    <div class="club-actions">
-      <button class="btn" id="continueBtn">CONTINUAR MI PLAN ↗</button>
-      <button class="btn secondary" id="showAllBtn">VER LAS 3 SEMANAS</button>
-    </div>
-  </div>
-  <aside class="club-side" data-aura-evolution aria-label="Perfil de evolución AURA XP">
-  <div class="aura-evolution-head">
-    <div><span class="aura-evolution-kicker">AURA XP // PLAYER DEVELOPMENT</span><strong class="aura-evolution-title">PLAYER EVOLUTION</strong></div>
-    <div class="aura-evolution-rank"><b data-aura-rank>ROOKIE</b><small data-aura-level>NIVEL 01</small></div>
-  </div>
-  <div class="aura-evolution-stats">
-    <div class="aura-evolution-stat"><b data-aura-xp>000</b><span>XP DE ENTRENAMIENTO</span></div>
-    <div class="aura-evolution-stat"><b data-aura-days>0 / 58</b><span>JORNADAS REGISTRADAS</span></div>
-    <div class="aura-evolution-stat"><b data-aura-programs>0 / 3</b><span>PROGRAMAS INICIADOS</span></div>
-  </div>
-  <div class="aura-evolution-skills">
-    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>COORDINACIÓN</span><b data-aura-skill="coordination">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="coordination"></i></div></div>
-    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>VELOCIDAD</span><b data-aura-skill="speed">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="speed"></i></div></div>
-    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>AGILIDAD</span><b data-aura-skill="agility">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="agility"></i></div></div>
-    <div class="aura-evolution-skill"><div class="aura-evolution-skill-head"><span>TÉCNICA</span><b data-aura-skill="technique">0%</b></div><div class="aura-evolution-track"><i data-aura-bar="technique"></i></div></div>
-  </div>
-  <div class="aura-evolution-programs">
-    <span class="aura-evolution-program" data-aura-program-status="start"><strong>START</strong> · 7 DÍAS</span>
-    <span class="aura-evolution-program" data-aura-program-status="pro"><strong>PRO</strong> · 21 DÍAS</span>
-    <span class="aura-evolution-program" data-aura-program-status="elite"><strong>ELITE</strong> · 30 DÍAS</span>
-  </div>
-  <div class="aura-evolution-foot">EL PROGRESO SE CALCULA CON JORNADAS MARCADAS EN LOS PROGRAMAS Y SE GUARDA EN ESTE DISPOSITIVO. LAS HABILIDADES REFLEJAN EL TRABAJO REGISTRADO, NO UNA EVALUACIÓN FÍSICA.</div>
-</section>
-
-
-<div class="week-filter" role="group" aria-label="Filtrar por semana">
+<section class="aura-pro-unified" data-aura-evolution aria-label="Progreso unificado PRO 21">
+<div class="apu-head"><div><span class="apu-kicker">AURA XP // PLAYER DEVELOPMENT</span><h2>EL PRÓXIMO NIVEL<br><em>SE ENTRENA.</em></h2></div><div class="apu-rank"><b data-aura-rank>ROOKIE</b><small data-aura-level>NIVEL 01</small></div></div>
+<p class="apu-desc">Tu recorrido queda guardado en este dispositivo. Abrí la próxima jornada, seguí la sesión y registrá el avance: cada día completado suma 50 XP locales.</p>
+<div class="apu-stats"><div><small>XP DE ENTRENAMIENTO</small><strong><span data-aura-xp>000</span> <i>XP</i></strong></div><div><small>DÍAS COMPLETADOS</small><strong data-aura-days>0 / 21</strong></div></div>
+<div class="apu-progress-label"><span>PROGRESO DEL PLAN</span><b data-aura-pro-percent>0%</b></div><div class="apu-progress-track"><i data-aura-overall></i></div>
+<div class="apu-next"><small>SIGUIENTE MISIÓN</small><strong id="nextMission" data-aura-next-mission>DÍA 01 · ACTIVÁ TU MOTOR</strong><div class="apu-actions"><button class="btn" id="continueBtn">CONTINUAR MI PLAN ↗</button><button class="btn secondary" id="showAllBtn">VER LAS 3 SEMANAS</button></div></div>
+<div class="apu-weeks"><div><b>WEEK 01</b><strong>BASE & CONTROL</strong><p>Dominá patrones y control.</p></div><div><b>WEEK 02</b><strong>AGILITY & SPEED</strong><p>Reacción, aceleración y cambios de dirección.</p></div><div><b>WEEK 03</b><strong>GAME APPLICATION</strong><p>Coordinación y pelota en juego.</p></div></div>
+<div class="apu-skills"><span>COORDINACIÓN <b data-aura-skill="coordination">0%</b></span><span>VELOCIDAD <b data-aura-skill="speed">0%</b></span><span>AGILIDAD <b data-aura-skill="agility">0%</b></span><span>TÉCNICA <b data-aura-skill="technique">0%</b></span></div>
+<div class="apu-foot">Las jornadas completadas quedan guardadas en este dispositivo. Las habilidades reflejan el trabajo registrado, no una evaluación física.</div>
+</section><div class="week-filter" role="group" aria-label="Filtrar por semana">
   <button class="filter-btn active" data-filter="all">TODAS LAS SEMANAS</button>
   <button class="filter-btn" data-filter="1">WEEK 01 · BASE</button>
   <button class="filter-btn" data-filter="2">WEEK 02 · SPEED</button>
@@ -272,8 +246,6 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   const boxes=cards.map(card=>card.querySelector('input[type="checkbox"]'));
   const $=id=>document.getElementById(id);
   const fill=$('progressFill'), progressText=$('progressText');
-  const xpTotal=$('xpTotal'), completedTotal=$('completedTotal');
-  const percentTotal=$('percentTotal'), xpTrack=$('xpTrack');
   const nextMission=$('nextMission'), toast=$('toast');
   if(cards.length!==21 || boxes.some(box=>!box)) {
     console.error('AURA XP: no se pudieron inicializar las 21 jornadas.');
@@ -287,11 +259,22 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   } catch(error) {
     console.warn('AURA XP: no se pudo leer el progreso guardado.',error);
   }
+
+  // Normalizar las jornadas guardadas antes de pintar la interfaz.
+  // Solo los días confirmados como true cuentan como completados.
+  for(let day=1;day<=21;day++){
+    const key=String(day);
+    if(saved[key]===true || saved[key]===1 || saved[key]==='true') saved[key]=true;
+    else delete saved[key];
+  }
   let toastTimer;
 
   function persist(){
     try {
       localStorage.setItem(KEY,JSON.stringify(saved));
+      // Avisar al perfil de evolución en esta misma pestaña.
+      // El evento "storage" no se dispara en la pestaña que escribe.
+      window.dispatchEvent(new Event('aura:progress-updated'));
       return true;
     } catch(error) {
       console.warn('AURA XP: el navegador no permitió guardar el progreso.',error);
@@ -301,35 +284,54 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 
   function update(){
     const count=cards.filter(card=>saved[card.dataset.day]===true).length;
-    const xp=count*50, percent=Math.round(count/cards.length*100);
-    fill.style.width=percent+'%';
-    progressText.textContent=count+' / 21 DÍAS';
-    xpTotal.textContent=String(xp).padStart(3,'0');
-    completedTotal.innerHTML=count+'<span style="font-size:18px;color:var(--muted)"> / 21</span>';
-    percentTotal.textContent=percent+'%';
-    xpTrack.style.width=((xp%500)/500*100)+'%';
+    const percent=Math.round(count/cards.length*100);
+    if(fill) fill.style.width=percent+'%';
+    if(progressText) progressText.textContent=count+' / 21 DÍAS';
 
     const next=cards.find(card=>saved[card.dataset.day]!==true);
-    nextMission.textContent=next
-      ? 'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase()
-      : 'PROGRAMA COMPLETADO';
-
+    if(nextMission) nextMission.textContent=next ? 'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase() : 'PROGRAMA COMPLETADO';
+    if(nextMission) nextMission.textContent=next ? 'DÍA '+String(Number(next.dataset.day)).padStart(2,'0')+' · '+next.querySelector('h3').textContent.toUpperCase() : 'PROGRAMA COMPLETADO';
     cards.forEach(card=>{
       const done=saved[card.dataset.day]===true;
       const box=card.querySelector('input[type="checkbox"]');
       box.checked=done;
+      // Una jornada ya recompensada queda bloqueada para evitar repetirla.
+      box.disabled=done;
+      box.setAttribute('aria-label',done?'Jornada '+card.dataset.day+' completada':'Marcar jornada '+card.dataset.day+' como completada');
       card.classList.toggle('done',done);
       card.classList.toggle('next-up',card===next);
       const badge=card.querySelector('.next-tag');
       if(badge) badge.remove();
     });
-    window.AuraPlayerEvolution?.refresh();
     if(next){
       const tag=document.createElement('span');
       tag.className='next-tag';
       tag.textContent='NEXT';
       next.querySelector('.day-num').append(tag);
     }
+    // Actualizar el panel PRO directamente: no depender del script externo.
+    const totalXp=count*50;
+    const level=1+Math.floor(totalXp/250);
+    const rank=level>=9?'ELITE':level>=3?'PROSPECT':'ROOKIE';
+    const evolution=document.querySelector('[data-aura-evolution]');
+    if(evolution){
+      const set=(selector,value)=>{const el=evolution.querySelector(selector);if(el)el.textContent=value;};
+      set('[data-aura-rank]',rank);
+      set('[data-aura-level]','NIVEL '+String(level).padStart(2,'0'));
+      set('[data-aura-xp]',String(totalXp).padStart(3,'0'));
+      set('[data-aura-days]',count+' / 21');
+      set('[data-aura-pro-percent]',percent+'%');
+      const overall=evolution.querySelector('[data-aura-overall]');
+      if(overall)overall.style.width=percent+'%';
+      const skillDays={coordination:[1,2,3,7,10,11],speed:[4,8,12,18],agility:[5,9,15,19],technique:[2,3,12,16,19,21]};
+      Object.entries(skillDays).forEach(([skill,days])=>{
+        const value=Math.round(days.filter(day=>saved[String(day)]===true).length/days.length*100);
+        set('[data-aura-skill="'+skill+'"]',value+'%');
+        const bar=evolution.querySelector('[data-aura-bar="'+skill+'"]');
+        if(bar)bar.style.width=value+'%';
+      });
+    }
+    window.AuraPlayerEvolution?.refresh();
   }
 
   function setExpanded(card,expanded){
@@ -341,6 +343,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   }
 
   function showToast(message){
+    if(!toast){ console.info('AURA XP:',message); return; }
     toast.textContent=message;
     toast.classList.add('show');
     clearTimeout(toastTimer);
@@ -365,6 +368,12 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
     box.addEventListener('change',()=>{
       const day=card.dataset.day;
       const wasDone=saved[day]===true;
+      // Protección adicional: nunca volver a acreditar una jornada completada.
+      if(wasDone){
+        box.checked=true;
+        box.disabled=true;
+        return;
+      }
       if(box.checked) saved[day]=true;
       else delete saved[day];
       const stored=persist();
