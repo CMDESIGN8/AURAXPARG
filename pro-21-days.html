@@ -79,6 +79,8 @@ footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var
 .club-main p{font-size:11px;color:var(--muted);max-width:500px}
 .club-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
 .club-side{display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.club-side:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--cyan,#08c9f4),var(--lime,#b7ff3c))}
+
 .xp-number{font-size:42px;font-weight:900;letter-spacing:-.07em;color:var(--lime);line-height:1}
 .xp-caption{font-size:9px;color:var(--muted);letter-spacing:.14em;font-weight:900}
 .stat-row{display:flex;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}
@@ -169,7 +171,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 </style>
 </head>
 <body>
-<div class="top">AURA XP PRO · 21 DAY PERFORMANCE PROGRAM</div>
+
 <header><a class="brand" href="index.html" aria-label="Volver al universo AURA"><img src="assets/logo2.png" alt="AURA XP"></a><nav><a href="training.html">Elegir sistema</a><a href="#days">Mi entrenamiento</a><a href="index.html">AURA</a></nav></header>
 <main>
 <section class="hero">
@@ -197,15 +199,7 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
       <button class="btn secondary" id="showAllBtn">VER LAS 3 SEMANAS</button>
     </div>
   </div>
-  <aside class="club-side">
-    <div class="xp-block"><div class="club-label">TU XP DE ENTRENAMIENTO</div><div class="xp-number" id="xpTotal">000</div><div class="xp-caption">XP ACUMULADOS</div><div class="level-track"><span id="xpTrack"></span></div></div>
-    <div><div class="xp-caption">DÍAS COMPLETADOS</div><div class="xp-number" id="completedTotal">0<span style="font-size:18px;color:var(--muted)"> / 21</span></div></div>
-    <div><div class="xp-caption">SIGUIENTE MISIÓN</div><div id="nextMission" style="font-size:12px;font-weight:900;margin-top:5px">DÍA 01 · ACTIVÁ TU MOTOR</div></div>
-    <div class="stat-row"><span>PROGRESO DEL PLAN</span><b id="percentTotal">0%</b></div>
-  </aside>
-</section>
-
-<section class="aura-evolution" data-aura-evolution aria-label="Perfil de evolución AURA XP">
+  <aside class="club-side" data-aura-evolution aria-label="Perfil de evolución AURA XP">
   <div class="aura-evolution-head">
     <div><span class="aura-evolution-kicker">AURA XP // PLAYER DEVELOPMENT</span><strong class="aura-evolution-title">PLAYER EVOLUTION</strong></div>
     <div class="aura-evolution-rank"><b data-aura-rank>ROOKIE</b><small data-aura-level>NIVEL 01</small></div>
@@ -228,6 +222,8 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   </div>
   <div class="aura-evolution-foot">EL PROGRESO SE CALCULA CON JORNADAS MARCADAS EN LOS PROGRAMAS Y SE GUARDA EN ESTE DISPOSITIVO. LAS HABILIDADES REFLEJAN EL TRABAJO REGISTRADO, NO UNA EVALUACIÓN FÍSICA.</div>
 </section>
+
+
 <div class="week-filter" role="group" aria-label="Filtrar por semana">
   <button class="filter-btn active" data-filter="all">TODAS LAS SEMANAS</button>
   <button class="filter-btn" data-filter="1">WEEK 01 · BASE</button>
