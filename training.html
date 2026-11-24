@@ -2186,6 +2186,24 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   .kai-inline-portrait img{width:180px;height:auto}
 }
 
+
+/* AURA PLAYER EVOLUTION */
+.player-evolution{position:relative;margin:17px 0 18px;padding:16px 17px 13px;border:1px solid rgba(8,201,244,.26);background:linear-gradient(120deg,rgba(8,201,244,.075),rgba(5,12,21,.88) 55%,rgba(183,255,60,.035))}
+.evolution-head,.evolution-summary,.evolution-summary>div>div,.evolution-foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.evolution-head>div{display:grid;gap:3px}.evolution-kicker{font-size:7px;font-weight:900;letter-spacing:.18em;color:var(--cyan)}.evolution-head strong{font-size:12px;letter-spacing:.13em}
+.evolution-rank{padding:5px 8px;border:1px solid rgba(183,255,60,.45);color:var(--lime);font-size:7px;font-weight:900;letter-spacing:.13em}
+.evolution-summary{align-items:stretch;margin:14px 0 13px;padding:11px 12px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07)}
+.evolution-level{display:grid;align-content:center;min-width:65px;border-right:1px solid rgba(255,255,255,.1)}.evolution-level small,.evolution-progress small{font-size:6px;color:#91a4b7;font-weight:900;letter-spacing:.11em}.evolution-level b{font-size:30px;line-height:1;color:var(--lime);letter-spacing:-.08em}
+.evolution-progress{flex:1;min-width:0;display:grid;gap:6px}.evolution-progress>div{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:7px;color:#b5c2cf;font-weight:900;letter-spacing:.08em}.evolution-progress>div b{color:var(--cyan);font-size:11px}
+.evolution-progress>i,.evolution-skill i{height:4px;display:block;overflow:hidden;background:rgba(255,255,255,.1)}.evolution-progress>i span,.evolution-skill i em{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--cyan),var(--lime));transition:width .35s ease}
+.evolution-skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.evolution-skill{display:grid;grid-template-columns:25px minmax(0,1fr) 28px;align-items:center;gap:8px;padding:9px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.075);min-width:0}
+.evolution-skill>span{display:grid;place-items:center;width:24px;height:24px;border:1px solid rgba(8,201,244,.35);color:var(--cyan);font-size:12px}.evolution-skill>div{min-width:0;display:grid;gap:4px}
+.evolution-skill b{font-size:7px;letter-spacing:.07em;white-space:nowrap}.evolution-skill small{font-size:6px;color:#8498aa;font-weight:800;letter-spacing:.06em}.evolution-skill i{height:3px}.evolution-skill>strong{justify-self:end;font-size:10px;color:#8498aa}
+.evolution-skill.is-developed{border-color:rgba(183,255,60,.35);background:rgba(183,255,60,.045)}.evolution-skill.is-developed>span,.evolution-skill.is-developed>strong{color:var(--lime);border-color:rgba(183,255,60,.55)}.evolution-skill.is-developed small{color:var(--lime)}
+.evolution-foot{margin-top:11px;padding-top:9px;border-top:1px solid rgba(255,255,255,.08);font-size:6px;font-weight:900;letter-spacing:.1em;color:#879bad}.evolution-foot span:last-child{color:var(--cyan)}
+@media(max-width:600px){.player-evolution{margin:13px 0;padding:13px 11px 10px}.evolution-head strong{font-size:11px}.evolution-summary{margin:11px 0;padding:9px}.evolution-skills{gap:6px}.evolution-skill{grid-template-columns:21px minmax(0,1fr) 22px;gap:6px;padding:8px 6px}.evolution-skill>span{width:20px;height:20px;font-size:10px}.evolution-skill b{font-size:6.5px;letter-spacing:.035em}.evolution-skill small{font-size:5.5px}.evolution-foot{font-size:5.5px;letter-spacing:.045em}}
+@media(prefers-reduced-motion:reduce){.evolution-progress>i span,.evolution-skill i em{transition:none}}
+
 </style>
 </head>
 <body>
@@ -2219,6 +2237,18 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     <div class="mission-progress-meta"><span id="mission-counter">DESAFÍO 01 <b>/ 04</b></span><span><strong id="mission-percent">0%</strong> COMPLETADO</span></div>
     <div class="mission-progress-track"><span id="mission-progress-fill"></span></div>
   </div>
+
+  <section class="player-evolution" id="aura-player-profile" aria-label="Perfil de evolución del jugador">
+    <div class="evolution-head"><div><span class="evolution-kicker">AURA XP // PLAYER CARD</span><strong>TU EVOLUCIÓN</strong></div><span class="evolution-rank" id="player-rank">ROOKIE</span></div>
+    <div class="evolution-summary"><div class="evolution-level"><small>NIVEL DE JUGADOR</small><b id="player-level">01</b></div><div class="evolution-progress"><div><span id="player-progress-label">0 / 4 HABILIDADES</span><b id="player-progress-percent">0%</b></div><i><span id="player-progress-fill"></span></i><small id="player-progress-next">COMPLETÁ TU PRIMER DESAFÍO PARA AVANZAR</small></div></div>
+    <div class="evolution-skills" id="player-skill-attributes">
+      <div class="evolution-skill" data-skill="0"><span>◎</span><div><b>COORDINACIÓN</b><small>POR DESARROLLAR</small><i><em></em></i></div><strong>—</strong></div>
+      <div class="evolution-skill" data-skill="1"><span>↗</span><div><b>VELOCIDAD</b><small>POR DESARROLLAR</small><i><em></em></i></div><strong>—</strong></div>
+      <div class="evolution-skill" data-skill="2"><span>↔</span><div><b>AGILIDAD</b><small>POR DESARROLLAR</small><i><em></em></i></div><strong>—</strong></div>
+      <div class="evolution-skill" data-skill="3"><span>✳</span><div><b>TÉCNICA</b><small>POR DESARROLLAR</small><i><em></em></i></div><strong>—</strong></div>
+    </div>
+    <div class="evolution-foot"><span>PROGRESO GUARDADO EN ESTE DISPOSITIVO</span><span id="player-drops-count">0 / 4 DROPS</span></div>
+  </section>
   <div class="challenge-journey" id="challenge-journey" aria-label="Tu recorrido de desafíos">
     <div class="journey-heading"><span>TU RUTA</span><span id="journey-status">0 DE 4 SUPERADOS</span></div>
     <div class="journey-nodes" id="journey-nodes" aria-live="polite">
@@ -2381,12 +2411,24 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',exercises:[['CONTROL ORIENTADO','10 por perfil','Recibí y llevá el primer toque hacia el espacio libre.','Salir de la presión con el primer toque.'],['PASE CONTRA PARED','20 pases','Alterná pie derecho e izquierdo. Prepará el cuerpo antes de recibir.','Dar pases más precisos con ambos perfiles.'],['CONDUCCIÓN + CAMBIO','5 recorridos','Conducí, cambiá de dirección y salí con un toque más largo.','Cambiar el ritmo para dejar atrás al rival.']],benefit:'Controlá, pasá y resolvé con más recursos cuando tenés la pelota.',action:'RESOLVER',mark:'✳',reward:'DOMINIO DE PELOTA',drop:'TOUCH MASTER',className:'skill-technique',coach:'La técnica transforma lo que pensás en una acción. Un buen control o un pase preciso te dan más opciones para resolver bajo presión.',tip:'Antes de recibir, levantá la mirada y pensá tu próxima acción. El control empieza antes de que la pelota llegue.'}
   ];
 
-  const completedDrops=new Set();
+  const progressKey='aura-player-evolution-v1';
+  function loadProgress(){try{const raw=JSON.parse(localStorage.getItem(progressKey)||'{}');return Array.isArray(raw.completedDrops)?raw.completedDrops.filter(n=>Number.isInteger(n)&&n>=0&&n<4):[];}catch(e){return [];}}
+  const completedDrops=new Set(loadProgress());
+  function saveProgress(){try{localStorage.setItem(progressKey,JSON.stringify({completedDrops:Array.from(completedDrops),updatedAt:new Date().toISOString()}));}catch(e){}}
+  function renderPlayerProfile(){
+    const count=completedDrops.size,percent=Math.round(count/4*100),level=String(1+count).padStart(2,'0');
+    const put=(id,value)=>{const el=root.querySelector('#'+id);if(el)el.textContent=value;};
+    put('player-progress-label',count+' / 4 HABILIDADES');put('player-progress-percent',percent+'%');put('player-level',level);put('player-rank',count===4?'ELITE':count>=2?'PROSPECT':count===1?'ROOKIE+':'ROOKIE');put('player-drops-count',count+' / 4 DROPS');
+    const bar=root.querySelector('#player-progress-fill');if(bar)bar.style.width=percent+'%';
+    put('player-progress-next',count===4?'RECORRIDO COMPLETADO · TODAS LAS HABILIDADES REGISTRADAS':count===0?'COMPLETÁ TU PRIMER DESAFÍO PARA AVANZAR':'TE FALTAN '+(4-count)+' DESAFÍOS PARA COMPLETAR EL RECORRIDO');
+    root.querySelectorAll('.evolution-skill').forEach((node,i)=>{const done=completedDrops.has(i);node.classList.toggle('is-developed',done);const small=node.querySelector('small'),bar=node.querySelector('em'),value=node.querySelector('strong');if(small)small.textContent=done?'DESAFÍO COMPLETADO':'POR DESARROLLAR';if(bar)bar.style.width=done?'100%':'0%';if(value)value.textContent=done?'✓':'—';});
+  }
   function renderCollection(){
     const target=root.querySelector('#aura-collection-badges');if(!target)return;
     const names=['CONTROL CORE','FIRST STRIKE','BREAKPOINT','TOUCH MASTER'];
     const colors=['#08c9f4','#b7ff3c','#c58aff','#ff9b3d'];
     target.innerHTML=names.map((name,i)=>'<div class="collection-badge '+(completedDrops.has(i)?'is-earned':'is-locked')+'" style="--badge-color:'+colors[i]+'">'+badgeVisual(i,completedDrops.has(i))+'<b>'+name+'</b><small>'+(completedDrops.has(i)?'DESBLOQUEADO':'POR DESBLOQUEAR')+'</small></div>').join('');
+     renderPlayerProfile();
   }
   const badgeFiles=['assets/coordinacion.png','assets/velocidad.png','assets/agilidad.png','assets/tecnica.png'];
   function badgeVisual(i,earned){
@@ -2421,6 +2463,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     return art[Math.min(3,challengeIndex)];
   }
   let current=0,currentExercise=0,completedExercises=new Set();
+  while(current<challenges.length&&completedDrops.has(current))current++;
   const stage=root.querySelector('#mission-stage'),counter=root.querySelector('#mission-counter'),percent=root.querySelector('#mission-percent'),fill=root.querySelector('#mission-progress-fill'),index=root.querySelector('#mission-stage-index'),next=root.querySelector('#mission-next'),hint=root.querySelector('#mission-hint'),controls=root.querySelector('.mission-controls'),finished=root.querySelector('#mission-finished'),journey=root.querySelector('#journey-nodes'),journeyStatus=root.querySelector('#journey-status');
   function callCoach(index,finished=false){window.dispatchEvent(new CustomEvent('aura:coach',{detail:{index:index,finished:finished}}));}
   function renderJourney(){const nodes=journey.querySelectorAll('.journey-node'),links=journey.querySelectorAll('.journey-link');nodes.forEach((node,i)=>{node.classList.toggle('is-done',i<current);node.classList.toggle('is-current',i===current);node.setAttribute('aria-label',challenges[i].name+(i<current?' · superado':i===current?' · actual':' · pendiente'));});links.forEach((link,i)=>link.classList.toggle('is-done',i<current));journeyStatus.textContent=current+' DE 4 SUPERADOS';}
@@ -2438,7 +2481,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   next.addEventListener('click',function(){
     if(!completedExercises.has(currentExercise))return;
     if(currentExercise<challenges[current].exercises.length-1){currentExercise++;updateExerciseProgress();return;}
-    completedDrops.add(current);renderCollection();const card=stage.querySelector('.mission-card');if(card)card.classList.add('is-completing');next.disabled=true;
+    completedDrops.add(current);saveProgress();renderCollection();const card=stage.querySelector('.mission-card');if(card)card.classList.add('is-completing');next.disabled=true;
     window.setTimeout(function(){current++;if(current>=challenges.length){controls.hidden=true;stage.hidden=true;finished.hidden=false;counter.innerHTML='04 DE 04 <b>· COMPLETADO</b>';index.textContent='100%';percent.textContent='100%';fill.style.width='100%';renderJourney();callCoach(current-1,true);}else{render();callCoach(current);}},300);
   });
   root.querySelector('#mission-restart').addEventListener('click',function(){
@@ -2448,8 +2491,11 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     controls.hidden=false;
     render();
   });
-  render();
-  window.setTimeout(function(){callCoach(current);},350);
+  renderCollection();
+  renderPlayerProfile();
+  if(current>=challenges.length){controls.hidden=true;stage.hidden=true;finished.hidden=false;counter.innerHTML='04 DE 04 <b>· COMPLETADO</b>';index.textContent='100%';percent.textContent='100%';fill.style.width='100%';renderJourney();}
+  else render();
+  window.setTimeout(function(){if(current<challenges.length)callCoach(current);},350);
 })();
 </script>
 
