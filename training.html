@@ -1798,6 +1798,83 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  .hero-hud .mission-card:before{animation:none!important}
 }
 
+
+
+/* AURA DROP — RECOMPENSA AAA / CÁPSULA DE LOGRO */
+#aura-player-missions .hero-hud .mission-card .mission-reward{
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+  min-height:116px!important;
+  padding:14px 16px!important;
+  border:1px solid color-mix(in srgb,var(--skill-accent,#08c9f4) 58%,rgba(255,255,255,.18))!important;
+  border-left:3px solid var(--skill-accent,#08c9f4)!important;
+  border-radius:3px!important;
+  background:
+    radial-gradient(ellipse at 16% 50%,color-mix(in srgb,var(--skill-accent,#08c9f4) 24%,transparent),transparent 38%),
+    radial-gradient(ellipse at 88% 12%,rgba(255,255,255,.10),transparent 30%),
+    linear-gradient(112deg,rgba(10,31,49,.99),rgba(4,13,25,.98) 58%,rgba(5,19,31,.99))!important;
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.13),
+    inset 0 0 34px color-mix(in srgb,var(--skill-accent,#08c9f4) 10%,transparent),
+    0 12px 30px rgba(0,0,0,.38),
+    0 0 24px color-mix(in srgb,var(--skill-accent,#08c9f4) 12%,transparent)!important;
+}
+#aura-player-missions .hero-hud .mission-card .mission-reward:before{
+  content:""!important;
+  position:absolute!important;inset:0!important;z-index:-1!important;pointer-events:none!important;
+  opacity:.8!important;
+  background:
+    linear-gradient(90deg,transparent 0 16%,rgba(255,255,255,.045) 16.2%,transparent 16.5% 100%),
+    repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,255,255,.018) 6px,transparent 7px 12px),
+    linear-gradient(120deg,transparent 25%,color-mix(in srgb,var(--skill-accent,#08c9f4) 10%,transparent) 48%,transparent 72%)!important;
+  background-size:100% 100%,100% 100%,220% 100%!important;
+  animation:auraDropPanelSweep 8s ease-in-out infinite!important;
+}
+#aura-player-missions .hero-hud .mission-card .mission-reward:after{
+  content:""!important;
+  position:absolute!important;inset:0!important;z-index:0!important;pointer-events:none!important;
+  opacity:.78!important;
+  background:
+    radial-gradient(circle at 8% 20%,#fff 0 1px,transparent 2px),
+    radial-gradient(circle at 26% 82%,var(--skill-accent,#08c9f4) 0 1.5px,transparent 2.5px),
+    radial-gradient(circle at 49% 12%,#fff 0 1px,transparent 2px),
+    radial-gradient(circle at 72% 88%,var(--skill-accent,#08c9f4) 0 1px,transparent 2px),
+    radial-gradient(circle at 91% 28%,#fff 0 1px,transparent 2px),
+    radial-gradient(circle at 96% 76%,var(--skill-accent,#08c9f4) 0 1.5px,transparent 2.5px);
+  filter:drop-shadow(0 0 5px var(--skill-accent,#08c9f4));
+  animation:auraDropPanelParticles 5.5s ease-in-out infinite alternate!important;
+}
+#aura-player-missions .hero-hud .mission-card .mission-reward>*{
+  position:relative!important;z-index:1!important;
+}
+#aura-player-missions .hero-hud .mission-card .mission-reward .reward-art{
+  filter:drop-shadow(0 0 14px color-mix(in srgb,var(--skill-accent,#08c9f4) 42%,transparent));
+}
+#aura-player-missions .hero-hud .mission-card .mission-reward.is-earned{
+  border-color:color-mix(in srgb,var(--skill-accent,#08c9f4) 75%,white)!important;
+  box-shadow:inset 0 0 42px color-mix(in srgb,var(--skill-accent,#08c9f4) 18%,transparent),0 0 32px color-mix(in srgb,var(--skill-accent,#08c9f4) 26%,transparent),0 12px 30px rgba(0,0,0,.42)!important;
+}
+#aura-player-missions .hero-hud .mission-card .mission-reward.is-earned:after{
+  opacity:1!important;
+  animation:auraDropPanelParticles 2.4s ease-in-out infinite alternate!important;
+}
+@keyframes auraDropPanelSweep{
+  0%,100%{background-position:0 0,0 0,120% 0}
+  50%{background-position:0 0,0 0,-120% 0}
+}
+@keyframes auraDropPanelParticles{
+  0%{opacity:.32;transform:translate3d(-2px,2px,0) scale(.98)}
+  100%{opacity:.95;transform:translate3d(2px,-3px,0) scale(1.025)}
+}
+@media(max-width:600px){
+  #aura-player-missions .hero-hud .mission-card .mission-reward{min-height:94px!important;padding:10px 9px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #aura-player-missions .hero-hud .mission-card .mission-reward:before,
+  #aura-player-missions .hero-hud .mission-card .mission-reward:after{animation:none!important}
+}
+
 </style>
 </head>
 <body>
