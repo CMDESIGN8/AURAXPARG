@@ -78,7 +78,8 @@
   }
   function mount(){
     const progress=document.querySelector('[data-aura-evolution]');
-    if(!progress)return;
+    const target=document.querySelector('[data-aura-achievements-mount]')||progress;
+    if(!target)return;
     const style=document.createElement('style');
     style.textContent=`
       .aura-achievements{width:min(100%,1040px);margin:0 auto 30px;padding:clamp(16px,3vw,25px);border:1px solid rgba(8,201,244,.22);background:linear-gradient(145deg,rgba(8,201,244,.045),rgba(5,12,22,.96) 48%,rgba(183,255,60,.025));color:#f4f8fc}
@@ -91,7 +92,8 @@
     collection=document.createElement('section');
     collection.className='aura-achievements';
     collection.setAttribute('aria-label','Colección de logros AURA XP');
-    progress.insertAdjacentElement('afterend',collection);
+    if(target.hasAttribute('data-aura-achievements-mount'))target.appendChild(collection);
+    else target.insertAdjacentElement('afterend',collection);
     modal=document.createElement('div');
     modal.className='aura-award-modal';
     modal.innerHTML='<div class="aura-award-dialog" role="dialog" aria-modal="true" aria-labelledby="auraAwardTitle"><button class="aura-award-close" type="button" aria-label="Cerrar">×</button><div class="aura-award-kicker">✦ ACHIEVEMENT UNLOCKED ✦</div><div class="aura-award-art" data-award-art></div><div class="aura-award-program" data-award-program></div><h2 class="aura-award-title" id="auraAwardTitle" data-award-title></h2><div class="aura-award-subtitle" data-award-subtitle></div><p class="aura-award-message" data-award-message></p><button class="aura-award-cta" type="button">VER MI COLECCIÓN</button><div class="aura-award-foot">ESTE LOGRO ES TUYO. ENTRENÁ EL PRÓXIMO NIVEL.</div></div>';
