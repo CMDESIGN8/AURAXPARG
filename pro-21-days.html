@@ -174,6 +174,47 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 
 /* PRO 21 — single consolidated player-progress panel */
 .aura-pro-unified{width:min(100%,1040px);margin:24px auto 30px;padding:clamp(16px,3vw,26px);border:1px solid rgba(8,201,244,.35);background:linear-gradient(140deg,rgba(8,201,244,.08),rgba(5,12,22,.97) 45%,rgba(183,255,60,.025));position:relative;overflow:hidden;color:var(--white);text-align:left}.aura-pro-unified:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--cyan),var(--lime))}.apu-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.apu-kicker{font-size:8px;letter-spacing:.16em;color:var(--cyan);font-weight:900}.apu-head h2{font-size:clamp(22px,4vw,34px);line-height:.98;letter-spacing:-.05em;margin:7px 0 0;font-weight:950}.apu-head h2 em{font-style:normal;color:var(--cyan)}.apu-rank{text-align:right;white-space:nowrap}.apu-rank b{display:block;color:var(--lime);font-size:10px;letter-spacing:.1em}.apu-rank small{display:block;color:var(--muted);font-size:7px;margin-top:4px;letter-spacing:.1em}.apu-desc{font-size:11px;color:var(--muted);max-width:700px;margin:12px 0 18px}.apu-stats{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:15px}.apu-stats>div:last-child{text-align:right}.apu-stats small,.apu-next small{display:block;color:var(--muted);font-size:7px;letter-spacing:.12em;font-weight:900}.apu-stats strong{display:block;font-size:clamp(23px,4vw,36px);line-height:1.1;font-weight:950}.apu-stats i{font-style:normal;color:var(--cyan);font-size:9px}.apu-progress-label{display:flex;justify-content:space-between;align-items:center;font-size:8px;font-weight:900;letter-spacing:.1em;margin-bottom:6px}.apu-progress-label b{color:var(--cyan)}.apu-progress-track{height:7px;background:#1b2937;border-radius:20px;overflow:hidden}.apu-progress-track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--lime));transition:width .3s}.apu-next{margin-top:16px;padding:13px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.09)}.apu-next>strong{display:block;font-size:12px;margin:4px 0 12px}.apu-actions{display:flex;flex-wrap:wrap;gap:8px}.apu-actions .btn{font-size:8px;padding:10px 12px}.apu-weeks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.apu-weeks>div{border-left:2px solid rgba(8,201,244,.5);padding:3px 9px}.apu-weeks b{display:block;color:var(--cyan);font-size:8px;letter-spacing:.1em}.apu-weeks strong{display:block;font-size:10px;margin-top:3px}.apu-weeks p{font-size:8px;color:var(--muted);margin:4px 0 0}.apu-skills{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:14px}.apu-skills span{padding:8px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);font-size:7px;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;gap:4px}.apu-skills b{color:var(--cyan)}.apu-foot{font-size:7px;color:var(--muted);line-height:1.5;margin-top:12px}@media(max-width:600px){.apu-head h2{font-size:25px}.apu-desc{font-size:10px}.apu-stats strong{font-size:24px}.apu-weeks{gap:6px}.apu-weeks>div{padding:3px 6px}.apu-weeks strong{font-size:8px}.apu-weeks p{font-size:7px}.apu-skills{grid-template-columns:repeat(2,1fr)}.apu-actions{display:grid;grid-template-columns:1fr 1fr}.apu-actions .btn{min-height:42px}}
+
+/* PRO 21 — unified game mission HUD */
+.pro-game-hud{position:relative;isolation:isolate;max-width:690px;margin:27px auto 0;padding:17px 18px 16px;text-align:left;border:1px solid rgba(8,201,244,.34);background:linear-gradient(145deg,rgba(11,29,45,.96),rgba(5,12,22,.97));box-shadow:0 14px 38px rgba(0,0,0,.32),0 0 28px rgba(8,201,244,.08);overflow:hidden}
+.pro-game-hud:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(180deg,var(--cyan),var(--lime));z-index:-1}
+.pro-hud-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.09)}
+.pro-hud-tag,.pro-hud-status{font-size:8px;font-weight:900;letter-spacing:.14em}
+.pro-hud-tag{color:var(--cyan);display:flex;align-items:center;gap:8px}
+.pro-hud-tag i{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+.pro-hud-status{color:var(--lime);border:1px solid rgba(183,255,60,.25);padding:4px 7px;background:rgba(183,255,60,.06)}
+.pro-hud-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:14px 0 13px}
+.pro-hud-stat{display:flex;flex-direction:column;gap:2px;padding:0 13px;border-right:1px solid rgba(255,255,255,.1)}
+.pro-hud-stat:first-child{padding-left:0}.pro-hud-stat:last-child{border:0}
+.pro-hud-stat strong{font-size:clamp(19px,3vw,25px);font-weight:950;line-height:1.1;letter-spacing:-.05em;color:var(--white)}
+.pro-hud-stat span{font-size:7px;font-weight:900;letter-spacing:.1em;color:var(--muted)}
+.pro-hud-progress{padding:11px 12px 12px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.07)}
+.pro-hud-progress-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+.pro-hud-progress-head span{font-size:8px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.pro-hud-progress-head strong{font-size:9px;font-weight:950;letter-spacing:.06em;color:var(--lime)}
+.pro-hud-progress .progress-track{height:8px;background:#1b2937;border-radius:2px;overflow:hidden}
+.pro-hud-progress .progress-fill{background:linear-gradient(90deg,var(--cyan),var(--lime));box-shadow:0 0 12px rgba(8,201,244,.4);position:relative}
+.pro-hud-actions{display:flex;align-items:center;gap:8px;margin-top:12px}
+.pro-hud-actions .btn{min-height:39px;display:inline-flex;align-items:center;justify-content:center}
+.pro-hud-play{flex:1;background:var(--cyan)!important;border-color:var(--cyan)!important;color:#031018!important;gap:9px;box-shadow:0 0 18px rgba(8,201,244,.16);font-size:9px!important}
+.pro-hud-play span{font-size:10px}
+.pro-hud-utility{font-size:8px!important;padding:10px 11px!important}
+.pro-hud-reset{width:40px;padding:8px!important;font-size:16px!important;color:var(--muted)!important}
+@media(max-width:600px){
+ .pro-game-hud{margin:21px 0 0;padding:14px 12px 12px}
+ .pro-hud-top{padding-bottom:10px}
+ .pro-hud-tag,.pro-hud-status{font-size:7px}
+ .pro-hud-stats{padding:12px 0 11px}
+ .pro-hud-stat{padding:0 8px}
+ .pro-hud-stat span{font-size:6px;letter-spacing:.07em}
+ .pro-hud-progress{padding:10px 9px}
+ .pro-hud-progress-head span{font-size:7px}
+ .pro-hud-actions{gap:6px}
+ .pro-hud-actions .btn{min-height:42px}
+ .pro-hud-play{font-size:8px!important;padding:10px 8px!important}
+ .pro-hud-utility{font-size:7px!important;padding:9px 7px!important}
+ .pro-hud-reset{width:38px;min-width:38px}
+}
 </style>
 </head>
 <body>
@@ -184,13 +225,31 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 <div class="kicker">AURA XP · PRO PERFORMANCE CLUB</div>
 <h1>21 DÍAS.<br><span>MÁS CONTROL.</span><br>MÁS JUEGO.</h1>
 <p>Un recorrido progresivo para desarrollar coordinación, primer paso, cambios de dirección y técnica con pelota. Tres semanas. Sesiones cortas. Progreso que podés registrar.</p>
-<div class="metrics"><div class="metric"><b>21</b><small>DÍAS</small></div><div class="metric"><b>12</b><small>SESIONES PRINCIPALES</small></div><div class="metric"><b>25–40'</b><small>POR SESIÓN</small></div></div>
-
-<div class="progress-wrap" aria-label="Progreso del programa">
-  <div class="progress-head"><span>PROGRESO DEL PROGRAMA</span><strong id="progressText">0 / 21 DÍAS</strong></div>
-  <div class="progress-track" role="progressbar" aria-label="Jornadas completadas" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+<div class="pro-game-hud" aria-label="Panel de misión PRO 21">
+  <div class="pro-hud-top">
+    <span class="pro-hud-tag"><i></i> MODO CARRERA · TEMPORADA 01</span>
+    <span class="pro-hud-status">EN CURSO</span>
+  </div>
+  <div class="pro-hud-stats">
+    <div class="pro-hud-stat"><strong>21</strong><span>DÍAS DE DESAFÍO</span></div>
+    <div class="pro-hud-stat"><strong>12</strong><span>SESIONES CLAVE</span></div>
+    <div class="pro-hud-stat"><strong>25–40'</strong><span>POR SESIÓN</span></div>
+  </div>
+  <div class="pro-hud-progress">
+    <div class="pro-hud-progress-head">
+      <span>PROGRESO DE TEMPORADA</span>
+      <strong id="progressText">0 / 21 DÍAS</strong>
+    </div>
+    <div class="progress-track" role="progressbar" aria-label="Jornadas completadas" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+  <div class="pro-hud-actions">
+    <a class="btn pro-hud-play" href="#days"><span>▶</span> IR A MI ENTRENAMIENTO</a>
+    <button class="btn secondary pro-hud-utility" onclick="window.print()">GUARDAR PLAN PDF</button>
+    <button class="btn secondary pro-hud-reset" id="resetProgress" aria-label="Reiniciar progreso">↻</button>
+  </div>
 </div>
-<div class="controls"><a class="btn secondary" href="#days">IR A MI ENTRENAMIENTO ↓</a><button class="btn secondary" onclick="window.print()">GUARDAR MI PLAN PDF</button><button class="btn secondary" id="resetProgress">REINICIAR PROGRESO</button></div>
 </section>
 <div class="wrap">
 <section class="aura-pro-unified" data-aura-evolution aria-label="Progreso unificado PRO 21">
