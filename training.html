@@ -1625,6 +1625,24 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
  #aura-player-missions .mission-card .reward-hint{display:none!important}
 }
 
+
+/* Imágenes oficiales de insignias AURA */
+#aura-player-missions .aura-badge-image{
+ display:block;width:100%;height:100%;max-width:100%;max-height:100%;
+ object-fit:contain;object-position:center;
+ filter:drop-shadow(0 0 12px var(--skill-glow,rgba(8,201,244,.35)));
+}
+#aura-player-missions .mission-card .reward-art .aura-badge-image{
+ width:100%;height:100%;max-width:220px;max-height:220px;aspect-ratio:1/1;
+}
+#aura-player-missions .collection-badge .aura-badge-image{
+ width:100%;height:auto;max-width:105px;aspect-ratio:1/1;object-fit:contain;
+}
+@media(max-width:700px){
+ #aura-player-missions .mission-card .reward-art .aura-badge-image{max-width:100%;max-height:100%}
+ #aura-player-missions .collection-badge .aura-badge-image{max-width:75px}
+}
+
 </style>
 </head>
 <body>
@@ -1825,7 +1843,13 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     const target=root.querySelector('#aura-collection-badges');if(!target)return;
     const names=['CONTROL CORE','FIRST STRIKE','BREAKPOINT','TOUCH MASTER'];
     const colors=['#08c9f4','#b7ff3c','#c58aff','#ff9b3d'];
-    target.innerHTML=names.map((name,i)=>'<div class="collection-badge '+(completedDrops.has(i)?'is-earned':'is-locked')+'" style="--badge-color:'+colors[i]+'">'+badgeSvg(i,completedDrops.has(i))+'<b>'+name+'</b><small>'+(completedDrops.has(i)?'DESBLOQUEADO':'POR DESBLOQUEAR')+'</small></div>').join('');
+    target.innerHTML=names.map((name,i)=>'<div class="collection-badge '+(completedDrops.has(i)?'is-earned':'is-locked')+'" style="--badge-color:'+colors[i]+'">'+badgeVisual(i,completedDrops.has(i))+'<b>'+name+'</b><small>'+(completedDrops.has(i)?'DESBLOQUEADO':'POR DESBLOQUEAR')+'</small></div>').join('');
+  }
+  const badgeFiles=['assets/coordinacion.png','assets/velocidad.png','assets/agilidad.png','assets/tecnica.png'];
+  function badgeVisual(i,earned){
+    const src=badgeFiles[i]||badgeFiles[0];
+    const alt=['Insignia de coordinación','Insignia de velocidad','Insignia de agilidad','Insignia de técnica'][i]||'Insignia AURA';
+    return '<img class="aura-badge-image" src="'+src+'" alt="'+alt+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.replaceWith(document.createRange().createContextualFragment(badgeSvg('+i+','+!!earned+')))">';
   }
   function badgeSvg(i,earned){
     const names=['CONTROL CORE','FIRST STRIKE','BREAKPOINT','TOUCH MASTER'];
