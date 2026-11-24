@@ -1487,3 +1487,51 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 @media(max-width:600px){.hero-hud .mission-reward{grid-template-columns:42px minmax(0,1fr) auto;gap:9px;padding:9px}.hero-hud .reward-art{width:40px;height:40px}.hero-hud .reward-art i{width:25px;height:25px;font-size:16px}.hero-hud .reward-copy .reward-state{font-size:6px}.hero-hud .reward-copy>strong{font-size:11px}.hero-hud .reward-copy .reward-hint{font-size:6px}.hero-hud .reward-lock{font-size:5px;padding:4px 5px;min-height:20px}}
 @media(max-width:360px){.hero-hud .mission-reward{grid-template-columns:36px minmax(0,1fr);gap:8px}.hero-hud .reward-lock{grid-column:2;justify-self:start}.hero-hud .reward-art{width:36px;height:36px}}
 @media(prefers-reduced-motion:reduce){.hero-hud .mission-reward,.hero-hud .reward-art{transition:none;animation:none!important}}
+
+/* KAI MOBILE FIX — modal compacta, sin scroll interno */
+@media(max-width:700px){
+ #coach-tutorial.coach-tutorial{padding:clamp(8px,2.5vw,14px);overflow:hidden;min-height:100dvh;min-height:100svh;box-sizing:border-box}
+ #coach-tutorial .coach-tutorial-inner{width:100%;max-width:520px;max-height:calc(100dvh - 16px);max-height:calc(100svh - 16px);min-height:0;height:auto;display:flex;flex-direction:column;justify-content:center;gap:0;padding:0;overflow:hidden}
+ #coach-tutorial .coach-tutorial-scene{height:clamp(92px,16svh,142px);flex:0 0 auto;min-height:0;overflow:hidden}
+ #coach-tutorial .coach-tutorial-scene:after{font-size:clamp(44px,12vw,72px);top:2px}
+ #coach-tutorial .coach-figure{height:clamp(100px,18svh,160px);width:clamp(100px,42vw,170px);max-width:100%}
+ #coach-tutorial .coach-figure:before{height:57%;width:88%}
+ #coach-tutorial .coach-figure:after{height:45%;width:38%;bottom:42%}
+ #coach-tutorial .coach-figure-face{bottom:64%;height:5px}
+ #coach-tutorial .coach-figure-tag{bottom:3%;font-size:6px}
+ #coach-tutorial .coach-dialog{padding:clamp(13px,3.5vw,20px);flex:0 1 auto;min-height:0}
+ #coach-tutorial .coach-dialog-meta{margin:0 0 8px;font-size:7px;letter-spacing:.12em}
+ #coach-tutorial .coach-dialog-meta span:last-child{font-size:6px}
+ #coach-tutorial .coach-dialog h2{font-size:clamp(21px,6vw,29px);line-height:1;margin:0 0 8px}
+ #coach-tutorial .coach-dialog p{font-size:12px;line-height:1.45;margin:0}
+ #coach-tutorial .coach-visual-steps{margin-top:12px;gap:5px}
+ #coach-tutorial .coach-visual-step{padding:7px 5px;min-width:0}
+ #coach-tutorial .coach-visual-step span{font-size:8px}
+ #coach-tutorial .coach-visual-step b{font-size:7px}
+ #coach-tutorial .coach-visual-step small{font-size:6px}
+ #coach-tutorial .coach-dialog-progress{margin-top:12px;gap:4px}
+ #coach-tutorial .coach-dialog-actions{margin-top:12px;gap:8px}
+ #coach-tutorial .coach-dialog-actions button{min-height:40px;padding:0 10px;font-size:7px;letter-spacing:.08em}
+ #coach-launcher.coach-launcher{right:10px;bottom:calc(10px + env(safe-area-inset-bottom));padding:7px 10px;gap:7px;font-size:8px;letter-spacing:.07em}
+ #coach-launcher.coach-launcher b{width:24px;height:24px;font-size:11px}
+}
+@media(max-width:380px){
+ #coach-tutorial .coach-tutorial-scene{height:86px}
+ #coach-tutorial .coach-figure{height:100px;width:110px}
+ #coach-tutorial .coach-dialog{padding:12px}
+ #coach-tutorial .coach-dialog h2{font-size:21px}
+ #coach-tutorial .coach-dialog p{font-size:11px}
+ #coach-tutorial .coach-visual-steps{margin-top:9px}
+ #coach-tutorial .coach-dialog-progress{margin-top:9px}
+ #coach-tutorial .coach-dialog-actions{margin-top:9px}
+}
+@media(max-height:650px) and (max-width:700px){
+ #coach-tutorial .coach-tutorial-scene{height:76px}
+ #coach-tutorial .coach-figure{height:90px;width:100px}
+ #coach-tutorial .coach-dialog{padding:11px}
+ #coach-tutorial .coach-dialog h2{font-size:20px}
+ #coach-tutorial .coach-dialog p{font-size:11px}
+ #coach-tutorial .coach-visual-steps{margin-top:8px}
+ #coach-tutorial .coach-dialog-progress{margin-top:8px}
+ #coach-tutorial .coach-dialog-actions{margin-top:8px}
+}
