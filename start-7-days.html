@@ -496,14 +496,14 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
   });
 
   $('resetProgress').addEventListener('click',()=>{
-    const confirmed=window.confirm('¿Querés empezar START 7 desde cero? Se borrarán las 7 jornadas completadas y los XP obtenidos en este programa. El progreso de los otros planes no se modifica.');
+    const confirmed=window.confirm('¿Querés empezar START 7 desde cero? Se borrarán las 7 jornadas completadas y los XP obtenidos en este programa. Los otros planes no se modifican.');
     if(!confirmed) return;
     saved={};
     const stored=persist();
     update();
     cards.forEach(card=>setExpanded(card,false));
     applyFilter('all');
-    showToast(stored?'PRO 21 REINICIADO · 0 / 7 DÍAS':'NO SE PUDO GUARDAR EL REINICIO');
+    showToast(stored?'START 7 REINICIADO · 0 / 7 DÍAS':'NO SE PUDO GUARDAR EL REINICIO');
   });
 
   update();
