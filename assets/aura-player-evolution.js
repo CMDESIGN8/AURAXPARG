@@ -27,12 +27,12 @@
   }
   function refresh(){
     const progress={};
-    let totalDays=0,totalXp=0,started=0;
+    let totalDays=0,totalXp=0;
     Object.entries(PROGRAMS).forEach(([id,program])=>{
       const saved=read(program.key),completed=count(saved);
       progress[id]={saved,completed,total:program.days,xp:completed*50};
       totalDays+=completed;totalXp+=completed*50;
-      if(completed>0)started++;
+
     });
     const level=1+Math.floor(totalXp/250);
     const rank=level>=9?'ELITE':level>=3?'PROSPECT':'ROOKIE';
@@ -47,17 +47,15 @@
       set('[data-aura-rank]',rank);
       set('[data-aura-level]','NIVEL '+String(level).padStart(2,'0'));
       set('[data-aura-xp]',String(totalXp).padStart(3,'0'));
-      set('[data-aura-days]',totalDays+' / 58');
-      set('[data-aura-programs]',started+' / 3');
+      set('[data-aura-days]',progress.pro.completed+' / 21');
+      const overall=root.querySelector('[data-aura-overall]');
+      if(overall)overall.style.width=Math.min(100,progress.pro.completed/21*100)+'%';
       Object.entries(skillValues).forEach(([skill,value])=>{
         set('[data-aura-skill="'+skill+'"]',value+'%');
         const bar=root.querySelector('[data-aura-bar="'+skill+'"]');
         if(bar)bar.style.width=value+'%';
       });
-      Object.keys(PROGRAMS).forEach(id=>{
-        const badge=root.querySelector('[data-aura-program-status="'+id+'"]');
-        if(badge)badge.classList.toggle('is-active',progress[id].completed>0);
-      });
+
     });
     return {progress,totalDays,totalXp,level,rank,skills:skillValues};
   }
