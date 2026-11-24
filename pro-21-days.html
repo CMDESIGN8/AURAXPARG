@@ -225,31 +225,6 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
 <div class="kicker">AURA XP · PRO PERFORMANCE CLUB</div>
 <h1>21 DÍAS.<br><span>MÁS CONTROL.</span><br>MÁS JUEGO.</h1>
 <p>Un recorrido progresivo para desarrollar coordinación, primer paso, cambios de dirección y técnica con pelota. Tres semanas. Sesiones cortas. Progreso que podés registrar.</p>
-<div class="pro-game-hud" aria-label="Panel de misión PRO 21">
-  <div class="pro-hud-top">
-    <span class="pro-hud-tag"><i></i> MODO CARRERA · TEMPORADA 01</span>
-    <span class="pro-hud-status">EN CURSO</span>
-  </div>
-  <div class="pro-hud-stats">
-    <div class="pro-hud-stat"><strong>21</strong><span>DÍAS DE DESAFÍO</span></div>
-    <div class="pro-hud-stat"><strong>12</strong><span>SESIONES CLAVE</span></div>
-    <div class="pro-hud-stat"><strong>25–40'</strong><span>POR SESIÓN</span></div>
-  </div>
-  <div class="pro-hud-progress">
-    <div class="pro-hud-progress-head">
-      <span>PROGRESO DE TEMPORADA</span>
-      <strong id="progressText">0 / 21 DÍAS</strong>
-    </div>
-    <div class="progress-track" role="progressbar" aria-label="Jornadas completadas" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-  </div>
-  <div class="pro-hud-actions">
-    <a class="btn pro-hud-play" href="#days"><span>▶</span> IR A MI ENTRENAMIENTO</a>
-    <button class="btn secondary pro-hud-utility" onclick="window.print()">GUARDAR PLAN PDF</button>
-    <button class="btn secondary pro-hud-reset" id="resetProgress" aria-label="Reiniciar progreso">↻</button>
-  </div>
-</div>
 </section>
 <div class="wrap">
 <section class="aura-pro-unified" data-aura-evolution aria-label="Progreso unificado PRO 21">
@@ -476,16 +451,6 @@ nav{gap:18px;font-size:9px;letter-spacing:.08em;align-items:center;white-space:n
     applyFilter(week);
     setExpanded(next,true);
     next.scrollIntoView({behavior:'smooth',block:'center'});
-  });
-
-  $('resetProgress').addEventListener('click',()=>{
-    if(!window.confirm('¿Reiniciar los XP y el progreso de los 21 días en este dispositivo?')) return;
-    saved={};
-    persist();
-    update();
-    cards.forEach(card=>setExpanded(card,false));
-    applyFilter('all');
-    showToast('PROGRESO REINICIADO');
   });
 
   update();
