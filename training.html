@@ -1269,6 +1269,98 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 .hero-hud .reward-copy .reward-state{color:var(--skill-accent)}
 .hero-hud .mission-reward.is-earned .reward-copy .reward-state{color:var(--skill-accent)}
 @media(max-width:600px){.hero-hud .reward-art{width:65px;height:65px;flex-basis:65px}.hero-hud .mission-reward{gap:9px;padding:9px 7px}.hero-hud .reward-copy>strong{font-size:12px}.hero-hud .reward-copy .reward-hint{font-size:5.5px}}
+
+/* AURA DROP — layout aislado y jerarquía visual */
+.hero-hud .mission-card .mission-reward{
+  display:grid!important;
+  grid-template-columns:76px minmax(0,1fr) 26px!important;
+  align-items:center!important;
+  gap:14px!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:96px!important;
+  box-sizing:border-box!important;
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+  margin:14px 0 0!important;
+  padding:12px 14px!important;
+  border:1px solid rgba(8,188,235,.34)!important;
+  border-left:3px solid var(--skill-accent)!important;
+  border-radius:2px!important;
+  background:linear-gradient(105deg,rgba(5,23,38,.98),rgba(4,13,24,.96) 72%,rgba(8,188,235,.055))!important;
+  box-shadow:inset 0 0 24px rgba(8,188,235,.055),0 8px 22px rgba(0,0,0,.22)!important;
+  transform:none!important;
+}
+.hero-hud .mission-card .mission-reward:before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:repeating-linear-gradient(125deg,transparent 0 34px,rgba(8,188,235,.035) 35px 36px,transparent 37px 70px);
+}
+.hero-hud .mission-card .reward-art{
+  position:relative!important;inset:auto!important;
+  display:grid!important;place-items:center!important;
+  width:76px!important;height:76px!important;min-width:76px!important;
+  box-sizing:border-box!important;margin:0!important;padding:0!important;
+  overflow:visible!important;transform:none!important;
+  border:0!important;border-radius:0!important;
+  background:radial-gradient(ellipse, color-mix(in srgb,var(--skill-accent) 24%,transparent),transparent 70%)!important;
+  box-shadow:none!important;
+}
+.hero-hud .mission-card .reward-art:before,
+.hero-hud .mission-card .reward-art:after{display:none!important;content:none!important}
+.hero-hud .mission-card .reward-art .aura-badge-svg{
+  display:block!important;position:relative!important;
+  width:72px!important;height:82px!important;max-width:72px!important;max-height:82px!important;
+  min-width:0!important;inset:auto!important;overflow:visible!important;
+  object-fit:contain!important;transform:none!important;
+  filter:drop-shadow(0 0 8px color-mix(in srgb,var(--skill-accent) 36%,transparent))!important;
+}
+.hero-hud .mission-card .reward-copy{
+  display:flex!important;flex-direction:column!important;justify-content:center!important;
+  align-items:flex-start!important;gap:5px!important;
+  min-width:0!important;width:auto!important;position:relative!important;
+  z-index:1!important;text-align:left!important;overflow-wrap:anywhere!important;
+}
+.hero-hud .mission-card .reward-copy .reward-state{
+  display:block!important;color:var(--skill-accent)!important;
+  font:900 7px/1.3 Montserrat,sans-serif!important;letter-spacing:.16em!important;
+}
+.hero-hud .mission-card .reward-copy>strong{
+  display:block!important;position:static!important;
+  color:#f4f8ff!important;font:900 clamp(14px,2vw,19px)/1.05 Montserrat,sans-serif!important;
+  letter-spacing:.025em!important;white-space:normal!important;
+  text-shadow:0 0 16px color-mix(in srgb,var(--skill-accent) 20%,transparent)!important;
+}
+.hero-hud .mission-card .reward-copy .reward-hint{
+  display:block!important;color:#9eb6c9!important;
+  font:700 8px/1.45 Montserrat,sans-serif!important;
+  letter-spacing:.035em!important;white-space:normal!important;
+}
+.hero-hud .mission-card .reward-lock{
+  display:grid!important;place-items:center!important;
+  position:static!important;width:25px!important;height:25px!important;
+  min-width:25px!important;padding:0!important;box-sizing:border-box!important;
+  color:#92abc0!important;border:1px solid rgba(142,177,204,.35)!important;
+  background:rgba(5,16,27,.72)!important;font:900 7px Montserrat,sans-serif!important;
+  letter-spacing:0!important;white-space:normal!important;
+}
+.hero-hud .mission-card .mission-reward.is-earned{
+  border-color:color-mix(in srgb,var(--skill-accent) 78%,white)!important;
+  box-shadow:inset 0 0 28px color-mix(in srgb,var(--skill-accent) 10%,transparent),0 0 18px color-mix(in srgb,var(--skill-accent) 15%,transparent)!important;
+}
+@media(max-width:600px){
+ .hero-hud .mission-card .mission-reward{
+   grid-template-columns:58px minmax(0,1fr) 22px!important;
+   gap:10px!important;min-height:78px!important;padding:9px 9px!important;
+ }
+ .hero-hud .mission-card .reward-art{width:58px!important;height:62px!important;min-width:58px!important}
+ .hero-hud .mission-card .reward-art .aura-badge-svg{width:56px!important;height:64px!important;max-width:56px!important;max-height:64px!important}
+ .hero-hud .mission-card .reward-copy .reward-state{font-size:6px!important;letter-spacing:.11em!important}
+ .hero-hud .mission-card .reward-copy>strong{font-size:13px!important}
+ .hero-hud .mission-card .reward-copy .reward-hint{font-size:7px!important;line-height:1.35!important}
+ .hero-hud .mission-card .reward-lock{width:21px!important;height:21px!important;min-width:21px!important;font-size:6px!important}
+}
+
 </style>
 </head>
 <body>
