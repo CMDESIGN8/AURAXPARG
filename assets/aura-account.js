@@ -73,26 +73,30 @@ const styles = `
 #aura-account-toast.is-visible{opacity:1;transform:translate(-50%,0)}
 @media(max-width:600px){
   #aura-account-card{padding:26px 20px 22px}
-  header{display:grid!important;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center;column-gap:8px;row-gap:8px;height:auto!important;min-height:0!important;padding:10px 12px!important}
-  header>nav{grid-column:1/-1;grid-row:1;width:100%!important;min-width:0!important;max-width:100%;flex:none!important;display:flex;justify-content:flex-start!important;align-items:center;gap:14px!important;overflow-x:auto!important;overflow-y:hidden!important;white-space:nowrap;padding:2px 0 7px;scrollbar-width:none}
-  header>nav::-webkit-scrollbar{display:none}
-  header>nav>a{flex:0 0 auto;min-width:max-content;font-size:clamp(7px,2vw,8px)!important;letter-spacing:.02em!important}
-  header>.brand{grid-column:1;grid-row:2;min-width:0}
-  header>.brand img{width:100px!important;max-width:100%;height:42px!important;object-fit:contain;object-position:left center}
-  header>#aura-account-status{grid-column:2;grid-row:2;justify-self:end;max-width:100%;gap:7px;margin:0;padding:7px 9px;font-size:8px}
-  #aura-account-status span{max-width:clamp(62px,24vw,110px);font-size:8px}
-  #aura-account-status button{font-size:7px;letter-spacing:.02em;padding:3px 0}
+  header{display:grid!important;grid-template-columns:minmax(0,1fr) auto auto;grid-template-rows:auto auto;align-items:center;column-gap:8px;row-gap:0;height:auto!important;min-height:0!important;padding:10px 12px!important}
+  header>.brand{grid-column:1;grid-row:1;min-width:0}
+  header>.brand img{width:128px!important;max-width:100%;height:52px!important;object-fit:contain;object-position:left center}
+  header>#aura-account-status{grid-column:2;grid-row:1;justify-self:end;max-width:100%;gap:6px;margin:0;padding:6px 7px;font-size:8px}
+  #aura-account-status span{max-width:clamp(48px,19vw,90px);font-size:8px}
+  #aura-account-status button{font-size:7px;letter-spacing:0;padding:3px 0}
+  #aura-mobile-menu-toggle{grid-column:3;grid-row:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;width:38px;height:36px;margin:0;padding:8px;border:1px solid rgba(8,201,244,.48);border-radius:3px;background:rgba(4,12,22,.94);cursor:pointer}
+  #aura-mobile-menu-toggle span{display:block;width:17px;height:2px;border-radius:2px;background:#08c9f4;transition:transform .2s,opacity .2s}
+  header.aura-mobile-menu-open #aura-mobile-menu-toggle span:first-child{transform:translateY(6px) rotate(45deg)}
+  header.aura-mobile-menu-open #aura-mobile-menu-toggle span:nth-child(2){opacity:0}
+  header.aura-mobile-menu-open #aura-mobile-menu-toggle span:last-child{transform:translateY(-6px) rotate(-45deg)}
+  header>nav{grid-column:1/-1;grid-row:2;display:none!important;width:100%!important;min-width:0!important;max-width:100%;flex:none!important;flex-direction:column;align-items:stretch!important;gap:0!important;margin-top:8px;padding:6px 0!important;border-top:1px solid rgba(8,201,244,.22);background:rgba(3,10,19,.98);overflow:visible!important;white-space:normal}
+  header.aura-mobile-menu-open>nav{display:flex!important}
+  header>nav>a{display:block;flex:none!important;min-width:0;padding:12px 10px;border-bottom:1px solid rgba(255,255,255,.07);font-size:10px!important;letter-spacing:.06em!important}
+  header>nav>a:last-child{border-bottom:0}
 }
 @media(max-width:360px){
   header{column-gap:5px;padding-inline:9px!important}
-  header>.brand img{width:88px!important}
-  #aura-account-status{gap:5px!important;padding:6px 7px!important}
-  #aura-account-status span{max-width:68px}
-  #aura-account-status button{font-size:6.5px}
-  header>nav{gap:11px!important}
-  header>nav>a{font-size:7px!important}
-}
-`;
+  header>.brand img{width:112px!important;height:48px!important}
+  header>#aura-account-status{gap:4px;padding:5px 5px;font-size:7px}
+  #aura-account-status span{max-width:54px;font-size:7px}
+  #aura-account-status button{font-size:6px}
+  #aura-mobile-menu-toggle{width:34px;height:34px;padding:7px}
+};
 
 const style = document.createElement("style");
 style.textContent = styles;
@@ -129,8 +133,31 @@ const status = document.createElement("div");
 status.id = "aura-account-status";
 status.innerHTML = `<span id="aura-account-user"></span><button id="aura-account-logout" type="button">CERRAR SESIÓN</button>`;
 const accountHeader = document.querySelector("header");
-if (accountHeader) accountHeader.appendChild(status);
-else document.body.appendChild(status);
+if (accountHeader) {
+  accountHeader.appendChild(status);
+  const nav = accountHeader.querySelector("nav");
+  if (nav) {
+    const menuToggle = document.createElement("button");
+    menuToggle.id = "aura-mobile-menu-toggle";
+    menuToggle.type = "button";
+    menuToggle.setAttribute("aria-label", "Abrir menú");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-controls", "aura-primary-navigation");
+    menuToggle.innerHTML = "<span></span><span></span><span></span>";
+    nav.id = nav.id || "aura-primary-navigation";
+    accountHeader.appendChild(menuToggle);
+    menuToggle.addEventListener("click", () => {
+      const isOpen = accountHeader.classList.toggle("aura-mobile-menu-open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+    });
+    nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      accountHeader.classList.remove("aura-mobile-menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Abrir menú");
+    }));
+  }
+} else document.body.appendChild(status);
 
 const toast = document.createElement("div");
 toast.id = "aura-account-toast";
