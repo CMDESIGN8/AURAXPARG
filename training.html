@@ -2287,6 +2287,13 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   .player-evolution.is-game-changer,.aura-player-hub.is-legend{scroll-behavior:auto}
 }
 
+
+/* AURA XP · PLAYER JOURNEY */
+.aura-player-journey{margin:16px 0;padding:16px;border:1px solid rgba(8,201,244,.25);background:linear-gradient(120deg,rgba(8,201,244,.07),rgba(4,10,18,.5));}
+.aura-journey-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.aura-journey-head small{font-size:8px;letter-spacing:.16em;color:var(--cyan);font-weight:900}.aura-journey-head strong{font-size:11px;letter-spacing:.08em}.aura-journey-current{font-size:8px;color:var(--lime);font-weight:900;letter-spacing:.1em;white-space:nowrap}
+.aura-journey-path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:14px 0}.aura-journey-step{min-width:0;padding:10px 8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.025);opacity:.55}.aura-journey-step b{display:block;font-size:8px;letter-spacing:.08em}.aura-journey-step small{display:block;margin-top:4px;color:#9eafc0;font-size:7px}.aura-journey-step.is-active{opacity:1;border-color:rgba(8,201,244,.6);background:rgba(8,201,244,.08)}.aura-journey-step.is-done{opacity:1;border-color:rgba(183,255,60,.4)}.aura-journey-step.is-done b{color:var(--lime)}
+.aura-journey-next{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1)}.aura-journey-next p{font-size:9px;color:#b6c5d3;line-height:1.4}.aura-journey-next p strong{display:block;color:var(--white);font-size:10px;margin-bottom:3px}.aura-journey-next a{flex:0 0 auto;padding:10px 12px;background:var(--cyan);color:#061019;font-size:8px;font-weight:900;letter-spacing:.08em;text-align:center}
+@media(max-width:600px){.aura-player-journey{padding:12px}.aura-journey-head{align-items:flex-start;flex-direction:column;gap:4px}.aura-journey-path{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.aura-journey-step{padding:9px 7px}.aura-journey-next{align-items:stretch;flex-direction:column}.aura-journey-next a{width:100%}}
 </style>
 <style>/* PLAYER EVOLUTION — XP milestones */
 .aura-evolution-milestones{margin:18px 0;padding:15px;border:1px solid rgba(183,255,60,.2);background:linear-gradient(145deg,rgba(183,255,60,.045),rgba(5,12,22,.8))}
@@ -2333,6 +2340,16 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     <div class="aura-milestone-next" data-aura-milestone-next>SUMÁ XP PARA ACTIVAR TU PRIMER DESBLOQUEO</div>
   </div>
   <div class="aura-hub-programs"><a class="is-active" href="pro-21-days.html">PRO · 21 DÍAS</a><a href="start-7-days.html">START · 7 DÍAS</a><a href="elite-30-days.html">ELITE · 30 DÍAS</a></div>
+  <div class="aura-player-journey" data-aura-player-journey>
+    <div class="aura-journey-head"><small>AURA XP // PLAYER JOURNEY</small><span class="aura-journey-current" data-journey-status>RUTA ROOKIE</span></div>
+    <div class="aura-journey-path" aria-label="Ruta de progresión">
+      <div class="aura-journey-step" data-journey-step="0"><b>START ROOKIE</b><small>Primeros desafíos</small></div>
+      <div class="aura-journey-step" data-journey-step="1"><b>PLAYER MODE</b><small>100 XP · Constancia</small></div>
+      <div class="aura-journey-step" data-journey-step="2"><b>GAME CHANGER</b><small>500 XP · Evolución</small></div>
+      <div class="aura-journey-step" data-journey-step="3"><b>LEGEND STATUS</b><small>1.000 XP · Elite</small></div>
+    </div>
+    <div class="aura-journey-next"><p><strong data-journey-next-title>Tu recorrido empieza hoy.</strong><span data-journey-next-copy>Completá tu primer desafío y empezá a construir tu progreso.</span></p><a data-journey-cta href="start-7-days.html">EMPEZAR START ↗</a></div>
+  </div>
   <div class="aura-evolution-foot">Tu progreso y XP se guardan en este dispositivo. Las habilidades reflejan las jornadas registradas, no una evaluación física.</div>
 </section>
 </details>
@@ -2814,6 +2831,9 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     characterData: true
   });
 })();
-</script>    <script type="module" src="assets/aura-account.js"></script>
+</script><script>
+(function(){const hub=document.querySelector('[data-aura-player-journey]');if(!hub)return;const xpNode=document.querySelector('[data-aura-xp]');if(!xpNode)return;const status=hub.querySelector('[data-journey-status]'),title=hub.querySelector('[data-journey-next-title]'),copy=hub.querySelector('[data-journey-next-copy]'),cta=hub.querySelector('[data-journey-cta]'),steps=[...hub.querySelectorAll('[data-journey-step]')];function update(){const xp=parseInt((xpNode.textContent||'').replace(/[^0-9]/g,''),10)||0;let stage=xp>=1000?3:xp>=500?2:xp>=100?1:0;steps.forEach((el,i)=>{el.classList.toggle('is-active',i===stage);el.classList.toggle('is-done',i<stage)});const routes=[{s:'RUTA ROOKIE',t:'Tu recorrido empieza hoy.',c:'Completá tu primer desafío y empezá a construir tu progreso.',href:'start-7-days.html',label:'EMPEZAR START ↗'},{s:'PLAYER MODE',t:'Ya activaste tu evolución.',c:'Sumá constancia y avanzá con un programa de entrenamiento.',href:'pro-21-days.html',label:'CONTINUAR PRO 21 ↗'},{s:'GAME CHANGER',t:'Estás en una nueva etapa.',c:'Tu próximo objetivo es sostener el progreso y completar un programa avanzado.',href:'elite-30-days.html',label:'IR A ELITE 30 ↗'},{s:'LEGEND STATUS',t:'Llegaste al rango máximo.',c:'Seguí entrenando para mantener tu recorrido y desarrollar tus habilidades.',href:'elite-30-days.html',label:'SEGUIR ENTRENANDO ↗'}];const r=routes[stage];status.textContent=r.s;title.textContent=r.t;copy.textContent=r.c;cta.href=r.href;cta.textContent=r.label;}update();new MutationObserver(update).observe(xpNode,{childList:true,subtree:true,characterData:true});})();
+</script>
+    <script type="module" src="assets/aura-account.js"></script>
 </body>
 </html>
