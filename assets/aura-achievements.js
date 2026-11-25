@@ -50,6 +50,7 @@
       const program=PROGRAMS[id];
       if(readProgress(program)===program.days&&!awards[id])unlock(id,showNew&&!hasShown);
     });
+    renderCollection();
   }
   function closeModal(){
     if(!modal)return;
@@ -86,10 +87,16 @@
   function renderCollection(){
     if(!collection)return;
     awards=readAwards();
+    const nextId=ORDER.find(id=>!awards[id]);
     collection.innerHTML='<div class="aura-achievements-head"><div><span class="aura-achievements-kicker">AURA XP // TROPHY ROOM</span><h2>MI COLECCIÓN <em>DE LOGROS.</em></h2><p>Los hitos que desbloqueás entrenando quedan guardados. Reiniciar un plan no borra tus insignias.</p></div><strong class="aura-achievements-count">'+ORDER.filter(id=>awards[id]).length+' / 3 <small>UNLOCKED</small></strong></div><div class="aura-achievements-grid">'+ORDER.map(id=>{
       const p=PROGRAMS[id],won=!!awards[id];
       const equipped=awards.equipped===id;
-      return '<article class="aura-achievement-card '+(won?'is-unlocked':'is-locked')+(equipped?' is-equipped':'')+'"><div class="aura-achievement-visual">'+badgeImage(id,!won)+'</div><div class="aura-achievement-info"><span>'+(equipped?'✦ EN TU PERFIL':won?'✦ DESBLOQUEADA':'🔒 BLOQUEADA')+'</span><b>'+p.badge+'</b><small>'+p.name+' · '+p.subtitle+'</small>'+(won?'<button type="button" class="aura-equip-button" data-equip-badge="'+id+'" '+(equipped?'disabled':'')+'>'+(equipped?'EQUIPADA':'EQUIPAR INSIGNIA')+'</button>':'')+'</div></article>';
+      const completed=Math.min(p.days,readProgress(p));
+      const percent=Math.round(completed/p.days*100);
+      const remaining=Math.max(0,p.days-completed);
+      const next=id===nextId;
+      const progressCopy=won?'PROGRAMA COMPLETADO':remaining===1?'FALTA 1 JORNADA':'FALTAN '+remaining+' JORNADAS';
+      return '<article class="aura-achievement-card '+(won?'is-unlocked':'is-locked')+(equipped?' is-equipped':'')+(next?' is-next':'')+'"><div class="aura-achievement-visual">'+badgeImage(id,!won)+'</div><div class="aura-achievement-info">'+(next?'<i class="aura-achievement-next">PRÓXIMO OBJETIVO</i>':'')+'<span>'+(equipped?'✦ EN TU PERFIL':won?'✦ DESBLOQUEADA':'🔒 BLOQUEADA')+'</span><b>'+p.badge+'</b><small>'+p.name+' · '+p.subtitle+'</small><div class="aura-achievement-progress"><div class="aura-achievement-progress-label"><strong>'+completed+' / '+p.days+' JORNADAS</strong><span>'+percent+'%</span></div><div class="aura-achievement-track"><span style="width:'+percent+'%"></span></div><small class="aura-achievement-progress-copy">'+progressCopy+'</small></div>'+(won?'<button type="button" class="aura-equip-button" data-equip-badge="'+id+'" '+(equipped?'disabled':'')+'>'+(equipped?'EQUIPADA':'EQUIPAR INSIGNIA')+'</button>':'')+'</div></article>';
     }).join('')+'</div>';
   }
   function mount(){
@@ -129,6 +136,14 @@
       .aura-achievement-card.is-locked .aura-achievement-info span{color:#8292a2}
       .aura-achievement-info b{font-size:12px;line-height:1.3;letter-spacing:.03em;color:#f4f8fc}
       .aura-achievement-info small{font-size:9px;line-height:1.55;letter-spacing:.03em;color:#91a4b6}
+      .aura-achievement-next{display:inline-block;margin:0 0 2px;padding:5px 8px;border:1px solid rgba(183,255,60,.35);background:rgba(183,255,60,.07);color:#b7ff3c;font-size:7px;font-style:normal;font-weight:900;letter-spacing:.13em}
+      .aura-achievement-progress{width:100%;max-width:230px;margin-top:5px;text-align:left}
+      .aura-achievement-progress-label{display:flex;justify-content:space-between;gap:8px;margin-bottom:7px;font-size:8px;font-weight:900;letter-spacing:.08em;color:#dce8f2}
+      .aura-achievement-progress-label span{color:#08c9f4}
+      .aura-achievement-track{height:6px;width:100%;overflow:hidden;background:rgba(255,255,255,.1);border-radius:10px}
+      .aura-achievement-track span{display:block;height:100%;min-width:0;background:linear-gradient(90deg,#08c9f4,#b7ff3c);border-radius:10px;transition:width .35s ease}
+      .aura-achievement-progress-copy{display:block!important;margin-top:7px!important;font-size:8px!important;letter-spacing:.09em!important;color:#91a4b6!important}
+      .aura-achievement-card.is-unlocked .aura-achievement-progress-label span{color:#b7ff3c}
       .aura-award-modal{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:18px;background:rgba(1,5,11,.88);backdrop-filter:blur(12px);opacity:0;visibility:hidden;transition:opacity .28s,visibility .28s}
       .aura-award-modal.is-open{opacity:1;visibility:visible}
       .aura-award-dialog{position:relative;width:min(100%,490px);padding:27px 24px 24px;text-align:center;overflow:hidden;border:1px solid rgba(8,201,244,.55);background:radial-gradient(ellipse at 50% 0,rgba(8,201,244,.2),transparent 58%),linear-gradient(145deg,#102338,#050b13 72%);box-shadow:0 0 70px rgba(8,201,244,.16),0 24px 90px rgba(0,0,0,.6);transform:translateY(18px) scale(.96);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
@@ -162,6 +177,9 @@
         .aura-achievement-info span{font-size:9px}
         .aura-achievement-info b{font-size:13px}
         .aura-achievement-info small{font-size:10px;line-height:1.6}
+        .aura-achievement-progress{max-width:260px;margin-top:7px}
+        .aura-achievement-progress-label{font-size:9px}
+        .aura-achievement-progress-copy{font-size:9px!important}
         .aura-equip-button{width:min(100%,240px);white-space:normal;line-height:1.4;padding:9px 10px;font-size:8px}
         .aura-equipped-emblem{width:100%;margin:8px 0 0}
         .aura-equipped-card,.aura-equipped-empty{width:100%;min-width:0}
