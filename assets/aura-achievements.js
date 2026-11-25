@@ -4,15 +4,15 @@
   'use strict';
   const STORAGE_KEY='auraxp-achievements-v1';
   const PROGRAMS={
-    start:{progressKey:'auraxp-start-7day-progress-v1',days:7,name:'START 7',badge:'START ROOKIE',subtitle:'FIRST STEP',tone:'cyan',message:'Construiste tu base. El primer paso de tu evolución ya es parte de tu historia.'},
-    pro:{progressKey:'auraxp-pro-21day-progress-v2',days:21,name:'PRO 21',badge:'PRO EVOLVED',subtitle:'PLAYER EVOLUTION',tone:'blue',message:'Tres semanas de constancia. Tus recursos empiezan a conectarse como jugador.'},
-    elite:{progressKey:'auraxp-elite-30day-progress-v1',days:30,name:'ELITE 30',badge:'ELITE PLAYER',subtitle:'GAME MASTER',tone:'gold',message:'Un mes de trabajo completado. Integraste tus habilidades y cerraste el desafío.'}
+    start:{progressKey:'auraxp-start-7day-progress-v1',days:7,name:'START 7',badge:'START ROOKIE',subtitle:'FIRST STEP',image:'assets/rockie.png',tone:'cyan',message:'Construiste tu base. El primer paso de tu evolución ya es parte de tu historia.'},
+    pro:{progressKey:'auraxp-pro-21day-progress-v2',days:21,name:'PRO 21',badge:'PRO EVOLVED',subtitle:'PLAYER EVOLUTION',image:'assets/pro.png',tone:'blue',message:'Tres semanas de constancia. Tus recursos empiezan a conectarse como jugador.'},
+    elite:{progressKey:'auraxp-elite-30day-progress-v1',days:30,name:'ELITE 30',badge:'ELITE PLAYER',subtitle:'GAME MASTER',image:'assets/elite.png',tone:'gold',message:'Un mes de trabajo completado. Integraste tus habilidades y cerraste el desafío.'}
   };
   const ORDER=['start','pro','elite'];
-  const svg=(id,tone,locked=false)=> {
-    const palettes={cyan:['#08c9f4','#b7ff3c','#e9fbff'],blue:['#08c9f4','#426bff','#eafaff'],gold:['#ffd36a','#fff1ad','#fff8df']};
-    const p=palettes[tone]||palettes.cyan;
-    return '<svg class="aura-badge-art'+(locked?' is-locked':'')+'" viewBox="0 0 220 240" role="img" aria-label="'+(locked?'Insignia bloqueada':'Insignia '+id)+'"><defs><linearGradient id="metal-'+id+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="'+p[0]+'"/><stop offset=".52" stop-color="'+p[2]+'"/><stop offset="1" stop-color="'+p[1]+'"/></linearGradient><radialGradient id="glow-'+id+'"><stop stop-color="'+p[0]+'" stop-opacity=".48"/><stop offset="1" stop-color="'+p[0]+'" stop-opacity="0"/></radialGradient></defs><circle cx="110" cy="104" r="94" fill="url(#glow-'+id+')" opacity=".8"/><path d="M110 10 190 42 181 151 110 218 39 151 30 42Z" fill="#07111d" stroke="url(#metal-'+id+')" stroke-width="5"/><path d="M110 22 178 49 170 145 110 202 50 145 42 49Z" fill="#0b1b2b" stroke="'+p[0]+'" stroke-opacity=".5" stroke-width="1.5"/><path d="M110 34 165 56 159 137 110 184 61 137 55 56Z" fill="none" stroke="url(#metal-'+id+')" stroke-width="2"/><path d="m110 48 12 29 31 3-23 21 7 31-27-16-27 16 7-31-23-21 31-3Z" fill="url(#metal-'+id+')" opacity=".94"/><path d="M72 154h76" stroke="'+p[0]+'" stroke-width="2" opacity=".75"/><text x="110" y="174" text-anchor="middle" fill="#f4f8fc" font-family="Arial,sans-serif" font-size="10" font-weight="900" letter-spacing="3">AURA XP</text><text x="110" y="192" text-anchor="middle" fill="'+p[1]+'" font-family="Arial,sans-serif" font-size="8" font-weight="700" letter-spacing="2">ACHIEVEMENT</text></svg>';
+  const badgeImage=(id,locked=false)=> {
+    const program=PROGRAMS[id];
+    if(!program)return '';
+    return '<img class="aura-badge-art'+(locked?' is-locked':'')+'" src="'+program.image+'" alt="'+(locked?'Insignia bloqueada':'Insignia '+program.name)+'" loading="lazy">';
   };
   function readProgress(program){
     try{
@@ -59,7 +59,7 @@
   function openModal(id){
     if(!modal||!PROGRAMS[id])return;
     const p=PROGRAMS[id];
-    modal.querySelector('[data-award-art]').innerHTML=svg(id,p.tone);
+    modal.querySelector('[data-award-art]').innerHTML=badgeImage(id);
     modal.querySelector('[data-award-program]').textContent=p.name+' COMPLETADO';
     modal.querySelector('[data-award-title]').textContent=p.badge;
     modal.querySelector('[data-award-subtitle]').textContent=p.subtitle;
@@ -75,7 +75,7 @@
     const id=ORDER.includes(awards.equipped)&&awards[awards.equipped]?awards.equipped:null;
     if(!id){emblemMount.innerHTML='<div class="aura-equipped-empty"><span>PLAYER EMBLEM</span><b>SIN EMBLEMA</b><small>DESBLOQUEÁ UNA INSIGNIA Y EQUIPALA ACÁ</small></div>';return;}
     const p=PROGRAMS[id];
-    emblemMount.innerHTML='<div class="aura-equipped-card"><div class="aura-equipped-art">'+svg(id,p.tone)+'</div><div class="aura-equipped-copy"><span>✦ EMBLEMA EQUIPADO</span><b>'+p.badge+'</b><small>'+p.name+' · '+p.subtitle+'</small></div></div>';
+    emblemMount.innerHTML='<div class="aura-equipped-card"><div class="aura-equipped-art">'+badgeImage(id)+'</div><div class="aura-equipped-copy"><span>✦ EMBLEMA EQUIPADO</span><b>'+p.badge+'</b><small>'+p.name+' · '+p.subtitle+'</small></div></div>';
   }
   function equip(id){
     awards=readAwards();
@@ -89,7 +89,7 @@
     collection.innerHTML='<div class="aura-achievements-head"><div><span class="aura-achievements-kicker">AURA XP // TROPHY ROOM</span><h2>MI COLECCIÓN <em>DE LOGROS.</em></h2><p>Los hitos que desbloqueás entrenando quedan guardados. Reiniciar un plan no borra tus insignias.</p></div><strong class="aura-achievements-count">'+ORDER.filter(id=>awards[id]).length+' / 3 <small>UNLOCKED</small></strong></div><div class="aura-achievements-grid">'+ORDER.map(id=>{
       const p=PROGRAMS[id],won=!!awards[id];
       const equipped=awards.equipped===id;
-      return '<article class="aura-achievement-card '+(won?'is-unlocked':'is-locked')+(equipped?' is-equipped':'')+'"><div class="aura-achievement-visual">'+svg(id,p.tone,!won)+'</div><div class="aura-achievement-info"><span>'+(equipped?'✦ EN TU PERFIL':won?'✦ DESBLOQUEADA':'🔒 BLOQUEADA')+'</span><b>'+p.badge+'</b><small>'+p.name+' · '+p.subtitle+'</small>'+(won?'<button type="button" class="aura-equip-button" data-equip-badge="'+id+'" '+(equipped?'disabled':'')+'>'+(equipped?'EQUIPADA':'EQUIPAR INSIGNIA')+'</button>':'')+'</div></article>';
+      return '<article class="aura-achievement-card '+(won?'is-unlocked':'is-locked')+(equipped?' is-equipped':'')+'"><div class="aura-achievement-visual">'+badgeImage(id,!won)+'</div><div class="aura-achievement-info"><span>'+(equipped?'✦ EN TU PERFIL':won?'✦ DESBLOQUEADA':'🔒 BLOQUEADA')+'</span><b>'+p.badge+'</b><small>'+p.name+' · '+p.subtitle+'</small>'+(won?'<button type="button" class="aura-equip-button" data-equip-badge="'+id+'" '+(equipped?'disabled':'')+'>'+(equipped?'EQUIPADA':'EQUIPAR INSIGNIA')+'</button>':'')+'</div></article>';
     }).join('')+'</div>';
   }
   function mount(){
@@ -109,7 +109,7 @@
       .aura-achievements-count small{display:block;margin-top:5px;font-size:7px;letter-spacing:.14em;color:#91a4b6}
       .aura-equipped-emblem{margin:12px 0 0;min-width:0}
       .aura-equipped-card{display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid rgba(8,201,244,.3);background:linear-gradient(120deg,rgba(8,201,244,.09),rgba(8,16,27,.82));min-width:190px}
-      .aura-equipped-art{width:48px;flex:0 0 48px;filter:drop-shadow(0 0 10px rgba(8,201,244,.25))}
+      .aura-equipped-art{width:48px;flex:0 0 48px;filter:drop-shadow(0 0 10px rgba(8,201,244,.25))}.aura-equipped-art .aura-badge-art{display:block;width:100%;height:auto;object-fit:contain}
       .aura-equipped-copy span,.aura-equipped-empty span{display:block;font-size:7px;font-weight:900;letter-spacing:.14em;color:#b7ff3c}
       .aura-equipped-copy b,.aura-equipped-empty b{display:block;font-size:10px;line-height:1.2}
       .aura-equipped-copy small,.aura-equipped-empty small{display:block;margin-top:3px;font-size:7px;color:#91a4b6;letter-spacing:.06em}
@@ -121,7 +121,7 @@
       .aura-achievement-card.is-unlocked{border-color:rgba(8,201,244,.4);box-shadow:inset 0 0 22px rgba(8,201,244,.045)}
       .aura-achievement-card.is-equipped{border-color:rgba(183,255,60,.6);box-shadow:inset 0 0 24px rgba(183,255,60,.06)}
       .aura-achievement-visual{grid-area:visual!important;display:grid!important;place-items:center!important;justify-self:stretch!important;align-self:center!important;position:static!important;float:none!important;order:0!important;width:100%!important;min-width:0!important;max-width:100%!important;height:auto!important;margin:0 auto 24px!important;padding:0!important;transform:none!important;text-align:center!important}
-      .aura-achievement-visual .aura-badge-art{display:block!important;position:static!important;width:104px!important;max-width:100%!important;height:auto!important;max-height:none!important;margin:0 auto!important;justify-self:center!important;transform:none!important;filter:drop-shadow(0 0 12px rgba(8,201,244,.18))}
+      .aura-achievement-visual .aura-badge-art{display:block!important;position:static!important;width:104px!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;margin:0 auto!important;justify-self:center!important;transform:none!important;filter:drop-shadow(0 0 12px rgba(8,201,244,.18))}
       .aura-achievement-visual .aura-badge-art.is-locked{filter:grayscale(1);opacity:.3}
       .aura-achievement-info{grid-area:info!important;display:flex!important;position:static!important;float:none!important;order:0!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:9px!important;width:100%!important;min-width:0!important;height:auto!important;margin:0!important;padding:0!important;text-align:center!important;transform:none!important;overflow:visible!important;box-sizing:border-box}
       .aura-achievement-info span,.aura-achievement-info b,.aura-achievement-info small{display:block!important;position:static!important;width:100%!important;max-width:100%!important;height:auto!important;margin:0!important;padding:0!important;white-space:normal!important;overflow:visible!important;visibility:visible!important;opacity:1!important;text-align:center!important;overflow-wrap:anywhere!important;box-sizing:border-box}
@@ -138,7 +138,7 @@
       .aura-award-close{position:absolute;right:12px;top:10px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.25);color:#fff;width:32px;height:32px;cursor:pointer;font-size:18px;z-index:2}
       .aura-award-kicker{font-size:9px;font-weight:900;letter-spacing:.22em;color:#b7ff3c}
       .aura-award-art{position:relative;z-index:1;width:min(62%,230px);margin:5px auto -2px;filter:drop-shadow(0 0 20px rgba(8,201,244,.38));animation:auraBadgeReveal .85s cubic-bezier(.2,.8,.2,1) both}
-      .aura-award-art .aura-badge-art{width:100%}
+      .aura-award-art .aura-badge-art{display:block;width:100%;height:auto;object-fit:contain}
       .aura-award-program{position:relative;z-index:1;font-size:8px;font-weight:900;letter-spacing:.2em;color:#08c9f4}
       .aura-award-title{position:relative;z-index:1;font-size:clamp(27px,7vw,39px);font-weight:950;letter-spacing:-.055em;line-height:1.02;margin:7px 0}
       .aura-award-subtitle{font-size:9px;font-weight:900;letter-spacing:.16em;color:#b7ff3c}
