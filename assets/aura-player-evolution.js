@@ -39,7 +39,7 @@
       totalXp+=drops*50;
     }catch(error){}
     const level=1+Math.floor(totalXp/250);
-    const rank=level>=9?'ELITE':level>=3?'PROSPECT':'ROOKIE';
+    const rank=totalXp>=1000?'LEGEND':level>=9?'ELITE':level>=3?'PROSPECT':'ROOKIE';
     document.querySelectorAll('[data-aura-evolution]').forEach(root=>{
       const set=(selector,value)=>{const el=root.querySelector(selector);if(el)el.textContent=value;};
       set('[data-aura-rank]',rank);
