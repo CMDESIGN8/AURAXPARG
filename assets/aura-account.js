@@ -65,13 +65,13 @@ const styles = `
 #aura-account-switch button,#aura-account-forgot{padding:0;border:0;background:none;color:#08c9f4;font:800 11px Montserrat,Arial,sans-serif;cursor:pointer}
 #aura-account-forgot{display:block;margin:14px auto 0}
 #aura-account-legal{margin-top:20px;color:#718394;font-size:10px;line-height:1.55;text-align:center}
-#aura-account-status{position:fixed;z-index:1200;top:14px;right:16px;display:none;align-items:center;gap:9px;padding:8px 10px;border:1px solid rgba(8,201,244,.3);background:rgba(4,12,22,.9);color:#eaf8ff;font:800 10px Montserrat,Arial,sans-serif;letter-spacing:.4px;backdrop-filter:blur(12px)}
+#aura-account-status{position:fixed;z-index:9;top:84px;right:16px;display:none;align-items:center;gap:9px;padding:8px 10px;border:1px solid rgba(8,201,244,.3);background:rgba(4,12,22,.9);color:#eaf8ff;font:800 10px Montserrat,Arial,sans-serif;letter-spacing:.4px;backdrop-filter:blur(12px)}
 #aura-account-status.is-visible{display:flex}
 #aura-account-status span{max-width:145px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #aura-account-status button{border:0;background:none;color:#08c9f4;font:900 9px Montserrat,Arial,sans-serif;cursor:pointer}
 #aura-account-toast{position:fixed;z-index:2147483001;left:50%;bottom:22px;transform:translate(-50%,14px);padding:12px 16px;border:1px solid rgba(8,201,244,.45);background:#071725;color:#eafaff;font:800 11px Montserrat,Arial,sans-serif;opacity:0;pointer-events:none;transition:.25s}
 #aura-account-toast.is-visible{opacity:1;transform:translate(-50%,0)}
-@media(max-width:600px){#aura-account-card{padding:26px 20px 22px}#aura-account-status{top:8px;right:8px}}
+@media(max-width:600px){#aura-account-card{padding:26px 20px 22px}#aura-account-status{top:66px;right:8px;max-width:calc(100vw - 16px);gap:6px;padding:7px 8px}#aura-account-status span{max-width:105px}#aura-account-status button{font-size:8px}}
 `;
 
 const style = document.createElement("style");
@@ -166,6 +166,11 @@ function friendlyError(error) {
     "auth/account-exists-with-different-credential": "Ya existe una cuenta con este email. Iniciá sesión con tu método habitual para vincular Google."
   };
   return messages[code] || "No pudimos completar la operación. Probá nuevamente.";
+}
+
+function clearLocalProgress() {
+  STORAGE_KEYS.forEach(key => localStorage.removeItem(key));
+  window.dispatchEvent(new Event("aura:progress-updated"));
 }
 
 function readLocalSnapshot() {
@@ -337,7 +342,18 @@ $("aura-account-forgot").addEventListener("click", async () => {
 });
 
 $("aura-account-logout").addEventListener("click", async () => {
+  // Guardar primero el progreso de la cuenta actual; después limpiar el
+  // almacenamiento local para que la próxima cuenta no herede sus logros.
+  window.clearTimeout(syncTimer);
+  if (activeUser && syncReady) {
+    try {
+      await syncProgress();
+    } catch (error) {
+      console.error("AURA XP: no se pudo completar la última sincronización antes de cerrar sesión.", error);
+    }
+  }
   syncReady = false;
+  clearLocalProgress();
   await signOut(auth);
 });
 
