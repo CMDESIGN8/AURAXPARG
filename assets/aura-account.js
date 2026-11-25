@@ -227,6 +227,24 @@ async function ensureProfile(user) {
 form.addEventListener("submit", async event => {
   event.preventDefault();
   errorNode.textContent = "";
+  if (activeUser && !syncReady) {
+    submit.disabled = true;
+    submit.textContent = "CARGANDO TU PROGRESO…";
+    try {
+      await ensureProfile(activeUser);
+      await syncInitialProgress(activeUser);
+      syncReady = true;
+      root.classList.remove("is-visible");
+      status.classList.add("is-visible");
+      $("aura-account-user").textContent = activeUser.displayName || activeUser.email || "Jugador AURA";
+      showToast("PROGRESO SINCRONIZADO · AURA XP");
+    } catch (retryError) {
+      errorNode.textContent = "Todavía no podemos guardar tu progreso. Revisá las reglas de Firestore y reintentá.";
+      submit.disabled = false;
+      submit.textContent = "REINTENTAR";
+    }
+    return;
+  }
   const email = $("aura-account-email").value.trim();
   const password = $("aura-account-password").value;
   submit.disabled = true;
@@ -297,20 +315,5 @@ onAuthStateChanged(auth, async user => {
     errorNode.textContent = "No pudimos cargar tu progreso. Verificá la configuración de Firestore y volvé a intentar.";
     submit.disabled = false;
     submit.textContent = "REINTENTAR";
-    submit.onclick = async event => {
-      event.preventDefault();
-      errorNode.textContent = "";
-      if (activeUser) {
-        try {
-          await ensureProfile(activeUser);
-          await syncInitialProgress(activeUser);
-          syncReady = true;
-          root.classList.remove("is-visible");
-          status.classList.add("is-visible");
-        } catch (retryError) {
-          errorNode.textContent = friendlyError(retryError);
-        }
-      }
-    };
   }
 });
