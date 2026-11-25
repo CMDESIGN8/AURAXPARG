@@ -2254,6 +2254,39 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 .aura-evolution-collapse[open] .aura-evolution-summary{border-bottom-color:transparent}
 .aura-evolution-collapse .aura-evolution{margin:0;border-top:0}
 @media(max-width:600px){.aura-evolution-collapse{margin:14px auto 20px}.aura-evolution-summary{padding:11px 10px;gap:8px}.aura-summary-mark{width:32px;height:32px;flex-basis:32px;font-size:10px}.aura-summary-copy small{font-size:6px;letter-spacing:.1em}.aura-summary-copy strong{font-size:11px}.aura-summary-copy em{font-size:8px}.aura-summary-toggle{font-size:7px;gap:4px}.aura-summary-toggle b{width:18px;height:18px}}
+
+/* DESBLOQUEOS REALES — GAME CHANGER / LEGEND */
+.player-evolution.is-game-changer{
+  border-color:rgba(8,201,244,.82);
+  background:linear-gradient(125deg,rgba(8,201,244,.13),rgba(10,20,33,.97) 48%,rgba(183,255,60,.07));
+  box-shadow:0 0 0 1px rgba(8,201,244,.18),0 0 28px rgba(8,201,244,.16),inset 0 0 24px rgba(8,201,244,.045);
+}
+.player-evolution.is-game-changer:after{
+  content:"✦ GAME CHANGER · 500 XP";
+  position:absolute;right:12px;top:-10px;padding:5px 9px;
+  background:var(--lime);color:var(--ink);font-size:7px;font-weight:950;letter-spacing:.12em;
+  box-shadow:0 4px 16px rgba(183,255,60,.2);
+}
+.player-evolution.is-game-changer .evolution-rank{color:var(--lime);text-shadow:0 0 12px rgba(183,255,60,.35)}
+.aura-player-hub.is-legend{
+  border-color:rgba(183,255,60,.78);
+  background:radial-gradient(ellipse at 92% 0,rgba(183,255,60,.16),transparent 38%),linear-gradient(110deg,rgba(8,201,244,.08),rgba(5,12,22,.96) 45%,rgba(183,255,60,.09));
+  box-shadow:0 0 0 1px rgba(183,255,60,.18),0 0 34px rgba(183,255,60,.14),inset 0 0 28px rgba(183,255,60,.045);
+}
+.aura-player-hub.is-legend:before{background:linear-gradient(var(--lime),var(--cyan));box-shadow:0 0 14px rgba(183,255,60,.35)}
+.aura-player-hub.is-legend .aura-evolution-rank b{
+  color:var(--lime);text-shadow:0 0 12px rgba(183,255,60,.55);letter-spacing:.18em
+}
+.aura-player-hub.is-legend .aura-evolution-title{color:#f4ffd9;text-shadow:0 0 18px rgba(183,255,60,.18)}
+.aura-player-hub.is-legend .aura-hub-xp b{color:var(--lime);text-shadow:0 0 18px rgba(183,255,60,.22)}
+.aura-player-hub.is-legend .aura-evolution-track i{background:linear-gradient(90deg,var(--lime),var(--cyan))}
+@media(max-width:600px){
+  .player-evolution.is-game-changer:after{right:8px;top:-9px;font-size:6px;padding:4px 7px}
+}
+@media(prefers-reduced-motion:reduce){
+  .player-evolution.is-game-changer,.aura-player-hub.is-legend{scroll-behavior:auto}
+}
+
 </style>
 <style>/* PLAYER EVOLUTION — XP milestones */
 .aura-evolution-milestones{margin:18px 0;padding:15px;border:1px solid rgba(183,255,60,.2);background:linear-gradient(145deg,rgba(183,255,60,.045),rgba(5,12,22,.8))}
@@ -2294,8 +2327,8 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     <div class="aura-milestone-grid">
       <article data-milestone="100"><span>01</span><b>FIRST SPARK</b><small>100 XP · La evolución empieza</small></article>
       <article data-milestone="250"><span>02</span><b>PLAYER MODE</b><small>250 XP · Tu constancia toma forma</small></article>
-      <article data-milestone="500"><span>03</span><b>GAME CHANGER</b><small>500 XP · Entrená para ir más allá</small></article>
-      <article data-milestone="1000"><span>04</span><b>LEGEND STATUS</b><small>1.000 XP · Un nuevo estándar</small></article>
+      <article data-milestone="500"><span>03</span><b>GAME CHANGER</b><small>500 XP · PLAYER CARD con efecto especial</small></article>
+      <article data-milestone="1000"><span>04</span><b>LEGEND STATUS</b><small>1.000 XP · Rango LEGEND y perfil evolucionado</small></article>
     </div>
     <div class="aura-milestone-next" data-aura-milestone-next>SUMÁ XP PARA ACTIVAR TU PRIMER DESBLOQUEO</div>
   </div>
@@ -2745,6 +2778,15 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
         xp < target && target === nextMilestone
       );
     });
+
+    const playerCard = document.getElementById('aura-player-profile');
+    const playerHub = panel.closest('[data-aura-evolution]');
+    if (playerCard) playerCard.classList.toggle('is-game-changer', xp >= 500);
+    if (playerHub) {
+      playerHub.classList.toggle('is-legend', xp >= 1000);
+      const rank = playerHub.querySelector('[data-aura-rank]');
+      if (rank && xp >= 1000) rank.textContent = 'LEGEND';
+    }
 
     const previous = steps.filter(step => step <= xp).pop() || 0;
 
