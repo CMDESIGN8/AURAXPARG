@@ -33,6 +33,11 @@
       totalDays+=completed;totalXp+=completed*50;
 
     });
+    try{
+      const training=JSON.parse(localStorage.getItem('aura-player-evolution-v1')||'{}');
+      const drops=Array.isArray(training.completedDrops)?training.completedDrops.filter(n=>Number.isInteger(n)&&n>=0&&n<4).length:0;
+      totalXp+=drops*50;
+    }catch(error){}
     const level=1+Math.floor(totalXp/250);
     const rank=level>=9?'ELITE':level>=3?'PROSPECT':'ROOKIE';
     document.querySelectorAll('[data-aura-evolution]').forEach(root=>{
