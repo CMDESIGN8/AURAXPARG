@@ -65,13 +65,13 @@ const styles = `
 #aura-account-switch button,#aura-account-forgot{padding:0;border:0;background:none;color:#08c9f4;font:800 11px Montserrat,Arial,sans-serif;cursor:pointer}
 #aura-account-forgot{display:block;margin:14px auto 0}
 #aura-account-legal{margin-top:20px;color:#718394;font-size:10px;line-height:1.55;text-align:center}
-#aura-account-status{position:fixed;z-index:9;top:84px;right:16px;display:none;align-items:center;gap:9px;padding:8px 10px;border:1px solid rgba(8,201,244,.3);background:rgba(4,12,22,.9);color:#eaf8ff;font:800 10px Montserrat,Arial,sans-serif;letter-spacing:.4px;backdrop-filter:blur(12px)}
+#aura-account-status{position:static;z-index:auto;display:none;align-items:center;gap:8px;flex:0 0 auto;margin-left:4px;padding:6px 9px;border:1px solid rgba(8,201,244,.3);background:rgba(4,12,22,.9);color:#eaf8ff;font:800 9px Montserrat,Arial,sans-serif;letter-spacing:.3px;backdrop-filter:blur(12px)}
 #aura-account-status.is-visible{display:flex}
-#aura-account-status span{max-width:145px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#aura-account-status button{border:0;background:none;color:#08c9f4;font:900 9px Montserrat,Arial,sans-serif;cursor:pointer}
+#aura-account-status span{max-width:115px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#aura-account-status button{border:0;background:none;color:#08c9f4;font:900 8px Montserrat,Arial,sans-serif;letter-spacing:.02em;white-space:nowrap;cursor:pointer}
 #aura-account-toast{position:fixed;z-index:2147483001;left:50%;bottom:22px;transform:translate(-50%,14px);padding:12px 16px;border:1px solid rgba(8,201,244,.45);background:#071725;color:#eafaff;font:800 11px Montserrat,Arial,sans-serif;opacity:0;pointer-events:none;transition:.25s}
 #aura-account-toast.is-visible{opacity:1;transform:translate(-50%,0)}
-@media(max-width:600px){#aura-account-card{padding:26px 20px 22px}#aura-account-status{top:66px;right:8px;max-width:calc(100vw - 16px);gap:6px;padding:7px 8px}#aura-account-status span{max-width:105px}#aura-account-status button{font-size:8px}}
+@media(max-width:600px){#aura-account-card{padding:26px 20px 22px}#aura-account-status{gap:5px;margin-left:2px;padding:5px 6px}#aura-account-status span{max-width:72px;font-size:7px}#aura-account-status button{font-size:6.5px;letter-spacing:0}}
 `;
 
 const style = document.createElement("style");
@@ -108,7 +108,9 @@ document.body.appendChild(root);
 const status = document.createElement("div");
 status.id = "aura-account-status";
 status.innerHTML = `<span id="aura-account-user"></span><button id="aura-account-logout" type="button">CERRAR SESIÓN</button>`;
-document.body.appendChild(status);
+const accountNav = document.querySelector("header nav");
+if (accountNav) accountNav.appendChild(status);
+else document.body.appendChild(status);
 
 const toast = document.createElement("div");
 toast.id = "aura-account-toast";
