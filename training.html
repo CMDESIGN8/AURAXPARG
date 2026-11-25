@@ -2492,6 +2492,53 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
     {name:'TÉCNICA',desc:'Mejorá tu dominio de pelota.',exercises:[['CONTROL ORIENTADO','10 por perfil','Recibí y llevá el primer toque hacia el espacio libre.','Salir de la presión con el primer toque.'],['PASE CONTRA PARED','20 pases','Alterná pie derecho e izquierdo. Prepará el cuerpo antes de recibir.','Dar pases más precisos con ambos perfiles.'],['CONDUCCIÓN + CAMBIO','5 recorridos','Conducí, cambiá de dirección y salí con un toque más largo.','Cambiar el ritmo para dejar atrás al rival.']],benefit:'Controlá, pasá y resolvé con más recursos cuando tenés la pelota.',action:'RESOLVER',mark:'✳',reward:'DOMINIO DE PELOTA',drop:'TOUCH MASTER',className:'skill-technique',coach:'La técnica transforma lo que pensás en una acción. Un buen control o un pase preciso te dan más opciones para resolver bajo presión.',tip:'Antes de recibir, levantá la mirada y pensá tu próxima acción. El control empieza antes de que la pelota llegue.'}
   ];
 
+
+  const skillBadgeModal=document.createElement('div');
+  skillBadgeModal.className='aura-skill-unlock';
+  skillBadgeModal.setAttribute('role','dialog');
+  skillBadgeModal.setAttribute('aria-modal','true');
+  skillBadgeModal.setAttribute('aria-labelledby','aura-skill-unlock-title');
+  skillBadgeModal.innerHTML='<div class="aura-skill-unlock-card"><button type="button" class="aura-skill-unlock-close" aria-label="Cerrar">×</button><span class="aura-skill-unlock-kicker">✦ BADGE DESBLOQUEADA ✦</span><div class="aura-skill-unlock-art"><img data-skill-unlock-image alt="" /></div><small class="aura-skill-unlock-label">AURA XP · SKILL MASTERY</small><h2 id="aura-skill-unlock-title"></h2><b class="aura-skill-unlock-name"></b><p class="aura-skill-unlock-copy"></p><button type="button" class="aura-skill-unlock-cta">RECLAMAR BADGE</button><small class="aura-skill-unlock-foot">UN NUEVO RECURSO PARA TU JUEGO.</small></div>';
+  document.body.appendChild(skillBadgeModal);
+  const skillBadgeStyle=document.createElement('style');
+  skillBadgeStyle.textContent=`
+    .aura-skill-unlock{position:fixed;inset:0;z-index:1500;display:grid;place-items:center;padding:18px;background:rgba(1,5,11,.9);backdrop-filter:blur(13px);opacity:0;visibility:hidden;transition:opacity .28s,visibility .28s}
+    .aura-skill-unlock.is-open{opacity:1;visibility:visible}
+    .aura-skill-unlock-card{position:relative;width:min(100%,440px);padding:28px 24px 23px;text-align:center;overflow:hidden;border:1px solid rgba(8,201,244,.58);background:radial-gradient(ellipse at 50% 5%,rgba(8,201,244,.2),transparent 55%),linear-gradient(145deg,#102338,#050b13 75%);box-shadow:0 0 70px rgba(8,201,244,.17),0 24px 90px rgba(0,0,0,.65);transform:translateY(18px) scale(.96);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+    .aura-skill-unlock.is-open .aura-skill-unlock-card{transform:translateY(0) scale(1)}
+    .aura-skill-unlock-card:before{content:"";position:absolute;width:210px;height:210px;left:50%;top:75px;transform:translateX(-50%);border:1px solid rgba(8,201,244,.18);border-radius:50%;box-shadow:0 0 0 18px rgba(8,201,244,.025),0 0 0 38px rgba(8,201,244,.018);pointer-events:none}
+    .aura-skill-unlock-close{position:absolute;right:12px;top:10px;width:32px;height:32px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.25);color:#fff;font-size:19px;cursor:pointer}
+    .aura-skill-unlock-kicker{color:#b7ff3c;font-size:9px;font-weight:900;letter-spacing:.2em}
+    .aura-skill-unlock-art{position:relative;z-index:1;width:min(58%,205px);margin:14px auto 7px;animation:auraSkillBadgeReveal .8s cubic-bezier(.2,.8,.2,1) both;filter:drop-shadow(0 0 22px rgba(8,201,244,.38))}
+    .aura-skill-unlock-art img{display:block;width:100%;height:auto;object-fit:contain}
+    .aura-skill-unlock-label{display:block;color:#08c9f4;font-size:8px;font-weight:900;letter-spacing:.18em}
+    .aura-skill-unlock-card h2{margin:7px 0 3px;color:#f4f8fc;font-size:clamp(27px,7vw,38px);line-height:1;letter-spacing:-.05em}
+    .aura-skill-unlock-name{display:block;color:#b7ff3c;font-size:10px;letter-spacing:.15em}
+    .aura-skill-unlock-copy{max-width:330px;margin:13px auto 19px;color:#b9c8d6;font-size:11px;line-height:1.6}
+    .aura-skill-unlock-cta{position:relative;z-index:1;width:100%;padding:14px;border:0;background:linear-gradient(90deg,#08c9f4,#b7ff3c);color:#06111a;font:900 10px Montserrat,Arial,sans-serif;letter-spacing:.12em;cursor:pointer}
+    .aura-skill-unlock-foot{display:block;margin-top:12px;color:#72869a;font-size:7px;letter-spacing:.1em}
+    body.aura-skill-unlock-open{overflow:hidden}
+    @keyframes auraSkillBadgeReveal{0%{opacity:0;transform:translateY(22px) scale(.55) rotate(-9deg)}65%{opacity:1;transform:translateY(-5px) scale(1.06) rotate(2deg)}100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}}
+    @media(max-width:600px){.aura-skill-unlock-card{padding:25px 18px 20px}.aura-skill-unlock-art{width:min(55%,185px)}}
+    @media(prefers-reduced-motion:reduce){.aura-skill-unlock-art,.aura-skill-unlock-card{animation:none;transition:none}}
+  `;
+  document.head.appendChild(skillBadgeStyle);
+  function closeSkillBadge(){skillBadgeModal.classList.remove('is-open');document.body.classList.remove('aura-skill-unlock-open');}
+  function showSkillBadge(i){
+    const item=challenges[i];if(!item)return;
+    const image=skillBadgeModal.querySelector('[data-skill-unlock-image]');
+    image.src=badgeFiles[i];image.alt='Insignia '+item.name.toLowerCase();
+    image.onerror=function(){this.onerror=null;this.src='';this.parentElement.innerHTML=badgeVisual(i,true);};
+    skillBadgeModal.querySelector('h2').textContent=item.name;
+    skillBadgeModal.querySelector('.aura-skill-unlock-name').textContent=item.drop;
+    skillBadgeModal.querySelector('.aura-skill-unlock-copy').textContent=item.benefit;
+    skillBadgeModal.classList.add('is-open');document.body.classList.add('aura-skill-unlock-open');
+  }
+  skillBadgeModal.querySelector('.aura-skill-unlock-close').addEventListener('click',closeSkillBadge);
+  skillBadgeModal.querySelector('.aura-skill-unlock-cta').addEventListener('click',closeSkillBadge);
+  skillBadgeModal.addEventListener('click',event=>{if(event.target===skillBadgeModal)closeSkillBadge();});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&skillBadgeModal.classList.contains('is-open'))closeSkillBadge();});
+
   const progressKey='aura-player-evolution-v1';
   function loadProgress(){try{const raw=JSON.parse(localStorage.getItem(progressKey)||'{}');return Array.isArray(raw.completedDrops)?raw.completedDrops.filter(n=>Number.isInteger(n)&&n>=0&&n<4):[];}catch(e){return [];}}
   const completedDrops=new Set(loadProgress());
@@ -2572,7 +2619,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   next.addEventListener('click',function(){
     if(!completedExercises.has(currentExercise))return;
     if(currentExercise<challenges[current].exercises.length-1){currentExercise++;updateExerciseProgress();return;}
-    completedDrops.add(current);saveProgress();renderCollection();showTrainingXp();const card=stage.querySelector('.mission-card');if(card)card.classList.add('is-completing');next.disabled=true;
+    completedDrops.add(current);saveProgress();renderCollection();showTrainingXp();showSkillBadge(current);const card=stage.querySelector('.mission-card');if(card)card.classList.add('is-completing');next.disabled=true;
     window.setTimeout(function(){current++;if(current>=challenges.length){controls.hidden=true;stage.hidden=true;finished.hidden=false;counter.innerHTML='04 DE 04 <b>· COMPLETADO</b>';index.textContent='100%';percent.textContent='100%';fill.style.width='100%';renderJourney();callCoach(current-1,true);}else{render();callCoach(current);}},300);
   });
   root.querySelector('#mission-restart').addEventListener('click',function(){
