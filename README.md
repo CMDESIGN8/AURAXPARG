@@ -58,3 +58,4 @@ Es una web estática en HTML, CSS y JavaScript. Publicada mediante GitHub Pages.
 ## Documentación
 
 - [Identidad de marca](docs/BRAND-IDENTITY.md)
+- [Configuración de cuentas AURA XP y sincronización](docs/AURA-ACCOUNT-SETUP.md)
