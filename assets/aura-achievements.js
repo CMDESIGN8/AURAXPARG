@@ -168,7 +168,7 @@
         .aura-award-art{width:min(58%,205px)}
       }
       @media(prefers-reduced-motion:reduce){.aura-award-art,.aura-award-dialog{animation:none;transition:none}}
-
+    `;
     document.head.appendChild(style);
     collection=document.createElement('section');
     collection.className='aura-achievements';
