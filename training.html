@@ -2657,11 +2657,63 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 <script src="assets/aura-player-evolution.js" defer></script>
 <script src="assets/aura-achievements.js" defer></script>
 <script>
-(function(){
- const panel=document.querySelector('[data-aura-milestones]');if(!panel)return;
- const xpNode=document.querySelector('[data-aura-xp]'),label=panel.querySelector('[data-aura-milestone-xp]'),fill=panel.querySelector('[data-aura-milestone-fill]'),next=panel.querySelector('[data-aura-milestone-next]'),cards=[...panel.querySelectorAll('[data-milestone]')],steps=[100,250,500,1000];
- function update(){const xp=Math.max(0,parseInt((xpNode?.textContent||'0').replace(/[^0-9]/g,''),10)||0);label.textContent=xp.toLocaleString('es-AR')+' XP';cards.forEach(card=>{const target=Number(card.dataset.milestone);card.classList.toggle('is-earned',xp>=target);card.classList.toggle('is-active',xp<target&&target===steps.find(s=>xp<s));});const nextStep=steps.find(s=>xp<s),previous=steps.filter(s=>xp>=s).pop()||0;fill.style.width=nextStep?Math.max(0,Math.min(100,(xp-previous)/(nextStep-previous)*100))+'%';if(!nextStep){fill.style.width='100%';next.textContent='TODOS LOS HITOS ACTIVADOS · SEGUÍ ENTRENANDO';}else{next.textContent='PRÓXIMO DESBLOQUEO: '+nextStep.toLocaleString('es-AR')+' XP · FALTAN '+(nextStep-xp).toLocaleString('es-AR')+' XP';}}
- update();if(xpNode)new MutationObserver(update).observe(xpNode,{childList:true,subtree:true,characterData:true});
+(function () {
+  const panel = document.querySelector('[data-aura-milestones]');
+  if (!panel) return;
+
+  const xpNode = document.querySelector('[data-aura-xp]');
+  const label = panel.querySelector('[data-aura-milestone-xp]');
+  const fill = panel.querySelector('[data-aura-milestone-fill]');
+  const next = panel.querySelector('[data-aura-milestone-next]');
+  const cards = [...panel.querySelectorAll('[data-milestone]')];
+  const steps = [100, 250, 500, 1000];
+
+  if (!xpNode || !label || !fill || !next) return;
+
+  function update() {
+    const xp = Math.max(
+      0,
+      parseInt(xpNode.textContent.replace(/[^0-9]/g, ''), 10) || 0
+    );
+
+    label.textContent = xp.toLocaleString('es-AR') + ' XP';
+
+    const nextMilestone = steps.find(step => step > xp);
+
+    cards.forEach(card => {
+      const target = Number(card.dataset.milestone);
+      card.classList.toggle('is-earned', xp >= target);
+      card.classList.toggle(
+        'is-active',
+        xp < target && target === nextMilestone
+      );
+    });
+
+    const previous = steps.filter(step => step <= xp).pop() || 0;
+
+    if (nextMilestone) {
+      const progress = ((xp - previous) / (nextMilestone - previous)) * 100;
+      fill.style.width = Math.max(0, Math.min(100, progress)) + '%';
+      next.textContent =
+        'PRÓXIMO DESBLOQUEO: ' +
+        nextMilestone.toLocaleString('es-AR') +
+        ' XP · FALTAN ' +
+        (nextMilestone - xp).toLocaleString('es-AR') +
+        ' XP';
+    } else {
+      fill.style.width = '100%';
+      next.textContent = 'TODOS LOS HITOS ACTIVADOS · SEGUÍ ENTRENANDO';
+    }
+  }
+
+  update();
+
+  const observer = new MutationObserver(update);
+  observer.observe(xpNode, {
+    childList: true,
+    subtree: true,
+    characterData: true
+  });
 })();
 </script></body>
 </html>
