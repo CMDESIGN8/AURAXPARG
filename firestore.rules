@@ -1,16 +1,129 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Cada jugador solo puede leer y modificar su propio perfil.
+
+    // =========================================================
+    // AURA XP — INVENTARIO (STOCK REAL)
+    // =========================================================
+    match /inventory/{docId} {
+      allow read: if true;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasAny(['farm_tee', 'sport_aura', 'grind_tee']);
+      allow create, delete: if false;
+    }
+
+    // =========================================================
+    // AURA XP — CONTADOR REAL DE FARMERS (DROP 001)
+    // =========================================================
+    match /farmer_counters/{farmerId} {
+      allow read: if true;
+      allow write: if
+        farmerId.matches('^[a-f0-9]{64}$') &&
+        request.resource.data.keys().hasOnly(['createdAt']) &&
+        request.resource.data.createdAt is timestamp;
+    }
+
+    // =========================================================
+    // AURA XP — CONTADOR REAL DE FARMERS (BOTINES CUSTOM)
+    // =========================================================
+    match /boot_farmer_counters/{farmerId} {
+      allow read: if true;
+      allow write: if
+        farmerId.matches('^[a-f0-9]{64}$') &&
+        request.resource.data.keys().hasOnly(['createdAt']) &&
+        request.resource.data.createdAt is timestamp;
+    }
+
+    // =========================================================
+    // AURA XP — LEADS (DROP 001)
+    // =========================================================
+    match /leads/{leadId} {
+      allow create: if
+        request.resource.data.keys().hasAll([
+          'email', 'name', 'picture', 'provider', 'whatsapp',
+          'producto', 'rarity', 'xp', 'talle', 'fecha',
+          'source', 'campaign', 'timestamp'
+        ]) &&
+        request.resource.data.keys().hasOnly([
+          'email', 'name', 'picture', 'provider', 'whatsapp',
+          'producto', 'rarity', 'xp', 'talle', 'fecha',
+          'source', 'campaign', 'timestamp'
+        ]) &&
+        request.resource.data.email is string &&
+        request.resource.data.name is string &&
+        request.resource.data.picture is string &&
+        request.resource.data.provider is string &&
+        request.resource.data.whatsapp is string &&
+        request.resource.data.producto is string &&
+        request.resource.data.rarity is string &&
+        request.resource.data.xp is number &&
+        request.resource.data.talle is string &&
+        request.resource.data.fecha is string &&
+        request.resource.data.source == 'landing' &&
+        request.resource.data.campaign == 'DROP_001' &&
+        request.resource.data.timestamp is timestamp;
+
+      allow read: if request.auth != null;
+      allow update, delete: if false;
+    }
+
+    // =========================================================
+    // AURA XP — CUSTOM BOOTS (LEADS)
+    // =========================================================
+    match /custom_boots/{leadId} {
+      allow create: if
+        request.resource.data.keys().hasAll([
+          'email', 'name', 'picture', 'provider', 'whatsapp',
+          'modelo', 'colorTalon', 'colorFrente', 'suela',
+          'nombre', 'numero', 'talle', 'auraId', 'fecha',
+          'source', 'campaign', 'timestamp'
+        ]) &&
+        request.resource.data.keys().hasOnly([
+          'email', 'name', 'picture', 'provider', 'whatsapp',
+          'modelo', 'colorTalon', 'colorFrente', 'suela',
+          'nombre', 'numero', 'talle', 'auraId', 'fecha',
+          'source', 'campaign', 'timestamp'
+        ]) &&
+        request.resource.data.email is string &&
+        request.resource.data.name is string &&
+        request.resource.data.picture is string &&
+        request.resource.data.provider is string &&
+        request.resource.data.whatsapp is string &&
+        request.resource.data.modelo is string &&
+        request.resource.data.colorTalon is string &&
+        request.resource.data.colorFrente is string &&
+        request.resource.data.suela is string &&
+        request.resource.data.nombre is string &&
+        request.resource.data.numero is string &&
+        request.resource.data.talle is string &&
+        request.resource.data.auraId is string &&
+        request.resource.data.fecha is string &&
+        request.resource.data.source == 'landing' &&
+        request.resource.data.campaign == 'CUSTOM_BOOTS' &&
+        request.resource.data.timestamp is timestamp;
+
+      allow read: if request.auth != null;
+      allow update, delete: if false;
+    }
+
+    // =========================================================
+    // AURA XP — CUENTAS Y PROGRESO DE JUGADORES
+    // =========================================================
     match /users/{userId} {
       allow read, create, update: if request.auth != null && request.auth.uid == userId;
       allow delete: if false;
 
-      // Datos privados de progreso: START, PRO, ELITE, XP y logros.
       match /private/{document=**} {
         allow read, create, update: if request.auth != null && request.auth.uid == userId;
         allow delete: if false;
       }
+    }
+
+    // =========================================================
+    // BLOQUEO POR DEFECTO
+    // =========================================================
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
