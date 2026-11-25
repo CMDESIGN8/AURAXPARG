@@ -37,6 +37,7 @@ let activeUser = null;
 let syncReady = false;
 let syncTimer = null;
 let currentMode = "login";
+let pendingDisplayName = "";
 
 const styles = `
 #aura-account-root{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(2,7,14,.88);backdrop-filter:blur(14px);font-family:Montserrat,Arial,sans-serif;color:#f4f8fb}
@@ -216,7 +217,7 @@ async function ensureProfile(user) {
   const payload = {
     uid: user.uid,
     email: user.email || "",
-    displayName: user.displayName || "Jugador AURA",
+    displayName: pendingDisplayName || user.displayName || "Jugador AURA",
     photoURL: user.photoURL || "",
     updatedAt: serverTimestamp()
   };
@@ -253,8 +254,10 @@ form.addEventListener("submit", async event => {
     if (currentMode === "register") {
       const displayName = $("aura-account-name").value.trim();
       if (displayName.length < 2) throw new Error("Elegí un nombre de jugador de al menos 2 caracteres.");
+      pendingDisplayName = displayName;
       const credential = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(credential.user, { displayName });
+      pendingDisplayName = "";
     } else {
       await signInWithEmailAndPassword(auth, email, password);
     }
@@ -301,7 +304,7 @@ onAuthStateChanged(auth, async user => {
       syncReady = true;
       root.classList.remove("is-visible");
       status.classList.add("is-visible");
-      $("aura-account-user").textContent = user.displayName || user.email || "Jugador AURA";
+      $("aura-account-user").textContent = pendingDisplayName || user.displayName || user.email || "Jugador AURA";
       showToast("PROGRESO SINCRONIZADO · AURA XP");
       window.AuraAccount = { user, signOut: () => signOut(auth), sync: syncProgress };
     } else {
