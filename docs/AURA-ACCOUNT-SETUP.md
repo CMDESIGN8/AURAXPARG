@@ -2,7 +2,7 @@
 
 ## Qué incorpora
 
-- Registro e inicio de sesión con email y contraseña mediante Firebase Authentication.
+- Registro e inicio de sesión con email y contraseña o cuenta de Google mediante Firebase Authentication.
 - Recuperación de contraseña por email.
 - Perfil básico en `users/{uid}`.
 - Progreso sincronizado en `users/{uid}/private/auraProgress`.
@@ -23,7 +23,7 @@ El código del sitio ya utiliza el proyecto Firebase `aura-xp-dd6d3`, compartido
 
 ## Estructura de datos
 
-- `users/{uid}`: email, nickname, foto opcional y timestamps.
+- `users/{uid}`: email, nickname, foto opcional y timestamps. El acceso funciona igual con email/contraseña y con Google.
 - `users/{uid}/private/auraProgress`: snapshot de las claves locales de progreso de AURA XP.
 
 Cada usuario solo puede leer y modificar documentos dentro de su propio UID según las reglas incluidas.
