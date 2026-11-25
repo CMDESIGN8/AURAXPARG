@@ -15,7 +15,7 @@ El código del sitio ya utiliza el proyecto Firebase `aura-xp-dd6d3`, compartido
 
 1. Abrí Firebase Console y seleccioná el proyecto **aura-xp-dd6d3**.
 2. En **Authentication → Sign-in method**, habilitá **Email/Password**.
-3. En **Authentication → Settings → Authorized domains**, verificá que esté autorizado el dominio de GitHub Pages donde se publica AURA XP (por ejemplo, `cmdesign8.github.io`).
+3. En **Authentication → Settings → Authorized domains**, agregá el dominio exacto desde el que se publica AURA XP (por ejemplo, `auraxp.ar`, `www.auraxp.ar` y/o `cmdesign8.github.io`, según cuáles estén activos).
 4. En **Firestore Database → Rules**, publicá el contenido de `firestore.rules` incluido en este repositorio.
 5. Confirmá que Firestore Database esté creado en el proyecto.
 
