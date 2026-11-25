@@ -73,9 +73,9 @@ const styles = `
 #aura-account-toast.is-visible{opacity:1;transform:translate(-50%,0)}
 @media(max-width:600px){
   #aura-account-card{padding:26px 20px 22px}
-  header{display:grid!important;grid-template-columns:minmax(0,1fr) auto auto;grid-template-rows:auto auto;align-items:center;column-gap:8px;row-gap:0;height:auto!important;min-height:0!important;padding:10px 12px!important}
+  header{display:grid!important;grid-template-rows:auto auto;align-items:center;column-gap:8px;row-gap:0;height:80px!important;min-height:0!important;padding:1px 12px!important}
   header>.brand{grid-column:1;grid-row:1;min-width:0}
-  header>.brand img{width:150px!important;max-width:100%;height:60px!important;object-fit:contain;object-position:left center}
+  header>.brand img{width:80px!important;max-width:100%;height:80px!important;object-fit:contain;object-position:left center}
   header>#aura-account-status{grid-column:2;grid-row:1;justify-self:end;max-width:100%;gap:6px;margin:0;padding:6px 7px;font-size:8px}
   #aura-account-status span{max-width:clamp(48px,19vw,90px);font-size:8px}
   #aura-account-status button{font-size:7px;letter-spacing:0;padding:3px 0}
