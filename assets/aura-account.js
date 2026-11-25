@@ -362,7 +362,9 @@ $("aura-account-logout").addEventListener("click", async () => {
 onAuthStateChanged(auth, async user => {
   syncReady = false;
   activeUser = user;
-  root.classList.add("is-visible");
+  // No mostrar el formulario durante el cambio de página: Firebase restaura
+  // la sesión y luego sincronizamos el progreso en segundo plano.
+  root.classList.remove("is-visible");
   status.classList.remove("is-visible");
   submit.disabled = true;
   submit.textContent = user ? "CARGANDO TU PROGRESO…" : "CREAR MI CUENTA";
@@ -384,7 +386,17 @@ onAuthStateChanged(auth, async user => {
     }
   } catch (error) {
     console.error("AURA XP: no se pudo cargar la cuenta o el progreso.", error);
-    errorNode.textContent = "No pudimos cargar tu progreso. Verificá la configuración de Firestore y volvé a intentar.";
+    // Si ya hay una sesión válida, un fallo temporal de Firestore no debe
+    // expulsar al jugador ni mostrarle el formulario de acceso.
+    if (user) {
+      root.classList.remove("is-visible");
+      status.classList.add("is-visible");
+      $("aura-account-user").textContent = user.displayName || user.email || "Jugador AURA";
+      showToast("NO SE PUDO SINCRONIZAR · REVISÁ TU CONEXIÓN");
+    } else {
+      root.classList.add("is-visible");
+      errorNode.textContent = "No pudimos cargar tu progreso. Verificá la configuración de Firestore y volvé a intentar.";
+    }
     submit.disabled = false;
     submit.textContent = "REINTENTAR";
   }
