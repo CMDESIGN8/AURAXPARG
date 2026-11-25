@@ -96,7 +96,7 @@ const styles = `
   #aura-account-status span{max-width:54px;font-size:7px}
   #aura-account-status button{font-size:6px}
   #aura-mobile-menu-toggle{width:34px;height:34px;padding:7px}
-};
+}`;
 
 const style = document.createElement("style");
 style.textContent = styles;
