@@ -2255,7 +2255,13 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 .aura-evolution-collapse .aura-evolution{margin:0;border-top:0}
 @media(max-width:600px){.aura-evolution-collapse{margin:14px auto 20px}.aura-evolution-summary{padding:11px 10px;gap:8px}.aura-summary-mark{width:32px;height:32px;flex-basis:32px;font-size:10px}.aura-summary-copy small{font-size:6px;letter-spacing:.1em}.aura-summary-copy strong{font-size:11px}.aura-summary-copy em{font-size:8px}.aura-summary-toggle{font-size:7px;gap:4px}.aura-summary-toggle b{width:18px;height:18px}}
 </style>
-</head>
+<style>/* PLAYER EVOLUTION — XP milestones */
+.aura-evolution-milestones{margin:18px 0;padding:15px;border:1px solid rgba(183,255,60,.2);background:linear-gradient(145deg,rgba(183,255,60,.045),rgba(5,12,22,.8))}
+.aura-milestone-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.aura-milestone-head small{font-size:7px;color:var(--lime);font-weight:900;letter-spacing:.14em}.aura-milestone-head strong{font-size:9px;letter-spacing:.09em}.aura-milestone-head span{font-size:8px;color:var(--cyan);font-weight:900}
+.aura-milestone-track{height:3px;margin:12px 0;background:rgba(255,255,255,.09);overflow:hidden}.aura-milestone-track i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--cyan),var(--lime));transition:width .35s ease}
+.aura-milestone-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.aura-milestone-grid article{position:relative;min-width:0;padding:10px 8px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.025);opacity:.58;transition:opacity .2s,border-color .2s,background .2s}.aura-milestone-grid article>span{display:block;color:#718397;font-size:7px;font-weight:900;letter-spacing:.12em}.aura-milestone-grid article b{display:block;margin:5px 0;color:#a4b3c2;font-size:8px;letter-spacing:.06em}.aura-milestone-grid article small{display:block;color:#778a9d;font-size:7px;line-height:1.35}.aura-milestone-grid article.is-active{opacity:1;border-color:rgba(8,201,244,.4);background:rgba(8,201,244,.055)}.aura-milestone-grid article.is-active b{color:var(--cyan)}.aura-milestone-grid article.is-earned{opacity:1;border-color:rgba(183,255,60,.42);background:rgba(183,255,60,.07)}.aura-milestone-grid article.is-earned>span,.aura-milestone-grid article.is-earned b{color:var(--lime)}.aura-milestone-grid article.is-earned:after{content:"✓";position:absolute;right:8px;top:7px;color:var(--lime);font-size:10px;font-weight:900}.aura-milestone-next{margin-top:10px;color:#aab8c7;font-size:7px;font-weight:900;letter-spacing:.1em}
+@media(max-width:600px){.aura-evolution-milestones{padding:11px}.aura-milestone-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.aura-milestone-grid article{padding:9px 7px}.aura-milestone-grid article b{font-size:7.5px}.aura-milestone-grid article small{font-size:6.5px}.aura-milestone-head strong{font-size:8px}}
+</style></head>
 <body>
 
 <header>
@@ -2282,6 +2288,17 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   <div class="aura-hub-progress"><div class="aura-evolution-track"><i data-aura-overall></i></div><span data-aura-pro-percent>0% DEL PROGRAMA</span></div>
   <div class="aura-hub-next"><div><span class="aura-evolution-kicker">SIGUIENTE MISIÓN · PRO 21</span><b data-aura-next-mission>ABRÍ PRO 21 PARA CONTINUAR</b></div><a href="pro-21-days.html#days" class="aura-hub-cta">CONTINUAR ENTRENAMIENTO ↗</a></div>
   <div class="aura-evolution-skills"><span>COORDINACIÓN <b data-aura-skill="coordination">0%</b></span><span>VELOCIDAD <b data-aura-skill="speed">0%</b></span><span>AGILIDAD <b data-aura-skill="agility">0%</b></span><span>TÉCNICA <b data-aura-skill="technique">0%</b></span></div>
+  <div class="aura-evolution-milestones" data-aura-milestones>
+    <div class="aura-milestone-head"><small>AURA XP // PROGRESIÓN</small><strong>PRÓXIMOS DESBLOQUEOS</strong><span data-aura-milestone-xp>0 XP</span></div>
+    <div class="aura-milestone-track"><i data-aura-milestone-fill></i></div>
+    <div class="aura-milestone-grid">
+      <article data-milestone="100"><span>01</span><b>FIRST SPARK</b><small>100 XP · La evolución empieza</small></article>
+      <article data-milestone="250"><span>02</span><b>PLAYER MODE</b><small>250 XP · Tu constancia toma forma</small></article>
+      <article data-milestone="500"><span>03</span><b>GAME CHANGER</b><small>500 XP · Entrená para ir más allá</small></article>
+      <article data-milestone="1000"><span>04</span><b>LEGEND STATUS</b><small>1.000 XP · Un nuevo estándar</small></article>
+    </div>
+    <div class="aura-milestone-next" data-aura-milestone-next>SUMÁ XP PARA ACTIVAR TU PRIMER DESBLOQUEO</div>
+  </div>
   <div data-aura-achievements-mount></div>
   <div class="aura-hub-programs"><a class="is-active" href="pro-21-days.html">PRO · 21 DÍAS</a><a href="start-7-days.html">START · 7 DÍAS</a><a href="elite-30-days.html">ELITE · 30 DÍAS</a></div>
   <div class="aura-evolution-foot">Tu progreso y XP se guardan en este dispositivo. Las habilidades reflejan las jornadas registradas, no una evaluación física.</div>
@@ -2639,5 +2656,12 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 </script>
 <script src="assets/aura-player-evolution.js" defer></script>
 <script src="assets/aura-achievements.js" defer></script>
-</body>
+<script>
+(function(){
+ const panel=document.querySelector('[data-aura-milestones]');if(!panel)return;
+ const xpNode=document.querySelector('[data-aura-xp]'),label=panel.querySelector('[data-aura-milestone-xp]'),fill=panel.querySelector('[data-aura-milestone-fill]'),next=panel.querySelector('[data-aura-milestone-next]'),cards=[...panel.querySelectorAll('[data-milestone]')],steps=[100,250,500,1000];
+ function update(){const xp=Math.max(0,parseInt((xpNode?.textContent||'0').replace(/[^0-9]/g,''),10)||0);label.textContent=xp.toLocaleString('es-AR')+' XP';cards.forEach(card=>{const target=Number(card.dataset.milestone);card.classList.toggle('is-earned',xp>=target);card.classList.toggle('is-active',xp<target&&target===steps.find(s=>xp<s));});const nextStep=steps.find(s=>xp<s),previous=steps.filter(s=>xp>=s).pop()||0;fill.style.width=nextStep?Math.max(0,Math.min(100,(xp-previous)/(nextStep-previous)*100))+'%';if(!nextStep){fill.style.width='100%';next.textContent='TODOS LOS HITOS ACTIVADOS · SEGUÍ ENTRENANDO';}else{next.textContent='PRÓXIMO DESBLOQUEO: '+nextStep.toLocaleString('es-AR')+' XP · FALTAN '+(nextStep-xp).toLocaleString('es-AR')+' XP';}}
+ update();if(xpNode)new MutationObserver(update).observe(xpNode,{childList:true,subtree:true,characterData:true});
+})();
+</script></body>
 </html>
