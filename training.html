@@ -2301,6 +2301,15 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
 .aura-milestone-track{height:3px;margin:12px 0;background:rgba(255,255,255,.09);overflow:hidden}.aura-milestone-track i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--cyan),var(--lime));transition:width .35s ease}
 .aura-milestone-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.aura-milestone-grid article{position:relative;min-width:0;padding:10px 8px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.025);opacity:.58;transition:opacity .2s,border-color .2s,background .2s}.aura-milestone-grid article>span{display:block;color:#718397;font-size:7px;font-weight:900;letter-spacing:.12em}.aura-milestone-grid article b{display:block;margin:5px 0;color:#a4b3c2;font-size:8px;letter-spacing:.06em}.aura-milestone-grid article small{display:block;color:#778a9d;font-size:7px;line-height:1.35}.aura-milestone-grid article.is-active{opacity:1;border-color:rgba(8,201,244,.4);background:rgba(8,201,244,.055)}.aura-milestone-grid article.is-active b{color:var(--cyan)}.aura-milestone-grid article.is-earned{opacity:1;border-color:rgba(183,255,60,.42);background:rgba(183,255,60,.07)}.aura-milestone-grid article.is-earned>span,.aura-milestone-grid article.is-earned b{color:var(--lime)}.aura-milestone-grid article.is-earned:after{content:"✓";position:absolute;right:8px;top:7px;color:var(--lime);font-size:10px;font-weight:900}.aura-milestone-next{margin-top:10px;color:#aab8c7;font-size:7px;font-weight:900;letter-spacing:.1em}
 @media(max-width:600px){.aura-evolution-milestones{padding:11px}.aura-milestone-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.aura-milestone-grid article{padding:9px 7px}.aura-milestone-grid article b{font-size:7.5px}.aura-milestone-grid article small{font-size:6.5px}.aura-milestone-head strong{font-size:8px}}
+</style><style>/* PLAYER JOURNEY + XP MILESTONES — PANEL UNIFICADO */
+.aura-evolution-milestones .aura-player-journey{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1)}
+.aura-evolution-milestones .aura-journey-integrated{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px}
+.aura-evolution-milestones .aura-journey-current{padding:6px 8px;border:1px solid rgba(8,201,244,.4);background:rgba(8,201,244,.07);color:var(--cyan);font-size:7px;font-weight:900;letter-spacing:.1em;white-space:nowrap}
+.aura-evolution-milestones .aura-journey-next p{display:grid;gap:3px;margin:0}
+.aura-evolution-milestones .aura-journey-next p strong{font-size:10px;color:var(--white)}
+.aura-evolution-milestones .aura-journey-next p span{font-size:8px;color:var(--muted)}
+.aura-evolution-milestones .aura-journey-next a{display:flex;justify-content:center;align-items:center;min-height:38px;padding:8px 12px;background:var(--cyan);color:var(--ink);font-size:8px;font-weight:900;letter-spacing:.08em;text-align:center}
+@media(max-width:600px){.aura-evolution-milestones .aura-journey-integrated{grid-template-columns:1fr;gap:8px}.aura-evolution-milestones .aura-journey-current{justify-self:start}.aura-evolution-milestones .aura-journey-next p strong{font-size:9px}.aura-evolution-milestones .aura-journey-next a{width:100%}}
 </style></head>
 <body>
 
@@ -2329,7 +2338,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   <div class="aura-hub-next"><div><span class="aura-evolution-kicker">SIGUIENTE MISIÓN · PRO 21</span><b data-aura-next-mission>ABRÍ PRO 21 PARA CONTINUAR</b></div><a href="pro-21-days.html#days" class="aura-hub-cta">CONTINUAR ENTRENAMIENTO ↗</a></div>
   <div class="aura-evolution-skills"><span>COORDINACIÓN <b data-aura-skill="coordination">0%</b></span><span>VELOCIDAD <b data-aura-skill="speed">0%</b></span><span>AGILIDAD <b data-aura-skill="agility">0%</b></span><span>TÉCNICA <b data-aura-skill="technique">0%</b></span></div>
   <div class="aura-evolution-milestones" data-aura-milestones>
-    <div class="aura-milestone-head"><small>AURA XP // PROGRESIÓN</small><strong>PRÓXIMOS DESBLOQUEOS</strong><span data-aura-milestone-xp>0 XP</span></div>
+    <div class="aura-milestone-head"><small>AURA XP // PLAYER JOURNEY</small><strong>RUTA DE EVOLUCIÓN</strong><span data-aura-milestone-xp>0 XP</span></div>
     <div class="aura-milestone-track"><i data-aura-milestone-fill></i></div>
     <div class="aura-milestone-grid">
       <article data-milestone="100"><span>01</span><b>FIRST SPARK</b><small>100 XP · La evolución empieza</small></article>
@@ -2341,14 +2350,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   </div>
   <div class="aura-hub-programs"><a class="is-active" href="pro-21-days.html">PRO · 21 DÍAS</a><a href="start-7-days.html">START · 7 DÍAS</a><a href="elite-30-days.html">ELITE · 30 DÍAS</a></div>
   <div class="aura-player-journey" data-aura-player-journey>
-    <div class="aura-journey-head"><small>AURA XP // PLAYER JOURNEY</small><span class="aura-journey-current" data-journey-status>RUTA ROOKIE</span></div>
-    <div class="aura-journey-path" aria-label="Ruta de progresión">
-      <div class="aura-journey-step" data-journey-step="0"><b>START ROOKIE</b><small>Primeros desafíos</small></div>
-      <div class="aura-journey-step" data-journey-step="1"><b>PLAYER MODE</b><small>100 XP · Constancia</small></div>
-      <div class="aura-journey-step" data-journey-step="2"><b>GAME CHANGER</b><small>500 XP · Evolución</small></div>
-      <div class="aura-journey-step" data-journey-step="3"><b>LEGEND STATUS</b><small>1.000 XP · Elite</small></div>
-    </div>
-    <div class="aura-journey-next"><p><strong data-journey-next-title>Tu recorrido empieza hoy.</strong><span data-journey-next-copy>Completá tu primer desafío y empezá a construir tu progreso.</span></p><a data-journey-cta href="start-7-days.html">EMPEZAR START ↗</a></div>
+    <div class="aura-journey-next aura-journey-integrated"><div class="aura-journey-current" data-journey-status>RUTA ROOKIE</div><p><strong data-journey-next-title>Tu recorrido empieza hoy.</strong><span data-journey-next-copy>Completá tu primer desafío y empezá a construir tu progreso.</span></p><a data-journey-cta href="start-7-days.html">EMPEZAR START ↗</a></div>
   </div>
   <div class="aura-evolution-foot"></div>
 </section>
