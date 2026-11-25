@@ -181,7 +181,7 @@
         .aura-achievement-progress-label{display:contents}
         .aura-achievement-progress-label strong{grid-row:1;text-align:left;font-size:9px}
         .aura-achievement-track{grid-row:2}
-        .aura-achievement-progress-label span{grid-row:3;width:100%!important;text-align:right;font-size:9px;line-height:1.2}
+        .aura-achievement-progress-label span{grid-row:3;width:100%!important;box-sizing:border-box;padding-right:8px;text-align:right;font-size:9px;line-height:1.2}
         .aura-achievement-progress-copy{grid-row:4;margin-top:0!important;font-size:9px!important;text-align:center}
         .aura-equip-button{width:min(100%,240px);white-space:normal;line-height:1.4;padding:9px 10px;font-size:8px}
         .aura-equipped-emblem{width:100%;margin:8px 0 0}
