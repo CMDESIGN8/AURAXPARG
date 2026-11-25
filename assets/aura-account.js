@@ -2,7 +2,8 @@
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
   getAuth, onAuthStateChanged, createUserWithEmailAndPassword,
-  signInWithEmailAndPassword, sendPasswordResetEmail, signOut, updateProfile
+  signInWithEmailAndPassword, sendPasswordResetEmail, signOut, updateProfile,
+  GoogleAuthProvider, signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
   getFirestore, doc, getDoc, setDoc, serverTimestamp
@@ -52,6 +53,11 @@ const styles = `
 #aura-account-form input:focus{border-color:#08c9f4;box-shadow:0 0 0 3px rgba(8,201,244,.1)}
 #aura-account-submit{width:100%;height:50px;margin-top:20px;border:0;border-radius:3px;background:linear-gradient(100deg,#08c9f4,#56dfff);color:#03111a;font-size:12px;font-weight:900;letter-spacing:1px;cursor:pointer}
 #aura-account-submit:disabled{opacity:.6;cursor:wait}
+#aura-account-google{width:100%;height:48px;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:11px;border:1px solid rgba(255,255,255,.2);border-radius:3px;background:#fff;color:#202124;font:700 12px Arial,sans-serif;cursor:pointer}
+#aura-account-google:hover{background:#f3f6fa}
+#aura-account-google svg{width:18px;height:18px;flex:none}
+.aura-account-or{display:flex;align-items:center;gap:12px;margin:15px 0 2px;color:#718394;font-size:9px;font-weight:800;letter-spacing:1.5px}
+.aura-account-or:before,.aura-account-or:after{content:"";height:1px;flex:1;background:rgba(255,255,255,.12)}
 #aura-account-error{min-height:18px;margin:12px 0 0;color:#ff9a9a;font-size:11px;line-height:1.5}
 #aura-account-switch{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin-top:14px;color:#9aabba;font-size:11px}
 #aura-account-switch button,#aura-account-forgot{padding:0;border:0;background:none;color:#08c9f4;font:800 11px Montserrat,Arial,sans-serif;cursor:pointer}
@@ -87,6 +93,8 @@ root.innerHTML = `
       <label for="aura-account-password">Contraseña</label>
       <input id="aura-account-password" name="password" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo 8 caracteres">
       <button id="aura-account-submit" type="submit">CREAR MI CUENTA</button>
+      <div class="aura-account-or">O CONTINUÁ CON</div>
+      <button id="aura-account-google" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.74 7.18l7.73 6C44.43 37.98 46.98 31.92 46.98 24.55z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.53 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.14 1.44-4.89 2.3-8.18 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continuar con Google</button>
       <p id="aura-account-error" role="alert"></p>
     </form>
     <button id="aura-account-forgot" type="button">RECUPERAR CONTRASEÑA</button>
@@ -111,6 +119,7 @@ const form = $("aura-account-form");
 const errorNode = $("aura-account-error");
 const nameWrap = $("aura-account-name-wrap");
 const submit = $("aura-account-submit");
+const googleButton = $("aura-account-google");
 
 function showToast(message) {
   toast.textContent = message;
@@ -149,7 +158,10 @@ function friendlyError(error) {
     "auth/too-many-requests": "Hubo demasiados intentos. Esperá unos minutos y volvé a probar.",
     "auth/network-request-failed": "No pudimos conectar. Revisá tu conexión.",
     "auth/operation-not-allowed": "El registro por email todavía no está habilitado en Firebase.",
-    "auth/unauthorized-domain": "Este dominio todavía no está autorizado en Firebase Authentication."
+    "auth/unauthorized-domain": "Este dominio todavía no está autorizado en Firebase Authentication.",
+    "auth/popup-closed-by-user": "Cerraste la ventana de Google antes de terminar.",
+    "auth/popup-blocked": "El navegador bloqueó la ventana de Google. Permití las ventanas emergentes y reintentá.",
+    "auth/account-exists-with-different-credential": "Ya existe una cuenta con este email usando otro método. Iniciá sesión con ese método primero."
   };
   return messages[code] || "No pudimos completar la operación. Probá nuevamente.";
 }
@@ -224,6 +236,25 @@ async function ensureProfile(user) {
   if (!profile.exists()) payload.createdAt = serverTimestamp();
   await setDoc(profileRef, payload, { merge: true });
 }
+
+googleButton.addEventListener("click", async () => {
+  errorNode.textContent = "";
+  googleButton.disabled = true;
+  googleButton.style.opacity = ".6";
+  googleButton.textContent = "CONECTANDO CON GOOGLE…";
+  try {
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: "select_account" });
+    await signInWithPopup(auth, provider);
+    // onAuthStateChanged completes profile creation and progress sync.
+  } catch (error) {
+    errorNode.textContent = friendlyError(error);
+  } finally {
+    googleButton.disabled = false;
+    googleButton.style.opacity = "1";
+    googleButton.innerHTML = '<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.74 7.18l7.73 6C44.43 37.98 46.98 31.92 46.98 24.55z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.53 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.14 1.44-4.89 2.3-8.18 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continuar con Google';
+  }
+});
 
 form.addEventListener("submit", async event => {
   event.preventDefault();
