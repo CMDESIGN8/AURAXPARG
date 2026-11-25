@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Cada jugador solo puede leer y modificar su propio perfil.
+    match /users/{userId} {
+      allow read, create, update: if request.auth != null && request.auth.uid == userId;
+      allow delete: if false;
+
+      // Datos privados de progreso: START, PRO, ELITE, XP y logros.
+      match /private/{document=**} {
+        allow read, create, update: if request.auth != null && request.auth.uid == userId;
+        allow delete: if false;
+      }
+    }
+  }
+}
