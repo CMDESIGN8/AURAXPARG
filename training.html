@@ -2495,7 +2495,17 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   const progressKey='aura-player-evolution-v1';
   function loadProgress(){try{const raw=JSON.parse(localStorage.getItem(progressKey)||'{}');return Array.isArray(raw.completedDrops)?raw.completedDrops.filter(n=>Number.isInteger(n)&&n>=0&&n<4):[];}catch(e){return [];}}
   const completedDrops=new Set(loadProgress());
-  function saveProgress(){try{localStorage.setItem(progressKey,JSON.stringify({completedDrops:Array.from(completedDrops),updatedAt:new Date().toISOString()}));}catch(e){}}
+  const xpToast=document.createElement('div');
+  xpToast.className='aura-training-xp-toast';
+  xpToast.setAttribute('role','status');
+  xpToast.setAttribute('aria-live','polite');
+  document.body.appendChild(xpToast);
+  const xpToastStyle=document.createElement('style');
+  xpToastStyle.textContent='.aura-training-xp-toast{position:fixed;z-index:1200;left:50%;bottom:24px;transform:translate(-50%,18px);opacity:0;pointer-events:none;padding:13px 20px;background:linear-gradient(90deg,#b7ff3c,#08c9f4);color:#06111a;font:900 11px Montserrat,Arial,sans-serif;letter-spacing:.12em;box-shadow:0 8px 30px rgba(8,201,244,.25);transition:opacity .22s,transform .22s;white-space:nowrap}.aura-training-xp-toast.is-visible{opacity:1;transform:translate(-50%,0)}@media(max-width:600px){.aura-training-xp-toast{bottom:16px;max-width:calc(100vw - 28px);white-space:normal;text-align:center}}';
+  document.head.appendChild(xpToastStyle);
+  let xpToastTimer;
+  function showTrainingXp(){xpToast.textContent='+50 XP · DESAFÍO COMPLETADO';xpToast.classList.add('is-visible');clearTimeout(xpToastTimer);xpToastTimer=setTimeout(()=>xpToast.classList.remove('is-visible'),2400);}
+  function saveProgress(){try{localStorage.setItem(progressKey,JSON.stringify({completedDrops:Array.from(completedDrops),updatedAt:new Date().toISOString()}));window.dispatchEvent(new Event('aura:progress-updated'));return true;}catch(e){console.warn('AURA XP: no se pudo guardar el desafío.',e);return false;}}
   function renderPlayerProfile(){
     const count=completedDrops.size,percent=Math.round(count/4*100),level=String(1+count).padStart(2,'0');
     const put=(id,value)=>{const el=root.querySelector('#'+id);if(el)el.textContent=value;};
@@ -2562,7 +2572,7 @@ nav{gap:19px;font-size:9px;letter-spacing:.08em;white-space:nowrap}
   next.addEventListener('click',function(){
     if(!completedExercises.has(currentExercise))return;
     if(currentExercise<challenges[current].exercises.length-1){currentExercise++;updateExerciseProgress();return;}
-    completedDrops.add(current);saveProgress();renderCollection();const card=stage.querySelector('.mission-card');if(card)card.classList.add('is-completing');next.disabled=true;
+    completedDrops.add(current);saveProgress();renderCollection();showTrainingXp();const card=stage.querySelector('.mission-card');if(card)card.classList.add('is-completing');next.disabled=true;
     window.setTimeout(function(){current++;if(current>=challenges.length){controls.hidden=true;stage.hidden=true;finished.hidden=false;counter.innerHTML='04 DE 04 <b>· COMPLETADO</b>';index.textContent='100%';percent.textContent='100%';fill.style.width='100%';renderJourney();callCoach(current-1,true);}else{render();callCoach(current);}},300);
   });
   root.querySelector('#mission-restart').addEventListener('click',function(){
