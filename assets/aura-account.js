@@ -3,7 +3,7 @@ import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12
 import {
   getAuth, onAuthStateChanged, createUserWithEmailAndPassword,
   signInWithEmailAndPassword, sendPasswordResetEmail, signOut, updateProfile,
-  GoogleAuthProvider, signInWithPopup
+  GoogleAuthProvider, signInWithPopup, linkWithCredential
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
   getFirestore, doc, getDoc, setDoc, serverTimestamp
@@ -39,6 +39,8 @@ let syncReady = false;
 let syncTimer = null;
 let currentMode = "login";
 let pendingDisplayName = "";
+let pendingGoogleCredential = null;
+let pendingGoogleEmail = "";
 
 const styles = `
 #aura-account-root{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(2,7,14,.88);backdrop-filter:blur(14px);font-family:Montserrat,Arial,sans-serif;color:#f4f8fb}
@@ -161,7 +163,7 @@ function friendlyError(error) {
     "auth/unauthorized-domain": "Este dominio todavía no está autorizado en Firebase Authentication.",
     "auth/popup-closed-by-user": "Cerraste la ventana de Google antes de terminar.",
     "auth/popup-blocked": "El navegador bloqueó la ventana de Google. Permití las ventanas emergentes y reintentá.",
-    "auth/account-exists-with-different-credential": "Ya existe una cuenta con este email usando otro método. Iniciá sesión con ese método primero."
+    "auth/account-exists-with-different-credential": "Ya existe una cuenta con este email. Iniciá sesión con tu método habitual para vincular Google."
   };
   return messages[code] || "No pudimos completar la operación. Probá nuevamente.";
 }
@@ -248,7 +250,16 @@ googleButton.addEventListener("click", async () => {
     await signInWithPopup(auth, provider);
     // onAuthStateChanged completes profile creation and progress sync.
   } catch (error) {
-    errorNode.textContent = friendlyError(error);
+    if (error?.code === "auth/account-exists-with-different-credential") {
+      pendingGoogleCredential = GoogleAuthProvider.credentialFromError(error);
+      pendingGoogleEmail = (error.customData?.email || "").toLowerCase();
+      setMode("login");
+      $("aura-account-email").value = error.customData?.email || "";
+      $("aura-account-password").focus();
+      errorNode.textContent = "Ese correo ya tiene una cuenta AURA. Iniciá sesión con tu contraseña y vincularemos Google automáticamente, sin crear otra cuenta.";
+    } else {
+      errorNode.textContent = friendlyError(error);
+    }
   } finally {
     googleButton.disabled = false;
     googleButton.style.opacity = "1";
@@ -290,7 +301,16 @@ form.addEventListener("submit", async event => {
       await updateProfile(credential.user, { displayName });
       pendingDisplayName = "";
     } else {
-      await signInWithEmailAndPassword(auth, email, password);
+      const credential = await signInWithEmailAndPassword(auth, email, password);
+      if (pendingGoogleCredential) {
+        if (pendingGoogleEmail && email.toLowerCase() !== pendingGoogleEmail) {
+          throw new Error("Ingresá el mismo email con el que intentaste continuar con Google.");
+        }
+        await linkWithCredential(credential.user, pendingGoogleCredential);
+        pendingGoogleCredential = null;
+        pendingGoogleEmail = "";
+        showToast("GOOGLE VINCULADO · TU CUENTA ESTÁ UNIFICADA");
+      }
     }
   } catch (error) {
     errorNode.textContent = error.message?.startsWith("Elegí") ? error.message : friendlyError(error);
